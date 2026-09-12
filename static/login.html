@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Masuk · BI MemoBuilder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-shell">
+    <div class="auth-atmosphere" aria-hidden="true">
+      <div class="landing-orb landing-orb-a"></div>
+      <div class="landing-orb landing-orb-b"></div>
+      <div class="landing-grid"></div>
+    </div>
+
+    <main class="auth-panel">
+      <div class="auth-brand">
+        <img src="/static/bi-mark.png" alt="" />
+        <p class="auth-product">MemoBuilder</p>
+        <p class="auth-sub">Bank Indonesia · Internal</p>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button type="button" class="auth-tab active" data-mode="login" role="tab" aria-selected="true">Masuk</button>
+        <button type="button" class="auth-tab" data-mode="signup" role="tab" aria-selected="false">Daftar</button>
+      </div>
+
+      <form id="auth-form" class="auth-form" autocomplete="on">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" required autofocus placeholder="alaia atau umum" />
+
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" required placeholder="••••••" />
+
+        <p id="auth-error" class="auth-error" hidden></p>
+
+        <button type="submit" class="btn btn-landing auth-submit" id="auth-submit">Masuk</button>
+      </form>
+
+      <p class="auth-hint" id="auth-hint">Akun demo: <code>alaia</code> / <code>umum</code></p>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById("auth-form");
+    const err = document.getElementById("auth-error");
+    const hint = document.getElementById("auth-hint");
+    const submitBtn = document.getElementById("auth-submit");
+    let mode = "login";
+
+    document.querySelectorAll(".auth-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        mode = tab.dataset.mode;
+        document.querySelectorAll(".auth-tab").forEach((t) => {
+          const on = t === tab;
+          t.classList.toggle("active", on);
+          t.setAttribute("aria-selected", on ? "true" : "false");
+        });
+        submitBtn.textContent = mode === "login" ? "Masuk" : "Buat akun";
+        hint.textContent = mode === "login"
+          ? "Akun demo: alaia / umum"
+          : "Hanya 2 akun tersedia: alaia dan umum (password sama dengan username).";
+        err.hidden = true;
+      });
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      err.hidden = true;
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      submitBtn.disabled = true;
+      try {
+        const res = await fetch(mode === "login" ? "/api/auth/login" : "/api/auth/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "same-origin",
+          body: JSON.stringify({ username, password }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.detail || "Gagal autentikasi");
+        window.location.href = "/";
+      } catch (ex) {
+        err.textContent = ex.message || "Gagal";
+        err.hidden = false;
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    // Already logged in?
+    fetch("/api/auth/me", { credentials: "same-origin" })
+      .then((r) => r.json())
+      .then((d) => { if (d && d.authenticated) window.location.href = "/"; })
+      .catch(() => {});
+  </script>
+</body>
+</html>

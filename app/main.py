@@ -4,8 +4,8 @@ import json
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, File, HTTPException, UploadFile
-from fastapi.responses import FileResponse, HTMLResponse, Response
+from fastapi import FastAPI, File, HTTPException, Request, UploadFile
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -14,6 +14,13 @@ from .attachments import (
     delete_attachment_file,
     resolve_attachment_path,
     save_uploaded_image,
+)
+from .auth import (
+    AuthMiddleware,
+    clear_session_cookie,
+    current_user,
+    set_session_cookie,
+    verify_credentials,
 )
 from .classification import classify_purpose
 from .config import PURPOSE_OPTIONS, ROOT
@@ -34,6 +41,7 @@ from .store import append_audit, clear_all_documents, get_document, list_documen
 from .validation import can_final_export, validate_document
 
 app = FastAPI(title="BI MemoBuilder", version="0.1.0")
+app.add_middleware(AuthMiddleware)
 
 STATIC_DIR = ROOT / "static"
 STATIC_DIR.mkdir(parents=True, exist_ok=True)
@@ -72,10 +80,61 @@ class PublishRequest(BaseModel):
     payload: dict[str, Any]
 
 
+class AuthRequest(BaseModel):
+    username: str
+    password: str
+
+
+@app.get("/login", response_class=HTMLResponse)
+def login_page(request: Request) -> HTMLResponse:
+    if current_user(request):
+        return HTMLResponse('<meta http-equiv="refresh" content="0;url=/" />')
+    html = (STATIC_DIR / "login.html").read_text(encoding="utf-8")
+    return HTMLResponse(html)
+
+
 @app.get("/", response_class=HTMLResponse)
 def index() -> HTMLResponse:
     html = (STATIC_DIR / "index.html").read_text(encoding="utf-8")
     return HTMLResponse(html)
+
+
+@app.get("/api/auth/me")
+def api_auth_me(request: Request) -> dict[str, Any]:
+    user = current_user(request)
+    if not user:
+        return {"authenticated": False}
+    return {"authenticated": True, "username": user["username"]}
+
+
+@app.post("/api/auth/login")
+def api_auth_login(body: AuthRequest) -> JSONResponse:
+    if not verify_credentials(body.username, body.password):
+        raise HTTPException(401, "Username atau password salah")
+    username = body.username.strip().lower()
+    resp = JSONResponse({"ok": True, "username": username})
+    set_session_cookie(resp, username)
+    return resp
+
+
+@app.post("/api/auth/signup")
+def api_auth_signup(body: AuthRequest) -> JSONResponse:
+    """Prototype: hanya 2 akun tetap (alaia / umum)."""
+    u = body.username.strip().lower()
+    if u not in ("alaia", "umum"):
+        raise HTTPException(400, "Pendaftaran ditolak. Hanya akun alaia atau umum yang tersedia.")
+    if not verify_credentials(body.username, body.password):
+        raise HTTPException(400, "Password tidak sesuai akun yang disediakan.")
+    resp = JSONResponse({"ok": True, "username": u, "created": False, "message": "Akun sudah tersedia, Anda masuk."})
+    set_session_cookie(resp, u)
+    return resp
+
+
+@app.post("/api/auth/logout")
+def api_auth_logout() -> JSONResponse:
+    resp = JSONResponse({"ok": True})
+    clear_session_cookie(resp)
+    return resp
 
 
 @app.get("/api/health")

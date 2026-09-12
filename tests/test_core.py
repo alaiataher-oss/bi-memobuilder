@@ -174,3 +174,29 @@ def test_admin_publish_template_without_code_change(tmp_path=None):
     res = client.post("/api/admin/templates", json={"version": "9.9.9-test", "payload": pack})
     assert res.status_code == 200
     assert "9.9.9-test" in res.json()["versions"]
+
+
+def test_auth_login_and_guard():
+    import os
+    os.environ.pop("AUTH_DISABLED", None)
+    # Re-import won't rebuild middleware; exercise helpers + endpoints with cookies via fresh app
+    from app.auth import create_session_token, read_session_token, verify_credentials
+
+    assert verify_credentials("alaia", "alaia")
+    assert verify_credentials("umum", "umum")
+    assert not verify_credentials("alaia", "wrong")
+    assert not verify_credentials("hacker", "hacker")
+    tok = create_session_token("alaia")
+    assert read_session_token(tok)["username"] == "alaia"
+
+    # With AUTH_DISABLED still set from conftest for other tests — use raw verify path above.
+    # Login endpoint should succeed even when middleware is disabled.
+    bad = client.post("/api/auth/login", json={"username": "x", "password": "y"})
+    assert bad.status_code == 401
+    ok = client.post("/api/auth/login", json={"username": "alaia", "password": "alaia"})
+    assert ok.status_code == 200
+    assert ok.json()["username"] == "alaia"
+    signup = client.post("/api/auth/signup", json={"username": "baru", "password": "baru"})
+    assert signup.status_code == 400
+    signup_ok = client.post("/api/auth/signup", json={"username": "umum", "password": "umum"})
+    assert signup_ok.status_code == 200

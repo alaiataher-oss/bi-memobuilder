@@ -16,8 +16,13 @@ const $save = () => document.getElementById("save-indicator");
 async function api(path, options = {}) {
   const res = await fetch(path, {
     headers: { "Content-Type": "application/json", ...(options.headers || {}) },
+    credentials: "same-origin",
     ...options,
   });
+  if (res.status === 401 && !path.startsWith("/api/auth/")) {
+    window.location.href = "/login";
+    throw new Error("Login diperlukan");
+  }
   if (!res.ok) {
     let msg = await res.text();
     try { msg = JSON.parse(msg).detail || msg; } catch {}
@@ -506,6 +511,22 @@ document.querySelectorAll(".nav-btn").forEach((btn) => {
 });
 
 async function boot() {
+  const me = await api("/api/auth/me");
+  if (!me.authenticated) {
+    window.location.href = "/login";
+    return;
+  }
+  state.user = me.username;
+  const chip = document.getElementById("user-chip");
+  const nameEl = document.getElementById("user-name");
+  if (chip && nameEl) {
+    nameEl.textContent = me.username;
+    chip.hidden = false;
+  }
+  document.getElementById("btn-logout")?.addEventListener("click", async () => {
+    await api("/api/auth/logout", { method: "POST", body: "{}" });
+    window.location.href = "/login";
+  });
   state.health = await api("/api/health");
   state.templates = await api("/api/templates");
   state.documents = await api("/api/documents");
