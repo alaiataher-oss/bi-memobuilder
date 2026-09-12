@@ -12,3 +12,5 @@ assets/fonts/*.ttf
 assets/fonts/*.otf
 .env
 .env.*
+.vercel
+.env*
