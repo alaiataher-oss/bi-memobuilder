@@ -1,0 +1,336 @@
+{
+  "version": "1.0.0",
+  "status": "active",
+  "effective_date": "2022-01-01",
+  "last_reviewed_by": "prototype-seed",
+  "last_reviewed_at": "2026-09-12T00:00:00Z",
+  "source_document": "PCPM 40_DMST; Pedoman Dokumen Elektronik 2022",
+  "source_page_or_section": "multiple",
+  "styles": {
+    "paper": "A4",
+    "paper_note": "HVS putih polos untuk dokumen administratif/korespondensi",
+    "fonts": {
+      "heading_family": "Optima",
+      "body_family": "Frutiger",
+      "needs_bi_verification": true,
+      "optima_asset": "assets/fonts/Optima.ttf",
+      "frutiger_asset": "assets/fonts/Frutiger.ttf"
+    },
+    "margin_mm": {
+      "top": 25,
+      "bottom": 25,
+      "left": 30,
+      "right": 25,
+      "status": "needs_bi_verification"
+    },
+    "font_sizes_pt": {
+      "MemoTitle": 14,
+      "Heading1": 12,
+      "Body": 11,
+      "Metadata": 10,
+      "SignatureBlock": 10,
+      "status": "needs_bi_verification"
+    },
+    "line_spacing": 1.15,
+    "named_styles": [
+      "MemoTitle",
+      "Metadata",
+      "Heading1",
+      "Body",
+      "Table",
+      "SignatureBlock"
+    ]
+  },
+  "filename_pattern": "{satker}_{ps}_{doc_type}_{title}_{date}",
+  "templates": {
+    "M.01_KOORDINASI": {
+      "document_type": "M.01",
+      "variant": "koordinasi",
+      "label": "M.01 Korespondensi — Koordinasi/Informasi",
+      "doc_type_code": "M.01",
+      "sections": [
+        {
+          "key": "pembuka",
+          "title": "Pembuka / Latar Belakang",
+          "guidance": "Jelaskan mengapa koordinasi, kerja sama, atau permintaan informasi ini diperlukan.",
+          "placeholder": "Contoh: Dalam rangka penyiapan asesmen governance triwulanan, diperlukan data realisasi dari satker terkait…",
+          "required": true
+        },
+        {
+          "key": "isi",
+          "title": "Isi Koordinasi dan Output yang Diharapkan",
+          "guidance": "Uraikan hal yang dikoordinasikan/diinformasikan dan output yang diharapkan.",
+          "placeholder": "Contoh: Mohon bantuan penyampaian data X paling lambat tanggal … agar dapat digabungkan dalam laporan…",
+          "required": true
+        },
+        {
+          "key": "penutup",
+          "title": "Penutup / Batas Waktu Tindak Lanjut",
+          "guidance": "Cantumkan batas waktu tindak lanjut bila relevan.",
+          "placeholder": "Contoh: Atas perhatian dan kerja samanya, kami ucapkan terima kasih. Tanggapan diharapkan paling lambat…",
+          "required": true
+        }
+      ],
+      "accountability": {
+        "mode": "signatory_only",
+        "labels": []
+      },
+      "source_page_or_section": "PCPM p.15"
+    },
+    "M.01_UNDANGAN": {
+      "document_type": "M.01",
+      "variant": "undangan",
+      "label": "M.01 Undangan — Berpembebanan Anggaran",
+      "doc_type_code": "M.01",
+      "sections": [
+        {
+          "key": "latar_tujuan",
+          "title": "Latar Belakang dan Tujuan",
+          "guidance": "Jelaskan latar belakang dan tujuan kegiatan/rapat.",
+          "placeholder": "Contoh: Dalam rangka finalisasi RKP, akan dilaksanakan konsinyasi pembahasan…",
+          "required": true
+        },
+        {
+          "key": "waktu_tempat_agenda",
+          "title": "Waktu, Tempat, dan Agenda",
+          "guidance": "Isi tiap kolom. Label otomatis muncul di dokumen seperti contoh M.01.",
+          "placeholder": "",
+          "required": true,
+          "input_mode": "structured_fields",
+          "fields": [
+            {
+              "key": "hari_tanggal",
+              "label": "Hari, Tanggal",
+              "placeholder": "Senin, 8 Desember 2025"
+            },
+            {
+              "key": "waktu",
+              "label": "Waktu",
+              "placeholder": "09.00–16.00 WIB"
+            },
+            {
+              "key": "tempat",
+              "label": "Tempat",
+              "placeholder": "Hotel / Ruang Rapat / tautan"
+            },
+            {
+              "key": "agenda",
+              "label": "Agenda",
+              "placeholder": "Terlampir / topik utama"
+            }
+          ]
+        },
+        {
+          "key": "kontribusi_peserta",
+          "title": "Kontribusi / Ekspektasi Peserta",
+          "guidance": "Uraikan ekspektasi kontribusi tiap satker/peserta. Gunakan tabel bila perlu.",
+          "placeholder": "Contoh: DMST menyiapkan bahan asesmen; DHk memberikan aspek legalitas…",
+          "required": true,
+          "supports_table": true,
+          "table_columns": [
+            "No",
+            "Satuan Kerja",
+            "Kontribusi/Ekspektasi"
+          ]
+        },
+        {
+          "key": "konfirmasi_pic",
+          "title": "Konfirmasi Kehadiran dan PIC",
+          "guidance": "Cantumkan permintaan konfirmasi kehadiran dan kontak PIC.",
+          "placeholder": "Mohon konfirmasi kehadiran kepada PIC: Nama — email — telepon.",
+          "required": true
+        },
+        {
+          "key": "pembebanan_anggaran",
+          "title": "Informasi Pembebanan / Akun Anggaran",
+          "guidance": "Cantumkan informasi pembebanan anggaran kedinasan dan akun bila relevan.",
+          "placeholder": "Pembebanan: akun anggaran … / kegiatan …",
+          "required": true
+        }
+      ],
+      "accountability": {
+        "mode": "signatory_only",
+        "labels": []
+      },
+      "source_page_or_section": "PCPM p.16; Pedoman 2022 §II"
+    },
+    "MEETING_REQUEST": {
+      "document_type": "MEETING_REQUEST",
+      "variant": "undangan_tanpa_anggaran",
+      "label": "Meeting Request / Email Body",
+      "doc_type_code": "MR",
+      "sections": [
+        {
+          "key": "latar_tujuan",
+          "title": "Latar Belakang dan Tujuan",
+          "guidance": "Ringkas tujuan rapat untuk body Meeting Request.",
+          "placeholder": "Dengan hormat, kami mengundang Bapak/Ibu untuk rapat…",
+          "required": true
+        },
+        {
+          "key": "waktu_tempat_agenda",
+          "title": "Waktu, Tempat, dan Agenda",
+          "guidance": "Isi tiap kolom. Label otomatis muncul di dokumen seperti contoh M.01.",
+          "placeholder": "",
+          "required": true,
+          "input_mode": "structured_fields",
+          "fields": [
+            {
+              "key": "hari_tanggal",
+              "label": "Hari, Tanggal",
+              "placeholder": "Senin, 8 Desember 2025"
+            },
+            {
+              "key": "waktu",
+              "label": "Waktu",
+              "placeholder": "09.00–16.00 WIB"
+            },
+            {
+              "key": "tempat",
+              "label": "Tempat",
+              "placeholder": "Hotel / Ruang Rapat / tautan"
+            },
+            {
+              "key": "agenda",
+              "label": "Agenda",
+              "placeholder": "Terlampir / topik utama"
+            }
+          ]
+        },
+        {
+          "key": "kontribusi_peserta",
+          "title": "Kontribusi / Ekspektasi (opsional)",
+          "guidance": "Boleh ditambahkan sebagai tabel ekspektasi.",
+          "placeholder": "Diharapkan masing-masing unit menyiapkan poin…",
+          "required": false,
+          "supports_table": true,
+          "table_columns": [
+            "No",
+            "Satuan Kerja",
+            "Kontribusi/Ekspektasi"
+          ]
+        },
+        {
+          "key": "konfirmasi_pic",
+          "title": "Konfirmasi dan PIC",
+          "guidance": "Cantumkan PIC untuk konfirmasi.",
+          "placeholder": "Konfirmasi kepada…",
+          "required": true
+        }
+      ],
+      "accountability": {
+        "mode": "none",
+        "labels": []
+      },
+      "export_modes": [
+        "email_body",
+        "docx_draft"
+      ],
+      "source_page_or_section": "Pedoman 2022 Meeting Request"
+    },
+    "M.02_PERSETUJUAN": {
+      "document_type": "M.02",
+      "variant": "persetujuan",
+      "label": "M.02 Persetujuan/Keputusan",
+      "doc_type_code": "M.02",
+      "sections": [
+        {
+          "key": "tujuan_permohonan",
+          "title": "Tujuan dan Permohonan Persetujuan",
+          "guidance": "Tuliskan keputusan yang ingin diminta dari pimpinan dalam satu kalimat yang eksplisit.",
+          "placeholder": "Memohon persetujuan pimpinan atas…",
+          "required": true,
+          "explicit_field_label": "Keputusan apa yang diminta dari pimpinan?"
+        },
+        {
+          "key": "latar_belakang",
+          "title": "Latar Belakang dan Penjelasan",
+          "guidance": "Cantumkan konteks, dasar, data/fakta, analisis, dan urgensi.",
+          "placeholder": "Latar belakang… Data pendukung… Analisis… Urgensi…",
+          "required": true
+        },
+        {
+          "key": "risiko_mitigasi",
+          "title": "Analisis Risiko dan Mitigasi",
+          "guidance": "Wajib memuat risiko beserta mitigasinya terkait rekomendasi.",
+          "placeholder": "Isi melalui tabel risiko.",
+          "required": true,
+          "supports_table": true,
+          "table_columns": [
+            "Risiko",
+            "Dampak",
+            "Kemungkinan",
+            "Mitigasi",
+            "PIC"
+          ]
+        },
+        {
+          "key": "kesimpulan_rekomendasi",
+          "title": "Kesimpulan dan Rekomendasi",
+          "guidance": "Cantumkan alternatif usulan, rekomendasi utama, dan rumusan persetujuan.",
+          "placeholder": "Kesimpulan… Alternatif… Rekomendasi: Disetujui untuk…",
+          "required": true
+        },
+        {
+          "key": "lembar_pendapat",
+          "title": "Lembar Pendapat (opsional)",
+          "guidance": "Opsional. Isi bila diperlukan sebagai lampiran.",
+          "placeholder": "Ringkasan pendapat…",
+          "required": false,
+          "allow_not_needed": true
+        }
+      ],
+      "accountability": {
+        "mode": "grid",
+        "labels": [
+          "Dipersiapkan oleh",
+          "Diperiksa oleh",
+          "Didukung oleh",
+          "Disetujui oleh"
+        ],
+        "final_label": "Disetujui oleh"
+      },
+      "source_page_or_section": "PCPM p.18-20"
+    },
+    "M.02_PELAPORAN": {
+      "document_type": "M.02",
+      "variant": "pelaporan",
+      "label": "M.02 Pelaporan",
+      "doc_type_code": "M.02",
+      "sections": [
+        {
+          "key": "tujuan_laporan",
+          "title": "Tujuan dan Hal yang Dilaporkan",
+          "guidance": "Jelaskan secara jelas apa yang dilaporkan/disampaikan.",
+          "placeholder": "Memyampaikan laporan hasil…",
+          "required": true
+        },
+        {
+          "key": "latar_belakang",
+          "title": "Latar Belakang dan Penjelasan",
+          "guidance": "Sertakan data, informasi, atau fakta pendukung.",
+          "placeholder": "Penjelasan… Data/fakta…",
+          "required": true
+        },
+        {
+          "key": "kesimpulan_tindak_lanjut",
+          "title": "Kesimpulan dan Rencana Tindak Lanjut",
+          "guidance": "Cantumkan kesimpulan serta rencana tindak lanjut yang akan dilakukan.",
+          "placeholder": "Kesimpulan… Tindak lanjut: … PIC: … Tenggat: …",
+          "required": true
+        }
+      ],
+      "accountability": {
+        "mode": "grid",
+        "labels": [
+          "Dipersiapkan oleh",
+          "Diperiksa oleh",
+          "Didukung oleh",
+          "Diterima oleh"
+        ],
+        "final_label": "Diterima oleh"
+      },
+      "source_page_or_section": "PCPM p.21-23"
+    }
+  }
+}

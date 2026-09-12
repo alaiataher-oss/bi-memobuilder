@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BI MemoBuilder</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar" aria-label="Navigasi utama">
+      <div class="brand">
+        <img class="brand-logo" src="/static/bi-mark.png" alt="" />
+        <div>
+          <div class="brand-name">MemoBuilder</div>
+          <div class="brand-sub">Bank Indonesia · Internal</div>
+        </div>
+      </div>
+      <nav>
+        <button data-route="dashboard" class="nav-btn active">Beranda</button>
+        <button data-route="create" class="nav-btn">Buat Dokumen</button>
+        <button data-route="library" class="nav-btn">Template</button>
+        <button data-route="admin" class="nav-btn">Admin Rules</button>
+      </nav>
+      <div class="sidebar-foot">
+        <div id="save-indicator" class="save-indicator" aria-live="polite">Siap</div>
+        <div class="sidebar-tag">Rule-based · AI assistif</div>
+      </div>
+    </aside>
+    <main id="main" class="main" tabindex="-1"></main>
+  </div>
+  <script src="/static/app.js" type="module"></script>
+</body>
+</html>

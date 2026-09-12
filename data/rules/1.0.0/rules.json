@@ -1,0 +1,120 @@
+{
+  "version": "1.0.0",
+  "status": "active",
+  "effective_date": "2022-01-01",
+  "last_reviewed_by": "prototype-seed",
+  "last_reviewed_at": "2026-09-12T00:00:00Z",
+  "source_document": "PCPM 40_DMST_Pengenalan Dokumen BI; Pedoman Dokumen Elektronik New Version 2022",
+  "source_page_or_section": "PCPM p.14-23; Pedoman Bab 3",
+  "classification": [
+    {
+      "id": "CLS-01",
+      "purpose": "koordinasi",
+      "result_type": "M.01_KOORDINASI",
+      "label": "M.01 – Memorandum Korespondensi",
+      "explanation": "Berdasarkan tujuanmu, dokumen yang sesuai adalah M.01 Korespondensi karena memo digunakan untuk koordinasi, kerja sama, atau penyampaian/permintaan informasi kepada satker/unit lain."
+    },
+    {
+      "id": "CLS-02",
+      "purpose": "undangan",
+      "budget_impact": true,
+      "result_type": "M.01_UNDANGAN",
+      "label": "M.01 – Undangan (berpembebanan anggaran)",
+      "explanation": "Undangan yang menimbulkan pembebanan anggaran kedinasan wajib disusun sebagai memorandum M.01 Undangan."
+    },
+    {
+      "id": "CLS-03",
+      "purpose": "undangan",
+      "budget_impact": false,
+      "result_type": "MEETING_REQUEST",
+      "label": "Meeting Request / email BI",
+      "explanation": "Undangan tanpa pembebanan anggaran kedinasan diarahkan ke Meeting Request/email BI, bukan memorandum formal."
+    },
+    {
+      "id": "CLS-04",
+      "purpose": "persetujuan",
+      "result_type": "M.02_PERSETUJUAN",
+      "label": "M.02 – Memorandum Satuan Kerja (Persetujuan/Keputusan)",
+      "explanation": "Berdasarkan tujuanmu, dokumen yang sesuai adalah M.02 Persetujuan karena memo meminta keputusan/persetujuan pimpinan."
+    },
+    {
+      "id": "CLS-05",
+      "purpose": "pelaporan",
+      "result_type": "M.02_PELAPORAN",
+      "label": "M.02 – Memorandum Satuan Kerja (Pelaporan)",
+      "explanation": "Berdasarkan tujuanmu, dokumen yang sesuai adalah M.02 Pelaporan karena memo menyampaikan laporan, pendapat, atau masukan."
+    }
+  ],
+  "validation": [
+    {
+      "id": "VAL-META-REQ",
+      "trigger": "export",
+      "condition": "metadata.recipient && metadata.subject && metadata.city_date",
+      "severity": "error",
+      "message": "Penerima, perihal, serta kota/tanggal wajib diisi.",
+      "source_document": "PCPM 40 DMST",
+      "source_page_or_section": "Praktik penyusunan memorandum",
+      "effective_date": "2015-11-27",
+      "version": "1.0.0",
+      "status": "active",
+      "last_reviewed_by": "prototype-seed",
+      "last_reviewed_at": "2026-09-12T00:00:00Z"
+    },
+    {
+      "id": "VAL-PLACEHOLDER",
+      "trigger": "export",
+      "condition": "no_placeholder_tokens",
+      "severity": "error",
+      "message": "Masih ada placeholder yang belum diganti. Placeholder tidak boleh ikut diekspor.",
+      "source_document": "Product acceptance / Pedoman MDEBI",
+      "source_page_or_section": "Penyusunan dokumen elektronik",
+      "effective_date": "2022-01-01",
+      "version": "1.0.0",
+      "status": "active",
+      "last_reviewed_by": "prototype-seed",
+      "last_reviewed_at": "2026-09-12T00:00:00Z"
+    },
+    {
+      "id": "VAL-NO-PLACEHOLDER",
+      "trigger": "export",
+      "condition": "document_number_not_placeholder",
+      "severity": "warning",
+      "message": "Nomor dokumen masih placeholder dan dapat dilengkapi kemudian.",
+      "source_document": "Pedoman Dokumen Elektronik 2022",
+      "source_page_or_section": "Penomoran dikosongkan saat draft",
+      "effective_date": "2022-01-01",
+      "version": "1.0.0",
+      "status": "active",
+      "last_reviewed_by": "prototype-seed",
+      "last_reviewed_at": "2026-09-12T00:00:00Z"
+    },
+    {
+      "id": "CLS-OVERRIDE",
+      "trigger": "classification",
+      "condition": "user_override_differs_from_rule",
+      "severity": "warning",
+      "message": "Pilihan tipe dokumen berbeda dari hasil rule engine berdasarkan tujuan.",
+      "source_document": "PCPM 40 DMST",
+      "source_page_or_section": "p.14 klasifikasi M.01/M.02",
+      "effective_date": "2015-11-27",
+      "version": "1.0.0",
+      "status": "active",
+      "last_reviewed_by": "prototype-seed",
+      "last_reviewed_at": "2026-09-12T00:00:00Z"
+    },
+    {
+      "id": "FILE-01",
+      "trigger": "export",
+      "condition": "filename_pattern",
+      "severity": "info",
+      "message": "Nama file mengikuti pola [SATKER]_[PSXX]_[JENIS]_[JUDUL]_[DD-MM-YYYY].",
+      "source_document": "Buku Pedoman Dokumen Elektronik New Version 2022",
+      "source_page_or_section": "Bab 3 penamaan file",
+      "effective_date": "2022-01-01",
+      "version": "1.0.0",
+      "status": "active",
+      "last_reviewed_by": "prototype-seed",
+      "last_reviewed_at": "2026-09-12T00:00:00Z"
+    }
+  ]
+}

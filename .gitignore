@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+*.egg-info/
+.vercel/
+data/store/
+data/exports/
+data/attachments/
+assets/fonts/*.ttf
+assets/fonts/*.otf
+.env
+.env.*
