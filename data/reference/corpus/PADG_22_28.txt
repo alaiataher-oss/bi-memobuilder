@@ -1,0 +1,696 @@
+
+--- PAGE 1 ---
+^;^' BANK INDONESIA
+PERATURAN ANGGOTA DEWAN GUBBRNUR INTERN
+NOMOR 22128 IPADG INT^RN/2020
+TENTANG
+MANAJBME;N DoKUM^N DLEKTRONiK BANK INDON^SIA
+DENGAN I^. AHMAT TUHAN YANG MAHA ^SA
+Menimbarig
+ANGGOTA DEWAN GUBERNUR BANK INDONESIA,
+: a. pelaksanaan tugasbahwa Bank Indonesia
+mengedepankari penerapari prtnsip tata kelola yang balk
+yang salah satunya tercermin dalarn mamajemen doICUmen
+Bank Indonesia;
+banwa seiring dengari perkembangan teknologi dan
+informasi serta untIJk mendtikung program peduli
+lingktJngari (90 green), mamajemen doktimen Bank
+Indonesia selain dilakukari secara hardcop!//poperbosed,
+juga sudan saattiya untuk dilakukan secara elektronik;
+banwa dalam pengaturan dan pelal<sanaari manajemen
+dofumen elektronik Bank Indonesia, perliJ. tetap seialan
+dengan prtnsip dan ketentuari dalarn peraturari
+perundang-undarigari mengenai informasi dan transaksi
+elektronik;
+bahwa berdasarkan pertimbangan sebagaimaria dimaksud
+dalam buruf a, bunif b, dan huruf c perlu menetapkari
+Peraturari Anggota Dewari Gubernur Intern tentang
+Mamajemen Dokumen ^Iektronik Bank Indonesia;
+b.
+C.
+d.
+
+--- PAGE 2 ---
+^;^I BANK INDONESIA
+Mengingat
+Menetapkan
+Peraturan Dewari GtJbernur Nomor 101 101PDG/2008 tanggal
+6 Oktober 2008 tentang Mamajemen Informasi Bank Indonesia;
+MBMUTUSKAN:
+PERATURAN ANGGOTA DEWAN GUBBRNUR INTERN
+TENTANG MANAJBMEN DoKUMi^;N ELEKTRONiK BANK
+INDONESIA.
+.
+Pasal I
+Dalam Peraturan Anggota Dewari GtiberntJr Intern ini yang
+dimaksud dengari:
+dapatI . Informasi adalah segala sesuatu yang
+dikomunikasikan, diketahi. Ii, dintiat, dibaca atau didengar,
+berupa data, ballari, dan basil analisis, keterarigari,
+dofumen, statisti}c, 1,016ksi perut, .stakaan, atau banan lain
+dalarn bentok tertulis di at as kertas atau ballari lain yang
+tordapat dalam media elektronis dalam berbagai bentuk
+atall corak dan/atat, . tidak tertulis (tersimpan/tidalc
+forsimpart, terekam/tidal< terekarn) dalam berbagai
+bentuk/ corak.
+2 . Teknologi Informasi adalah suatu telEriik untok
+mengumpulkari, merrylapkari, menyimpan, meinproses,
+mengiJmumkan, mengarialisis, darnatati menyebarkari
+Informasi.
+3, Do}cumen Bank Indonesia adalal, . data, catatari, dan/atatJ.
+keterarigari yang disusun dan/ atau diterima o1eh Bank
+Indonesia untu}c pelaksariaari kegiatarinya, balk tertulis di
+terekam dalarnat as I^ertas at atI sarana lain inaupun
+bentuk coral< apapun yang dapat dinhat, dibaca, atau
+didengar,
+4. DOLEumen ETektr. onik adalah setiap Informasi elektronik di
+Bank Indonesia yang dibuat, diteruskan, dikirimkari,
+rl;ferim ^ Rtg=1.1 Hisjinng^n HAIR in herih, k ,a n RIDo. digital.
+Halamaii^.......
+KBTENTUAN UMUM
+BAB I
+
+--- PAGE 3 ---
+^;^' BANK INDONESIA
+dinhat, ditarnpilkari, darnatau didengar meIalui komputer
+atatI sistem elektronik, termasuk tetapi tidalc terbatas
+pada tulisari, suara, gambar, peta, rancarigari, foto atau
+seienisnya, buruf, tanda, angka, kode a}, ses, simbol atau
+perforasi yang me minki maima atau arti atau dapat
+dipahami oreh orarig yang roampu memallaminya.
+5. Tanda Tangan BIGktroni}c atau Electronic Signature yang
+selarijutriya disebut Tanda Tangari ^Iektronik adalah
+tanda tangari yang terdiri at as informasi 61ektronik yang
+dilekatkan, terasosiasi, atatI terkait dengari informasi
+61ektronik lainnya yang digunakari sebagai alat ventikasi
+dan autontikasi.
+6. Anggota Dewari Gubernur adalah Gubernur, Deptiti
+Gubernur Senior, dan Dept, .ti GI. ^berntir yang diarigkat
+berdasarkan Undarig-Undang Nomor 23 Tallun 1999
+tentang Bank Indonesia sebagaimaria telah be be rapa kan
+diubah, teralchir dengari Undarig-Undarig Nomor 6 Tallun
+2009 tentang Penetapari Peratt, .ran Peruerintali Penggariti
+Undarig-Undarig Nomor 2 TaniJ. I} 2008 tentarig Perubahan
+KGdua atas Undang-Undang Nomor 23 Tallun 1999
+tentarig Bank Indonesia menjadi Undang-Undang.
+7. Pegawai adala}I pegawai Bank Indonesia yang diarigkat
+untuk iangka waktiJ yang tidalc ditentukan.
+8, Arsip adalali Do fumen Blektronik yang telah setosai
+digLina}ran.
+9. Manajemen Dofumen
+pengendaliari dofumen
+sistematis.
+10. Satt, .an Keria adalah entitas dalarn organisasi Bank
+dibentuk berdasarkari arsitektLirIndonesia yang
+organisasi untuk meIaksariakan fungsi
+meIaksariakari tugas Bank Indonesia.
+I I. Peruimpin Satuari Keria adalah I=epala Satuan Keria.
+12 . Jadwal Retensi adalah iangka wa}<tu penyimpariari atau
+retensi Arsip yang dipergunakari sebagai pedomari
+Denvusutan dan Derivelamatari ArsiD.
+Halaman ........
+.
+Blektronik adalah proses
+efisien, efektif, dansecara
+guna
+
+--- PAGE 4 ---
+^;^I BANK INDONESIA
+13. Penanda Tangari adalah subjek hukum yang terasosiasi
+at au terkait dengar, . Tanda Tangan Blektronik.
+BAB 11
+TUJUAN DAN PRINSIP
+Pasa1 2
+Pengaturan Dofumen l^;Iektronik bertujuan sebagai berikut:
+a, memastikan kelaricaran proses administrasi, komunikasi,
+dan pengambilari keputusari guna meningkatkari
+aimntabilitas dan transpararisi pelaksanaari tugas dan
+wewenang Bank Indonesia;
+b. meningkat}can efektivitas dan efisiensi mamajemen
+Dokuruen Bank Indonesia sesuai perkembarigan teknologi
+informasi;
+c. menyedial<an dokuruen autentik, legal, dan terpercaya
+sebagai alat bukti hukum yang san;
+d. memberikan keamariari, ketersediaani, dan kernudahan
+alcses do fumerT sesuai dengan praktik terbaik; dan
+e. mendukung penciptaari lingkungari Icer:ja digital,
+Bagian KGsatu
+fujiJ. an
+Halaman ........
+Pasa1 3
+Manajemen Dokuruen 15:1ektronik dilaksariakan betdasarkan
+prinsip sebagai berikut:
+a, tata kelola yang balk (good 90uemonce), yaitu
+Do fumen BIGktronik dila}cok^I sesuaimanaJ emen
+dengan prtnsip tata Icelola yang bailc;
+b, otorisasi (authorization), yaitu adariya tingkatan
+kewenangari untuk bekeria dengan menggunakari
+Tinlr. ,in en 17:1eL2. tmnil<' ?
+Bagiari Kedua
+Prtnsip
+,
+
+--- PAGE 5 ---
+^I BANK INDONESIA
+yang digL^nakan dalam pelaksariaari tugas Bank
+Indonesia merupakari mink Bank Indonesia;
+autentikasi (outentjjicc, tion), yaiti. ,. kejelasari pihak
+yang menciptakari Do kuruen Filektronik;
+Icerahasiaan (confidentiality), yaitu pengarrianan
+Dokuruen BIGktronik dilakukan secara proporsional;
+relevansi (rateuonc!/), yaitu penggunaan Dokumen
+^Iektronik sesuai kewenangan dan kebutuhan;
+intogritas tintegrit^), yaittJ kelengkapari Dohamen
+BIGktronik tenaga dan upaya pengurarigan, penarnbahari,
+dan pengubahari informasi in aupun fistk Do fumen
+ETektronik yang dapat menggarigg!,. keautentikari dan
+keterpercayaari Dokuruen BIGktronik.
+kernarnpt. Ian beradaptasi (adoptcibiltt!/), yaitu pengelolaari
+Dokuruen BIGktronik roampi. I merespon berbagai
+perubahan dan perkembarigari seperti teknologi, budaya,
+dan organisasi; dan
+nirpenyangkalari (non-repudiation), yaitu kepastian
+piha}c yang mengirim dan menerima Do kunien
+IBlel<tronik.
+d.
+e.
+f.
+g.
+h.
+Halaman ........
+I.
+Bagiari Kesatt, .
+Ruarig Lingkup Dokuruen BIGktronik
+(1)
+Pasa1 4
+Dokuruen ^Iektronik terdiri atas:
+a. dofumen administratif dan/atau korespondensi; dan
+b. do fumen penetapan.
+DOLEumen BIGktronik benipa dokuruen administratif
+dan/atatI korespondensi sebagaimana dimaksud pada
+ayat (1) hurtif a terdiri atas:
+a. memorandum, yang merupakari dofumen tertulis
+'10/1ngalcg^n I^e, hF, OF, i media koresnondensi
+RUANG LINGKUP
+BAB 111
+.
+(2)
+\79 fl O
+
+--- PAGE 6 ---
+^;^ BANK INDONESIA
+kepada atasan atau Anggota Dewan Gubernur,
+inaupun dibuat Anggota Dewan Gubemur, Satuan
+KGr:ja, atau unit Iceda yang ditujukari I=epada Anggota
+Dewan Gubernur, Satuari Keria atau unit kei:ja lain;
+Iembar disposisi pejabat, yang men^pal<an dofumen
+yang me inuat arahari in aupun penjelasan dan
+pejabat mengenai hal yang terdapat pada do fumen
+yang menyertai atatI be itIPa aralian langsung
+inauptJrT penjelasari;
+risala}I rapat, yang merupakan do}comen tertulis
+beitJPa singkat tentarig hal-hal yang
+dibicarakan atau dipt". tuskari dalarn suati. I rapat yang
+disahkari o1eh pemimpin rapat;
+surat, yang merupakari dokumen tertulis yang dibuat
+o1eh internal Bank Indonesia dan ditujukari kepada
+pihak eksternal Bank Indonesia dengari inal<sud
+untu}c menyampaikan benta, pendapat* darn atau
+pesan untuk chinal^urni dan/atatI dilaksariakan;
+surat kuasa, yang menJpakari do fumen termlis
+bermeterai cukup, berisi pemberian wewenang dart
+GuberntJ. r Bank Indonesia kepada Pegawai atau pihak
+tortentu untuk meIakukari suatu perbuatari hukum
+untuk dan at as nama pemberi ktJ. asa;
+penanjiari, yang men^pakari dokuruen tertulis
+bermeterai CURup yang ditandatangani o1e}I Bank
+Indonesia dan pihak lain dan digunakan sebagai
+btikti bahwa pihak tersebut telah sepalat untuk
+sanng mengikat din guna me Iakukari suatu
+perbuatari 11ukum tertentu;
+benta acara, yang menipa}can dokumen yang
+meinuat pernyataan tertulis mengenai suatu
+penstiwa, keadaari yang dialarni, dila}CUIcan atau
+pihak-pihakdisal<sikari sendiri o1eh yang
+bersarigkutan;
+faksimili, yang inert^palcari dofumen basil pengirimari
+I. ,Prifa Tripl al, , ; Tripsin FPl, 'elm ;I; \r^ 710 1.9 a 21 a 9 ^^Ifnvn
+b.
+C.
+Halaman !^.....
+d.
+uralari
+e.
+f.
+g.
+h.
+.
+
+--- PAGE 7 ---
+^I BANK INDONESIA
+i, penguinixman, yang merupakari doktimen yang
+me inuat penhal tertentu dan tidalc bersifat Tallasia
+yang ditujukan 1<epada masyarakat atatL pihak
+tertenti. I untuk diketaliui, dimaklumi, atatI
+dilal<sanakan;
+telaahan, yang menipakari dokuruen berisi IJraiari
+tertulis yang dibuat o16h seorang Pegawai atau Iebih
+atas nania Bank Indonesia, SattJan Ker:ja, at au unit
+keria mengenai suatiJ. masalal, . yang did asarkan atas
+fakta, hasil penalitian, dan analisa yang disus un
+secara sistematis IxnttJ. }c suatti tujuari tertentIJ;
+k. warkat Bank Indonesia, yang menJpakari do hamen
+terttilis yang bentuk dan penggunaarinya ditetapkan
+menurut at1.1rari tertentu dan merupakan bukti
+sarana transal<si keuangari; dan
+I. nota kesepahaman, yang merupal<an dokuruen
+tertulis bermeterai cukup yang ditandatangarii o16h
+Bank Indonesia dan pihak lain yang berisi
+Icesepakatan untuk meIakLikari suatu perbuatan,
+tidal< meIakukan SL^atIJ. perbuatari, darn atau
+menyerahkari SIXattJ barang, namun bonya untuk
+hubungan yang bersifat 1.00rdinatif dan tidal< berlaku
+1<0ndisi dimaria Bank Indonesia sebagai subjek
+ITUkum perdata sebagaimana hull:'urn pel:ianjiari.
+Dokuruen Blektronik berupa dofumen penetapari
+sebagaimaria chinal<slid pada ayat ( I) buruf b terdiri at as:
+a. KGputusan Gubernur Bank Indonesia;
+b. KGputusan Deputi Guberni. Ir Senior Bank Indonesia;
+c. KGputusan Deputi GiJ. bernur Bank Indonesia; dan
+d. I^eputusari peruimpin Satuari Keria.
+Dokuruen ETektronik tidal< termasuk:
+a. dokuruen pengatIJrari;
+b. surat yang menurut Undang-Undarig terkait harus
+dibuat dalam bentuk tertulis (hardcop!//paperbased);
+dan
+J.
+Halaman ........
+.
+(3)
+(4)
+O. ,^ITr, :, t he serfa rinki, mennva van g menurut Undarig-
+
+--- PAGE 8 ---
+^I BANK INDONESIA
+notaris at au al<ta yang dibuat o1eh pejabat perubuat
+al<ta.
+Do}cumen ^16ktronik dan/atatI hasil CGtaknya merupal<an
+alat bul<ti hukum yang sah sebagaimaria dimaksud dalam
+ketentuan peraturari perundarig-undangan mengenai
+informasi dan transaksi 61ektronik.
+(5)
+Pasa1 5
+Sifat DOLEumen Elektroni}c dibedakari menurut:
+a. ismya, yaitu:
+I . dokumen biasa, yaitu Do kuruen Elektroni}c yang
+meinI. ^at informasi biasa dan tidal< memerlt, .kan
+pengarrianari khtisus; dan
+2. do fumen ranasia, yaitu Dofumen I^;Iektronik yang
+meinuat informasi rahasia dan merobuttihkan
+pengamariari tinggi; dan
+b. lingkup berlakunya, yaitu:
+I . do kuruen intern, berlaku at au ditujukari kepada
+Anggota Dewari Gt". bernur, SatLiari Keria, unit keria,
+dan/atau Pegawai; dan
+2. do fumen ekstern, berlaku atau ditujukari kepada
+pemarigku kepentingan eksternal Bank Indonesia.
+Bagiari KGdtia
+Sifat Dofumen !B;Ie}ctronik
+Halamai^^.......
+BAB TV
+P^LAKSANAAN MANAJEMBN DoKUMBN DLEKTRONiK
+Bagiari KesatLJ.
+Siklus Mariajemen Dokumen Elektronik
+(1)
+Pasa1 6
+SikltJs manajemen Dofumen Elektronik menputi:
+a, penyusunan Dofumen Blektronik;
+I'D heria flagf^ n ORnn n Tinlri, men Filetcfrnnil<',
+
+--- PAGE 9 ---
+^I BANK INDONESIA
+d. distribusi Do}cumen Elektronik;
+e. penyimpanari Dokuruen BIGktronik;
+f. penggunaari Dokumen Elektronik;
+g. perueliharaari Dofumen Elektroni}c; dan.
+h. peruusrTalian Dofumen Blektronik.
+Siklus mamajemen Dokuruen Elektronik sebagaimaria
+chinal<and pada ayat ( I ) dapat dilak\Ikari o1eh Anggota
+Dewari GLibernur dan Pegawai pada saat pelaksariaan
+tugas kedinasari baik di dalam negeri in aupun Iuar negeri,
+kecuali pada saat cuti.
+(2)
+Halamai^!.......
+(1)
+Pasa1 7
+Penyusi. Inari Dofumen Blektronik dilakukan meIalui
+sistem informasi dofumen elektronik Bank Indonesia.
+Format pensrLisunari Dofumen Blektroni}, sebagaimana
+dimaksud dalam Pasa1 4 ayat ( I ) , termasi. 11< penomoran
+dan Penarida Tangari Do}CLImen Blektronik, mengacu pada
+ketent\Ian Banklndonesia mengenai pengatural^ dokuruen
+Bank Indonesia.
+Dofumen Elektronik meIalui sistemTekriis penyLisunari
+informasi dofumen 616ktronik Bank Indonesia mengacu
+pada pedomari mengenai mamajemerT doICUmen elektronik
+Bank Indonesia.
+Bagiari Kedua
+Penyusunari Dohamen Elektronik
+(2)
+(3)
+Bagian Ketiga
+Penandatarigarian Dofumer, . Elektronik
+(1)
+Pasa1 8
+Keabsa}Ian Dokumen ^Iektronik ditaridai dengan
+perubtibtihan Tanda Tangari I^;Iektronik sesuai dengari
+kewenangari dan tanggungjawab PenalTda Tangari,
+PembubtJhan Tanda Tangari Blektronik sebagaimana
+Him^, I, -,,^,,,, hang rival ill Dada Do}cumen Blektroni}c
+(2)
+.
+
+--- PAGE 10 ---
+^ BANK INDONESIA
+menipakan bentuk
+Do fumen Elektronik.
+\
+(1)
+Pasa1 9
+Tanda Tangan Elektroni}c meminki I, ekuatari hull:urn dan
+a}dbat bilkum yang sama dengari tanda tangari manual.
+Tanda Tangari Elektronik digLinakan untuk memberIkari
+dan / atau pengesaharipersetujuari, penerimaari,
+Do kuruen Blektronik guna pelaksanaan tugas Bank
+Indonesia.
+Paragraf I
+Tanda Tangan BIGktronik
+pertariggungjawabari
+(2)
+Halama^. P. ......
+torhadap
+Paragraf 2
+Pembuatari dan Pembubu},. an Tanda Tangari BIGktronik
+(1)
+Pasal I O
+Perubuatan Tanda Tangan I^;Iektronik dilaku}can meIalui
+sistem penerbitan Sertifikat Blektronik yang ditentukari
+o1eh Satuan Keria yang meIaksariakan fungsi pengelolaari
+SIStGm informaSi.
+Pembuatari Tanda Tangari Elektronik barus memenuhi
+persyaratari paling sedikit sebagai berikut:
+a. menggunakan data pembuatari Tanda Tangari
+BIGktronik; dan
+b. mencaritumkari wakt\I penaridatariganan.
+Perububuhari Tanda Tangari Blektronik pada Do}cumen
+Elektroni}< dilakukan meIan. Ii sistem informasi terkait
+Dofumen ^161<tronik Bank Indonesia.
+Tanda Tangan 15:16ktronik hanya digtJna}<an pada
+Do fumen Elektronik.
+Teknis perubuatari dan pembubuhari Tanda Tangari
+^Iektronik mengacu pada pedomari mengenai mamajemen
+dofumen elektronik Bank Indonesia.
+(2)
+(3)
+(4)
+(5)
+
+--- PAGE 11 ---
+^;^ BANK INDONESIA
+(1)
+Pasal I I
+Penarida Tangan wailb menjaga kerahasiaari dan
+bertariggung jawab atas perubuatan Tanda Tangan
+BIGktronik dan Dofumen Elektronik.
+Penanda Tangari yang melanggar ketentuan sebagaimaria
+dima}CSud pada ayat (1) dikenai sanksi sebagaimana
+dimaksLid dalam ketentuan Bank Indonesia mengenai
+peraturari disiplin Bank Indonesia,
+(2)
+.
+Paragraf 3
+Pencabutari Tanda Tangan Blektronik
+(1)
+Pasa1 12
+Pencabutari Icewenangari Tanda Tangari BIGktronik
+dilakukari dalam hal Penarida Tangan:
+pensii. ,. n;
+b, berhenti atau diberhentikari; atau
+c. meninggal dunia,
+Pencabi". tan kewenarigari Tanda Tangan E:Iektr. onik selain
+dilakukari I^arena alasan sebagaimaria dima}CSud pada
+ayat (1), juga dilakukan techadap Pegawai yang
+dibebastugaskan sesuai dengari ketentuan yang mengatLir
+mengenai perattirari disiplin Bank Indonesia.
+Pencabutari kewenarigari Tanda Tangan BIGktronik
+sebagaimaria dimaksud pada ayat (1) dan ayat (2)
+dilakukan o1eh SatLiari Keria yang meIaksanakari fungsi
+pengelolaari sistem informasi berdasarkan permintaan
+dan Satuan Keria yang meIaksanakari fungsi pengelolaan
+sumber daya mantisia.
+Tekriis pencabutari Icewenarigan Tanda Tangan Elektronik
+mengacu pada pedoman mengenai manajemen doll:'umen
+elektronik Bank Indonesia.
+Halamal ..,..-..
+a.
+(2)
+.
+(3)
+(4)
+
+--- PAGE 12 ---
+^;^' BANK INDONESIA
+(1)
+Bagiari KGempat
+Penomorari Dofumen BIGktronik
+Pasa1 13
+Keabsa}Ian Dofumen BIG}!:tronik juga ditaridai dengan
+pencarittiman nomor pada Do}<umen E:Iektronik.
+Nomor DORumen Blektronik sebagaimana. chinalcstid pada
+ayat (1) diterbitkan oreh Satuari Keria atau unit ker:ja yang
+menyusun Dofumen ^Iektronik.
+Nomor Dofumen E:Iektronik sebagaimana dima}<sud pada
+ayat (1) bersifat unik dengari menggambarkan tahun
+buku, nomor unit, rubrik Satuari Keria atau unit keria
+yang mensrusun Do kuruen BIGktronik, jenis do fumen, dan
+sitat dokuruen, yang dipisahkan dengari tanda garis
+miring.
+Tekriis penomoran DoI^linen ETektronik Bank Indonesia
+mengacu pada pedomari mengenai manajemen dofumen
+61ektronil< Bank Indonesia.
+(2)
+(3)
+12Halaman ........
+(4)
+. .
+(1)
+Pasa1 14
+Distribusi Do}cumen Blektronik inert^patari proses
+pengiriman dan penerimaari Dofumen Elektronik yang
+menpi. Iti:
+a. internal Bank Indonesia; dan
+b. ekstemal Bank Indonesia.
+Distribusi internal sebagaimana dimaksLid pada ayat (1)
+bunlf a menputi proses pengirimari dan penerimaan
+Do}cumen ^Iektronik antar-Anggota Dewan Gubernur,
+Anggota Dewari GtJ. bernur dengari Satuari Keria, Anggota
+Dewari Gi. Ibernur dengan Pegawai, antar-Satuari Keria,
+antarunit keria, dan/atatI antar-Pegawai.
+Distribusi eksternal sebagaimana dimaks, .Id pada ayat (1)
+1.1, ,FITf 1.1 in elf t, ,, ti rimses Dengiriman dan DenGrimaari
+Bagian Kenma
+Distribusi Dokumen Elektronik
+(2)
+(3)
+
+--- PAGE 13 ---
+^ BANK INDONESIA
+Do}cumen Blektronik Ice at au dan peruarigku kepentingan
+eksternal Bank Indonesia.
+Distribusi Dokumen ^16ktroni}c meroperhatikari aspek
+keainarian, kera}Iasiaari, Icehati-hatiari, dan ketepatan
+waktu .
+Proses pengirimari Dofumen BIGktronik sebagaimana
+dimaks\". d pada ayat ( I ) dapat dilakuL=an secara langsi. Ing
+o16h Satuari Kei:ja atau unit Iceda pencipta Do hamen
+E:Iektronik meIan. ^i sistem informasi dofumen elektronik
+Bank Indonesia.
+Dokuruen Blektronik yang didistribusikan juga berfungsi
+sebagai ternbusan.
+Do fumen BIGktronil<Teknis distribusi pengirim^l
+mengacu pada pedomari mengenai mamajemen dokuruen
+ele}ctronik Bank Indonesia.
+(4)
+(5)
+(6)
+(7)
+Halamal'I^.......
+Bagiari Keenain
+Penyimpariari DoICUmen BIGktronik
+(1)
+Pasa1 15
+Penyimparian Dofumen BIGktronik dilakukari
+sistematis daiam sistem reposttor!/ yang disediakari o1eh
+Satuan Keria yang berftingsi meIakukari pengelolaan
+sistem informasi.
+Penyimparian Dofumen BIGktronik dilakukari dengari
+meinperhatikari sifat DoI^linen I^;Iektronik, 1<1asifikasi
+masalah dan jadwal Tetensi Do fumen Elektronik,
+keariiarian, serta sarana dan prasararia yang ditetapkari.
+Kode klasifikasi masalah dan jadwal retensi Arsip Bank
+Indonesia Lintuk Dokuruen Blektronik mengacti pada
+ketentuan Bank Indonesia mengenai mamaJemen
+dokumen Bank Indonesia.
+Do fumen I^;IektronikProses administrasi penyimparian
+dilal<ukari meIalui sistem informasi terkait kearsipari
+Do fumen BIGktronik.
+. .
+(2)
+(3)
+(4)
+secara
+.
+.
+
+--- PAGE 14 ---
+^I BANK INDONESIA Halam^. 14:.......
+(5) Teknis penyimpanan Dofumen ^16ktroni}c mengacti pada
+pedomari mengenai mamajemen dokuruen elektronik Bank
+Indonesia.
+(1)
+Bagiari Ketujuh
+Penggtinaari Dokuruen BIGktronik
+Pasa1 16
+Penggunaari Dokumen Elektronik dapat dilakukari o1eh
+pihak internal dan / atall. eksternal dengari me inperhatikan
+sifat Dokumen E:Ie}ctronik dan tata cara pengLingkapari
+informasi Tabasia dalam Retentuari Bank Indonesia
+mengenai kewajiban menjaga informasi Tallasia.
+Penggunaari Dohamen BIGktronik sebagaimaria dimaksud
+pada ayat ( I ) dinubuhi tanda air (watermark) yang meinuat
+paling sedikit informasi pengguna berupa nama pihalc
+internal darnatau eksternal.
+Tekriis penggunaari Dokumen Blektronik mengacu pada
+pedomari mengenai mamajemen dofumen elektronik Bank
+Indonesia.
+(2)
+(3)
+(1)
+Pasa1 17
+Dalam hal diperltikari, Dokumen BIGktronik yang telah
+dibubuhi Tanda Tangan IDLektronik dapat dicetak.
+Hasil cetak Dokumen Blektronik sebagaimana dima}CSud
+pada ayat ( I I tidak memerlukan tanda tangari secara
+manual.
+(2)
+Bagiari Kedelapan
+Pemeliharaari Dofumen Elektronik
+(1)
+Pasa1 18
+Perueliharaan DOLEumen BIGktronik dilakukari o1eh Satuari
+Ker:Ia peruilik Dokuruen BIGktronik.
+Tekriis perueliharaari Dofumen Blektronik mengacu pada(2)
+_ ~ . ~ ^ ~ - ^ ~ - ~ ~ - ~ . .- ~ - ~ . ~ ^ ~ - ,, A I ~ , ^ A. ~ A1 ~, , +~ ~ ~ . I, D a - I ,
+
+--- PAGE 15 ---
+^I BANK INDONESIA
+Bagian Kesembilan
+Pemusnahari Dofumen Elektronik
+(1)
+Pasa1 19
+Peru, .Isrichari Dofumen Elektronik merupakan kegiatari
+mengLJrarigi jumlah DokumerT BIGktronik dengari cara
+menghapus secara permarien, yang dilakukan atas dasar:
+a, telah habis jadwal Tetensi Arsip;
+b. sudan tidal< me minki nilai guna;
+c. tidak berkaitan dengan penyelesaiari proses SLiatu
+perkara yang sedang ditarigani o1eh pihak yang
+be ryenarig; darn at atI
+d. tidal< dilararig o16h ketentuan peraturan perundang-
+,, darigar"
+Pemusnahari Dokumen I^;Iektronik dilakukari o1eh Satuari
+Ker:ja pemilik Dofumen Elektronik.
+Proses administrasi peruusnahari DOLEumen BIGktronik
+dilakul<an dalam SIStem informasi terkait kearsipari
+Do fumen E:Iektronik yang mengact. I pada ketentuari Bank
+do hamen BankIndonesia mengenai manaJemen
+Indonesia.
+Tekriis peruusnahan Dokuruen BIGktroni};: dilaktJkari
+dengari mengact. I pada ketentuari mengenai manajemen
+dokumen Bank Indonesia.
+Halame^.;^.......
+(2)
+(3)
+(4)
+(1)
+Pasa1 20
+Dokumen Blektronik diserahkari kepada Iembaga
+kearsipari sesuai dengari ketentuari perundarig-under!gan
+yang berlaki. I.
+Penyerahan DoICUmen E;Iektronik sebagaimana dimaksi. Id
+pada ayat (1) dilakukari o1eh Satuan Ker:ja yang
+meIaksariakari fungsi kearsipan,
+.
+(2)
+.
+
+--- PAGE 16 ---
+^ BANK INDONESIA
+Pasa1 21
+Pada saat Perati. Iran Anggota Dewari Gubern\,. r ini inulai
+berlaku, I^etentuari mengenai do}cumen elektronik dalarn Surat
+^dan'an Bank Indonesia Nomor 11138/INT^RN tangga129 Juni
+2009 permal Pengat\Iran Do fumen Bank Indonesia
+sebagaimaria telah be be rapa kan diubah, terakhir dengari Surat
+Edaran Bank Indonesia Nomor 17172/INT!^;RN tangga1 27
+November 2015 penhal Perubalian KGdua atas Surat Edarari
+Bank Indonesia Nomor 1/138/INTERN tangga129 JtLni 2009
+perthal Pengati. Iran Dokuruen Bank Inclonesia, dicabut dan
+dinyatakan tidalc berlaku.
+BAB V
+K^TENTUAN PENUTUP
+Halam^lis. ..,....
+(1)
+Pasa1 22
+Pemberlaki. Ian Do}cumen BIGktronik sebagaimana
+dimal<sud dalam Pasa1 4 ayat (2) dan ayat (3) diatur
+sebagai berikut:
+a. untok memorandum dan Iembar disposisi pejabat
+yang tidal< ditujukan Repada Anggota Dewan
+GII. bernur serta risalah rapat yang tidal< dihadiri o1eh
+Gtiberntir, berla}EU seiakDewariAnggota
+ditetapkannya Peraturari Anggota Dewari Guberni. Ir
+Intern ini; dan
+b. tintu}E memorandum dan Iembar disposisi pejabat
+yang ditujiJkan kepada Anggota Dewari G\". berntir,
+risalah rapat yang dihadiri o1eh Anggota Dewan
+Gubernur, Dokuruen Elektroni}< sebagaimaria
+chinalcsIJd dalam Pasa1 4 ayat (2) buruf d sannpai
+dengan buruf I, dan DOLEumen BIGktronik
+sebagaimaria dimal<sud dalam Pasa1 4 ayat (3) , al<an
+ditetapkan dengan Keputusari Anggota Dewari
+Gubernur.
+Penyimparian(2)
+A;~61,0, ,,, *~aA, at, ,+ it I I~.,~, f a CPI, ;,, 11:161, -., Iron F1er, fron
+Dofumen Blektronik sebagaimana
+
+--- PAGE 17 ---
+^;^ BANK INDONESIA
+Pasa1 15, juga dilakukari dalam sarana simpan Satuan
+Ker:ja dalam bentuk basil cetak DOLEumen Elektronik
+sebagaimana diatur dalam ketentuan mengenai
+mamajemen dokuruen Bank Indonesia.
+Penyimpariari Dofumen Elektronik dalam bentuk basil
+CGtak sebagaimana dimaksud pada ayat (2) dilakukari
+sampai dengan sistem repository termtegrasi dapat
+diimplementasikari.
+(3)
+Pasa123
+Peraturari Anggota Dewari Gubernur Intern ini in1.1ai berlaku
+pada tanggal ditetapkari.
+Halama}17. .....
+Ditetapkari di Jakarta
+pada tangga130 April 2020
+ANGGOTA DEWAN GUBERNUR, I^
+I^V'*
+SUGENG

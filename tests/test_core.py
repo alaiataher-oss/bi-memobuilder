@@ -200,3 +200,21 @@ def test_auth_login_and_guard():
     assert signup.status_code == 400
     signup_ok = client.post("/api/auth/signup", json={"username": "umum", "password": "umum"})
     assert signup_ok.status_code == 200
+
+
+def test_reference_chat_cites_penamaan_page():
+    from app.reference import answer_question, list_reference_docs, search_pages
+
+    docs = list_reference_docs()
+    assert any(d["id"] == "Pedoman_2022" for d in docs)
+    hits = search_pages("penamaan file dokumen SATKER PSXX")
+    assert hits, "expected hits for naming query"
+    assert any(h["doc_id"] == "Pedoman_2022" and h["page"] == 21 for h in hits[:3])
+    ans = answer_question("Bagaimana penamaan file dokumen?")
+    assert ans["citations"]
+    assert any(c["page"] for c in ans["citations"])
+    res = client.post("/api/reference/chat", json={"message": "Bagaimana penamaan file?"})
+    assert res.status_code == 200
+    body = res.json()
+    assert body["citations"]
+    assert "halaman" in body["answer"].lower() or any(c.get("page") for c in body["citations"])

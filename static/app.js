@@ -8,6 +8,9 @@ const state = {
   findings: [],
   editorTab: "metadata",
   autosaveTimer: null,
+  referenceDocs: [],
+  chatMessages: [],
+  activeCitation: null,
 };
 
 const $main = () => document.getElementById("main");
@@ -503,6 +506,19 @@ function navigate(route) {
   document.querySelectorAll(".nav-btn").forEach((b) => {
     b.classList.toggle("active", b.dataset.route === route);
   });
+  if (route === "reference") {
+    (async () => {
+      if (!state.referenceDocs.length) {
+        const pack = await api("/api/reference/docs");
+        state.referenceDocs = pack.documents || [];
+      }
+      render();
+    })().catch((e) => {
+      setSave(`Gagal muat referensi: ${e.message}`);
+      render();
+    });
+    return;
+  }
   render();
 }
 
@@ -597,6 +613,7 @@ function render() {
   if (state.route === "dashboard") main.innerHTML = viewDashboard();
   else if (state.route === "create") main.innerHTML = viewCreate();
   else if (state.route === "editor") main.innerHTML = viewEditor();
+  else if (state.route === "reference") main.innerHTML = viewReference();
   else if (state.route === "library") main.innerHTML = viewLibrary();
   else if (state.route === "admin") main.innerHTML = viewAdmin();
   bindView();
@@ -1111,6 +1128,90 @@ function viewLibrary() {
     </div>`;
 }
 
+function formatChatAnswer(text) {
+  return esc(text)
+    .replaceAll("\n", "<br/>")
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function viewReference() {
+  const docs = state.referenceDocs || [];
+  const messages = state.chatMessages || [];
+  const citation = state.activeCitation;
+  return `
+    <section class="ref-page">
+      <header class="ref-head">
+        <div>
+          <h1>Repository / Referensi</h1>
+          <p class="muted">Peraturan & pedoman yang diindeks per halaman. Tanya asisten untuk jawaban bertanda sumber (file + halaman).</p>
+        </div>
+      </header>
+
+      <div class="ref-layout">
+        <aside class="ref-docs panel">
+          <h2>Korpus peraturan</h2>
+          <ul class="ref-doc-list">
+            ${docs.map((d) => `
+              <li>
+                <button type="button" class="ref-doc-btn" data-ref-doc="${esc(d.id)}">
+                  <strong>${esc(d.short || d.id)}</strong>
+                  <span class="muted small">${esc(d.title)}</span>
+                  <span class="ref-doc-meta">${d.pages_indexed || 0} hlm${d.has_pdf ? " · PDF" : ""}</span>
+                </button>
+              </li>
+            `).join("") || `<li class="muted small">Belum ada dokumen terindeks.</li>`}
+          </ul>
+          <p class="hint">Sumber: Pedoman 2022, PCPM 40 DMST, Ringkasan Tata Naskah, PADG MDEBI, FAQ, SE 17/72.</p>
+        </aside>
+
+        <section class="ref-chat panel">
+          <div class="ref-chat-head">
+            <h2>Asisten referensi</h2>
+            <p class="muted small">Contoh: “Bagaimana penamaan file dokumen?” · “Struktur M.02 persetujuan?”</p>
+          </div>
+          <div id="ref-chat-log" class="ref-chat-log" aria-live="polite">
+            ${messages.length ? messages.map((m) => `
+              <div class="ref-bubble ${m.role}">
+                <div class="ref-bubble-body">${m.role === "assistant" ? formatChatAnswer(m.text) : esc(m.text)}</div>
+                ${m.citations?.length ? `
+                  <div class="ref-cites">
+                    ${m.citations.map((c) => `
+                      <button type="button" class="ref-cite" data-cite-doc="${esc(c.doc_id)}" data-cite-page="${esc(c.page)}">
+                        ${esc(c.short)} · hlm. ${esc(c.page)}
+                      </button>
+                    `).join("")}
+                  </div>
+                ` : ""}
+              </div>
+            `).join("") : `
+              <div class="ref-bubble assistant">
+                <div class="ref-bubble-body">Saya mencari jawaban di korpus peraturan internal. Sumber akan ditampilkan sebagai file + nomor halaman.</div>
+              </div>
+            `}
+          </div>
+          <form id="ref-chat-form" class="ref-chat-form">
+            <input id="ref-chat-input" type="text" placeholder="Tanya ketentuan BI…" required autocomplete="off" />
+            <button class="btn btn-primary" type="submit">Kirim</button>
+          </form>
+        </section>
+
+        <aside class="ref-source panel" id="ref-source-panel">
+          <h2>Sumber</h2>
+          ${citation ? `
+            <p class="ref-source-title"><strong>${esc(citation.short || citation.title)}</strong></p>
+            <p class="muted small">${esc(citation.source_label)} · halaman ${esc(citation.page)}</p>
+            <p class="hint">Berkas: <code>${esc(citation.file)}</code></p>
+            <div class="ref-source-text">${esc(citation.text || citation.excerpt || "")}</div>
+            ${citation.pdf ? `<a class="btn" href="/api/reference/files/${encodeURIComponent(citation.pdf)}" target="_blank" rel="noopener">Unduh PDF</a>` : ""}
+          ` : `
+            <p class="muted small">Klik sitasi di jawaban chat untuk membuka cuplikan halaman sumber.</p>
+          `}
+        </aside>
+      </div>
+    </section>`;
+}
+
 function viewAdmin() {
   return `
     <h1>Admin Rules & Templates</h1>
@@ -1152,6 +1253,62 @@ function bindView() {
     setSave("Draft dikosongkan");
     render();
   });
+
+  if (state.route === "reference") {
+    const log = main.querySelector("#ref-chat-log");
+    if (log) log.scrollTop = log.scrollHeight;
+
+    const openCitation = async (docId, page) => {
+      try {
+        const full = await api(`/api/reference/docs/${encodeURIComponent(docId)}/pages/${page}`);
+        state.activeCitation = full;
+        render();
+      } catch (e) {
+        setSave(e.message);
+      }
+    };
+
+    main.querySelectorAll("[data-cite-doc]").forEach((btn) => {
+      btn.addEventListener("click", () => openCitation(btn.dataset.citeDoc, Number(btn.dataset.citePage)));
+    });
+
+    main.querySelectorAll("[data-ref-doc]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const hits = await api(`/api/reference/search?q=${encodeURIComponent(btn.dataset.refDoc)}`);
+        const first = (hits.hits || [])[0];
+        if (first) openCitation(first.doc_id, first.page);
+      });
+    });
+
+    main.querySelector("#ref-chat-form")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = main.querySelector("#ref-chat-input");
+      const message = (input?.value || "").trim();
+      if (!message) return;
+      state.chatMessages = [...(state.chatMessages || []), { role: "user", text: message }];
+      input.value = "";
+      render();
+      try {
+        const res = await api("/api/reference/chat", {
+          method: "POST",
+          body: JSON.stringify({ message }),
+        });
+        state.chatMessages.push({
+          role: "assistant",
+          text: res.answer + (res.disclaimer ? `\n\n_${res.disclaimer}_` : ""),
+          citations: res.citations || [],
+        });
+        if (res.citations?.[0]) {
+          const c = res.citations[0];
+          const full = await api(`/api/reference/docs/${encodeURIComponent(c.doc_id)}/pages/${c.page}`);
+          state.activeCitation = full;
+        }
+      } catch (err) {
+        state.chatMessages.push({ role: "assistant", text: `Gagal: ${err.message}` });
+      }
+      render();
+    });
+  }
 
   main.querySelectorAll("[data-open]").forEach((btn) => {
     btn.addEventListener("click", async () => {

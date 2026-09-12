@@ -1,0 +1,913 @@
+
+--- PAGE 1 ---
+PERATURAN ANGGOTA DEWAN GUBERNUR INTERN
+NOMOR 23/ 51 /PADG INTERN/2021
+TENTANG
+MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIIA
+DENGAN RAHMAT TUHAN YANG MAHA ESA
+ANGGOTA DEWAN GUBERNUR BANK INDONESIIA,
+Menimbang : a. bahwa pelaksanaan tugas Bank Indonesia
+mengedepankan penerapan prinsip tata kelola yang baik
+yang salah satunya tercermin dalam manajemen dokumen
+Bank Indonesia;
+b. bahwa dalam pengaturan dan pelaksanaan manajemen
+dokumen elektronik Bank Indonesia, perlu tetap sejalan
+dengan prinsip dan ketentuan dalam peraturan
+perundang-undangan mengenai informasi dan transaksi
+elektronik;
+c. bahwa seiring dengan perkembangan teknologi dan
+informasi serta untuk mendukung program peduli
+lingkungan (go green), dokumen Bank Indonesia selain
+dilakukan secara tercetak (hardcopy/ paper-based) juga
+perlu dilakukan secara elektronik;
+d. bahwa terkait dengan implementasi pola kerja work from
+home (teleworking), perlu adanya dukungan manajemen
+dokumen Bank Indonesia yang dapat lebih efektif, efisien,
+agile dan mendukung terciptanya lingkungan kerja digital
+(digital workpLace) Bank Indonesia;
+e. bahwa berdasarkan pertimbangan sebagaimana dimaksud
+
+--- PAGE 2 ---
+2
+dalam huruf a sampai dengan huruf d, perlu menetapkan
+Peraturan Anggota Dewan Gubernur Intern tentang
+Manajemen Dokumen Elektronik Bank Indonesia;
+Mengingat : Peraturan Dewan Gubernur Nomor 10/ 1O/PDG/2008 tanggal
+6 Oktober 2008 tentang Manajemen Informasi Bank Indonesia;
+MEMUTUSKAN:
+Menetapkan : PERATURAN ANGGOTA DEWAN GUBERNUR INTERN
+TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK
+INDONESIIA.
+BABI
+KETENTUAN UMUM
+Pasal 1
+Dalam Peraturan Anggota Dewan Gubernur Intern ini yang
+dimaksud dengan:
+1. Informasi adalah segala sesuatu yang dapat
+dikomunikasikan, diketahui, dilihat, dibaca atau
+didengar, berupa data, bahan, dan hasil analisis,
+keterangan, dokumen, statistik, koleksi perpustakaan,
+atau bahan lain dalam bentuk tertulis di atas kertas atau
+bahan lain atau terdapat di dalam media elektronis dalam
+berbagai bentuk atau corak dan/atau tidak tertulis
+(tersimpan/tidak tersimpan, terekam/tidak terekam)
+dalam berbagai bentuk/corak.
+2. Informasi Elektronik adalah satu atau sekumpulan
+Informasi/data elektronik, termasuk tetapi tidak terbatas
+pada tulisan, suara, gambar, peta, rancangan, foto,
+electronic data interchange (EDI), surat elektronik
+(electronic rnail), telegram, teleks, teLecopy atau sejenisnya,
+huruf, tanda, angka, kode akses, simbol, atau perforasi
+yang telah diolah yang memiliki arti atau dapat dipahami
+oleh orang yang mampu memahaminya.
+3. Sistem Informasi adalah sistem yang menggunakan
+teknologi informasi untuk menghasilkan Informasi dalam
+
+--- PAGE 3 ---
+3
+rangka pelaksanaan tugas Bank Indonesia dan
+pemenuhan kebutuhan pengguna eksternal.
+4. Sistem Informasi Bank Indonesia adalah kombinasi antara
+Informasi, aplikasi, dan teknologi yang saling berinteraksi
+dengan kegiatan yang memanfaatkannya untuk
+mendukung pengambilan keputusan dan kelancaran
+tugas Bank Indonesia.
+5. Dokumen Bank Indonesia adalah data, catatan, dan/atau
+keterangan yang disusun dan/atau diterima oleh Bank
+Indonesia untuk pelaksanaan kegiatannya, baik tertulis di
+atas kertas atau sarana lain maupun terekam dalam
+bentuk corak apapun yang dapat dilihat, dibaca, atau
+didengar.
+6. Dokumen Elektronik Bank Indonesia adalah Dokumen
+Bank Indonesia yang berbentuk Informasi Elektronik yang:
+a. disusun, ditandatangani menggunakan tanda tangan
+elektronik, ditemskan/dikirimkan dan/atau diterima;
+atau
+b. dihasilkan dari suatu proses bisnis satuan kerja Bank
+Indonesia yang disusun secara manua1 atau otomatis
+dengan atau tanpa dibubuhi tanda tangan elektronik;
+dan disimpan da1am bentuk ana1og, digital,
+elektromagnetik, optikal, atau sejenisnya yang dapat
+dilihat, ditampilkan, dan/atau didengar mela1ui komputer
+atau sistem elektronik, termasuk tetapi tidak terbatas
+pada tulisan, suara, gambar, peta, rancangan, foto atau
+sejenisnya, humf, tanda, angka, kode akses, simbol atau
+perforasi yang memiliki makna atau arti atau dapat
+dipahami oleh orang yang mampu memahaminya.
+7. Tanda Tangan Elektronik ada1ah tanda tangan yang terdiri
+atas Informasi Elektronik yang dilekatkan, terasosiasi,
+atau terkait dengan Informasi Elektronik lainnya yang
+digunakan sebagai a1at verifikasi dan autentikasi.
+8. Tanda Tangan Elektronik Tersertifikasi adalah Tanda
+Tangan Elektronik yang menggunakan sertifikat elektronik
+yang dibuat oleh jasa penyelenggara sertifikasi elektronik
+Indonesia dengan menggunakan perangkat pembuat tanda
+
+--- PAGE 4 ---
+4
+tangan elektronik tersertifikasi, yang diakui oleh
+kementerian yang menyelenggarakan urusan
+pemerintahan di bidang komunikasi dan informatika.
+9. Tanda Tangan Elektronik Tidak Tersertifikasi adalah
+Tanda Tangan Elektronik yang dibuat tanpa menggunakan
+sertifikat elektronik yang dibuat oleh jasa penyelenggara
+sertifikasi elektronik Indonesia.
+10. Data Pembuatan Tanda Tangan Elektronik adalah kode
+pribadi, kode biometrik, kode kriptografi, dan/atau kode
+yang dihasilkan dari pengubahan tanda tangan manual
+menjadi Tanda Tangan Elektronik, termasuk kode lain
+yang dihasilkan dari perkembangan Teknologi Informasi.
+1 1. Anggota Dewan Gubernur adalah Gubernur, Deputi
+Gubernur Senior, dan Deputi Gubernur.
+12. Pegawai adalah pegawai Bank Indonesia yang diangkat
+untuk jangka waktu yang tidak ditentukan.
+13. Pihak yang Dipekerjakan oleh Bank Indonesia adalah
+tenaga kerja perjanjian kerja waktu tertentu, pegawai
+setempat (Local stafj), pegawai lembaga lain dalam
+penugasan di Bank Indonesia, tenaga kerja alih daya
+(outsourcing), dan tenaga kerja swakelola.
+14. Arsip Elektronik ada1ah Dokumen Elektronik Bank
+Indonesia yang telah selesai digunakan dan disimpan pada
+suatu sistem repository tertentu.
+15. Manajemen Dokumen Elektronik Bank Indonesia adalah
+proses pengenda1ian dokumen secara efisien, efektif, dan
+sistematis.
+16. Satuan Kerja ada1ah entitas da1am organisasi Bank
+Indonesia yang dibentuk untuk melaksanakan fungsi guna
+melaksanakan tugas Bank Indonesia.
+17. Pemimpin Satuan Kerja adalah kepala Satuan Kerja.
+18. Jadwa1 Retensi adalah jangka waktu penyimpanan atau
+retensi Arsip Elektronik yang dipergunakan sebagai
+pedoman penyusutan dan penyelamatan Arsip Elektronik.
+19. Penanda Tangan ada1ah subjek hukum yang terasosiasi
+atau terkait dengan Tanda Tangan Elektronik.
+
+--- PAGE 5 ---
+5
+20. Pihak Eksternal adalah lembaga negara, kementerian
+negara, lembaga pemerintah non kementerian, lembaga
+pengatur dan pengawas, badan hukum, badan usaha, dan
+orang perseorangan baik di dalam maupun di luar negeri.
+Pasal 2
+Pengaturan Dokumen Elektronik Bank Indonesia bertujuan
+sebagai berikut:
+a. memastikan kelancaran proses administrasi, komunikasi,
+dan pengambilan keputusan guna meningkatkan
+akuntabilitas serta transparansi pelaksanaan tugas dan
+wewenang Bank Indonesia;
+b. meningkatkan efektivitas dan efisiensi Manajemen
+Dokumen Bank Indonesia sesuai perkembangan teknologi
+informasi;
+c. menyediakan Dokumen Elektronik Bank Indonesia yang
+autentik, legal, dan terpercaya sebagai a1at bukti hukum
+yang sah;
+d. memberikan keamanan, ketersediaan, dan kemudahan
+akses Dokumen Elektronik Bank Indonesia sesuai dengan
+praktik terbaik;
+e. mendukung penciptaan lingkungan kerja digita1 (digital
+workplace); dan
+f. mendukung program peduli lingkungan bank sentra1
+(green central banking) Bank Indonesia.
+Pasa1 3
+Manajemen Dokumen Elektronik Bank Indonesia dilaksanakan
+berdasarkan prinsip sebagai berikut:
+a. tata kelola yang baik (good governance), yaitu
+Manajemen Dokumen Elektronik Bank Indonesia
+dilakukan sesuai dengan prinsip tata kelola yang baik;
+b. autentikasi (authentication), yaitu memastikan keabsahan
+identitas pengguna pihak yang menciptakan Dokumen
+Elektronik Bank Indonesia;
+c. otorisasi (authorization), yaitu adanya hak izin yang
+diberikan kepada pengguna sesuai dengan kewenangan
+
+--- PAGE 6 ---
+6
+untuk bekerja dengan menggunakan Dokumen Elektronik
+Bank Indonesia;
+d. kepemilikan (ownership), yaitu Dokumen Elektronik
+Bank Indonesia yang digunakan dalam pelaksanaan
+tugas Bank Indonesia merupakan milik Bank
+Indonesia;
+e. kerahasiaan (confidentiality), yaitu berupa pembatasan
+pihak yang berhak mengakses Dokumen Elektronik Bank
+Indonesia yang dilakukan secara proporsional;
+f. relevansi (releuancy), yaitu penggunaan Dokumen
+Elektronik Bank Indonesia sesuai kegunaan dan
+kebutuhan;
+g. integritas (integrity), yaitu kelengkapan Dokumen
+Elektronik Bank Indonesia terjaga dari upaya
+pengurangan, penambahan, dan pengubahan informasi
+dan/atau bentuk Dokumen Elektronik Bank Indonesia
+yang dapat mengganggu keautentikan dan keterpercayaan
+Dokumen Elektronik Bank Indonesia;
+h. kemampuan beradaptasi (adaptability), yaitu pengelolaan
+Dokumen Elektronik Bank Indonesia mampu merespons
+berbagai pembahan dan perkembangan seperti teknologi,
+budaya, dan organisasi; dan
+nirpenyangkalan (non—repudiation), yaitu memastikan
+bahwa seseorang/pihak tidak dapat mengingkari
+pengiriman, penerimaan, atau transaksi elektronik yang
+telah dilakukannya terkait Dokumen Elektronik Bank
+Indonesia.
+BAB 11
+DOKUMEN ELEKTRONIK BANK INDONESIIA
+Bagian Kesatu
+Cakupan Dokumen Elektronik Bank Indonesia
+Pasa1 4
+(1) Dokumen Elektronik Bank Indonesia terdiri atas:
+a. dokumen administratif dan/atau korespondensi;
+
+--- PAGE 7 ---
+7
+b. dokumen penetapan;
+c. dokumen proses bisnis Satuan Kerja; dan
+d. dokumen lainnya.
+(2) Dokumen Elektronik Bank Indonesia bempa dokumen
+administratif dan/atau korespondensi sebagaimana
+dimaksud pada ayat (1) humf a terdiri atas:
+a. memorandum, yaitu Dokumen Elektronik Bank
+Indonesia yang digunakan sebagai media
+korespondensi internal Bank Indonesia, yang dibuat
+oleh Pegawai yang ditujukan kepada atasan atau
+Anggota Dewan Gubernur, atau dibuat oleh Anggota
+Dewan Gubernur, Satuan Kerja, atau unit kerja yang
+ditujukan kepada Anggota Dewan Gubernur, Satuan
+Kerja, atau unit kerja lain;
+b. lembar disposisi pejabat, yaitu Dokumen Elektronik
+Bank Indonesia yang memuat arahan, informasi,
+dan/atau penjelasan dari pejabat mengenai hal yang
+terdapat pada dokumen yang menyertai atau memuat
+arahan langsung dan/atau penjelasan, yang
+ditujukan kepada Pegawai, unit kerja, pimpinan
+Satuan Kerja, dan/atau Anggota Dewan Gubernur;
+c. risalah rapat, yaitu Dokumen Elektronik Bank
+Indonesia yang memuat uraian singkat tentang hal
+yang dibicarakan atau diputuskan dalam suatu rapat
+yang disahkan oleh pemimpin rapat, baik yang
+dihadiri oleh Pegawai, pimpinan Satuan Kerja,
+dan/atau Anggota Dewan Gubernur;
+d. surat, yaitu Dokumen Elektronik Bank Indonesia
+yang dibuat oleh interna1 Bank Indonesia yang berisi
+informasi periha1 tertentu dan ditujukan kepada
+pihak internal atau Pihak Eksternal Bank Indonesia;
+e. faksimili, yaitu Dokumen Elektronik Bank Indonesia
+yang mempakan hasil pengiriman berita atau pesan
+mela1ui mesin faksimili, aplikasi komputer, atau
+solusi elektronik lainnya;
+f. pengumuman, yaitu Dokumen Elektronik Bank
+Indonesia yang memuat informasi perihal tertentu
+
+--- PAGE 8 ---
+8
+dan tidak bersifat rahasia yang dibuat oleh Bank
+Indonesia kepada masyarakat atau pihak tertentu
+untuk diketahui, dimaklumi, atau dilaksanakan;
+g. telaahan, yaitu Dokumen Elektronik Bank Indonesia
+yang memuat uraian mengenai suatu masalah yang
+didasarkan atas fakta, hasil penelitian, dan analisis
+yang disusun secara sistematis untuk suatu tujuan
+tertentu, yang dibuat oleh seorang Pegawai atau lebih
+atas nama Bank Indonesia, Satuan Kerja, atau unit
+kerja;
+h. warkat Bank Indonesia, yaitu Dokumen Elektronik
+Bank Indonesia yang bentuk dan penggunaannya
+ditetapkan menurut aturan tertentu dan merupakan
+bukti sarana transaksi keuangan;
+surat kuasa, yaitu Dokumen Elektronik Bank
+Indonesia yang bermeterai elektronik dan memuat
+pemberian wewenang dari Gubernur Bank Indonesia
+kepada Deputi Gubernur Senior, dan/atau seorang
+atau beberapa orang Deputi Gubernur, dan/atau
+seorang atau beberapa orang Pegawai, dan/atau
+pihak lain yang khusus ditunjuk untuk itu baik
+dengan/tanpa hak subtitusi untuk melakukan suatu
+perbuatan hukum untuk dan atas nama pemberi
+kuasa;
+j. berita acara, yaitu Dokumen Elektronik Bank
+Indonesia yang memuat pernyataan tertulis mengenai
+suatu peristiwa, keadaan yang dia1ami, dilakukan
+atau disaksikan sendiri oleh pihak yang
+bersangkutan;
+k. perjanjian, yaitu Dokumen Elektronik Bank
+Indonesia yang bermeterai elektronik serta
+ditandatangani oleh Bank Indonesia dan pihak lain
+yang digunakan sebagai bukti bahwa para pihak telah
+sepakat untuk sa1ing mengikat diri guna melakukan
+suatu perbuatan hukum tertentu; dan
+nota kesepahaman atau bentuk lain yang
+dipersamakan dengan itu, yaitu Dokumen Elektronik
+
+--- PAGE 9 ---
+9
+Bank Indonesia yang bermeterai elektronik yang
+ditandatangani oleh Bank Indonesia dan Pihak
+Eksternal yang memuat kesepahaman untuk
+melakukan suatu perbuatan atau tidak melakukan
+suatu perbuatan.
+(3) Dokumen Elektronik Bank Indonesia bempa dokumen
+penetapan sebagaimana dimaksud pada ayat (1) humf b
+terdiri atas:
+a. Keputusan Gubernur Bank Indonesia;
+b. Keputusan Deputi Gubernur Senior Bank Indonesia;
+c. Keputusan Deputi Gubernur Bank Indonesia;
+d. Keputusan Kepa1a Departemen/Kepa1a Perwakilan/
+Kepala Unit Khusus yang setara dengan Departemen;
+dan
+e. Keputusan Bersama Bank Indonesia dengan Pihak
+Eksterna1.
+(4) Dokumen Elektronik Bank Indonesia bempa dokumen
+proses bisnis Satuan Kerja sebagaimana dimaksud pada
+ayat (1) humf c mempakan dokumen yang dihasilkan
+dalam proses bisnis Satuan Kerja di luar dokumen
+administratif dan/atau korespondensi sebagaimana
+dimaksud pada ayat (2) dan dokumen penetapan
+sebagaimana dimaksud pada ayat (3).
+(5) Dokumen Elektronik Bank Indonesia bempa dokumen
+lainnya sebagaimana dimaksud pada ayat (1) humf d
+mempakan dokumen Pihak Eksterna1 yang diterima,
+disimpan, dan/atau memerlukan pembubuhan Tanda
+Tangan Elektronik Anggota Dewan Gubernur, Pegawai,
+dan/atau Pihak yang Dipekerjakan oleh Bank Indonesia
+dalam kaitan pelaksanaan tugas Bank Indonesia.
+(6) Dokumen Elektronik Bank Indonesia sebagaimana
+dimaksud pada ayat (2) sampai dengan ayat (5) dan/atau
+hasil cetaknya mempakan alat bukti hukum yang sah
+sebagaimana diatur da1am ketentuan peraturan
+pemndang-undangan mengenai informasi dan transaksi
+elektronik.
+
+--- PAGE 10 ---
+10
+(7) Dokumen Elektronik Bank Indonesia sebagaimana
+dimaksud pada ayat (2) sampai dengan ayat (5) tidak
+termasuk:
+a. dokumen yang menurut undang-undang terkait harus
+dibuat dalam bentuk tercetak (hardcopy/paper
+based);
+b. dokumen yang menurut undang-undang terkait harus
+dibuat dalam bentuk akta notaris atau akta yang
+dibuat oleh pejabat pembuat akta dan dalam bentuk
+tercetak;
+c. dokumen Risalah Rapat Dewan Gubernur (RDG) dan
+butir keputusan dan/atau penugasan RDG; dan
+d. dokumen yang tidak boleh dielektronikkan
+berdasarkan Keputusan Anggota Dewan Gubernur
+yang membawahkan satuan kerja yang memiliki
+fungsi yang menghasilkan dokumen dimaksud.
+Pasa1 5
+(1) Dokumen Elektronik Bank Indonesia sebagaimana
+dimaksud da1am Pasa1 4 digunakan dalam pelaksanaan
+tugas Bank Indonesia da1am mendukung terciptanya
+lingkungan kerja digita1 (digital workplace) di Bank
+Indonesia.
+(2) Dokumen Elektronik Bank Indonesia berupa dokumen
+administratif dan/atau korespondensi, dokumen
+penetapan, dokumen proses bisnis Satuan Kerja,
+dan/atau dokumen lainnya sebagaimana dimaksud da1am
+Pasal 4 ayat (2) sampai dengan ayat (5), dapat tidak
+berbentuk dokumen elektronik melainkan berbentuk
+tercetak (hardcopy), da1am hal terdapat kondisi sebagai
+berikut:
+a. proses bisnis atau mekanisme kerja pada Satuan
+Kerja belum atau tidak memungkinkan penyusunan
+Dokumen Elektronik Bank Indonesia;
+b. adanya gangguan pada layanan dan/ atau
+infrastruktur penunjang Sistem Informasi penyusun
+Dokumen Elektronik Bank Indonesia;
+
+--- PAGE 11 ---
+11
+c. Pihak Eksternal belum dapat menerima Dokumen
+Elektronik Bank Indonesia;
+d. Pihak Eksternal yang terkait dengan penyusunan
+Dokumen Elektronik sebagaimana dimaksud dalam
+Pasal 4 ayat (2) humf d, humf i, humf j, humf k,
+humf 1 dan/atau ayat (3) humf e, belum dapat
+menerima atau tidak memiliki Sistem Informasi untuk
+menyusun Dokumen Elektronik; atau
+e. terdapat kondisi kahar (force maieure).
+Bagian Kedua
+Sifat Dokumen Elektronik Bank Indonesia
+Pasa1 6
+Sifat Dokumen Elektronik Bank Indonesia sebagaimana
+dimaksud pada Pasa1 4 ayat (2) sampai dengan ayat (5)
+dibedakan menumt:
+a. isinya:
+1. dokumen biasa, yaitu Dokumen Elektronik Bank
+Indonesia yang memuat Informasi biasa dan tidak
+memerlukan pengamanan khusus; dan
+2. dokumen rahasia, yaitu Dokumen Elektronik Bank
+Indonesia yang memuat Informasi rahasia serta
+membutuhkan adanya pengamanan tinggi/khusus.
+b. lingkup berlakunya:
+1. dokumen intern, yaitu Dokumen Elektronik Bank
+Indonesia yang berlaku atau ditujukan kepada
+Anggota Dewan Gubernur, Satuan Kerja, unit kerja,
+Pegawai, dan/atau Pihak yang Dipekerjakan oleh
+Bank Indonesia.
+2. dokumen ekstern, yaitu Dokumen Elektronik Bank
+Indonesia yang berlaku atau ditujukan kepada Pihak
+Eksterna1 Bank Indonesia.
+
+--- PAGE 12 ---
+12
+BAB 111
+PELAKSANAAN MANAJEMEN DOKUMEN ELEKTRONIK
+BANK INDONESIIA
+Bagian Kesatu
+Siklus Manajemen Dokumen Elektronik Bank Indonesia
+Pasal 7
+(1) Siklus Manajemen Dokumen Elektronik Bank Indonesia
+meliputi:
+a. penyusunan Dokumen Elektronik Bank Indonesia;
+b. penandatanganan dan/atau paraf Dokumen
+Elektronik Bank Indonesia;
+c. penomoran Dokumen Elektronik Bank Indonesia;
+d. distribusi/transmisi Dokumen Elektronik Bank
+Indonesia;
+e. penyimpanan Dokumen Elektronik Bank Indonesia;
+f. penggunaan Dokumen Elektronik Bank Indonesia;
+g. pemeliharaan Arsip Elektronik; dan/atau
+h. pemusnahan Arsip Elektronik.
+(2) Sik1us Manajemen Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud pada ayat (1) dilakukan oleh
+Anggota Dewan Gubernur, Pegawai, dan Pihak yang
+Dipekerjakan oleh Bank Indonesia yang memiliki
+kewenangan dalam sik1us Manajemen Dokumen
+Elektronik Bank Indonesia pada saat bekerja secara Luring
+dan/atau daring dari kantor (work from office), bekerja
+secara rerrwte dari rumah (work from home), ataupun
+ketika melaksanakan tugas kedinasan baik di dalam
+negeri maupun luar negeri.
+(3) Kewenangan dalam Manajemen Dokumen Elektronik
+Bank Indonesia diatur dengan ketentuan sebagai berikut:
+a. pengelolaan Sistem Informasi Dokumen Elektronik
+Bank Indonesia dilakukan oleh Satuan Kerja yang
+melaksanakan fungsi pengelolaan Sistem Informasi;
+b. pengaturan Dokumen Elektronik Bank Indonesia
+dilakukan oleh Satuan Kerja yang melaksanakan
+
+--- PAGE 13 ---
+13
+fungsi integrasi terkait strategi, kinerja, sumber daya,
+risiko, dan tata kelola.
+Bagian Kedua
+Penyusunan Dokumen Elektronik Bank Indonesia
+Pasal 8
+(1) Penyusunan Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud dalam Pasal 4 ayat (2) sampai
+dengan ayat (5) dilakukan melalui:
+a. Sistem Informasi Bank Indonesia; atau
+b. Sistem Informasi Pihak Eksternal yang telah
+disepakati atau ditentukan bersama oleh Satuan
+Kerja yang melaksanakan fungsi integrasi terkait
+strategi, kinerja, sumber daya, risiko, dan tata kelola,
+Satuan Kerja yang melaksanakan fungsi pengelolaan
+Sistem Informasi, Satuan Kerja yang melaksanakan
+fungsi pengelolaan risiko, dan Satuan Kerja yang
+melaksanakan fungsi hukum.
+(2) Format penyusunan Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud da1am Pasa1 4 ayat (2) dan ayat (3)
+mengacu pada pedoman Manajemen Dokumen Elektronik
+Bank Indonesia.
+(3) Format penyusunan Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud da1am Pasal 4 ayat (4) mengacu
+pada ketentuan Bank Indonesia mengenai proses bisnis
+masing-masing Satuan Kerja terkait.
+Pasal 9
+(1) Dokumen Elektronik Bank Indonesia yang bersifat rahasia
+sebagaimana dimaksud dalam Pasal 6 huruf a angka 2,
+hanya dapat disusun dengan memperhatikan urgensi,
+sensitifitas informasi, keamanan, dan diputuskan
+berdasaykan:
+a. arahan Anggota Dewan Gubernur dan/atau Pemimpin
+Satuan Kerja; dan
+
+--- PAGE 14 ---
+14
+b. kesepakatan dengan pihak penerima dalam hal
+Dokumen Elektronik Bank Indonesia yang bersifat
+rahasia dimaksud perlu dikirimkan secara elektronik
+kepada pihak penerima.
+(2) Penyusunan Dokumen Elektronik Bank Indonesia yang
+bersifat rahasia sebagaimana dimaksud pada ayat (1),
+dilakukan melalui Sistem Informasi Bank Indonesia.
+(3) Pelaksanaan selumh siklus Dokumen elektronik Bank
+Indonesia sebagaimana dimaksud dalam Pasal 7 ayat (1)
+terhadap Dokumen Elektronik Bank Indonesia yang
+bersifat rahasia sebagaimana dimaksud pada ayat (1),
+dilakukan dengan memperhatikan aspek keamanan dan
+kerahasiaan yang mengacu pada peraturan perundangan-
+undangan serta ketentuan Bank Indonesia yang berlaku.
+Bagian Ketiga
+Penandatanganan dan Paraf Dokumen Elektronik
+Bank Indonesia
+Pasa1 10
+(1) Keabsahan Dokumen Elektronik Bank Indonesia yang
+berdasarkan peraturan pemndang-undangan, ketentuan
+Bank Indonesia, dan/atau pedoman Manajemen Dokumen
+Elektronik Bank Indonesia hams dilengkapi dengan Tanda
+Tangan Elektronik, ditandai dengan adanya pembubuhan
+Tanda Tangan Elektronik sesuai dengan kewenangan dan
+tanggungjawab Penanda Tangan.
+(2) Pembubuhan Tanda Tangan Elektronik pada Dokumen
+Elektronik Bank Indonesia sebagaimana dimaksud pada
+ayat (1) berfungsi sebagai a1at autentikasi dan verifikasi
+atas identitas Penanda Tangan dan/atau penanda
+integritas (integrity) dan keautentikan Informasi
+Elektronik.
+(3) Pembubuhan Tanda Tangan Elektronik pada Dokumen
+Elektronik Bank Indonesia sebagaimana dimaksud pada
+ayat (1) mempakan bentuk persetujuan, penerimaan,
+
+--- PAGE 15 ---
+15
+pengesahan, dan/atau pertanggungjawaban Penanda
+Tangan terhadap isi Dokumen Elektronik Bank Indonesia.
+(4) Dokumen Elektronik Bank Indonesia dapat dilengkapi
+dengan pembubuhan paraf.
+(5) Pembubuhan paraf sebagaimana dimaksud pada ayat (4)
+dilakukan dengan mengacu kepada ketentuan Bank
+Indonesia dan/atau pedoman Manajemen Dokumen
+Elektronik Bank Indonesia.
+Paragraf 1
+Persyaratan Pembuatan Tanda Tangan Elektronik
+Pasal 11
+(1) Tanda Tangan Elektronik meliputi:
+a. Tanda Tangan Elektronik Tersertifikasi; dan
+b. Tanda Tangan Elektronik Tidak Tersertifikasi.
+(2) Tanda Tangan Elektronik Tersertifikasi sebagaimana
+dimaksud pada ayat (1) humf a hams memenuhi
+persyaratan:
+a. Data Pembuatan Tanda Tangan Elektronik terkait
+hanya kepada Penanda Tangan;
+b. Data Pembuatan Tanda Tangan Elektronik pada saat
+proses penandatanganan elektronik hanya berada
+dalam kuasa Penanda Tangan;
+c. segala pembahan terhadap Tanda Tangan Elektronik
+yang terjadi setelah waktu penandatanganan dapat
+diketahui;
+d. segala pembahan terhadap Informasi Elektronik yang
+terkait dengan Tanda Tangan Elektronik tersebut
+setelah waktu penandatanganan dapat diketahui;
+e. terdapat cara tertentu yang dipakai untuk
+mengidentifikasi siapa Penanda Tangannya;
+f. terdapat cara tertentu untuk menunjukkan bahwa
+Penanda Tangan telah memberikan persetujuan
+terhadap Informasi Elektronik yang terkait;
+g. menggunakan sertifikat elektronik yang dibuat oleh
+
+--- PAGE 16 ---
+16
+jasa penyelenggara sertifikasi elektronik Indonesia;
+dan
+h. dibuat dengan menggunakan perangkat pembuat
+Tanda Tangan Elektronik Tersertifikasi.
+(3) Tanda Tangan Elektronik Tidak Tersertifikasi
+sebagaimana dimaksud pada ayat (1) humf b paling
+sedikit:
+a. dibuat menggunakan Data Pembuatan Tanda Tangan
+Elektronik; dan
+b. mencantumkan waktu penandatanganan.
+(4) Tanda Tangan Elektronik Tersertifikasi yang memenuhi
+persyaratan sebagaimana dimaksud pada ayat (2) dan
+Tanda Tangan Elektronik Tidak Tersertifikasi yang
+memenuhi persyaratan sebagaimana dimaksud pada ayat
+(3), memiliki kekuatan hukum serta akibat hukum yang
+sah.
+Paragraf 2
+Pembuatan dan Pembubuhan Tanda Tangan Elektronik
+Pasal 12
+Pembuatan dan/atau pembubuhan Tanda Tangan Elektronik
+sebagaimana dimaksud dalam Pasal 1 1 ayat (1) pada Dokumen
+Elektronik Bank Indonesia sebagaimana dimaksud dalam Pasal
+4 ayat (2) sampai dengan ayat (5) dilakukan melalui:
+a. Sistem Informasi Bank Indonesia; atau
+b. Sistem Informasi Pihak Eksternal yang telah disepakati atau
+ditentukan bersama oleh Satuan Kerja yang melaksanakan
+fungsi integrasi terkait strategi, kinerja, sumber daya, risiko,
+dan tata kelola, Satuan Kerja yang melaksanakan fungsi
+pengelolaan Sistem Informasi, Satuan Kerja yang
+melaksanakan fungsi pengelolaan risiko, dan Satuan Kerja
+yang melaksanakan fungsi hukum.
+
+--- PAGE 17 ---
+17
+Pasal 13
+(1) Pembuatan dan/atau pembubuhan Tanda Tangan
+Elektronik sebagaimana dimaksud dalam Pasal 1 1 ayat (1)
+pada Dokumen Elektronik Bank Indonesia sebagaimana
+dimaksud dalam Pasal 4 ayat (2) humf d, humf i, humfj,
+humf k, dan humf 1, ayat (3) humf e, ayat (4), dan ayat (5)
+yang dilakukan oleh Bank Indonesia bersama Pihak
+Eksternal, dilakukan dengan ketentuan sebagai berikut:
+a. pembubuhan Tanda Tangan Elektronik oleh Anggota
+Dewan Gubernur, Pegawai, atau Pihak yang
+Dipekerjakan oleh Bank Indonesia:
+1. menggunakan Tanda Tangan Elektronik
+Tersertifikasi; atau
+2. menggunakan Tanda Tangan Elektronik Tidak
+Tersertifikasi, dalam hal Tanda Tangan
+Elektronik Tersertifikasi sebagaimana dimaksud
+pada angka 1 tidak tersedia atau tidak dapat
+digunakan karena suatu sebab tertentu.
+b. pembubuhan Tanda Tangan Elektronik oleh Pihak
+Eksterna1:
+1. menggunakan Tanda Tangan Elektronik
+Tersertifikasi; atau
+2. menggunakan Tanda Tangan Elektronik Tidak
+Tersertifikasi, da1am ha1 Tanda Tangan
+Elektronik Tersertifikasi sebagaimana dimaksud
+pada angka 1 tidak tersedia atau tidak dapat
+digunakan karena suatu sebab tertentu.
+(2) Prosedur pembuatan dan/atau pembubuhan Tanda
+Tangan Elektronik dengan menggunakan Tanda Tangan
+Elektronik Tersertifikasi atau menggunakan Tanda
+Tangan Elektronik Tidak Tersertifikasi sebagaimana
+dimaksud pada ayat (1), dilakukan berdasarkan
+kesepakatan antara Bank Indonesia dan Pihak Eksternal.
+Pasa1 14
+(1) Penanda Tangan wajib menjaga kerahasiaan Data
+Pembuatan Tanda Tangan Elektronik dan bertanggung
+
+--- PAGE 18 ---
+18
+jawab atas pembubuhan Tanda Tangan Elektronik pada
+Dokumen Elektronik Bank Indonesia.
+(2) Penanda Tangan yang melanggar ketentuan sebagaimana
+dimaksud pada ayat (1) dikenai sanksi sebagaimana
+dimaksud dalam ketentuan Bank Indonesia mengenai
+peraturan disiplin Bank Indonesia.
+Paragraf 3
+Pencabutan Tanda Tangan Elektronik
+Pasal 15
+(1) Pencabutan kewenangan Tanda Tangan Elektronik
+dilakukan dalam hal:
+a. Penanda Tangan berhenti bekerja di Bank Indonesia;
+atau
+b. Penanda Tangan dibebastugaskan atau
+diberhentikan sementara sesuai dengan ketentuan
+peraturan disiplin Bank Indonesia.
+(2) Pencabutan kewenangan Tanda Tangan Elektronik
+sebagaimana dimaksud pada ayat (1) dilakukan oleh
+Satuan Kerja yang melaksanakan fungsi pengelolaan
+sistem informasi berdasarkan permintaan dari Satuan
+Kerja yang melaksanakan fungsi pengelolaan sumber daya
+manusia.
+Bagian Keempat
+Penomoran Dokumen Elektronik Bank Indonesia
+Pasa1 16
+(1) Dokumen Elektronik Bank Indonesia dapat dilengkapi
+dengan pencantuman nomor.
+(2) Penomoran Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud pada ayat (1) menggunakan
+nomor Dokumen Bank Indonesia.
+(3) Nomor Dokumen Elektronik Bank Indonesia sebagaimana
+dimaksud pada ayat (1) diterbitkan oleh Satuan Kerja atau
+unit kerja yang menyusun Dokumen Elektronik Bank
+
+--- PAGE 19 ---
+19
+Indonesia atau Satuan Kerja lain yang memiliki
+kewenangan untuk memberikan penomoran sesuai jenis
+Dokumen Elektronik Bank Indonesia.
+Bagian Kelima
+Distribusi/Transmisi Dokumen Elektronik Bank Indonesia
+Pasal 17
+(1) Distribusi/transmisi Dokumen Elektronik Bank Indonesia
+merupakan proses pengiriman dan/atau penerimaan
+Dokumen Elektronik Bank Indonesia yang meliputi:
+a. pihak internal Bank Indonesia; dan
+b. Pihak Eksternal Bank Indonesia.
+(2) Distribusi/transmisi pihak internal sebagaimana
+dimaksud pada ayat (1) humf a meliputi proses
+pengiriman dan/atau penerimaan Dokumen Elektronik
+Bank Indonesia antar-Anggota Dewan Gubernur, Anggota
+Dewan Gubernur dengan Satuan Kerja, Anggota Dewan
+Gubernur dengan Pegawai, antar-Satuan Kerja, antar unit
+kerja, dan/atau Pegawai dengan Satuan Kerja/unit kerja.
+(3) Distribusi/transmisi Pihak Eksternal sebagaimana
+dimaksud pada ayat (1) humf b meliputi proses
+pengiriman dan/atau penerimaan Dokumen Elektronik
+Bank Indonesia ke atau dari Pihak Eksternal.
+(4) Proses pengiriman Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud pada ayat (1) memperhatikan
+aspek keamanan, kerahasiaan, kehati-hatian, kebenaran
+konten serta tujuan, dan ketepatan waktu.
+(5) Proses pengiriman Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud pada ayat (1) dapat dilakukan
+secara langsung oleh Satuan Kerja atau unit kerja
+penyusun Dokumen Elektronik Bank Indonesia melalui:
+a. Sistem Informasi Bank Indonesia; atau
+b. Sistem Informasi Pihak Eksternal yang telah
+disepakati atau ditentukan bersama oleh Satuan
+Kerja yang melaksanakan fungsi integrasi terkait
+
+--- PAGE 20 ---
+20
+strategi, kinerja, sumber daya, risiko, dan tata kelola,
+Satuan Kerja yang melaksanakan fungsi pengelolaan
+Sistem Informasi, Satuan Kerja yang melaksanakan
+fungsi pengelolaan risiko, dan Satuan Kerja yang
+melaksanakan fungsi hukum.
+(6) Dokumen Elektronik Bank Indonesia yang didistribusi-
+kan/ditransmisikan juga berfungsi sebagai tembusan.
+Pasal 18
+(1) Dokumen Elektronik Bank Indonesia yang bersifat rahasia
+sebagaimana dimaksud dalam Pasal 9 yang dimaksudkan
+untuk dikirimkan kepada pihak internal/Pihak Eksternal
+Bank Indonesia sebagaimana dimaksud dalam Pasal 17
+ayat (1), penyusunannya hanis dilengkapi dengan
+pengamanan yang tinggi/khusus paling sedikit berupa
+pengenkripsian/pengodean Dokumen Elektronik Bank
+Indonesia dengan kata sandi (password.
+(2) Dokumen Elektronik Bank Indonesia yang bersifat rahasia
+sebagaimana dimaksud pada ayat (1) yang dimaksudkan
+untuk dikirimkan kepada pihak internal sebagaimana
+dimaksud da1am Pasa1 17 ayat (2), proses pengirimannya
+dilakukan dengan ketentuan:
+a. memperhatikan aspek keamanan, kerahasiaan,
+kehati-hatian, kebenaran konten serta tujuan, dan
+ketepatan waktu sebagaimana dimaksud dalam Pasal
+17 ayat (4);
+b. dapat dilakukan secara langsung oleh Satuan Kerja
+penyusun Dokumen Elektronik Bank Indonesia; dan
+c. mela1ui Sistem Informasi Bank Indonesia.
+(3) Dokumen Elektronik Bank Indonesia yang bersifat rahasia
+sebagaimana dimaksud pada ayat (1) yang dimaksudkan
+untuk dikirimkan kepada Pihak Eksterna1 sebagaimana
+dimaksud da1am Pasa1 17 ayat (3), proses pengirimannya
+dilakukan dengan ketentuan:
+a. memperhatikan aspek keamanan, kerahasiaan,
+kehati-hatian, kebenaran konten serta tujuan, dan
+
+--- PAGE 21 ---
+21
+ketepatan waktu sebagaimana dimaksud dalam Pasal
+17 ayat (4);
+b. dapat dilakukan secara langsung oleh pejabat di
+Satuan Kerja penyusun Dokumen Elektronik Bank
+Indonesia dan ditujukan kepada pejabat/perwakilan
+Pihak Eksternal yang telah disepakati; dan
+c. melalui Sistem Informasi Bank Indonesia.
+(4) Satuan Kerja yang melakukan pengiriman Dokumen
+Elektronik Bank Indonesia yang bersifat rahasia kepada
+pihak internal dan/atau Pihak Eksternal sebagaimana
+dimaksud pada ayat (2) dan (3), perlu memastikan bahwa
+Dokumen Elektronik Bank Indonesia dimaksud telah
+diterima dengan baik.
+(5) Dokumen Elektronik Bank Indonesia yang bersifat rahasia
+sebagaimana dimaksud dalam Pasal 6 humf a angka 2
+yang berasa1 dari Pihak Eksternal, proses penerimaannya
+menggunakan Sistem Informasi Bank Indonesia.
+Bagian Keenam
+Penyimpanan Dokumen Elektronik Bank Indonesia
+Pasa1 19
+(1) Penyimpanan Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud da1am:
+a. Pasa1 4 ayat (1) humf a, humf b, dan humf d
+dilakukan da1am sarana simpan/sistem repository
+terintegrasi masing-masing Satuan Kerja dan da1am
+bentuk hasil cetak Dokumen Elektronik Bank
+Indonesia sebagaimana diatur dalam ketentuan
+mengenai manajemen dokumen Bank Indonesia.
+b. Pasa1 4 ayat (1) humf c dilakukan secara sistematis
+dalam sistem repository yang terintegrasi yang
+disediakan oleh Satuan Kerja yang melaksanakan
+fungsi pengelolaan Sistem Informasi atau dalam
+sistem repository terintegrasi Satuan Kerja sesuai
+proses bisnis masing-masing Satuan Kerja.
+
+--- PAGE 22 ---
+22
+(2) Penyimpanan Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud pada ayat (1) dilakukan dengan
+memperhatikan sifat Dokumen Elektronik Bank
+Indonesia, klasifikasi masalah dan Jadwal Retensi
+Dokumen Elektronik Bank Indonesia, keamanan,
+dan/atau sarana serta prasarana yang ditetapkan.
+(3) Dokumen Elektronik Bank Indonesia yang telah selesai
+digunakan dan disimpan dalam sistem repository
+sebagaimana dimaksud pada ayat (1) mempakan Arsip
+Elektronik.
+Bagian Ketujuh
+Penggunaan Dokumen Elektronik Bank Indonesia
+Pasa1 20
+(1) Penggunaan Dokumen Elektronik Bank Indonesia dapat
+dilakukan oleh pihak interna1 pemilik Dokumen
+Elektronik Bank Indonesia, pihak interna1 yang bukan
+pemilik Dokumen Elektronik Bank Indonesia, dan/atau
+Pihak Eksternal dengan memperhatikan sifat Dokumen
+Elektronik Bank Indonesia dan tata cara pengungkapan
+informasi rahasia sebagaimana diatur dalam Peraturan
+Dewan Gubernur mengenai kewajiban menjaga informasi
+rahasia.
+(2) Dokumen Elektronik Bank Indonesia yang digunakan oleh
+pihak interna1 yang bukan pemilik Dokumen Elektronik
+Bank Indonesia dan/atau Pihak Eksternal sebagaimana
+dimaksud pada ayat (1), mempakan salinan Dokumen
+Elektronik Bank Indonesia sebagaimana dimaksud pada
+ayat (1) yang dibubuhi tanda air (watermark) yang memuat
+paling sedikit:
+a. informasi pengguna bempa nama pihak internal
+dan/atau Pihak Eksternal; dan
+b. tanggal pemberian salinan Dokumen Elektronik Bank
+Indonesia.
+
+--- PAGE 23 ---
+23
+Pasal 21
+(1) Dalam hal diperlukan, Dokumen Elektronik Bank
+Indonesia yang telah dibubuhi Tanda Tangan Elektronik
+dapat dicetak.
+(2) Hasil cetak Dokumen Elektronik Bank Indonesia
+sebagaimana dimaksud pada ayat (1) tidak memerlukan
+tanda tangan secara basah.
+Bagian Kedelapan
+Pemeliharaan Arsip Elektronik
+Pasa1 22
+Pemeliharaan Arsip Elektronik dilakukan oleh Satuan Kerja
+pemilik Dokumen Elektronik Bank Indonesia.
+Bagian Kesembilan
+Pemusnahan Arsip Elektronik
+Pasa1 23
+(1) Pemusnahan Arsip Elektronik mempakan kegiatan
+mengurangi jumlah Arsip Elektronik dengan cara
+menghapus secara permanen untuk Arsip Elektronik yang
+telah habis Jadwal Retensi.
+(2) Arsip Elektronik yang telah habis Jadwal Retensi
+sebagaimana dimaksud pada ayat (1) ditangguhkan
+pemusnahannya dalam ha1 memenuhi kriteria:
+a. masih memiliki nilai guna;
+b. berkaitan dengan penyelesaian proses suatu perkara
+yang sedang ditangani oleh pihak yang berwenang;
+dan/ atau
+c. dilarang oleh ketentuan peraturan perundang
+undangan.
+(3) Pemusnahan Arsip Elektronik dilakukan oleh Satuan
+Kerja pemilik Dokumen Elektronik Bank Indonesia.
+(4) Proses administrasi pemusnahan Arsip Elektronik
+dilakukan da1am Sistem Informasi terkait kearsipan
+Dokumen Elektronik Bank Indonesia.
+
+--- PAGE 24 ---
+24
+Pasal 24
+(1) Arsip Elektronik dapat diserahkan kepada lembaga
+kearsipan dengan ketentuan:
+a. memiliki nilai guna sejarah;
+b. memiliki Jadwal Retensi permanen; dan/atau
+c. mendapat persetujuan Anggota Dewan Gubernur
+yang membawahkan Satuan Kerja yang
+melaksanakan fungsi pengelolaan logistik dan
+fasilitas.
+(2) Arsip Elektronik sebagaimana dimaksud pada ayat (1)
+diserahkan kepada lembaga kearsipan sesuai dengan
+peraturan perundang-undangan dan ketentuan Bank
+Indonesia yang berlaku.
+(3) Penyerahan Arsip Elektronik sebagaimana dimaksud pada
+ayat (1) dilakukan oleh Satuan Kerja yang melaksanakan
+fungsi pengelolaan logistik dan fasilitas.
+BABIIV
+KETENTUAN LAIN-LAIN
+Pasa1 25
+E-mail, aplikasi uirtual meeting, dan/atau media komunikasi
+dan kolaborasi digita1 lainnya dapat digunakan sebagai sarana
+korespondensi, komunikasi, dan pertukaran Informasi
+Elektronik dan/atau Dokumen Elektronik Bank Indonesia di
+interna1 Bank Indonesia dan kepada Pihak Eksterna1, yang
+penggunaannya didasarkan atas asas manfaat, kehati-hatian,
+dan itikad baik dengan memperhatikan etika berbahasa serta
+peraturan perundang-undangan dan ketentuan Bank
+Indonesia yang berlaku.
+Pasa1 26
+Petunjuk teknis terkait Manajemen Dokumen Elektronik Bank
+Indonesia dalam Peraturan Anggota Dewan Gubernur Intern ini
+mengacu pada pedoman Manajemen Dokumen Elektronik
+Bank Indonesia yang ditetapkan oleh Satuan Kerja yang
+melaksanakan fungsi integrasi terkait strategi, kinerja, sumber
+
+--- PAGE 25 ---
+25
+daya, risiko, dan tata kelola serta Satuan Kerja yang
+melaksanakan fungsi pengelolaan Sistem Informasi.
+BABV
+KETENTUAN PENUTUP
+Pasal 27
+Pada saat Peraturan Anggota Dewan Gubernur Intern ini mulai
+berlaku:
+a. Peraturan Anggota Dewan Gubernur Intern Nomor
+22/28/PADG INTERN/2020 tanggal 30 April 2020 tentang
+Manajemen Dokumen Elektronik; dan
+b. Keputusan Deputi Gubernur Bank Indonesia Nomor
+22/3/KEP.DpG/INTERN/2020 tanggal 27 Oktober 2020
+tentang Penetapan Tambahan Cakupan Dokumen
+Administratif dan/atau Korespondensi Secara Elektronik,
+dicabut dan dinyatakan tidak berlaku.
+Pasa1 28
+Peraturan Anggota Dewan Gubernur Intern ini mulai berlaku
+pada tanggal ditetapkan.
+Ditetapkan di Jakarta
+pada tanggal 22 November 2021
+ANGGOTA DEWAN GUBERNUR,
+SUGENG

@@ -1,0 +1,562 @@
+
+--- PAGE 1 ---
+RINGKASAN	MATERI
+Tata	Naskah	Dokumen	Bank	Indonesia
+Pengenalan	Dokumen	BI	—	termasuk	Praktik	Penyusunan	Memorandum	dan	Dokumen	Lainnya
+Departemen	Manajemen	Strategis	dan	Tata	Kelola	(DMST)	—	2026
+1.	Pengertian	dan	Fungsi	Dokumen	Bank	Indonesia
+Dokumen	Bank	Indonesia
+	adalah	data,	catatan,	dan/atau	keterangan	yang	disusun	dan/atau	diterima	oleh	Bank	Indonesia	dalam
+rangka	pelaksanaan	kegiatannya,	baik	tertulis	di	atas	kertas	atau	sarana	lain	maupun	terekam	dalam	bentuk	corak	apa	pun	yang
+dapat	dilihat,	dibaca,	atau	didengar.	
+(SE	No.11/38/INTERN	dan	SE	No.18/125/INTERN)
+Dokumen	merupakan	
+pendukung	akuntabilitas	kinerja
+	dan	
+bukti	yang	sah
+	dalam	pelaksanaan	tugas.	Alur	manfaatnya:
+pengelolaan	dokumen	yang	baik
+	→	
+akuntabilitas	pelaksanaan	tugas
+	→	
+penguatan	proses	governance
+	(termasuk
+pengambilan	keputusan)	→	
+kredibilitas	lembaga
+.
+Tujuan	pengaturan
+1.	
+Memberikan	pedoman	penyusunan	Dokumen	BI	yang	dilandasi	tata	kelola	(
+governance
+)	yang	baik.
+2.	
+Mendukung	kelancaran	proses	administrasi,	komunikasi,	dan	pengambilan	keputusan.
+3.	
+Menghasilkan	dokumen	yang	berkualitas,	efektif,	efisien,	dan	sesuai	standar	visual	BI.
+4.	
+Menjaga,	memelihara,	dan	mengamankan	Dokumen	Bank	Indonesia.
+Delapan	prinsip	dasar	Dokumen	BI	
+(SE	No.17/72/INTERN)
+Prinsip
+Penjelasan
+01	Akuntabilitas
+Kejelasan	fungsi	dan	struktur	dokumen.
+02	Pertanggungjawaban
+Diwujudkan	melalui	penandatanganan	dan	pembubuhan	paraf.
+03	Efektivitas	dan	efisiensi
+Format	dan	bahasa	yang	efektif	serta	pemanfaatan	teknologi
+informasi.
+04	Kepemilikan
+Dokumen	adalah	milik	Bank	Indonesia.
+05	
+Confidentiality
+Pengamanan	dokumen	secara	proporsional.
+06	
+Relevancy
+Penyediaan	dokumen	sesuai	kewenangan	dan	kebutuhan.
+07	Fungsi
+Berfungsi	sebagai	dasar,	bukti,	atau	penunjang	suatu	peristiwa.
+08	Keabsahan
+Menjadi	naskah	resmi	apabila	ditandatangani	Pimpinan,	Pejabat,	atau
+Pegawai	yang	ditunjuk	sesuai	ketentuan.
+2.	Dasar	Ketentuan	dan	Perkembangannya
+Ketentuan
+Muatan	pokok
+PDG	No.18/10/PDG/2016
+Sistem	Informasi	Bank	Indonesia.
+PDG	No.10/10/PDG/2008
+Manajemen	Informasi	Bank	Indonesia.
+PBI	No.18/42/PBI/2016
+Pembentukan	Peraturan	di	Bank	Indonesia.
+SE	No.11/38/INTERN	
+(diubah	SE	No.14/14/INTERN	dan	SE
+No.17/72/INTERN)
+Pengaturan	Dokumen	BI:	jenis,	pembuatan,	tata	cara,	fungsi,	dan	prinsip	dasar
+penyusunan	—	mengatur	
+dokumen	aktif
+.
+SE	No.18/125/INTERN
+Manajemen	Dokumen	BI:	manajemen	arsip,	klasifikasi	masalah,	jadwal	retensi	—
+mengatur	
+dokumen	non-aktif	(arsip)
+.
+PADG	Intern	No.22/28/PADG_INTERN/2020
+Pengelolaan	Dokumen	Elektronik	di	BI.
+PADG	Intern	No.23/51/PADG_INTERN/2021
+Manajemen	Dokumen	Elektronik	BI	(mencabut	PADG	Intern	2020).
+Empat	kali	perubahan	pengaturan
+Perubahan
+Dasar
+Poin	utama
+Pertama	(2012)
+merespons	UU	No.12/2011	&
+perubahan	penamaan	jabatan
+SE	No.14/14/INTERN,	16	April
+2012
+Dokumen	Pengaturan	&	Penetapan	memakai	huruf	Bookman	Old	Style	dan
+kertas	F4;	penyesuaian	kode	kertas	berkop/logo;	pola	penandatanganan
+dokumen	administratif	(nama	jabatan	di	atas	tanda	tangan,	pangkat	di
+bawah	nama);	penyesuaian	nama	pada	Dokumen	Penetapan.
+Kedua	(2015)
+SE	No.17/72/INTERN,	27
+Penegasan	aspek	
+governance
+	dalam	tujuan	dan	prinsip;	penyempurnaan
+
+--- PAGE 2 ---
+merespons	arahan	RDG	29	Januari
+2015
+November	2015
+jenis,	nama,	dan	struktur	penulisan	dokumen	korespondensi/administratif;
+penguatan	standar	format	teknis	(penomoran,	alat	tulis,	tembusan,	jenis
+kertas).
+Ketiga	(2020)
+merespons	arahan	RDG	E-
+Correspondence	&	operasional
+masa	Covid-19
+PADG	Intern
+No.22/28/PADG_INTERN/2020,
+30	April	2020
+Penyusunan,	keabsahan,	pengelolaan,	dan	penyimpanan	dokumen
+elektronik	di	BI.
+Keempat	(2021)
+merespons	pengembangan	digital
+workplace
+PADG	Intern
+No.23/51/PADG_INTERN/2021,
+22	November	2021
+Dokumen	elektronik	BI	terdiri	atas:	(i)	dokumen	administratif	dan/atau
+korespondensi,	(ii)	dokumen	penetapan,	(iii)	dokumen	proses	bisnis	satker,
+(iv)	dokumen	lainnya.
+3.	Sifat	dan	Jenis	Dokumen
+Berdasarkan	isi
+Berdasarkan	ruang	lingkup
+Berdasarkan	medium
+Biasa
+	—	memuat	informasi	yang	tidak
+memerlukan	pengamanan	khusus.
+Rahasia
+	—	memuat	informasi	yang
+membutuhkan	pengamanan	tinggi,	terkait
+keamanan	kedinasan	dan	rahasia	jabatan,
+hanya	boleh	diketahui	pejabat	yang
+berwenang	atau	ditunjuk.
+Intern
+	—	berlaku	atau	ditujukan	kepada
+Satuan	Kerja/Unit	Kerja	dan/atau	Pegawai	BI.
+Ekstern
+	—	berlaku	atau	ditujukan	kepada
+stakeholders
+	eksternal	BI.
+Non-elektronik
+	—	
+hard	copy
+/berbasis	kertas.
+Elektronik
+	—	surat	elektronik/e-mail	dan
+surat	dengan	tanda	tangan	elektronik	(
+e-
+signature
+).
+Jenis	Dokumen	Bank	Indonesia
+Dokumen	Pengaturan
+PBI	No.18/42/PBI/2016
+Dokumen	Penetapan
+SE	No.14/14/INTERN
+Dokumen	Administratif	dan/atau
+Korespondensi
+SE	No.11/38/INTERN
+1.	Peraturan	Bank	Indonesia
+2.	Peraturan	Dewan	Gubernur	BI
+3.	Peraturan	ADG	BI	Eksternal	(d/h	SE
+Eksternal)
+4.	Peraturan	ADG	BI	Internal	(d/h	SE	Internal)
+Keputusan:	Gubernur;	Deputi	Gubernur
+Senior;	Deputi	Gubernur;	Asisten	Gubernur;
+Kepala	Departemen;	Kepala	Grup;	Kepala
+Kantor	Perwakilan	BI
+Surat;	Surat	Kuasa;	Perjanjian;
+Memorandum
+;	Lembar	Disposisi	Pejabat;
+Risalah	Rapat;	Berita	Acara;	Faksimili;
+Pengumuman;	Telaahan;	Warkat	BI;	Nota
+Kesepahaman
+
+--- PAGE 3 ---
+4.	Memorandum:	Perbedaan	M.01	dan	M.02
+Memorandum
+	adalah	dokumen	tertulis	yang	digunakan	sebagai	media	korespondensi	internal	Bank	Indonesia,	yang	dibuat	oleh
+Pegawai	BI	kepada	atasan	atau	Anggota	Dewan	Gubernur,	maupun	dibuat	oleh	Anggota	Dewan	Gubernur,	Satuan	Kerja,	atau	Unit
+Kerja	yang	ditujukan	kepada	Anggota	Dewan	Gubernur,	Satuan	Kerja,	atau	Unit	Kerja	lain.
+Aspek
+M.01	—	Memorandum	Korespondensi
+M.02	—	Memorandum	Satuan	Kerja
+Fungsi	utama
+Penyampaian/permintaan	untuk	melakukan
+koordinasi,	kerja	sama,	dan	informasi;	serta
+penyampaian	undangan	rapat	atau	kegiatan.
+Meminta	persetujuan	dan/atau	keputusan;	serta
+menyampaikan	informasi/laporan,	termasuk
+pendapat	atau	masukan.
+Arah	komunikasi
+Bersifat	lateral	—	antar	Satuan	Kerja/Unit	Kerja	yang
+saling	berkoordinasi.
+Bersifat	vertikal	—	dari	Satuan	Kerja/Unit	Kerja
+kepada	pejabat	yang	berwenang	menyetujui	atau
+menerima	laporan.
+Struktur	penulisan
+3	bagian:
+	(A)	pembuka,	(B)	isi,	(C)	penutup.
+4	bagian
+	untuk	permintaan	persetujuan:	(A)
+tujuan/pembuka,	(B)	latar	belakang	dan	penjelasan,
+(C)	analisis	risiko	dan	mitigasi,	(D)	kesimpulan,
+alternatif	usulan,	dan	rekomendasi.
+3	bagian
+	untuk	penyampaian	laporan:	(A)	tujuan,	(B)
+latar	belakang	dan	penjelasan,	(C)	kesimpulan	dan
+rencana	tindak	lanjut.
+Analisis	risiko
+Tidak	dipersyaratkan.
+Wajib	pada	memorandum	permintaan	persetujuan	—
+memuat	risiko	beserta	mitigasinya	atas	usulan
+rekomendasi	keputusan.
+Kolom	akuntabilitas
+Tidak	ada	kolom	khusus;	cukup	ditandatangani
+pembuat/pejabat	penandatangan.
+Wajib	dilengkapi	kolom	informasi	akuntabilitas	dan
+pertanggungjawaban:
+•	
+Persetujuan:
+	Dipersiapkan	oleh	—	Diperiksa	oleh
+—	Didukung	oleh	—	
+Disetujui	oleh
+•	
+Laporan:
+	Dipersiapkan	oleh	—	Diperiksa	oleh	—
+Didukung	oleh	—	
+Diterima	oleh
+Dokumen	pendukung
+Dapat	dilampiri	tabel	ekspektasi/kontribusi	peserta
+rapat	(untuk	undangan).
+Untuk	permintaan	persetujuan	dapat	disertai	
+Lembar
+Pendapat
+.
+Pemarafan	halaman
+Halaman	selain	halaman	penandatangan	diparaf
+pada	sudut	kanan	bawah	
+oleh	penandatangan
+Memorandum
+.
+Halaman	selain	halaman	penandatangan	diparaf
+pada	sudut	kanan	bawah	
+oleh	Pejabat	dengan
+pangkat	di	bawah	pangkat	penandatangan
+Memorandum
+.
+Tembusan
+Ketentuan	umum	tembusan	(satker/unit	kerja	terkait,
+arsip,	bacaan	keliling).
+Selain	ketentuan	umum,	tembusan	juga	disampaikan
+kepada	pejabat	yang	diberi	kewenangan
+menyetujui/menerima	dokumen	apabila	pejabat
+dimaksud	sedang	berhalangan.
+Kode	penomoran
+M.01
+	—	contoh:	
+No.17/9/DMST/M.01/Rhs
+M.02
+	—	contoh:	
+No.17/5/DMST-GSDG-DTDG/M.02/B
+Catatan	praktis:
+	penyampaian	undangan	rapat,	informasi,	dan	publikasi	
+dapat
+	menggunakan	e-mail	(memanfaatkan	fitur	Outlook
+Calendar).	Namun,	undangan	rapat	yang	
+mengakibatkan	pembebanan	anggaran
+	(misalnya	konsinyering,	narasumber,	atau	peserta	IHT)
+perlu	menggunakan	memorandum
+.
+Rincian	struktur	M.01
+Bagian
+Untuk	koordinasi/kerja	sama/informasi
+Untuk	undangan	rapat	atau	kegiatan
+A.	Pembuka
+Latar	belakang	perlunya	dilakukan	koordinasi/kerja
+sama/penyampaian	atau	permintaan	informasi.
+Latar	belakang	rapat	atau	kegiatan	yang	akan
+dilaksanakan.
+B.	Isi
+Penjelasan	hal-hal	yang	perlu
+dikoordinasikan/diinformasikan	serta	
+output
+	yang
+diharapkan.
+Rincian	pelaksanaan	(tujuan,	waktu,	tempat,	agenda)	serta
+kontribusi/masukan	yang	diharapkan	dari	masing-
+masing	peserta
+;	ekspektasi	dapat	disajikan	dalam	tabel
+lampiran.
+C.	Penutup
+Batas	waktu	penyampaian	hasil	tindak	lanjut	atas	hal	yang
+dikoordinasikan/dikerjasamakan.
+Permintaan	konfirmasi	kehadiran/pihak	yang	dapat
+dihubungi	dan	hal	lain	terkait	kegiatan,	khususnya	yang
+membebani	anggaran	kedinasan.
+Rincian	kolom	akuntabilitas	M.02
+Kolom
+Penandatangan
+Dipersiapkan	oleh
+Pejabat	atau	Pegawai	BI	yang	menyiapkan	Memorandum	Satuan	Kerja.
+Diperiksa	oleh
+Pejabat	atau	Pegawai	BI	yang	memeriksa,	yaitu	dengan	pangkat	
+di	bawah
+	pangkat	penandatangan
+memorandum.
+Didukung	oleh
+Pejabat	atau	Anggota	Dewan	Gubernur	yang	mendukung,	yaitu	dengan	pangkat	
+di	atas
+	penandatangan
+
+--- PAGE 4 ---
+memorandum.
+Disetujui	oleh
+(memorandum	persetujuan)
+Pejabat	yang	menyetujui,	dengan	pangkat	
+di	atas
+	penandatangan	memorandum.
+Diterima	oleh
+	
+(memorandum
+laporan)
+Pejabat	yang	menerima	laporan,	dengan	pangkat	
+di	atas
+	penandatangan	memorandum.
+
+--- PAGE 5 ---
+5.	Dokumen	Administratif	Lainnya
+Dokumen
+Pengertian	dan	hal	penting
+Lembar	Disposisi	Pejabat
+(LDP)
+Dokumen	yang	memuat	arahan	maupun	penjelasan	dari	pejabat	mengenai	hal	yang	terdapat	pada
+dokumen	yang	menyertai,	atau	berupa	arahan	langsung.
+•	
+LDP.01
+	—	memuat	arahan	Anggota	Dewan	Gubernur	atau	Pemimpin	Satuan	Kerja	mengenai	substansi
+pada	dokumen	yang	menyertai	(berbentuk	formulir	
+checklist
+	tujuan	disposisi	dan	petunjuk).
+•	
+LDP.02
+	—	memuat	arahan	langsung	berupa	instruksi,	petunjuk,	pendapat,	atau	informasi	dari	atasan
+kepada	bawahan;	dapat	pula	digunakan	sebagai	sarana	komunikasi/penjelasan	singkat	dari	bawahan
+kepada	atasan	atau	antar	unit	kerja	di	satuan	kerja	yang	sama.
+Risalah	Rapat
+Uraian	singkat	tentang	hal-hal	yang	dibicarakan	atau	diputuskan	dalam	suatu	rapat,	disahkan	oleh
+pemimpin	rapat.	Ditandatangani	notulis,	kemudian	pemimpin	rapat	membubuhkan	tanda	tangan	sebagai
+tanda	menyetujui	isi	risalah.
+Struktur:	(A)	informasi	umum	penyelenggaraan	rapat	(topik,	hari/tanggal,	waktu,	tempat,	pemimpin,
+peserta);	(B)	pokok	pembahasan,	terdiri	atas	
+Bagian	1
+	tujuan/latar	belakang,	
+Bagian	2
+	pokok
+pembahasan/diskusi	termasuk	masukan	peserta,	dan	
+Bagian	3
+	kesepakatan/kesimpulan	serta	tindak
+lanjut	—	detail	tindak	lanjut,	tenggat	waktu,	dan	pelaksananya	dapat	dimuat	dalam	bentuk	tabel.
+Surat
+Dokumen	tertulis	dari	intern	BI	kepada	pihak	ekstern	untuk	menyampaikan	berita,	pendapat,	dan/atau
+pesan	yang	dimaklumi	dan/atau	dilaksanakan.	Bila	penandatangan	bukan	pemimpin	satker,	format	tanda
+tangan	mencantumkan	nama	satuan	kerja	dan	jabatan.
+Surat	Kuasa
+Dokumen	bermeterai	cukup,	berisi	wewenang	dari	Gubernur	BI	atau	pegawai/pihak	tertentu	untuk
+melakukan	suatu	perbuatan	hukum	untuk	dan	atas	nama	pemberi	kuasa.
+Berita	Acara
+Dokumen	yang	memuat	pernyataan	tertulis	mengenai	suatu	peristiwa	atau	keadaan	yang	dialami,
+dilakukan,	atau	disaksikan	sendiri	oleh	pihak-pihak	yang	bersangkutan.
+Faksimili
+Dokumen	hasil	pengiriman	berita	melalui	mesin	faksimili,	pada	dasarnya	merupakan	fotokopi	jarak	jauh.
+Peraturan	Bank	Indonesia
+(Dokumen	Pengaturan)
+Ketentuan	hukum	yang	ditetapkan	BI,	mengikat	setiap	orang	atau	badan,	dan	dimuat	dalam	Lembaran
+Negara	RI.	Kerangka:	nama,	nomor,	judul,	pembukaan,	batang	tubuh,	penutup.
+Keputusan
+(Dokumen	Penetapan)
+Keputusan	Pimpinan/Pejabat	BI	yang	berwenang.	Kerangka:	nama,	nomor,	judul,	pembukaan,	batang
+tubuh,	penutup.
+6.	Penomoran	Dokumen
+Penomoran	bersifat	
+unik
+	dan	menunjukkan	tahun	buku,	nomor	urut,	rubrik	satuan	kerja	pencipta,	jenis	dokumen,	dan	sifat	dokumen,
+dengan	format:
+No.	(i)	/	(ii)	/	(iii)	/	(iv)	/	(v)
+Unsur
+Keterangan
+(i)
+Tahun	buku.
+(ii)
+Nomor	urut	pencatatan	dokumen.
+(iii)
+Singkatan	ADG	dan/atau	satuan	kerja	dan/atau	unit	kerja	pencipta	dokumen;	urutannya	dipisahkan	tanda	strip.
+(iv)
+Singkatan	jenis	dokumen:	
+Srt
+	(Surat),	
+Srt.K
+	(Surat	Kuasa),	
+P
+	(Perjanjian),	
+M.01
+	(Memorandum	Korespondensi),	
+M.02
+(Memorandum	Satuan	Kerja),	
+Rsl
+	(Risalah),	
+BA
+	(Berita	Acara),	
+Faks
+	(Faksimili),	
+Peng
+	(Pengumuman),	
+T
+	(Telaahan),	
+NK
+(Nota	Kesepahaman).
+(v)
+Singkatan	sifat	dokumen:	
+B
+	(Biasa),	
+Rhs
+	(Rahasia).
+Kewenangan	penomoran
+Dokumen	Pengaturan
+	—	oleh	DHk.
+Dokumen	Penetapan
+	—	Divisi	Arsip	untuk	Kep.	GBI,	Kep.	DGS,	dan	Kep.	DpG;	masing-masing	satker	pemrakarsa	untuk
+Keputusan	Pimpinan	Satker,	Keputusan	KKPw,	dan	Keputusan	Bersama.
+Dokumen	Administratif	dan/atau	Korespondensi
+	—	oleh	Satuan	Kerja/Unit	Kerja	pencipta	dokumen,	kecuali	NK	atau	PKS	yang
+ditandatangani	GBI	dan/atau	ADG.
+Contoh	penomoran
+Deskripsi
+Nomor
+Surat	dari	Gubernur	BI	yang	diciptakan	DMST,	tahun	buku	17	nomor	8
+No.17/8/GBI-DMST/Srt/B
+Surat	dari	Grup	Manajemen	Strategis,	tahun	buku	17	nomor	7
+No.17/7/DMST-GMS/Srt/B
+Memorandum	korespondensi	rahasia	dari	DMST	kepada	DSDM,	tahun	buku	17
+nomor	9
+No.17/9/DMST/M.01/Rhs
+Memorandum	korespondensi	biasa	dari	GMS	DMST	kepada	Grup	Kebijakan
+No.17/18/DMST-GMS/M.01/B
+
+--- PAGE 6 ---
+Organisasi	dan	SDM	DSDM,	tahun	buku	17	nomor	18
+Memorandum	Satuan	Kerja	biasa	dari	Divisi	Tata	Kelola	Dewan	Gubernur
+kepada	Pimpinan	DMST,	tahun	buku	17	nomor	5
+No.17/5/DMST-GSDG-DTDG/M.02/B
+Risalah	Rapat	DMST,	tahun	buku	17	nomor	5
+No.17/5/DMST/Rsl/B
+Surat	dari	KPw	Provinsi	DKI	Jakarta,	tahun	buku	17	nomor	7
+No.17/7/Jkt/Srt/B
+Memorandum	Satuan	Kerja	dari	Tim	Statistik	dan	Survei	KPw	Provinsi	Jawa
+Timur	kepada	Pimpinan	KPw	DN,	tahun	buku	17	nomor	5
+No.17/5/Sb-TSS/M.02/B
+
+--- PAGE 7 ---
+7.	Format	Teknis	dan	Pengamanan	Dokumen
+Penandatanganan	dan	pencantuman	paraf
+1.	
+Penandatanganan	dilakukan	sesuai	kewenangan	pengambilan	keputusan	dan	penandatanganan	dokumen	yang	berlaku.
+2.	
+M.01:
+	halaman	selain	halaman	penandatangan	diparaf	pada	sudut	kanan	bawah	oleh	penandatangan	memorandum.
+3.	
+M.02:
+	halaman	selain	halaman	penandatangan	diparaf	pada	sudut	kanan	bawah	oleh	Pejabat	dengan	pangkat	di	bawah	pangkat
+penandatangan	memorandum.
+4.	
+Stempel	tanda	tangan	dapat	digunakan	untuk	dokumen	rutin	teknis,	bervolume	besar,	atau	yang	dibenarkan	undang-undang;	di
+luar	itu	perlu	izin	dan	diputus	per	kasus.
+5.	
+Alat	tulis	bertinta	hitam	atau	biru	yang	memberikan	bekas	goresan	cukup	jelas.
+6.	
+Penandatanganan	atau	validasi/verifikasi/autentifikasi	secara	elektronik	menggunakan	tanda	tangan	bersertifikasi.
+Tembusan	dokumen
+Jumlah	lembar	rangkap	sesuai	kebutuhan	atau	diatur	tersendiri.
+Tembusan	ditujukan	untuk:	satker/unit	kerja	lain	atau	pihak	terkait;	arsip	satker/unit	kerja;	bacaan	keliling	bagi	Pimpinan	Satker
+atau	Pejabat	dan	Pegawai	Unit	Kerja.
+Untuk	
+M.02
+,	tembusan	juga	disampaikan	kepada	pejabat	yang	berwenang	menyetujui/menerima	dokumen	apabila	pejabat
+dimaksud	berhalangan.
+Pencantuman	"cc"	dan/atau	"bcc"	di	halaman	terakhir	bagian	bawah	sisi	kiri.
+Tembusan	untuk	satu	pihak	(intern	atau	ekstern	saja)	→	"cc"	pada	asli	dan	tembusan.
+Tembusan	untuk	ekstern	dan	intern	→	"cc"	untuk	asli	dan	tembusan	ekstern;	"cc"	dan	"bcc"	untuk	tembusan	intern	dan	arsip.
+Tembusan	untuk	DAI	terkait	antara	lain	TAP,	rekening,	BAST,	dan	inventaris	kantor.
+Jenis	huruf	dan	kertas
+Dokumen	Pengaturan	dan	Penetapan:	huruf	
+Bookman	Old	Style	12	pt
+.
+Dokumen	Administratif/korespondensi:	
+Optima
+	untuk	judul/
+headings
+,	
+Frutiger
+	untuk	subjudul	dan	isi;	kombinasi	Optima–Frutiger
+(Frutiger	Roman,	Frutiger	Light,	Edwardian	Script	ITC)	untuk	sertifikat	dan	piagam.
+Kertas	berkop/logo:	kualitas	baik,	ukuran	
+F4
+,	100	gr/m²	untuk	asli	dan	60	gr/m²	untuk	tembusan	(termasuk	versi	bahasa	Inggris).
+Kertas	berlogo	Lambang	Negara	(Garuda)	untuk	dokumen	yang	ditandatangani	GBI	atau	Pimpinan	BI	yang	mewakili.
+Kertas	berlogo	Bank	Indonesia	bertuliskan	DG,	DGS,	atau	DpG	sesuai	peruntukan.
+Kertas	berlogo	BI	sesuai	standar	identitas	visual	untuk	surat	kepada	pihak	eksternal:	
+A4
+,	100	gr/m²	asli	dan	60	gr/m²	tembusan.
+Kertas	putih	polos	HVS	A4	tebal	untuk	dokumen	administratif/korespondensi	lainnya.
+Map	dan	sampul
+Map
+	berlogo	dan	bertuliskan	Bank	Indonesia:	
+merah
+	untuk	dokumen	Rahasia,	
+biru
+	untuk	dokumen	Biasa.
+Sampul
+	sesuai	standar	identitas	visual	BI:	putih	tebal	tanpa	jendela	kertas	biasa	(surat/memo	dalam	negeri;	dokumen	rahasia
+disegel	lak	dan	stempel	atau	segel	tempel	dan	tanda	tangan);	putih	tebal	tanpa	jendela	kertas	linen	(pengiriman	barang	berharga,
+kunci	duplikat);	putih	tebal	berjendela	(surat	ke	luar	negeri	dan	saldo	bilyet);	putih	tipis	kertas	minyak/transparan	(memo	antar
+satker	KP);	sampul	coklat	(dokumen,	barang	cetakan,	lampiran,	atau	pengiriman	tersendiri).
+Pembubuhan	kata	"RAHASIA"
+Dipakai	untuk	dokumen	bersifat	rahasia	dan	ditandai	pada	penomoran	(kode	
+Rhs
+).
+Dibubuhkan	pada	sudut	kanan	atas	lembar	pertama	dokumen.
+Dapat	berupa	stempel	atau	diketik	dengan	huruf	Frutiger	ukuran	14	dan	diberi	kotak.
+Pemberian	dokumen	kepada	pihak	ketiga
+Perhatikan	sifat	dokumen	dan	kepentingannya.
+Pada	prinsipnya	dokumen	BI	bersifat	intern,	kecuali	PBI,	SE	Ekstern,	PADG,	serta	Pengumuman,	Surat,	Telegram,	dan	Warkat	yang
+memang	ditujukan	kepada	pihak	tertentu.
+Dokumen	rahasia:	mengikuti	undang-undang	dan	ketentuan	KMIR	(PDG	No.8/17/PDG/2006).
+Dokumen	biasa	tetapi	tidak	lazim	untuk	pihak	ketiga:	dipertimbangkan	per	kasus	oleh	Pemimpin	Satker,	dapat	berkonsultasi
+dengan	DHk,	dan	dibuatkan	tanda	terima.
+Dokumen	untuk	umum:	dipertimbangkan	Pimpinan	Satker	dan	dibuatkan	tanda	terima.
+Ringkas	cara	memilih	dokumen:
+	butuh	koordinasi/kerja	sama	antar	satker	atau	mengundang	rapat	→	
+M.01
+.	Butuh
+persetujuan/keputusan	pejabat,	atau	melaporkan	hasil	pekerjaan	→	
+M.02
+	(lengkap	dengan	analisis	risiko	untuk	persetujuan	dan	kolom
+akuntabilitas).	Menyampaikan	arahan	singkat	atasan–bawahan	atau	antar	unit	kerja	dalam	satu	satker	→	
+LDP.02
+.	Berkomunikasi	dengan
+pihak	di	luar	BI	→	
+Surat
+.
+Ringkasan	disusun	dari	materi	"Tata	Naskah	Dokumen	Bank	Indonesia",	Departemen	Manajemen	Strategis	dan	Tata	Kelola,	2026.	Untuk	penerapan,	tetap
+merujuk	pada	teks	ketentuan	yang	berlaku	(SE	No.11/38/INTERN	beserta	perubahannya,	SE	No.18/125/INTERN,	dan	PADG	Intern
+No.23/51/PADG_INTERN/2021).

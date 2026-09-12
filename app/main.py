@@ -39,6 +39,13 @@ from .rules_loader import (
 from .samples import seed_all
 from .store import append_audit, clear_all_documents, get_document, list_documents, new_document_shell, save_document
 from .validation import can_final_export, validate_document
+from .reference import (
+    CORPUS_DIR,
+    answer_question,
+    get_page,
+    list_reference_docs,
+    search_pages,
+)
 
 app = FastAPI(title="BI MemoBuilder", version="0.1.0")
 app.add_middleware(AuthMiddleware)
@@ -83,6 +90,11 @@ class PublishRequest(BaseModel):
 class AuthRequest(BaseModel):
     username: str
     password: str
+
+
+class ReferenceChatRequest(BaseModel):
+    message: str = Field(..., min_length=1)
+    limit: int = 5
 
 
 @app.get("/login", response_class=HTMLResponse)
@@ -146,7 +158,49 @@ def health() -> dict[str, Any]:
         "missing_fonts": missing,
         "rule_versions": list_rule_versions(),
         "template_versions": list_template_versions(),
+        "reference_docs": len(list_reference_docs()),
     }
+
+
+@app.get("/api/reference/docs")
+def api_reference_docs() -> dict[str, Any]:
+    return {"documents": list_reference_docs()}
+
+
+@app.get("/api/reference/docs/{doc_id}/pages/{page}")
+def api_reference_page(doc_id: str, page: int) -> dict[str, Any]:
+    item = get_page(doc_id, page)
+    if not item:
+        raise HTTPException(404, "Halaman tidak ditemukan di korpus")
+    return {
+        "doc_id": item["doc_id"],
+        "title": item["title"],
+        "short": item["short"],
+        "source_label": item["source_label"],
+        "file": item["file"],
+        "page": item["page"],
+        "text": item["text"],
+    }
+
+
+@app.get("/api/reference/search")
+def api_reference_search(q: str, limit: int = 8) -> dict[str, Any]:
+    return {"query": q, "hits": search_pages(q, limit=max(1, min(limit, 12)))}
+
+
+@app.post("/api/reference/chat")
+def api_reference_chat(body: ReferenceChatRequest) -> dict[str, Any]:
+    return answer_question(body.message)
+
+
+@app.get("/api/reference/files/{filename}")
+def api_reference_file(filename: str) -> FileResponse:
+    # Only allow files inside corpus
+    safe = Path(filename).name
+    path = CORPUS_DIR / safe
+    if not path.exists() or not path.is_file():
+        raise HTTPException(404, "Berkas referensi tidak ditemukan")
+    return FileResponse(path, filename=safe)
 
 
 @app.get("/api/purposes")

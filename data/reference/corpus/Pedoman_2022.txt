@@ -1,0 +1,2131 @@
+
+--- PAGE 1 ---
+1
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB I
+
+
+--- PAGE 2 ---
+
+
+--- PAGE 3 ---
+PEDOMAN
+MANAJEMEN 
+DOKUMEN ELEKTRONIK
+BANK INDONESIA
+Departemen Manajemen Strategis dan Tata Kelola
+Departemen Pengelolaan Sistem Informasi
+Mei  2020
+
+
+--- PAGE 4 ---
+BAB 1 LATAR BELAKANG, TUJUAN, DAN DEFINISI
+BAB 2. RUANG LINGKUP
+BAB 3 PROSES MANAJEMEN DOKUMEN ELEKTRONIK
+8
+12
+16
+A. PENYUSUNAN, PENANDATANGANAN, PENOMORAN, DAN 
+DISTRIBUSI DOKUMEN ELEKTRONIK
+I. DOKUMEN M.01 UNTUK UNTUK PENYAMPAIAN/PERMINTAAN 
+MELAKUKAN KOORDINASI, KERJA SAMA, ATAU INFORMASI
+II. DOKUMEN M0.1 UNTUK PENYAMPAIAN UNDANGAN RAPAT 
+ATAU KEGIATAN 
+III. DOKUMEN M.02 UNTUK PENYAMPAIAN LAPORAN DAN M.02 
+UNTUK MEMINTA PERSETUJUAN/KEPUTUSAN
+IV . DOKUMEN LDP .01 UNTUK MEMUAT ARAHAN BERUPA 
+INSTRUKSI, PETUNJUK, PENDAPAT, ATAU INFORMASI DARI 
+ATASAN KEPADA BAWAHAN
+V. DOKUMEN LDP .02 UNTUK MEMUAT ARAHAN BERUPA 
+INSTRUKSI/PETUNJUK/PENDAPAT/INFORMASI DARI ATASAN 
+KEPADA BAWAHAN, SERTA SARANA KOMUNIKASI DARI 
+BAWAHAN KEPADA ATASAN, DAN ANTAR PEJABAT DALAM 
+SATKER
+VI. DOKUMEN RISALAH RAPAT  
+VII. SURAT EKSTERNAL
+VIII. PENUANGAN LAMPIRAN DALAM DOKUMEN ADMINISTRATIF/
+KORESPONDENSI
+B. PENYIMPANAN DOKUMEN ELEKTRONIK
+C.  PENGGUNAAN DOKUMEN ELEKTRONIK
+20
+20
+24
+35
+40
+42
+46
+51
+62
+66
+70
+DAFTAR ISI
+
+
+--- PAGE 5 ---
+BAB 4 TANDA TANGAN DAN PARAF ELEKTRONIK 76
+A. SPESIFIKASI MINIMUM
+B. PEMBUATAN TANDA TANGAN DAN PARAF ELEKTRONIK
+I. ENROLLMENT  CERTIFICATE
+II. PENGATURAN DI ADOBE READER
+C. PEMBUBUHAN TANDA TANGAN DAN PARAF ELEKTRONIK
+I. PEMBUBUHAN TANDA TANGAN ELEKTRONIK
+II. PEMBUBUHAN PARAF ELEKTRONIK
+III. PEMBUBUHAN TANDA TANGAN ELEKTRONIK OLEH 
+AGENDARIS/SEKRETARIS
+D. VALIDASI DOKUMEN
+I. QUICK CHECK
+II. ADDITIONAL CHECK
+E. HELPDESK  PENGELOLAAN DOKUMEN ELEKTRONIK
+LAMPIRAN 1 – DAFTAR EMAIL  KORESPONDENSI SATUAN KERJA
+D.  PEMELIHARAAN DOKUMEN ELEKTRONIK
+E.  PEMUSNAHAN DOKUMEN ELEKTRONIK
+78
+78
+78
+85
+104
+104
+108
+111
+114
+114
+115
+119
+120
+73
+74
+
+
+--- PAGE 6 ---
+BAB 1
+Latar Belakang, Tujuan, dan Definisi
+
+--- PAGE 7 ---
+
+
+--- PAGE 8 ---
+8
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 1
+BAB 1
+Latar Belakang, Tujuan, dan Definisi
+a. Latar Belakang
+Dalam rangka menunjang digital workplace  Bank Indonesia, dibutuhkan mekanisme pengelolaan 
+dokumen elektronik yang mampu memastikan tata kelola yang baik. Implementasi pengelolaan dokumen 
+elektronik disusun dengan pertimbangan:
+1. Penggunaan dokumen elektronik tidak mengurangi/membedakan informasi yang diterima atau 
+disampaikan dibandingkan dengan dokumen hardcopy
+2. Kemudahan dan kecepatan akses di mana pengguna dapat mengakses fitur-fitur yang ada di kantor 
+tanpa perlu berada secara fisik di kantor. 
+b. Tujuan 
+Tujuan penyusunan Pedoman tentang Manajemen Dokumen Elektronik adalah sebagai berikut:
+1. Memastikan kelancaran proses administrasi, komunikasi, dan pengambilan keputusan guna 
+meningkatkan akun tabilitas dan transparansi pelaksanaan tugas dan wewenang Bank Indonesia;
+2. Meningkatkan efektivitas dan efisiensi pengelolaan dokumen Bank Indonesia sesuai perkembangan 
+teknologi informasi;
+3. Menyediakan dokumen autentik, legal, dan terpercaya sebagai alat bukti hukum yang sah; dan
+4. Memberikan keamanan, ketersediaan, dan kemudahan akses Dokumen sesuai dengan praktek 
+terbaik.
+5. Mendukung penciptaan lingkungan kerja digital. 
+c.	 Definisi
+Untuk mempermudah pemahaman mengenai proses manajemen dokumen elektronik, di bawah ini 
+disampaikan definisi beberapa istilah yang akan digunakan dalam pedoman sebagai berikut:
+1. Dokumen Bank Indonesia adalah data, catatan, dan/atau keterangan yang disusun dan/atau diterima 
+oleh Bank Indonesia dalam rangka pelaksanaan kegiatannya, baik tertulis di atas kertas atau sarana 
+lain maupun terekam dalam bentuk corak apapun yang dapat dilihat, dibaca, atau didengar.
+2. Dokumen Elektronik adalah setiap informasi elektronik di Bank Indonesia yang dibuat, diteruskan, 
+dikirimkan, diterima atau disimpan dalam bentuk analog, digital, elektromagnetik, optikal, atau 
+sejenisnya, yang dapat dilihat, ditampilkan, dan/atau didengar melalui komputer atau sistem 
+elektronik, termasuk tetapi tidak terbatas pada tulisan, suara, gambar, peta, rancangan, foto atau 
+sejenisnya, huruf, tanda, angka, kode akses, simbol atau perforasi yang memiliki makna atau arti atau 
+dapat dipahami oleh orang yang mampu memahaminya.
+3. T anda T angan Elektronik (electronic signature ) adalah tandatangan yang terdiri atas informasi 
+elektronik yang dilekatkan, terasosiasi atau terkait dengan informasi elektronik lainnya yang 
+digunakan sebagai alat verifikasi dan autentikasi.
+
+--- PAGE 9 ---
+9
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB I
+4. Memorandum adalah dokumen yang digunakan sebagai media korespondensi internal Bank Indonesia, 
+yang dibuat oleh Pegawai Bank Indonesia kepada atasan atau Anggota Dewan Gubernur maupun 
+dibuat oleh Anggota Dewan Gubernur, Satuan Kerja, atau Unit Kerja yang ditujukan kepada Anggota 
+Dewan Gubernur, Satuan Kerja atau Unit kerja lain. Berdasarkan penggunaannya memorandum terdiri 
+dari:
+a. Memorandum Korespondensi (M.01) adalah memorandum yang digunakan antar Anggota 
+Dewan Gubernur, Satuan Kerja atau antar Unit Kerja untuk penyampaian/permintaan melakukan 
+koordinasi, kerja sama, berita, atau  untuk undangan. 
+b. Memorandum Satuan Kerja (M.02) adalah memorandum yang digunakan untuk meminta 
+persetujuan dan/atau keputusan atau untuk menyampaikan laporan, termasuk pendapat, atau 
+masukan kepada Anggota Dewan Gubernur, pimpinan satker atau atasan.
+5. Lembar Disposisi Pejabat adalah dokumen yang memuat arahan maupun penjelasan dari Pejabat 
+mengenai hal yang terdapat pada dokumen yang menyertai atau berupa arahan langsung maupun 
+penjelasan. Berdasarkan penggunaannya Lembar Disposisi Pejabat terdiri dari:
+a. Lembar Disposisi Pejabat 01 (LDP .01) adalah lembar disposisi Pejabat yang memuat arahan 
+Anggota Dewan Gubernur atau Pemimpin Satuan Kerja mengenai substansi yang terdapat pada 
+dokumen yang menyertai. LDP .01 dapat digunakan oleh: (i) Anggota Dewan Gubernur kepada 
+Satuan Kerja atau Pegawai Bank Indonesia, atau (ii) Pemimpin Satuan Kerja kepada Unit Kerja atau 
+Pegawai Bank Indonesia.
+b. Lembar Disposisi Pejabat 02 (LDP .02) adalah lembar disposisi Pejabat yang memuat arahan 
+langsung berupa instruksi, petunjuk, pendapat atau informasi dari atasan kepada bawahan. 
+Lembar Disposisi Pejabat Arahan atau Penjelasan (LDP .02) ini juga dapat digunakan sebagai 
+sarana komunikasi atau penjelasan secara singkat dan jelas dari bawahan kepada atasan. LDP .02 
+dapat digunakan oleh: (i) Antar Anggota Dewan Gubernur, (ii) Anggota Dewan Gubernur kepada 
+Satuan Kerja atau Pegawai Bank Indonesia, (iii) Satuan Kerja kepada Anggota Dewan Gubernur, 
+(iv) Pegawai Bank Indonesia kepada pimpinan Satuan Kerja, atau (v) Antar Pejabat dalam satuan 
+kerja.
+6. Risalah Rapat adalah dokumen tertulis berupa uraian singkat tentang hal-hal yang dibicarakan atau 
+diputuskan dalam suatu rapat yang disahkan oleh pemimpin rapat.
+7. Pencipta adalah pihak yang menyusun dokumen pada tahap pertama.
+8. Pemeriksan adalah pihak yang melakukan pemeriksaan atas substansi dokumen. Pemeriksan dapat 
+lebih dari 1 (satu) orang.
+9. Pengaju adalah pihak yang mengajukan dokumen kepada atasan untuk disetujui lebih lanjut. 
+10. Pendukung adalah pihak yang memberikan rekomendasi terkait konsep usulan yang dipaparkan dalam 
+dokumen korespondensi 
+11. Penyetuju adalah pihak yang menyetujui usulan yang diajukan dalam dokumen. 
+12.  Penerima adalah pihak yang menerima laporan yang disampaikan oleh bawahannya.
+
+--- PAGE 10 ---
+10
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 1
+BAB 2
+Ruang Lingkup
+
+--- PAGE 11 ---
+11
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB I
+
+
+--- PAGE 12 ---
+12
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 2
+BAB 2
+Ruang Lingkup
+Sesuai PADG tentang Manajemen Dokumen Elektronik Bank Indonesia, Dokumen Elektronik terdiri atas:
+1. Dokumen	administratif	dan/atau	korespondensi:
+a. surat;
+b. surat kuasa;
+c. perjanjian;
+d. memorandum;
+e. lembar disposisi pejabat;
+f. risalah rapat;
+g. berita acara;
+h. faksimili; 
+i. pengumuman;
+j. telaahan;
+k. warkat Bank Indonesia; dan
+l. nota kesepahaman, 
+2. Dokumen	penetapan:
+a. Keputusan Gubernur Bank Indonesia;
+b. Keputusan Deputi Gubernur Senior;
+c. Keputusan Deputi Gubernur;
+d. Keputusan Pemimpin Satuan Kerja.
+Dokumen	Elektronik	tidak	diterapkan	untuk:
+1. Dokumen pengaturan;
+2. Surat yang menurut undang-undang terkait harus dibuat dalam bentuk tertulis ( hardcopy/paperbased); dan
+3. Surat beserta dokumennya yang menurut undang-undang terkait harus dibuat dalam bentuk akta notaris 
+atau akta yang dibuat oleh pejabat pembuat akta.
+Pada	 tahap	 awal,	 ruang	 lingkup	 Dokumen	 Elektronik	 terbatas	 pada	 dokumen	 administratif	 dan/atau	
+korespondensi	sebagai	berikut:
+1. Memorandum;
+2. Lembar Disposisi Pejabat; dan
+3. Risalah Rapat.
+4. Surat Eksternal
+
+--- PAGE 13 ---
+13
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB II
+Untuk	Dokumen	Elektronik	juga	berfungsi	sebagai	tembusan,	sehingga	tidak	memerlukan	penyusunan	dokumen	
+khusus	 dengan	 format	 tembusan.	 Selain	 itu,	 mengingat	 dokumen	 elektronik	 dan	 lampirannya	 dikumpulkan 	
+menjadi	satu	bundle	yang	tidak	terpisahkan	 (signed-electronically),	 maka	paraf	hanya	dilakukan	 pada	approval	
+page	satu	kali	saja	(tidak	perlu	paraf	setiap	halaman)
+T erhadap	dokumen	di	atas,	penciptaan	dokumen	akan	dilakukan	melalui: 	
+1. Direkomendasikan menggunakan Notebook/PC Bank Indonesia
+2. Perangkat lunak pemroses kata yang memiliki fungsi input, edit, format , dan output teks berupa Microsoft 
+Word.
+3. Perangkat lunak pembaca format PDF yang memiliki fungsi tanda tangan digital bersertifikat yaitu aplikasi 
+Adobe Acrobat Reader DC (untuk selanjutnya disingkat dengan Adobe Reader ).
+4. Sistem email Bank Indonesia (untuk selanjutnya disingkat dengan Email). 
+Secara garis besar, penciptaan setiap jenis dokumen disusun melalui Microsoft Word, dan disimpan dalam PDF dan 
+dibubuhi tanda tangan melalui Adobe Reader . Selanjutnya, dokumen didistribusikan melalui email. 
+Namun, terdapat pula penciptaan dokumen yang dilakukan langsung melalui sistem email Bank Indonesia yaitu: 
+(i) dokumen administratif/korespondensi tertentu (M.01 Undangan Rapat T anpa Pembebanan Anggaran Kedinasan 
+dan LDP .01), dan (ii) sarana komunikasi/korespondensi oleh Pegawai dan Anggota Dewan Gubernur.
+T erhadap sarana komunikasi/korespondensi sebagaimana butir ii, tidak terdapat pengaturan khusus untuk format 
+dan teknis penyusunan.
+
+--- PAGE 14 ---
+14
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 1
+BAB 3
+Proses Manajemen Dokumen Elektronik
+
+--- PAGE 15 ---
+15
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB I
+
+
+--- PAGE 16 ---
+16
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+BAB 3
+Proses Manajemen Dokumen Elektronik
+Siklus manajemen Dokumen Elektronik meliputi:
+1. Penyusunan Dokumen Elektronik; 
+2. Penandatanganan Dokumen Elektronik; 
+3. Penomoran Dokumen Elektronik;
+4. Distribusi Dokumen Elektronik; 
+5. Penyimpanan Dokumen Elektronik;
+6. Penggunaan Dokumen Elektronik;
+7. Pemeliharaan Dokumen Elektronik; dan.
+8. Pemusnahan Dokumen Elektronik.
+Secara umum, di bawah ini disampaikan proses bisnis Manajemen Dokumen Elektronik pada Memorandum, 
+Lembar Disposisi Pejabat, dan Risalah Rapat:
+1. Memorandum Korespondensi (M.01) untuk penyampaian/permintaan melakukan koordinasi, kerja sama, 
+atau informasi;
+2. Memorandum Korespondensi (M.01) untuk penyampaian undangan rapat atau kegiatan yang menyebabkan 
+pembebanan anggaran kedinasan seperti konsinyasi dan undangan narasumber/peserta IHT. 
+
+--- PAGE 17 ---
+17
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+ 
+Catatan: penyampaian undangan rapat atau kegiatan yang tidak ada pembebanan anggaran kedinasan 
+menggunakan meeting request email  BI;
+3. Memorandum Korespondensi (M.01) untuk penyampaian undangan rapat atau kegiatan yang tanpa 
+menyebabkan pembebanan anggaran kedinasan  
+
+--- PAGE 18 ---
+18
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+4. Memorandum Satuan Kerja (M.02) untuk penyampaian laporan dan untuk meminta persetujuan dan/atau 
+keputusan.
+5. Lembar Disposisi Pejabat (LDP .01) untuk memuat arahan berupa instruksi, petunjuk, pendapat, atau 
+informasi dari atasan kepada bawahan.
+
+
+--- PAGE 19 ---
+19
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+PROSES	PENCIPTAAN	DOKUMEN	RISALAH	RAPAT
+1.	Pencipta (Notulen)
+1. Menyusun konsep Risalah Rapat.
+2. Tanggal&		nomor dokumen dikosongkan
+3. Setelah mendapat feedback	dari peserta
+rapat,	Pencipta paraf dokumen secara
+digital	(jika perlu)
+4. Tanggaldan nomor dokumen dikosongkan
+5. Perlu diingat untuk menyertakan daftar
+hadir rapat.	Apabilarapat virtual	maka
+discreenshot,	dan dipaste dalam	word	
+dengan judul rapat,	waktu,	dan tanggal.
+Note:	mekanisme paraf sama dengan tanda
+tangan digital
+2.	Peserta Rapat
+Koordinasi serta memberikan feedback/review	
+kepada Risalah Rapat via	email/teams
+Dokumen dikirim ke
+Peserta Rapat
+Hal-hal yang	perlu diperhatikan
+1. Pastikan email	dapat menerima message	 (tidak bouncing)
+2. Template	penulisan sebagaimana template	dokumen hardcopy.
+3. Email	dikirim dengan subject:	
+Satker_PS_RR_PerihalMemo_tanggal(contoh:	
+DMST_PS12_RR_Hasil	Asesmen Governance_2019-02-19)
+4. Memo	penyampaian informasi untuk Risalah Rapat dapat
+digantikan dengan email
+5. Pastikan reply	email	digabungdengan email	pengiriman
+sebelumnya sehingga dapat di-track	history	penyusunan
+dokumen
+6. Penomoran dan tanggal sesuai nomor/tanggalberjalan pada
+rubrik
+Dokumen dikirim ke
+Pemimpin Rapat via	
+Email
+4.	Pemimpin Rapat
+Menerima dokumenyang	
+sudah ditandatanganiPencipta
+serta membubuhkan tanda
+tangan digital
+1. Agendaris pengaju melakukan pembubuhan
+tanggal ,	sertamembubuhkan tanda tangan digital	
+(tanpa visual).
+2. Agendaris mengirimkan dokumen yang	sudah
+disetujui melalui email	kepada Pihak/Uker yang	
+dituju (peserta rapat)	dengan CC	Notulen.
+Catatan:	Pengirimankepada Pihak/Uker sesuai dengan
+alamat/grup email	yang	telah diinformasikan
+6.	Pengarsipan
+1. Arsip dilakukan oleh Agendaris
+(sesuai rubrik)	ke dalam	
+repository	arsip
+2. Untuk Satker penerima,	arsip
+dilakukan oleh Agendaris
+penerima ke dalam repository	
+arsip
+Dokumen
+dikirim
+via	email
+5.Agendaris
+6. Lembar Disposisi Pejabat (LDP .02) untuk memuat arahan berupa instruksi, petunjuk, pendapat, atau informasi 
+dari atasan kepada bawahan, serta dapat juga digunakan sebagai sarana komunikasi atau penjelasan secara 
+singkat dari bawahan kepada atasan atau antar Pejabat dalam satuan kerja
+7. Risalah Rapat. 
+ 
+Perhatian: perlu diperhatikan bahwa ADG dan Pegawai wajib terlebih dahulu melakukan self-enrollment untuk 
+memiliki tanda tangan digital dan paraf digital yang diakui oleh BI. T ahapan untuk self-enrollment ada pada Bab 4. 
+
+--- PAGE 20 ---
+20
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+Detail	 Proses	 Penyusunan,	 Penandatanganan,	 Penomoran,	 dan	 Distribusi	 Dokumen	 Administratif	 Dan	
+Korespondensi	Elektronik	Adalah	Sebagai	Berikut:
+A. Penyusunan,	Penandatanganan,	Penomoran,	dan 	Distribusi	Dokumen	Elektronik
+Note: sebelum melakukan penandatanganan pastikan ADG dan Pegawai telah melakukan pembuatan tanda 
+tangan dan paraf elektronik (lihat Bab 4 T anda T angan dan Paraf Elektronik)
+I. Dokumen	 M.01	 untuk	 untuk	 penyampaian/permintaan	 melakukan	 koordinasi,	 kerja	 sama,	
+atau	informasi 	
+1. Pencipta
+a) Pencipta menyusun dokumen melalui Microsoft Word dengan format dokumen, serta pihak 
+penandatangan dokumen sebagaimana ketentuan existing yaitu SE No. 17/72/INTERN Perihal 
+Perubahan kedua atas SE No. 11/38/INTERN Perihal Pengaturan Dokumen Bank Indonesia. 
+ Untuk Dokumen Elektronik juga berfungsi sebagai tembusan, sehingga tidak memerlukan 
+penyusunan dokumen khusus dengan format tembusan.
+b) Setelah menyusun draf awal, Pencipta melakukan koordinasi dengan Pemeriksa n dan Pengaju 
+melalui email/teams/aplikasi lainnya untuk memfinalisasi substansi dokumen. 
+c) Setelah disepakati substansi dokumen (tidak ada revisi lagi), Pencipta menyimpan dokumen 
+tersebut dalam format PDF. Dalam halaman utama Microsoft Word, Pencipta mengklik file > Save 
+As > Klik Folder yang Dituju> Lihat Kolom Save as type> PDF > Save.
+Note: dapat menyusun dokumen dengan perihal sama yang ditujukan kepada banyak pihak dalam 
+satu dokumen.  Untuk informasi detail yang berbeda untuk masing-masing pihak yang dituju 
+dituangkan dalam tabel lampiran (dengan tanda *)  sebagaimana contoh:
+*) **)
+Departemen Hukum Informasi mengenai perkembangan penyusunan peraturan 
+perundang-undangan.
+Departemen Kebijakan Ekonomi dan 
+Moneter
+Informasi mengenai perkembangan data dan Kebijakan dalam 
+bidang moneter
+
+--- PAGE 21 ---
+21
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+Penamaan file dokumen mengacu kepada standar penamaan sebagai berikut:
+1. Rubrik	Satker	Penyusun yang akan menyampaikan soft copy melalui email. 
+2. Nomor	 Program	 Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan 
+di Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya 
+untuk lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3. Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4. Judul file, sesuai dengan konten yang hendak disampaikan. 
+5. T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy adalah sebagai berikut: 
+1. Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2. Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 22 ---
+22
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+d) Setelah diklik, muncul dokumen tersebut yang sudah diformat dalam PDF dalam aplikasi Adobe 
+Reader. Dalam	hal	terdapat	 Dokumen	yang	perlu	dilampirkan,	 maka	ikuti	langkah	 attachment 
+dalam Bab 3. A. VII.
+e) Selanjutnya, melakukan pembubuhan paraf elektronik (lihat Bab 4.C tanda tangan/paraf 
+elektronik). 
+f) Dokumen elektronik telah berhasil di-paraf. Selanjutnya, Pencipta mengirimkan email dengan 
+attachment  PDF tersebut kepada Pemeriksa n untuk ditandatangani, Untuk memudahkan audit 
+trail, dilakukan standarisasi penamaan email sebagamana nama pada dokumen sebagai berikut:
+1)	 Rubrik	Satker	Penyusun yang akan menyampaikan soft copy melalui email. 
+2)	 Nomor	 Program	 Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan di 
+Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya untuk 
+lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3)	 Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4)	 Judul	 file, sesuai dengan konten yang hendak disampaikan. 
+5)	 T anggal	Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 23 ---
+23
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+2.	 	Pemeriksan
+a) Dokumen diterima oleh Pemeriksa n.
+b) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju untuk 
+diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Jika dokumen sudah sesuai, Pemeriksa n melakukan pembubuhan paraf elektronik (Lihat Bab 4.3) 
+dan seterusnya.
+d) Selanjutnya, Pemeriksa n mengirimkan dokumen kepada Pengaju dengan men-CC-kan Pencipta 
+melalui email. Dalam memudahkan audit trail, mohon	agar	Pemeriksan	meneruskan	 email	yang	
+sebelumnya	dikirimkan.
+3. Pengaju
+a) Dokumen diterima oleh pengaju.
+b) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju untuk 
+diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Jika dokumen sudah sesuai, Pengaju menandatangani dokumen secara digital sebagaimana 
+proses sebagaimana Pencipta menandatangani dokumen di atas (Lihat Bab 4.3) dan seterusnya)
+4.	 Agendaris/Sekretaris	Pengaju
+a) Agendaris/sekretaris Pengaju membubuhkan nomor dan tanggal pada dokumen tersebut dengan 
+langkah-langkah sebagai berikut :
+1. Mengklik icon “ Comment” di panel sebelah kanan, kemudian memilih icon “ Add text 
+comment” di panel sebelah atas
+2. Melakukan insert nomor dan tanggal pada lokasi yang sesuai
+
+
+--- PAGE 24 ---
+24
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+3. Melakukan pembubuhan tanda tangan tanpa adanya visual (Lihat Bab 4 pada sub tanda 
+tangan agendaris/sekretaris/sekretaris).
+4. Mohon diingat ketika menyimpan ( save) dokumen maka nama file khususnya tanggal 
+dokumen disesuaikan menjadi tanggal penandatanganan dokumen.
+b) Selanjutnya, Pengaju (dibantu dengan agendaris) menyampaikan memo melalui email kepada 
+Satuan Kerja atau Unit Kerja yang dituju dengan men-cc-kan Pencipta, Pemeriksa n, dan 
+Sekretaris/Agendaris Satuan Kerja atau Unit Kerja yang dituju.
+Dalam hal Pengaju mengirimkan sendiri (tidak oleh agendaris), maka Pengaju juga harus men-cc-
+kan Agendaris/Sekretarisnya.
+c) Agendaris/Sekretaris Pengaju menyimpan dokumen yang ditandatangani dalam repository.
+Khusus	untuk	Dokumen	Rahasia:
+a. Dalam proses pengajuan hingga distribusi, Dokumen tidak diperkenankan untuk di-cc-kan 
+kepada agendaris atau sekretaris atau pihak luar yang tidak terlibat dalam penyusunan 
+dokumen.
+b. Pembubuhan nomor dan tanggal untuk dokumen rahasia dilakukan	 oleh	pencipta sesudah 
+dokumen ditandatangani pengaju (atau pemimpin rapat khusus untuk Risalah Rapat).
+c. Penyimpanan dokumen rahasia dilakukan di repository arsip rahasia (cek bab penyimpanan).
+II.	 Dokumen	M.01	untuk	penyampaian	undangan	rapat	atau	kegiatan
+Untuk Dokumen M.01 untuk penyampaian undangan rapat atau kegiatan, terdapat perbedaan proses 
+penyusunan sebagai berikut:
+a. Untuk M.01 Undangan Rapat/Kegiatan yang menyebabkan pembebanan anggaran kedinasan seperti 
+konsinyasi dan undangan narasumber/peserta IHT, maka akan menggunakan M.01 Undangan Rapat 
+yang dibubuhkan tanda tangan dan paraf elektronik dan dikirimkan melalui meeting request.
+b. Untuk M.01 Undangan Rapat/Kegiatan yang tidak menyebabkan pembebanan anggaran kedinasan 
+seperti konsinyasi dan/atau undangan narasumber IHT, maka akan menggunakan Meeting Request. 
+Pembebanan hanya sebatas biaya makan minum rapat. 
+Adapun prosesnya adalah sebagai berikut:
+i.	 M.01	Undangan	Rapat/Kegiatan	yang	menyebabkan	pembebanan	anggaran	kedinasan
+1.	 Pencipta
+a) Pencipta menyusun dokumen melalui Microsoft Word dengan format dokumen, serta pihak 
+penandatangan dokumen sebagaimana ketentuan existing yaitu SE No. 17/72/INTERN 
+Perihal Perubahan kedua atas SE No. 11/38/INTERN Perihal Pengaturan Dokumen Bank 
+Indonesia. Sesuai ketentuan tersebut, struktur undangan rapat adalah:
+i. Latar belakang dan tujuan pelaksanaan rapat yang akan dilaksanakan;
+ii. T opik utama yang akan dibahas dalam rapat; serta
+iii.	 Kontribusi/ekspekstasi	 yang	 diharapkan	 dari	 masing-masing	 peserta	 undangan.	
+Mengingat	 email	 ini	 berlaku	 untuk	 seluruh	 satker, maka kontribusi/ekspektasi dapat 
+disusun dalam bentuk tabel dengan contoh:
+
+--- PAGE 25 ---
+25
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+No Satuan Kerja Kontribusi/Ekspektasi
+1 DHk Aspek legalitas dalam pengelolaan dokumen elektronik
+2 DPSI Dukungan kebutuhan SI dalam pengembangan 
+E-Correspondence
+3 … …
+Dalam hal terdapat pembebanan anggaran, disertakan akun anggaran yang akan 
+digunakan.
+Untuk Dokumen Elektronik juga berfungsi sebagai tembusan, sehingga tidak memerlukan 
+penyusunan dokumen khusus dengan format tembusan.
+b) Setelah menyusun draf awal, Pencipta melakukan koordinasi dengan Pemeriksa n dan Pengaju 
+melalui email/teams/aplikasi lainnya untuk memfinalisasi substansi dokumen. 
+c) Setelah disepakati substansi dokumen (tidak ada revisi lagi), Pencipta menyimpan dokumen 
+tersebut dalam format PDF. Dalam halaman utama Microsoft Word, Pencipta mengklik file > 
+Save As > Klik Folder yang Dituju> Lihat Kolom Save as type> PDF > Save.
+Penamaan file dokumen mengacu kepada standar penamaan sebagai berikut:
+1. Rubrik	 Satker	 Penyusun ataupun Inisial ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2. Nomor	Program	Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan 
+di Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya 
+untuk lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+
+
+--- PAGE 26 ---
+26
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+3. Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4. Judul file, sesuai dengan konten yang hendak disampaikan. 
+5. T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 27 ---
+27
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+d) Selanjutnya, muncul dokumen tersebut yang sudah diformat dalam PDF dalam aplikasi 
+Adobe Reader . Dalam	 hal	terdapat	 Dokumen	 yang	perlu	 dilampirkan,	 maka	ikuti	 langkah	
+attachment  dalam Bab 3. A. VII.
+e) Selanjutnya, Pencipta membubuhkan paraf elektronik Lihat Bab 4.3 untuk melakukan tanda 
+tangan/paraf elektronik.
+f) Selanjutnya, pencipta Pencipta mengirimkan email dengan attachment  PDF tersebut kepada 
+Pemeriksan untuk ditandatangani, Untuk memudahkan audit trail, dilakukan standarisasi 
+penamaan email sebagamana nama pada dokumen sebagai berikut:
+1. Rubrik	 Satker	 Penyusun ataupun Inisial	 ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2. Nomor	Program	Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan 
+di Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya 
+untuk lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3. Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4. Judul file, sesuai dengan konten yang hendak disampaikan. 
+5. T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020    
+2. Pemeriksan
+a) Dokumen diterima oleh Pemeriksa n.
+b) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju 
+untuk diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Jika dokumen sudah sesuai, Pemeriksa n membubuhkan paraf elektronik (lihat Bab 4.3 untuk 
+melakukan pengamanan dokumen dengan tanda tangan/paraf elektronik).
+d) Selanjutnya, Pemeriksa n mengirimkan dokumen kepada Pengaju dengan men-CC-kan 
+Pencipta melalui email. Dalam memudahkan audit trail, mohon agar Pemeriksa n meneruskan 
+email yang sebelumnya dikirimkan.
+3. Pengaju
+a) Dokumen diterima oleh pengaju.
+b) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju 
+untuk diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Selanjutnya, Pengaju melakukan pembubuhan tanda tangan elektronik (lihat Bab 4.C tanda 
+tangan/paraf elektronik).
+4.	 Agendaris/Sekretaris	Pengaju
+Jika dokumen telah ditandatangani, agendaris/sekretaris Pengaju membubuhkan nomor dan 
+tanggal pada dokumen tersebut dengan langkah-langkah sebagai berikut :
+
+--- PAGE 28 ---
+28
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+a) Mengklik icon “ Comment” di panel sebelah kanan, kemudian memilih icon “ Add text 
+comment” di panel sebelah atas
+b) Melakukan insert nomor dan tanggal pada lokasi yang sesuai
+c) Melakukan pembubuhan tanda tangan tanpa adanya visual (Lihat Bab 4 pada sub tanda 
+tangan agendaris/sekretaris/sekretaris)
+d) Mohon diingat ketika menyimpan ( save) dokumen maka nama file khususnya tanggal 
+dokumen disesuaikan menjadi tanggal penandatanganan dokumen.
+
+
+--- PAGE 29 ---
+29
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+	 Penyampaian	 Memorandum	 01	 untuk	 undangan	 rapat/kegiatan	 yang	 tidak	 menyebabkan	
+pembebanan	anggaran	kedinasan
+1. Pengaju
+Selanjutnya, Pengaju (dibantu dengan agendaris) menyampaikan	 memo	 melalui	 email Meeting	
+Request kepada Pimpinan Satuan Kerja yang dituju dengan	 men-cc-kan	 Pencipta,	 Pemeriksan, 
+dan	Sekretaris/Agendaris	Satuan	Kerja	atau	Unit	Kerja	yang	dituju. 	
+Dalam hal Pengaju mengirimkan sendiri (tidak oleh agendaris), maka Pengaju juga harus men-cc-
+kan Agendaris/Sekretarisnya.
+Langkah-langkah penyampaian meeting request adalah sebagai berikut:
+a)	 Menu Email
+Dari halaman utama email, klik “New Items” , lalu klik “Meeting”.
+b)	 Menu “ To”  
+i. Dalam kolom T o, diklik	nama	Pimpinan	 Satker	atau	email	Unit	Kerja	atau	Grup	(dalam	
+hal	tidak	memiliki	 email	divisi) yang akan diundang dalam rapat. 
+ii. Dalam hal email ditujukan kepada Pimpinan Satker, maka perlu ditujukan	 kepada	
+Pencipta,	 Pemeriksan,	 dan	 Sekretaris	 Pimpinan	 Satuan	 Kerja	 atau	 Unit	 Kerja	 yang	
+dituju.
+iii. Dalam hal emai ditujukan kepada Unit Kerja atau Grup, maka perlu ditujukan	 kepada	
+Pencipta,	Pemeriksan,	dan	Pimpinan	Satuan	Kerja	atau	Unit	Kerja	termasuk	Sekretaris	
+yang	dituju.
+
+
+--- PAGE 30 ---
+30
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+c)	 Menu “Subject”
+ Penamaan subject email  adalah:
+1. Rubrik	 Satker	 Penyusun ataupun Inisial ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2. Nomor	Program	Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan 
+di Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya 
+untuk lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3. Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4. Judul file, sesuai dengan konten yang hendak disampaikan. 
+5. T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy  adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+d)	 Menu “Location”
+Lokasi rapat meliputi nama ruangan, nama gedung, dan lantai gedung, misal Ruang Audio 
+Visual, Gedung Thamrin, Lantai. 3.
+
+
+--- PAGE 31 ---
+31
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+e)	 Menu “Start	dan	End	Time ”
+Start dan end time  memuat tanggal pelaksanaan, serta jam mulai dan jam selesai rapat.
+f) Menu “Body” Email
+Dalam body email, dapat di copy isi M.01 yang telah disetujui Pengaju. 
+2.	 Penerima	Undangan:
+a) Dalam hal terdapat undangan rapat yang tidak sesuai dengan kewenangan unit kerja, maka  
+pegawai dapat men- forward	undangan	tersebut	kepada	unit	kerja	lain	yang	terkait.
+b) Namun, apabila undangan rapat tersebut tidak sesuai dengan kewenangan satuan kerja, 
+maka pegawai dapat mereply kepada Pengundang dan menjelaskan alasan ketidakrelevanan 
+tersebut. 
+c) Untuk memudahkan manajemen waktu Pimpinan Satker, Pimpinan Satker dapat melakukan 
+“Share Calendar” kepada Sekretarisnya.
+Selanjutnya, Agendaris/Sekretaris Pengaju menyimpan dokumen M.01 Undangan Rapat/
+Kegiatan yang ditandatangani dalam repository.
+
+
+--- PAGE 32 ---
+32
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+ii.	 M.01	Undangan	Rapat/Kegiatan	yang	tidak	menyebabkan	pembebanan	anggaran	kedinasan
+1. Pengaju
+a)	 Menu Email
+Dari halaman utama email, klik “New Items” , lalu klik “Meeting”.
+b)	 Menu “ To”  
+i. Dalam kolom T o, diklik	nama	Pimpinan	 Satker	atau	email	Unit	Kerja	atau	Grup	(dalam	hal	
+tidak	memiliki	 email	divisi) yang akan diundang dalam rapat. 
+ii. Dalam hal email ditujukan kepada Pimpinan Satker, maka perlu men-cc-kan	 Sekretaris	
+Pimpinan	Satuan	Kerja	atau	Unit	Kerja	yang	dituju.
+iii. Dalam hal email ditujukan kepada Unit Kerja atau Grup, maka perlu men-cc-kan	 Pimpinan	
+Satuan	Kerja	termasuk	Sekretarisnya.
+
+
+--- PAGE 33 ---
+33
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+c)	 Menu “Subject”
+Lokasi rapat meliputi nama ruangan, nama gedung, dan lantai gedung, misal Ruang Audio 
+Visual, Gedung Thamrin, Lantai. 3.
+Penamaan subject email  adalah:
+1. Rubrik	 Satker	 Penyusun	 ataupun Inisial ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2. Nomor	Program	Strategis	(format: PSXX), mempertimbangkan bahwa seluruh kegiatan 
+di Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya 
+untuk lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3. Jenis Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4. Judul file, sesuai dengan konten yang hendak disampaikan. 
+5. T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy  adalah sebagai berikut: 
+1. Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2. Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+d)	 Menu “Location”
+
+
+--- PAGE 34 ---
+34
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+e)	 Menu “Start dan	End	Time”
+Start dan end time memuat tanggal pelaksanaan, serta jam mulai dan jam selesai rapat.
+f)	 Menu “Body” Email
+Dalam body email, terdapat beberapa hal yang harus dituangkan yaitu:
+a. Latar belakang dan tujuan pelaksanaan rapat yang akan dilaksanakan;
+b. T opik utama yang akan dibahas dalam rapat; serta
+c. Kontribusi/ekspekstasi yang diharapkan dari masing-masing peserta undangan. 
+Mengingat email ini berlaku untuk seluruh satker, maka kontribusi/ekspektasi dapat 
+disusun dalam bentuk tabel dengan contoh:
+No Satuan Kerja Kontribusi/Ekspektasi
+1 DHk Aspek legalitas dalam pengelolaan dokumen elektronik
+2 DPSI Dukungan kebutuhan SI dalam pengembangan 
+E-Correspondence
+3 … …
+
+--- PAGE 35 ---
+35
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+2. Penerima Undangan
+a) Dalam hal terdapat undangan rapat yang tidak sesuai dengan kewenangan unit kerja, maka  
+pegawai dapat men- forward	undangan	tersebut	kepada	unit	kerja	lain	yang	terkait.
+b) Namun, apabila undangan rapat tersebut tidak sesuai dengan kewenangan satuan kerja, maka 
+pegawai dapat mereply	 kepada	 Pengundang	 dan	 menjelaskan	 alasan	 ketidakrelevanan 	
+tersebut.	
+c) Untuk memudahkan manajemen waktu Pimpinan Satker, Pimpinan Satker dapat melakukan 
+“Share Calendar” kepada Sekretarisnya.
+Pengarsipan
+Perlu diingat bahwa meeting request ini merupakan dokumen administratif dan korespondensi, 
+sehingga meeting request ini perlu disimpan dalam repository. Penyimpanan disimpan dalam 
+tipe iCalendar format.
+III. Dokumen	 M.02	 untuk	 Penyampaian	 Laporan	 dan	 M.02	 untuk	 Meminta	 Persetujuan/
+Keputusan 
+1. Pencipta
+a) Pencipta menyusun dokumen melalui Microsoft Word dengan format dokumen, serta pihak 
+penandatangan dokumen sebagaimana ketentuan existing yaitu SE No. 17/72/INTERN Perihal 
+Perubahan kedua atas SE No. 11/38/INTERN Perihal Pengaturan Dokumen Bank Indonesia. 
+
+--- PAGE 36 ---
+36
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+b) Setelah menyusun draf awal, Pencipta melakukan koordinasi dengan Pemeriksa n dan Pengaju 
+melalui email/teams/aplikasi lainnya untuk memfinalisasi substansi dokumen. 
+c) Setelah disepakati substansi dokumen (tidak ada revisi lagi), Pencipta menyimpan dokumen 
+tersebut dalam format PDF. Dalam halaman utama Microsoft Word, Pencipta mengklik file > Save 
+As > Klik Folder yang Dituju> Lihat Kolom Save as type> PDF > Save.
+Penamaan file dokumen mengacu kepada standar penamaan sebagai berikut:
+1) Rubrik	Satker	Penyusun yang akan menyampaikan soft copy melalui email. 
+2)	 Nomor	 Program	 Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan di 
+Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya untuk 
+lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3) Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4) Judul file, sesuai dengan konten yang hendak disampaikan. 
+5) T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy  adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 37 ---
+37
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+d) Selanjutnya, muncul dokumen tersebut yang sudah diformat dalam PDF dalam aplikasi Adobe 
+Reader. Dalam	hal	terdapat	 Dokumen	 yang	perlu	dilampirkan,	 maka	ikuti	langkah	 attachment 
+dalam Bab 3. A. VII.
+e) Selanjutnya, Pencipta melakukan pembubuhan tanda tangan elektronik (lihat Bab 4.C tanda 
+tangan/paraf elektronik).
+f) Selanjutnya, pencipta Pencipta mengirimkan email dengan attachment  PDF tersebut kepada 
+Pemeriksan untuk ditandatangani, Untuk memudahkan audit trail, dilakukan standarisasi 
+penamaan email sebagamana nama pada dokumen sebagai berikut:
+1) Rubrik	Satker	Penyusun yang akan menyampaikan soft copy melalui email. 
+2) Nomor	 Program	 Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan di 
+Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya untuk 
+lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3) Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4) Judul file, sesuai dengan konten yang hendak disampaikan.
+5) T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy  adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+--- PAGE 38 ---
+38
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+2.	 Pemeriksa n
+a) Dokumen diterima oleh Pemeriksa n (dalam bentuk pdf tidak bisa diganti)
+b) Lakukan Validasi	 Dokumen (lihat Bab 5) untuk memastikan dokumen telah sah ditandatangani 
+dan tidak mengalami perubahan sejak ditandatangani.
+c) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju untuk 
+diubah. Siklus dimulai dari No. 1 huruf a kembali.
+d) Jika dokumen sudah sesuai, Pemeriksa n melakukan pembubuhan tanda tangan pada dokumen 
+(lihat Bab 4.3 terkait tanda tangan dan paraf elektronik)
+e) Selanjutnya, Pemeriksa n mengirimkan dokumen kepada Pengaju dengan men-CC-kan Pencipta 
+melalui email. Dalam memudahkan audit trail, mohon	 agar	Pemeriksan	meneruskan	 email	yang	
+sebelumnya	dikirimkan.
+3. Pengaju
+a) Dokumen diterima oleh pengaju (dalam bentuk pdf tidak bisa dimodifikasi)
+b) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju untuk 
+diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Jika dokumen sudah sesuai, Pengaju menandatangani dokumen secara digital (lihat Bab 4.C tanda 
+tangan/paraf elektronik).
+4. Agendaris/Sekretaris	Pengaju
+a) Jika dokumen telah ditandatangani, agendaris/sekretaris Pengaju membubuhkan nomor dan 
+tanggal pada dokumen tersebut dengan langkah-langkah sebagai berikut :
+
+--- PAGE 39 ---
+39
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+i. Mengklik icon “ Comment” di panel sebelah kanan, kemudian memilih icon “ Add text 
+comment” di panel sebelah atas
+ ii. Melakukan insert nomor dan tanggal pada lokasi yang sesuai
+iii. Melakukan pembubuhan tanda tangan tanpa adanya visual (Lihat Bab 4 pada sub tanda 
+tangan agendaris/sekretaris/sekretaris)
+iv. Mohon diingat ketika menyimpan ( save) dokumen maka nama file khususnya tanggal 
+dokumen disesuaikan menjadi tanggal penandatanganan dokumen.
+b) Setelah dibubuhi nomor dan tanggal dokumen agendaris/sekretaris Pengaju, mengirimkan 
+dokumen kepada Pendukung dengan men-cc-kan	Pencipta,	Pemeriksa n, dan Pengaju.
+Khusus	untuk	Dokumen	Rahasia:
+1. Dalam proses pengajuan hingga distribusi, Dokumen tidak diperkenankan untuk di-cc-kan 
+kepada agendaris atau sekretaris atau pihak luar yang tidak terlibat dalam penyusunan 
+dokumen.
+
+--- PAGE 40 ---
+40
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+2. Pembubuhan nomor dan tanggal untuk dokumen rahasia dilakukan oleh pencipta setelah 
+dokumen ditandatangani pengaju.
+3. Penyimpanan dokumen rahasia dilakukan di repository arsip rahasia (cek bab penyimpanan).
+5. Pendukung
+a) Dokumen diterima oleh Pendukung (dalam bentuk pdf tidak bisa dimodifikasi)
+b) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju untuk 
+diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Jika dokumen sudah sesuai, Pendukung menandatangani dokumen secara elektronik (lihat Bab 
+4.C tanda tangan/paraf elektronik).
+d) Selanjutnya, Pendukung mengirimkan dokumen kepada Pengaju dengan men-CC-kan Pencipta, 
+Pemeriksan, dan Pengaju melalui email. Dalam memudahkan audit trail, mohon agar Pengaju 
+meneruskan email yang sebelumnya dikirimkan.
+6.  Penyetuju/Penerima
+a) Dokumen diterima oleh Penyetuju/Penerima (dalam bentuk pdf tidak bisa diganti)
+b) Apabila terdapat revisi, dokumen disampaikan kepada Pencipta cc Pemeriksan, Pengaju dan 
+Pendukung untuk diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Jika dokumen sudah sesuai, Penyetuju/Penerima menandatangani  dokumen secara digital (lihat 
+Bab 4.C tanda tangan/paraf elektronik).
+d) Penyetuju (dapat dibantu dengan agendaris) mengirimkan dokumen kepada Pencipta, Pemeriksa n, 
+Pengaju, dan Pendukung.
+Dalam hal Pengaju mengirimkan sendiri (tidak oleh agendaris), maka Pengaju juga harus men-cc-kan 
+Agendaris/Sekretarisnya.
+Selanjutnya, Agendaris/Sekretaris melakukan penyimpanan dokumen dalam repository.
+IV . Dokumen LDP.01	untuk	 memuat	 arahan	berupa	 instruksi,	 petunjuk,	 pendapat,	 atau	informasi	
+dari	atasan	kepada	bawahan 	
+1. Pengaju
+a) Dokumen administratif dan korespondensi (Misal M.01 dari satker lain, M.02 dari kelompok/
+divisi yang dibawahi, Surat dari eksternal, dsb) diterima oleh Pengaju. 
+*) Untuk Surat dari Eksternal, Agendaris/Sekretaris Pengaju menscan dokumen tersebut dan 
+mengirimkan email scan Surat kepada Pengaju dengan mengacu pada standar penamaan 
+format subject penamaan email. 
+b) Selanjutnya, Pengaju mengirimkan disposisi melalui email kepada bawahannya (Penerima1) cc 
+agendaris/sekretaris. Format disposisi LDP .01 tidak sebagaimana LDP .01 dalam bentuk hardcopy, 
+namun arahan disampaikan melalui email.
+
+--- PAGE 41 ---
+41
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+ 2.	 Penerima 1 
+Penerima1 dapat mendisposisikan arahan juga kepada Penerima berikutnya cc agendaris/sekretaris 
+dan begitu pula seterusnya (Penerima N). Untuk memudahkan audit trail, mohon agar diteruskan 
+dengan email yang sama dari Pengaju. 
+
+--- PAGE 42 ---
+42
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+	3.	 Penerima	T erakhir
+a) Sebagai penerima disposisi terakhir, perlu diingat bahwa email tersebut merupakan perwujudan 
+LDP .01 sehingga perlu dilakukan pengarsipan sebagaimana ketentuan tentang Manajemen 
+Dokumen Bank Indonesia.
+b) Penerima disposisi terakhir meminta kepada agendaris/sekretaris di unit kerjanya untuk 
+menyimpan email tersebut dalam bentuk PDF dengan mengklik Save as Adobe PDF dan di simpan 
+dalam repository.
+c)  Untuk pengarsipan mohon lihat Bab Pengarsipan.
+Khusus	untuk	Dokumen	Rahasia:
+Dalam proses pengajuan hingga distribusi, Dokumen tidak diperkenankan untuk di-cc-kan 
+kepada agendaris atau sekretaris atau pihak luar yang tidak terlibat dalam penyusunan dokumen. 
+Penyimpanan dokumen rahasia dilakukan di repository arsip rahasia (cek bab penyimpanan).
+V. Dokumen	 LDP .02	untuk	 memuat	 arahan	 berupa	 instruksi/petunjuk/pendapat/informasi	 dari	
+atasan	 kepada	 bawahan,	 serta	 sarana	 komunikasi	 dari	 bawahan	 kepada	 atasan,	 dan	 antar	
+pejabat	dalam	satker. 	
+1. Pencipta
+a) Pencipta menyusun dokumen melalui Microsoft Word dengan format dokumen, serta pihak 
+penandatangan dokumen sebagaimana ketentuan existing yaitu SE No. 17/72/INTERN Perihal 
+Perubahan kedua atas SE No. 11/38/INTERN Perihal Pengaturan Dokumen Bank Indonesia. 
+Untuk Dokumen Elektronik juga berfungsi sebagai tembusan, sehingga tidak memerlukan 
+penyusunan dokumen khusus dengan format tembusan.
+
+
+--- PAGE 43 ---
+43
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+b) Setelah menyusun draf awal, Pencipta melakukan koordinasi dengan Pemeriksa n dan Pengaju 
+melalui email/teams/aplikasi lainnya untuk memfinalisasi substansi dokumen. 
+c) Setelah disepakati substansi dokumen (tidak ada revisi lagi), Pencipta menyimpan dokumen 
+tersebut dalam format PDF. Dalam halaman utama Microsoft Word, Pencipta mengklik file > Save 
+As > Klik Folder yang Dituju> Lihat Kolom Save as type> PDF > Save.
+Penamaan file dokumen mengacu kepada standar penamaan sebagai berikut:
+1) Rubrik	 Satker	 Penyusun ataupun Inisial	 ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2) Nomor	 Program	 Strategis	 (format: PSXX), mempertimbangkan bahwa seluruh kegiatan di 
+Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya untuk 
+lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3)	 Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4) Judul file, sesuai dengan konten yang hendak disampaikan. 
+5) T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 44 ---
+44
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+d) Selanjutnya, muncul dokumen tersebut yang sudah diformat dalam PDF dalam aplikasi Adobe 
+Reader. Dalam	hal	terdapat	 Dokumen	 yang	perlu	dilampirkan,	 maka	ikuti	langkah	 attachment 
+dalam Bab 3. A. VII.
+e) Selanjutnya, Pencipta melakukan pembubuhan paraf elektronik (lihat Bab 4.C tanda tangan/paraf 
+elektronik).
+f) Selanjutnya, Pencipta mengirimkan email dengan attachment  PDF tersebut kepada Pemeriksa n 
+untuk ditandatangani, Untuk memudahkan audit trail, dilakukan standarisasi penamaan Perihal 
+(Subject) email sebagaimana nama pada dokumen sebagai berikut:
+1) Rubrik	 Satker	 Penyusun ataupun Inisial	 ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2) Nomor	 Program	 Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan di 
+Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya untuk 
+lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3) Jenis Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4) Judul file, sesuai dengan konten yang hendak disampaikan. 
+5) T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan judul perihal email adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah Satker KP (DMST):
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+--- PAGE 45 ---
+45
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+2.	 Pemeriksa n
+a) Dokumen diterima oleh Pemeriksa n.
+b) Apabila terdapt revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju untuk 
+diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c)  Jika dokumen sudah sesuai, Pemeriksa n membubuhkan paraf dokumen secara digital (lihat Bab 
+4.C tanda tangan/paraf elektronik).
+d) Selanjutnya, Pemeriksa n mengirimkan dokumen kepada Pengaju dengan men-CC-kan Pencipta 
+melalui email. Dalam memudahkan audit trail, mohon	 agar	Pemeriksan	meneruskan	 email	yang	
+sebelumnya	dikirimkan.
+3. Pengaju
+a) Dokumen diterima oleh pengaju
+b) Apabila terdapt revisi, dokumen disampaikan kepada Pencipta cc Pemeriksa n dan Pengaju untuk 
+diubah. Siklus dimulai dari No. 1 huruf a kembali.
+c) Jika dokumen sudah sesuai, Pengaju menandatangani dokumen secara digital (lihat Bab 4.C tanda 
+tangan/paraf elektronik).
+d) Selanjutnya, Pengaju (dibantu dengan agendaris) menyampaikan LDP melalui email kepada 
+Pejabat yang dituju.
+Dalam hal Pengaju mengirimkan sendiri (tidak oleh agendaris), maka Pengaju juga harus men-cc-
+kan Agendaris/Sekretarisnya.
+
+--- PAGE 46 ---
+46
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+Khusus	untuk	Dokumen	Rahasia:
+a) Dalam proses pengajuan hingga distribusi, Dokumen tidak diperkenankan untuk di-cc-kan kepada 
+agendaris atau sekretaris atau pihak luar yang tidak terlibat dalam penyusunan dokumen.
+b) Pembubuhan tanggal untuk dokumen rahasia dilakukan oleh pencipta setelah dokumen 
+ditandatangani pengaju (atau pemimpin rapat khusus untuk Risalah Rapat).
+c) Penyimpanan dokumen rahasia dilakukan di repository arsip rahasia (cek bab penyimpanan).
+VI. Dokumen Risalah	Rapat
+1. Notulen
+a) Pencipta menyusun dokumen melalui Microsoft Word dengan format dokumen, serta pihak 
+penandatangan dokumen sebagaimana ketentuan existing yaitu SE No. 17/72/INTERN Perihal 
+Perubahan kedua atas SE No. 11/38/INTERN Perihal Pengaturan Dokumen Bank Indonesia. 
+b) Setelah menyusun draf awal, Pencipta melakukan koordinasi dengan Pemeriksa n dan Peserta 
+Rapat melalui email/teams/aplikasi lainnya untuk memfinalisasi substansi dokumen. 
+c) Setelah disepakati substansi dokumen (tidak ada revisi lagi), Pencipta menyimpan dokumen 
+tersebut dalam format PDF. Dalam halaman utama Microsoft Word, Pencipta mengklik file > Save 
+As > Klik Folder yang Dituju> Lihat Kolom Save as type> PDF > Save.
+
+
+--- PAGE 47 ---
+47
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+Penamaan file dokumen mengacu kepada standar penamaan sebagai berikut:
+1) Rubrik	 Satker	 Penyusun ataupun Inisial	 ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2) Nomor	 Program	 Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan di 
+Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya untuk 
+lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3) Jenis Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4) Judul file, sesuai dengan konten yang hendak disampaikan. 
+5) T anggal Dokumen denganb format: DD-MM-YYYY. 
+Contoh penamaan file soft copy  adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah Satker KP (DMST):
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 48 ---
+48
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+Selanjutnya, muncul dokumen tersebut yang sudah diformat dalam PDF dalam aplikasi Adobe 
+Reader. Dalam	hal	terdapat	 Dokumen	 yang	perlu	dilampirkan,	 maka	ikuti	langkah	 attachment 
+dalam Bab 3. A. VII.
+d) Selanjutnya, Notulen melakukan pembubuhan tanda tangan elektronik (lihat Bab 4.C tanda 
+tangan/paraf elektronik).
+e) Selanjutnya, pencipta Pencipta mengirimkan email dengan attachment  PDF tersebut kepada 
+Pemimpin Rapat untuk ditandatangani, Untuk memudahkan audit trail, dilakukan standarisasi 
+penamaan email sebagamana nama pada dokumen sebagai berikut:
+1) Rubrik	 Satker	 Penyusun ataupun Inisial	 ADG (format: ADG-Inisial Nama) yang akan 
+menyampaikan soft copy melalui email. 
+2) Nomor	 Program	 Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan di 
+Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya untuk 
+lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3) Jenis Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4) Judul file, sesuai dengan konten yang hendak disampaikan. 
+5) T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan judul email adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_M.01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah Satker KP (DMST):
+DMST_PS12_M.02_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 49 ---
+49
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+f) Mohon diingat untuk menyertakan daftar hadir. Untuk rapat tatap muka, maka daftar hadir di 
+scan. Sementara, untuk rapat virtual maka peserta rapat yang hadir dilakukan screenshot  dan 
+dicopy dalam Microsoft Word dengan menuangkan judul rapat, tanggal, waktu, dan pembubuhan 
+paraf notulen pada akhir dokumen dengan contoh sebagai berikut (mekanisme pembubuhan 
+sama seperti dokumen lainnya lihat bab 4)
+
+
+--- PAGE 50 ---
+50
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+2.	 Pemimpin	Rapat
+a. Dokumen diterima oleh Pemimpin Rapat (dalam bentuk pdf tidak bisa diganti)
+b. Apabila terdapt revisi, dokumen disampaikan kepada Notulen untuk diubah. Siklus dimulai dari 
+No. 1 huruf a kembali.
+c.  Jika dokumen sudah sesuai, Pemimpin Rapat menandatangani dokumen secara digital (lihat Bab 
+4.C tanda tangan/paraf elektronik).
+3. Agendaris/Sekretaris	Pengaju
+a) Jika dokumen telah ditandatangani, agendaris/sekretaris Pengaju membubuhkan nomor dan 
+tanggal pada dokumen tersebut dengan langkah-langkah sebagai berikut :
+i. Mengklik icon “Comment” di panel sebelah kanan, kemudian memilih icon “Add text comment” 
+di panel sebelah atas
+ii. Melakukan insert nomor dan tanggal pada lokasi yang sesuai
+iii. Melakukan pembubuhan tanda tangan tanpa adanya visual (Lihat Bab 3 pada sub tanda 
+tangan agendaris/sekretaris/sekretaris)
+iv. Mohon diingat ketika menyimpan ( save) dokumen maka nama file khususnya tanggal 
+dokumen disesuaikan menjadi tanggal penandatanganan dokumen.
+
+
+--- PAGE 51 ---
+51
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+b) Selanjutnya, agendaris/sekretaris Pengaju mengirimkan dokumen kepada peserta rapat yang 
+hadir dalam rapat tersebut.
+c) Agendaris menyimpan dokumen tersebut dalam repository.
+Khusus	untuk	Dokumen	Rahasia:
+a) Dalam proses pengajuan hingga distribusi, Dokumen tidak diperkenankan untuk di-cc-kan 
+kepada agendaris atau sekretaris atau pihak luar yang tidak terlibat dalam penyusunan 
+dokumen.
+b) Pembubuhan nomor dan tanggal untuk dokumen rahasia dilakukan oleh pencipta setelah 
+dokumen ditandatangani pengaju (atau pemimpin rapat khusus untuk Risalah Rapat).
+c) Penyimpanan dokumen rahasia dilakukan di repository arsip rahasia (cek bab penyimpanan).
+VII.	Surat	Eksternal	T ertentu	Menggunakan	 QR Code	(Solusi	Interim)
+Aplikasi SI interim untuk membubuhkan QR Code  pada surat yang ditujukan kepada pihak eksternal 
+dari Bank Indonesia. “Berdasarkan PADG No. 23/51/PADG INTERN/2021 tentang Manajemen 
+Dokumen Elektronik Bank Indonesia, digitalisasi surat dapat dilakukan untuk surat kepada eksternal 
+yang ditandatangani oleh Gubernur Bank Indonesia, Deputi Gubernur Senior, Deputi Gubernur, dan 
+Pejabat Satker baik dalam Bahasa Indonesia maupun Bahasa Inggris.
+Pihak yang terlibat dalam penyusunan/pembuatan dokumen surat eksternal tertentu menggunakan 
+QR Code  adalah:
+1. Pencipta
+ Pencipta menyiapkan/membuat dokumen surat format Microsoft Word dengan 2 (dua) alternatif 
+cara. Pertama menyusun dokumen di luar sistem dengan format dokumen sebagaimana ketentuan 
+existing yaitu SE No. 17/72/INTERN Perihal Perubahan kedua atas SE No. 11/38/INTERN Perihal 
+Pengaturan Dokumen Bank Indonesia. Kedua, dengan cara mengunduh template  dokumen di 
+system yang telah disiapkan. 
+ Berikut penjelasan tahapan untuk mengunduh dan menciptakan dokumen di dalam sistem 
+(homepage  solusi interim). 
+a. Masuk ke URL : https://surat.bi.go.id 
+b. T ampil halaman login  dan melakukan pengisian username  dan password  pegawai sesuai LDAP 
+(seperti login  PC/Laptop): 
+
+
+--- PAGE 52 ---
+52
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+c. Masuk ke HomePage  Solusi Interim Digital Business Support 
+d. Memilih menu pembuatan dokumen dan pilih jenis dokumen surat
+e. Klik Unduh T emplate untuk download template  dokumen surat, Unggah Dokumen Draft untuk 
+upload  dokumen surat yang sudah final draft dalam Ms.Word.
+f. Klik                              , maka akan download template  dokumen surat yang dipilih dan klik open/
+save, maka muncul template  Dokumen Surat seperti berikut:
+Unduh T emplate
+Catatan:
+Untuk sementara sistem saat ini belum 
+mengakomodir Font Frutiger tipe 
+Italic. Khusus untuk isu ini, surat tetap 
+sah sesuai ketentuan meskipun tidak 
+menggunakan font italic
+
+--- PAGE 53 ---
+53
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+ g. Melakukan pengisian dokumen surat eksternal sampai substansi sudah final draft berupa Ms. 
+Word dengan ketentuan pengisian seperti berikut:
+1) Menyesuaikan font merah (No, T empat dan T anggal surat) diubah menjadi font hitam dan 
+dilengkapi sesuai rubrik (Penomoran dan Pemberian T anggal akan dilakukan oleh agendaris 
+setelah dilakukan digital signature  menggunakan Adobe Reader ); 
+2) Melengkapi pada halaman bagian bawah diisi Nama Satker Pengaju, Jabatan Pengaju, Nama 
+Pengaju, beserta Pangkat Pengaju;
+3) Mengisi body Surat sesuai konten surat yang akan disusun;
+4) Memberi garis bawah ( underline ) pada nama pengaju.
+Contoh setelah pengisian sebagaimana ilustrasi dibawah ini:
+h. Unduh/simpan file masih dalam berbentuk Ms.Word dengan format penamaan file : Bank 
+Indonesia_Perihal_Satker_T anggal
+i. Setelah menyusun draf awal, Pencipta melakukan koordinasi dengan PemeriksaN dan Pengaju 
+melalui email/ teams /aplikasi lainnya untuk memfinalisasi substansi dokumen. 
+j. Setelah disepakati substansi dokumen (tidak ada revisi lagi), Pencipta menyimpan dokumen 
+tersebut dalam format PDF.
+
+
+--- PAGE 54 ---
+54
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+2.	 Pemeriksa
+a. Berperan untuk melakukan pengecekan draft  dokumen bersama-sama dengan pencipta/
+penyiap dan pengaju dokumen. 
+b. Pemeriksa melakukan pengecekan dokumen yang disiapkan/dibuat oleh Pengaju di luar sistem 
+seperti melalui email/teams/aplikasi lainnya.
+3. Pengaju 
+a. Draft surat final  dalam format word yang sudah melalui proses penyiapan dan pengecekan 
+akhir diunggah ke dalam sistem untuk proses pembubuhan QR Code . 
+Berikut penjelasan untuk pembubuhan QR Code  pada surat: 
+1) klik                                         , maka akan muncul halaman berikut:Unggah Dokumen Draft
+2) Lakukan pengisian Asal Dokumen yang berisi list Satuan Kerja  dan klik T elusuri upload  file 
+dokumen yang sudah dibuat :
+3) User melakukan upload  dengan klik Unggah Dokumen maka dokumen dari versi Ms.word 
+akan secara otomatis terkonversi menjadi PDF yang sudah dibubuhkan QR Code . Hasil 
+upload  Dokumen Draft dapat di cek di Menu Daftar Dokumen Draft.
+
+--- PAGE 55 ---
+55
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+b. Pengaju melakukan koordinasi dengan sekretaris/agendaris untuk menginfokan dokumen 
+surat (yang sudah dibubuhkan QR Code ) dapat diajukan kepada Pimpinan untuk proses lebih 
+lanjut  yaitu penandatanganan apabila disetujui.
+4.	 Agendaris/	Sekretaris	Pengaju
+a. Agendaris/Sekretaris menerima dokumen dari Pengaju dari luar sistem, seperti email/teams/
+aplikasi lainnya.
+b. Agendaris/sekretaris melakukan login :
+Masuk ke URL : https://surat.bi.go.id/    
+Dengan username  dan password  yang terdaftar di LDAP .
+c. Memilih Menu Daftar	Dokumen	->	T ab	Dokumen	 Draft
+d. Pilih Jenis Dokumen Draft yang sudah diunggah, kemudian klik Detail dan klik Unduh Dokumen 
+maka akan keluar dokumen surat berbentuk PDF yang sudah mempunyai QR Code  seperti berikut: 
+
+--- PAGE 56 ---
+56
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+e. Lakukan Sign di PDF oleh penandatangan Surat menggunakan Adobe DC secara invisible (tidak 
+terlihat secara visual) dan belum di lock (tidak mencentang kotak Lock document after signing). 
+Mekanisme invisible digital signature  menggunakan Adobe Reader  DC sesuai Bab 4 – T anda 
+T angan dan Paraf Elektronik pedoman ini. 
+
+
+--- PAGE 57 ---
+57
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+f. Setelah dilakukan Paraf dan T anda T angan, maka Sekretaris atau Agendaris melakukan 
+pembubuhan Nomor dan T anggal di dokumen dan melakukan paraf serta lock dokumen
+g. Setelah Dokumen Final, maka di upload  ke Sistem oleh Agendaris, dengan mekanisme sebagai 
+berikut: 
+1) Setelah Dokumen sudah final, maka Sekretaris dapat membuka browser  internet lalu masuk 
+ke URL: https://surat.bi.go.id/  
+2) Login dengan mengisi username  (hanya ID saja tanpa @bi.go.id) serta password  sesuai LDAP 
+(seperti login  PC/Laptop).
+
+--- PAGE 58 ---
+58
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+ 3) Masuk ke sistem ( Homepage  Solusi Interim)
+ 4) Pilih Pencarian	 Dokumen (1) dan masukan ID Dokumen (2). ID dokumen dapat ditemukan 
+pada dokumen PDF yang sebelumnya telah dibuat (3).
+5) Setelah hasil pencarian dokumen muncul, pilih Unggah pada keterangan Unggah Dokumen 
+Final dan upload  dokumen PDF yang telah di-lock ke Sistem. Nantinya dokumen akan 
+tersimpan dalam Repository Bank Indonesia.
+
+
+--- PAGE 59 ---
+59
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+6) Berikut notifikasi jika berhasil Unggah Dokumen:
+7) Untuk mengakses dokumen yang telah selesai, pada Menu Daftar Dokumen -> Klik T ab 
+Dokumen Final maka akan muncul list dokumen yang sudah final (menggunakan Digital 
+Signature  yang invisible/non visual).
+
+--- PAGE 60 ---
+60
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+h. Agendaris/ Sekretaris Pengaju menginformasikan dokumen final yang telah ditandatangani 
+oleh Penyetuju kepada Pengaju di luar sistem (dapat melalui email/teams/aplikasi lainnya).
+5.	 Penyetuju
+a. Penyetuju telah memperoleh dokumen draft dalam bentuk PDF dari Pengaju dokumen (melalui 
+agendaris/sekretaris) seperti berikut:
+ b. Penyetuju melakukan Sign di PDF oleh penandatangan Surat menggunakan Adobe DC secara 
+invisible (Tidak visual) dan belum di lock (tidak mencentang kotak Lock document after signing). 
+Mekanisme invisible digital signature  menggunakan Adobe Reader  DC sesuai Bab 4 – T anda 
+T angan dan Paraf Elektronik pada pedoman ini.
+
+
+--- PAGE 61 ---
+61
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+c. Penyetuju menginformasikan dan mengirimkan dokumen final yang telah ditandatangani 
+kepada Sekretaris/Agendaris. Pengiriman dokumen dapat melalui berbagai media seperti email, 
+Ms. T eams atau aplikasi lainnya. Selanjutnya sekretaris  melakukan pembubuhan Nomor dan 
+T anggal di dokumen dan melakukan paraf serta lock dokumen di dalam sistem serta menyimpan 
+dokumen final dalam repository, sebagaimana mekanisme pada angka 4 Agendaris/Sekretaris 
+Pengaju huruf f. 
+6.	 Penerima	Dokumen	Surat
+Penerima Dokumen dapat memindai QR Code  yang ada pada Surat untuk melihat copy surat yang 
+disimpan dalam repository official  Bank Indonesia. QR Code  ini juga merupakan mekanisme validasi 
+yang menjamin bahwa surat yang diterima oleh stakeholder  benar diterbitkan oleh Bank Indonesia. 
+Ketika QR Code  dipindai oleh penerima dokumen surat (menggunakan kamera gadge t atau di 
+klik jika dibuka di PC/Laptop), maka browser  penerima dokumen surat akan otomatis redirect  ke 
+website  Solusi QR Code  (https://surat.bi.go.id/) dan membuka repository dokumen Resmi yang 
+dituju sebagaimana gambar di bawah ini.
+Penerima surat dapat klik Unduh Dokumen pada halaman tersebut untuk melihat surat pada 
+repository official  BI yang seharusnya memiliki konten serupa surat yang diterima stakeholder .   
+
+--- PAGE 62 ---
+62
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+VII. Penuangan	Lampiran	dalam	Dokumen	Administratif/Korespondensi
+Untuk menjaga integritas Dokumen Elektronik, seluruh	 Lampiran	 Dokumen	 Administratif/
+Korespondensi	 harus	 melekat	 atau	 disimpan	 dalam	 1	file	yang	 sama	 dengan	 Dokumen	 Administratif/
+Korespondensi, kecuali	untuk	Dokumen	Administratif/Korespondensi	yang	perlu	ditandatangani. 	
+Dalam hal terdapat revisi pada Dokumen Lampiran, maka atasan akan meminta Pencipta untuk melakukan 
+revisi dan dilakukan penciptaan dokumen kembali dari awal.
+Contoh:
+Pengajuan Laporan T ahunan Bank Indonesia yang terdiri dari:
+1. LDP .02 tentang Persetujuan Laporan T ahunan Bank Indonesia dari Divisi kepada Pimpinan Satker;
+2. M.02 tentang Persetujuan Laporan T ahunan Bank Indonesia dari DMST kepada GBI;
+3. Buku Laporan T ahunan Bank Indonesia; dan
+4. Materi T ayangan mengenai Laporan T ahunan Bank Indonesia.
+Maka	 dalam	 masing-masing	 LDP .02	 dan	 M.02	 terdapat	 link attachment 	 atau	 dokumen	 materi	
+sebagaimana	 huruf	 c	 dan	 d.	 Untuk	 dokumen	 M.02	 tidak	 perlu	 dijadikan	 satu	 dengan	 LDP .02	karena	
+merupakan	 dokumen	 yang	 perlu	 dimintakan	 penandatanganan.	 Oleh	 karena	 itu,	 dalam	 email	 yang	
+disampaikan	 hanya	terdapat	 2	dokumen	yaitu	LDP .02	dan	M.02,	sementara	 buku	dan	materi	tayangan	
+embedded	pada	dua	dokumen	tersebut.	Untuk	memudahkan	 pencarian	judul	dokumen	terkait	(LDP .02	
+dan	M.02)	dapat	memiliki	nama	yang	sama
+Di bawah ini disampaikan opsi langkah-langkah penyimpanan dokumen lampiran dalam 1 file yang sama 
+dengan Dokumen Administratif/Korespondensi sebagai berikut:
+(Pemilihan	Langkah	a	atau	Langkah	b	tergantung	dari	preferensi	pegawai)
+a. Penyimpanan Lampiran melalui Microsoft Word
+Pencipta meng- copy seluruh materi Lampiran dan di- paste pada halaman terakhir setelah halaman 
+Dokumen Administratif/Korespondensi (perlu diingat untuk memberikan judul pada Lampiran). 
+Setelah materi Lampiran sudah ter- copy seluruhnya, maka Pencipta menyimpan dokumen dalam 
+format PDF. 
+
+--- PAGE 63 ---
+63
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+ Atau pilih T ools	>	Comment
+2. Pilih icon Attachment  pada Comment Bar dan Pilih “ Attach File”
+b. Penyimpanan Lampiran melalui Adobe
+1. Pilih Comment dari T ools	Pane	
+
+--- PAGE 64 ---
+64
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+3. Tunjuk lokasi untuk menyimpan icon Attachment  (pilih lokasi dimana biasanya dibubuhkan tanda 
+“ ./ . ”) dan secara otomatis akan muncul tampilan browse file yang akan dilampirkan, klik filenya dan 
+klik open.
+4. Pilih icon Paperclip. Centang Locked. Klik OK.
+
+
+--- PAGE 65 ---
+65
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+5. Paperclip muncul pada Dokumen (berarti dokumen Lampiran telah tertanam dalam PDF tersebut)
+6. Proses melampirkan dokumen selesai. Selanjutnya, Pencipta membubuhkan paraf/tanda tangan 
+elektronik (lihat Bab 4.C tanda tangan/paraf elektronik)
+
+
+--- PAGE 66 ---
+66
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+B. Penyimpanan	Dokumen	Elektronik
+Penyimpanan terdiri dari 2 tahap yaitu: (i) Proses Penyimpanan Dalam Repository, dan (ii) Proses penyimpanan 
+dalam bentuk hasil cetak dan pencatatan dalam BI Record Management System.
+I. Proses	Penyimpanan	Dalam	Repository
+a. Penyimpanan Dokumen Elektronik dilakukan terhadap dokumen yang sudah ditandatangani oleh 
+seluruh pihak yang terlibat ( golden copies ).
+b. Setelah dokumen ditandatangani, Dokumen Elektronik disimpan oleh Agedaris/Sekretaris Satuan 
+Kerja atau Unit Kerja ke dalam repository:
+1) Dokumen Elektronik dengan format PDF langsung disimpan oleh Agendaris/Sekretaris Satuan 
+Kerja atau Unit Kerja dalam repository.
+2) Dokumen Elektronik dengan format email perlu dilakukan proses save document sebagai berikut:
+a) M.01 Undangan Rapat/Kegiatan tanpa pembebanan ( meeting request)
+i. Buka Meeting Invitation
+
+--- PAGE 67 ---
+67
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+ii. Klik File> Save As
+iii. Klik Save As Type iCalendar Format dan klik save
+
+
+--- PAGE 68 ---
+68
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+ b) LDP.01 
+i. Track Email Disposisi terakhir
+ii. Buka Email Disposisi T erakhir
+iii. Klik File > Save As Adobe PDF
+Perlu diingat agar menggunakan standarisasi penamaan email sebagamana nama pada 
+dokumen sebagai berikut:
+1) Rubrik	Satker	Penyusun yang akan menyampaikan soft copy melalui email. 
+2) Nomor	Program	Strategis (format: PSXX), mempertimbangkan bahwa seluruh kegiatan 
+di Bank Indonesia telah dikaitkan dengan 12 Program Strategis yang ada, sebagai upaya 
+untuk lebih menginternalisasikan seluruh Program Strategis Bank Indonesia. 
+3) Jenis	Dokumen, seperti M.02, M.01, LDP .01, LDP .02, atau Risalah Rapat.
+4) Judul file, sesuai dengan konten yang hendak disampaikan. 
+5) T anggal Dokumen dengan format: DD-MM-YYYY. 
+Contoh penamaan file soft copy  adalah sebagai berikut: 
+1) Pengirim file adalah DPSI:
+DPSI_PS11_LDP .01_Rancangan Pengembangan E-Correspondence_04-05-2020
+2) Pengirim file adalah DMST:
+DMST_PS12_LDP .01_Hasil Asesmen Governance_19-02-2020
+
+
+--- PAGE 69 ---
+69
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+c) Repository yang akan digunakan dalam jangka menengah adalah Microsoft Sharepoint	
+Online (perkiraan akhir Mei 2020). T ata cara penyimpanan dalam repositori tersebut akan 
+disampaikan dalam pedoman terpisah.
+Untuk waktu sementara akan menggunakan repository masing-masing pegawai.
+II. Proses	penyimpanan	 dalam	bentuk	hasil	cetak	dan	pencatatan	 dalam	BI	Record	Management	
+System.
+a. Selanjutnya, dalam tahap awal ini, dilakukan pula penyimpanan Dokumen Elektronik dalam bentuk 
+hardcopy. Dokumen Elektronik yang telah selesai ditandatangani ( golden copies ) dicetak dan di 
+simpan dalam berkas di sarana simpan Satuan Kerja (bentuk hasil cetak).
+b. Proses pengarsipan ini dilakukan sebagaimana dokumen hardcopy sesuai ketentuan MDBI.
+c. Pegawai di Unit Kerja pemilik dokumen melakukan Input Data Hasil Cetak Dokumen Elektronik ke 
+dalam Aplikasi Bank Indonesia – Records Management System  (BI-RMS), sebagaimana ketentuan 
+Bank Indonesia mengenai Manajemen Dokumen Bank Indonesia (MDBI).
+d. Input Data Dokumen Elektronik ke dalam Aplikasi BI-RMS dilakukan oleh Operator Unit Kerja, 
+dengan tata cara sebagai berikut: 
+Note : Apabila tidak ada jadwal retensi dokumen elektronik, maka mengacu pada jadwal retensi 
+dokumen hard copy
+1. Membuat Kode Kontainer baru pada menu Data Master, dengan mengisi kolom-kolom sebagai 
+berikut:
+Untuk kolom Kata Kunci, agar diisikan Nama File PDF yang disimpan di dalam berkas, misal: 
+DMST_PS12_LDP .01_Hasil Asesmen Governance_19-02-2020
+2. Melakukan Input Data Nama Berkas, dengan mengisi kolom-kolom sebagai berikut:
+Kolom Deskripsi
+Jenis Kontainer Jenis tempat penyimpanan dokumen
+Kode Kontainer Pemberian nomor kontainer
+Status Status aktif/tidak aktif
+Kolom Deskripsi
+Kontainer T empat penyimpanan berkas 
+Lokasi Simpan Lokasi gedung kontainer ditempatkan (Sesuai	Lokasi	Satker)
+Klasifikasi Pemberian kode klasifikasi sesuai MDBI 
+Nama Berkas Nama berkas arsip (sesuai	perihal	Judul	Dokumen)
+Kata Kunci
+Berikan kata kunci yang spesifik untuk memudahkan  pencarian 
+berkas (sesuai	nama	file)
+Jenis Berkas Jenis berkas (pilih	dokumen	elektronik)
+Sifat Berkas Sifat berkas	(pilih	Biasa	atau	Rahasia)
+Jadwal Retensi Jadwal retensi muncul otomatis saat pemilihan klasifikasi
+
+--- PAGE 70 ---
+70
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+3. Melakukan Input Isi Berkas (tanpa 	 melakukan	 Upload	 Dokumen	 Elektronik/PDF), dengan 
+mengisi kolom-kolom sebagai berikut:
+e. Dalam hal hasil cetak Dokumen Elektronik mempunyai Jadwal Retensi di atas tiga tahun dan telah 
+disimpan di sarana simpan Satuan Kerja selama tiga tahun, maka penyimpanannya dapat dipindahkan 
+ke Sentral Khazanah Arsip sesuai ketentuan MDBI.
+f. Untuk menjaga kualitas pengelolaan dokumen, ditunjuk salah satu PIC unit kerja untuk melakukan 
+monitoring dan pengawasan atas proses penyimpanan dokumen.
+C. Penggunaan Dokumen Elektronik
+a. Penggunaan Dokumen Elektronik dapat dilakukan oleh pihak internal dan/atau eksternal dengan 
+memperhatikan sifat Dokumen Elektronik.
+b. Pengunaan Dokumen Elektronik harus memperoleh persetujuan sebagaimana tata cara 
+pengungkapan informasi rahasia dalam ketentuan Bank Indonesia tentang kewajiban menjaga 
+informasi rahasia.
+c. Penggunaan Dokumen Elektronik oleh pihak yang bukan pegawai dari Satuan Kerja pemilik dokumen 
+dibubuhi tanda air (watermark) yang memuat informasi nama pihak internal dan/atau eksternal, serta 
+data terkait lainnya dengan tata cara sebagai berikut:
+i. Buka Dokumen yang telah ditandatangani secara lengkap.
+ii. Klik Comment
+Kolom Deskripsi
+Nama Berkas Nama Berkas yang menyimpan Isi Berkas tersebut (Nama	perihal	judul	dokumen)
+Jenis Dokumen Jenis dokumen
+No. Dokumen Nomor dokumen
+T gl. Dokumen T anggal dokumen
+Perihal Dokumen Perihal/judul dokumen
+Pengirim Pihak yang mengirim dokumen
+Penerima Pihak yang menerima dokumen
+Sifat Dokumen Sifat dokumen
+Upload Dokumen Untuk upload dokumen hasil scan (Tidak	diupload)
+
+
+--- PAGE 71 ---
+71
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+iii. Klik Add T ext Box
+iv. Drag T ext Boxnya di tengah-tengah dan atas dokumen
+v. Watermark dilakukan standarisasi dengan format:
+a) Nama Pihak Internal dan/atau Eksternal yang Dituju
+b) T anggal Pemberian Dokumen
+Misal:
+1) Permintaan dokumen dari Divisi AE –DPSI:
+Untuk DPSI-DAE 16-04-2020 
+2) Permintaan dokumen dari OJK:
+Untuk OJK 16-04-2020 
+
+
+--- PAGE 72 ---
+72
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+vi.  Setelah selesai, dibubuhkan paraf elektronik. Klik digitally sign  sebelah watermark.
+vii.  Pilih Paraf dan Lock Document
+✓
+
+--- PAGE 73 ---
+73
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+e. Save as PDF
+ f. Setelah selesai, dokumen di email kepada pihak yang dituju. 
+D.	 Pemeliharaan	Dokumen	Elektronik
+a. Pemeliharaan dokumen bertujuan agar Dokumen Elektronik dapat terjaga dengan baik dan diketahui 
+penggunaannya.
+b. Oleh karena itu, setiap unit kerja/kelompok mengadministrasikan pencatatan log dokumen yang 
+digunakan oleh pihak internal dan eksternal di unit kerja/kelompoknya.
+c. Pencatatan log dokumen tersebut memiliki format sebagai berikut:
+No Nama 
+Dokumen
+Sifat	Dokumen
+(B/Rhs)
+Nama	Pihak
+Internal/Eksternal
+Tujuan Penggunaan
+Dokumen T anggal	Pemberian
+1 DMST_
+PS12_M.02_
+Hasil Asesmen 
+B DSDM Sebagai acuan tindak 
+lanjut rekomendasi 
+asesmen governance
+14-03-2020
+2 ....
+
+--- PAGE 74 ---
+74
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+E.	 Pemusnahan	Dokumen	Elektronik
+Pemusnahan atau penghapusan dokumen elektronik berpedoman kepada Kode Klasifikasi dan Jadwal 
+Retensi Arsip Bank Indonesia (KMJRABI), yang tercantum di dalam ketentuan MDBI.
+a. Pemusnahan Dokumen  Elektronik meliputi kegiatan mengurangi jumlah Dokumen dikarenakan 
+dokumen:
+1) T elah habis jadwal retensinya sesuai KMJRABI yang tercantum di dalam ketentuan MDBI;
+2) Tidak memiliki nilai guna;
+3) Tidak berkaitan dengan penyelesaian proses suatu perkara;
+4) Tidak ada peraturan perundang-undangan yang melarang.
+b. Proses	 administrasi	 pemusnahan	 Dokumen	 Elektronik	 dilakukan	 dalam	 sistem	 BI-Record	
+Management	System	mengacu	pada	ketentuan 	mengenai	manajemen	dokumen	Bank	Indonesia.
+c. Pemusnahan Dokumen Elektronik dilakukan oleh pejabat Unit Kerja setelah mendapatkan 
+persetujuan pemusnahan Dokumen Elektronik dari pejabat di atasnya.
+d. Pemusnahan Dokumen Elektronik dilakukan dengan membuat Daftar Arsip Yang Dimusnahkan 
+(DAM) dan Berita Acara Pemusnahan Arsip (BAMA).
+e. Setelah	 proses	 administrasi	 pemusnahan	 diselesaikan,	 Unit	 Kerja	 melakukan	 pemusnahan	
+Dokumen	 Elektronik	 dalam	 repository	 dan	hasil	 cetak	 dokumen	 elektronik	 sebagaimana	 angka	 2	
+di	atas	tentang	Penyimpanan	Dokumen	Elektronik. 
+f. Dokumen elektronik yang telah dimusnahkan tidak dapat diakses kembali baik melalui Aplikasi BI-
+RMS maupun aplikasi lainnya.
+g. Copy, salinan, atau hasil cetak dokumen elektronik yang telah dimusnahkan dan telah dibuatkan 
+BAMA, dinyatakan tidak sah dan tidak me menuhi unsur autentifikasi.
+
+--- PAGE 75 ---
+75
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+
+--- PAGE 76 ---
+76
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 3
+BAB 4
+T anda T angan dan Paraf Elektronik
+
+--- PAGE 77 ---
+77
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB III
+
+
+--- PAGE 78 ---
+78
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+BAB 4
+Tanda Tangan dan Paraf Elektronik 
+T anda T angan Elektronik atau Electronic Signature , adalah tandatangan yang terdiri atas informasi elektronik 
+yang dilekatkan, terasosiasi atau terkait dengan informasi elektronik lainnya yang digunakan sebagai alat 
+verifikasi atau autentikasi.
+Pada tanda tangan digital tercantum “ Certificate of Authority ” yaitu merupakan metadata yang menyimpan 
+informasi terkait penandatanganan dokumen itu sendiri dan bersifat identik untuk setiap tanda tangan (a.l. 
+mencakup nama penandatangan, device yang digunakan untuk menandatangani dokumen, tanggal, waktu).
+Certificate of Authority  dibutuhkan untuk menjamin autentikasi, integrity, dan non-repudiation dari dokumen 
+sehingga dokumen tersebut dapat digunakan sebagai alat bukti yang sah secara hokum. 
+A.	 Spesifikasi	Minimum
+Pastikan Laptop yang anda gunakan memiliki spesifikasi sebagai berikut :
+Untuk Laptop Bank Indonesia, silahkan hubungi Helpdesk TI jika versi Software Adobe atau Internet 
+Explorer belum me menuhi spesifikasi minimum agar dilakukan instalasi Adobe Acrobat Reader.
+B. Pembuatan	T anda	T angan	dan	Paraf	Elektronik
+Lakukan 3 langkah berikut: Enrollment  Certificate , Pengaturan Adobe Reader , serta Pembuatan spesimen 
+tanda tangan di Adobe Reader . Masing-masing langkah ini hanya perlu dilakukan sekali.
+I. Enrollment  Certificate
+i.	 Trust Web Enrollment
+Aktivitas ini akan mendaftarkan https://cert.bi.go.id/certsrv/ sebagai Trusted Site 
+di Browser Internet Explorer 11.
+Perhatian : Pastikan anda menggunakan browser Internet Explorer 11, bukan 
+browser lain seperti Chrome, Firefox, dan Edge.
+No Spesifikasi	Notebook	/	PC	Desktop
+1 Operating System: Windows 7 or higher
+2 Processor: 1 GHz or higher
+3 RAM: 4 GB or higher
+4 Hard disk Drive C Free Space: 5 GB or higher
+5 Software:
+Adobe Acrobat Reader DC
+6 Internet Explorer 11
+
+
+--- PAGE 79 ---
+79
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+a) Buka Browser Internet Explorer 11, klik Settings, kemudian klik Internet Options .
+b) Pada jendela Internet Options , klik tab Security, kemudian klik Trusted	Sites, dan klik Sites.
+c) Ketikkan pada kolom Add this website to the zone: https://cert.bi.go.id/certsrv , kemudian klik 
+Add.
+
+
+--- PAGE 80 ---
+80
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+d) Setelah sudah didaftarkan, klik Close.
+e) Pada jendela Internet Options , klik OK. 
+f) Close browser Internet Explorer Anda, dan buka kembali.
+ii.	 Request Certificate
+Lakukan permintaan Sertifikat Digital atas nama Anda. Sertifikat Digital ini akan digunakan setiap 
+kali Anda melakukan pembubuhan tanda tangan.
+a) Buka kembali browser menggunakan Internet	 Explorer	 11	 (tidak	 dengan	 Microsoft	 Edge,	
+Firefox,	Chrome	atau	 browser	lain), lalu akses https://cert.bi.go.id/certsrv
+
+
+--- PAGE 81 ---
+81
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+b) Muncul pop box Windows Security, untuk Username dan Password menggunakan login domain 
+Bank Indonesia
+Sebagai contoh:
+Username: andar_suroso
+Password: (password domain Bank Indonesia)
+Kemudian, klik OK.
+c) Selanjutnya muncul halaman Welcome, klik Request a certificate 
+d) Kemudian, pada halaman Advanced Certificate  Request, Klik Create	 and	 submit	 a	 request to 
+this	CA.
+
+
+--- PAGE 82 ---
+82
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+e) Muncul pop box Web Access Confirmation, dan klik Yes.
+f) Kemudian pastikan informasi sebagai berikut (sebagaimana gambar di bawah):
+i. Certificate T emplate  :	BI-Users
+ii. Key Size   : 2048
+iii. Uncheck pada Mark keys as exportable
+iv. Klik Submit
+g) Tunggu proses konfirmasi dari Server hingga selesai.
+
+
+--- PAGE 83 ---
+83
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+h) Pada halaman Certificate  Issued, klik Install	this	 certificate
+i) Muncul pop box Web Access Confirmation, kemudian klik Yes.
+j) Pada halaman Certificate  Installed, terdapat informasi Your new certificate  has been successfully 
+installed. Informasi ini menandakan sertifikat baru telah terinstall di komputer Anda.
+
+
+--- PAGE 84 ---
+84
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+k) Kemudian, setelah sertifikat baru selesai dilakukan, silahkan Restart	 Komputer Anda untuk 
+mengaktifkan.
+Opsional : Lakukan langkah berikut untuk memastikan sertifikat digital Anda telah terinstalasi 
+dalam perangkat.
+l) Buka Internet Explorer 11, kemudian pilih Internet Options    
+m) Pilih tab “Content” , kemudian klik tombol “Certificate s”
+n) Lihat di tab “ Personal” , apabila muncul sertifikat dengan nama anda dan di- issued oleh Bank 
+Indonesia, maka sertifikat anda telah ter-install dengan baik 
+
+
+--- PAGE 85 ---
+85
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+II. Pengaturan	di	 Adobe Reader
+Lakukan pengaturan berikut untuk setiap perangkat. Langkah ini hanya perlu dilakukan sekali seebelum 
+membubuhkan tanda tangan atau membuka file PDF bertanda tangan elektronik.
+i.	 Pengaturan	 Trust	Certificate
+Saat ini, software Adobe Reader  belum mengenal Sertifikat yang diterbitkan oleh Bank Indonesia. 
+Lakukan Trust	Certificate 	terlebih	 dahulu,	 dilakukan	 hanya	 sekali	 untuk	 satu	 perangkat	 (langkah	
+3-5).
+a. Buka aplilkasi Adobe Acrobat Reader DC
+b. Klik menu Edit -> Preferences
+c. Klik menu “Signatures ” , kemudian pilih “More.. ” di bagian Verification
+
+
+--- PAGE 86 ---
+86
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+d. Centang pilihan “ Validating Signatures ” pada bagian Windows Integration, klik OK. 
+e. Klik OK.
+f. Dapatkan 3 file berikut  dari link berikut : 
+Link 1 : https://www.bi.go.id/id/lip/Contents/ digital-signature.aspx
+Atau Link 2 : https://bit.ly/BI- digitalsignature  
+g.  Buka Adobe Reader , pilih Edit > Preferences  > Signatures  > Identitites and Trusted Certificate > 
+More…
+
+
+--- PAGE 87 ---
+87
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+h. Pilih Trusted Certificate > Import > Browse. Rujuk ke lokasi tempat 3 file certificate  (langkah 1) 
+dan pilih file Bank_Indonesia_ Root_CA.cert
+
+
+--- PAGE 88 ---
+88
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+i. Sorot Bank Indonesia Root CA di bagian “ Contacts” . Akan muncul tulisan Bank Indonesia Root 
+CA di bagian “ Certificate s” . Sorot tulisan tersebut, pilih “Trust”
+j. Centang “Use this Certificate  as Root” dan “ Certified Documents” . Klik “Ok” . Dialog box akan 
+menutup dan kembali pada Dialog box “Choose Contacts to import”.
+
+
+--- PAGE 89 ---
+89
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+k. Pilih “Browse” . Rujuk kembali ke lokasi 3 File pada nomor 1, kali ini pilih Bank_Indonesia_Intranet_
+Policy_CA2029.cer
+l. Sorot Bank Indonesia Intranet Policy CA di bagian “ Contacts” . Akan muncul tulisan Bank 
+Indonesia Intranet Policy CA di bagian “ Certificate s” . Sorot tulisan tersebut, pilih “Trust”
+
+
+--- PAGE 90 ---
+90
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+m. Centang hanya “ Certified Documents” . Klik “Ok” . Dialog box akan menutup dan kembali pada 
+Dialog box “Choose Contacts to import”.
+n. Pilih “Browse” . Rujuk kembali ke lokasi 3 File pada nomor 1, kali ini pilih Bank_Indonesia_Intranet_
+Issuing_CA2029.cer
+
+
+--- PAGE 91 ---
+91
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+o. Sorot Bank Indonesia Intranet Issuing CA di bagian “ Contacts” . Akan muncul tulisan Bank 
+Indonesia Intranet Issuing CA di bagian “ Certificate s” . Sorot tulisan tersebut, pilih “Trust”
+p. Centang hanya  “ Certified Documents” . Klik “Ok” . Dialog box akan menutup dan kembali pada 
+Dialog box “Choose Contacts to import”.
+
+
+--- PAGE 92 ---
+92
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+ii.	 Pengaturan	Revocation
+Pengaturan revocation berguna untuk mengecek apakah terdapat sertifikat ADG atau Pegawai yang 
+telah ditarik sehingga tidak valid lagi untuk digunakan sebagai tanda tangan elektronik.
+1. Menu Edit -> Preferences
+2. Klik menu “Signatures ” , kemudian pilih “More.. ” di bagian Creation & Appearance.
+
+
+--- PAGE 93 ---
+93
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+3. Check “Include Signature’s revocation status” . Klik OK.
+4. Klik menu “Signatures ” , kemudian pilih “More.. ” di bagian Verification.
+
+
+--- PAGE 94 ---
+94
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+5. Check “Require certificate  revocation checking…. ” . Klik OK.
+iii.	 Pembuatan	Spesimen	T anda	T angan	dan	Paraf	Elektronik
+Pembuatan spesimen tanda tangan dan paraf elektronik cukup dilakukan sekali. Untuk selanjutnya, 
+apabila anda ingin membubuhkan tanda tangan atau paraf elektronik, anda bisa memilih spesimen 
+tanda tangan atau paraf elektronik yang telah anda buat.
+a. Pastikan Anda telah melakukan Enrollment  Sertifikat dan Pengaturan di Adobe Reader, kemudian 
+buka file pdf yang ingin dibubuhkan tanda tangan atau paraf.
+b. Dalam aplikasi Adobe Reader  Versi DC: search dan pilih “ Digitally Sign ” pada panel menu. Jika 
+panel menu tidak terlihat, pilih T ools > Certificate  > Digitally Sign . Apabila muncul pop up, klik 
+OK.
+
+
+--- PAGE 95 ---
+95
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+c. Arahkan layar ke bagian penandatanganan.  Click, hold and drag mouse  hingga menciptakan area 
+untuk tanda tangan di lokasi yang sesuai. 
+d. Pilih digital ID yang valid dari Bank Indonesia ( Issued by: Bank Indonesia Intranet Issuer) dan 
+akan digunakan dalam penandatanganan, lalu klik Continue. Jika tidak terdapat Digital ID/
+Sertifikat Digital dari Bank Indonesia, lihat Bab 4.1 untuk memperoleh Sertifikat Digital dari Bank 
+Indonesia. 
+
+
+--- PAGE 96 ---
+96
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+e. Klik “Create” untuk membuat specimen tanda tangan atau paraf 
+f. Untuk membuat tanda tangan atau paraf ada dua metode yang dapat digunakan. Metode pertama 
+dengan melakukan gambar tanda tangan langsung menggunakan mouse/layar touchscreen , 
+metode kedua adalah dengan meng upload gambar tanda tangan yang sudah dipersiapkan 
+sebelumnya.
+i. Untuk membuat spesimen tanda tangan/paraf dengan metode menggambar:
+a. Klik tombol “ Draw” di panel atas, kemudian anda bisa menggambar tanda tangan atau 
+paraf anda menggunakan mouse atau layar touchscreen .
+
+
+--- PAGE 97 ---
+97
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+b. Klik “Apply” , kemudian pastikan hanya opsi “Name”,  “Date” dan “Label”  yang tercentang 
+untuk spesimen tanda tangan, namun untuk spesimen paraf, pastikan semua opsi dalam 
+keadaan tidak tercentang. Anda bisa memberi nama pada specimen tanda tangan atau 
+paraf yang telah dibuat pada field “Preset Name” (misalnya dinamakan “T anda tangan”). 
+Apabila informasi sudah benar, klik “ Save”.
+
+
+--- PAGE 98 ---
+98
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+ii. Untuk membuat spesimen tanda tangan/paraf dengan metode upload gambar :
+a. Klik T ombol “Image” di panel atas, kemudian klik “ Browse” 
+iii. Pilih gambar tanda tangan atau paraf yang sudah dipersiapkan sebelumnya dalam format 
+pdf. 
+
+
+--- PAGE 99 ---
+99
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+iv. Klik “ Open” , kemudian pastikan hanya opsi “Name”,  “Date” dan “Label”  yang tercentang. 
+Anda bisa memberi nama pada specimen tanda tangan atau paraf yang telah dibuat pada 
+field “ Preset Name” (misalnya dinamakan “T anda tangan”). Apabila informasi sudah benar, 
+klik “Save”.
+
+
+--- PAGE 100 ---
+100
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+g. Dalam hal informasi sudah tepat, akan muncul tampilan seperti gambar di bawah ini. Klik “Sign” 
+apabila ingin membubuhkan tanda tangan/paraf pada dokumen, atau tutup pop up apabila tidak 
+ingin membubuhkan tanda tangan/paraf.
+iv.	  Pembuatan	spesimen	Paraf	Agendaris	(untuk	Agendaris/Sekretaris	pemberi	nomor 	dan	tanggal)
+Agendaris dan Sekretaris pemberi nomor dan tanggal dokumen membutuhkan tanda tangan 
+elektronik yang tidak terlihat untuk dibubuhkan setelah memberikan nomor dan tanggal pada 
+dokumen. Berikut adalah langkah untuk membuat spesimen paraf agendaris (tidak terlihat secara 
+visual).
+
+
+--- PAGE 101 ---
+101
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+Agendaris dan Sekretaris pemberi nomor dan tanggal dokumen membutuhkan tanda tangan 
+elektronik yang tidak terlihat untuk dibubuhkan setelah memberikan nomor dan tanggal pada 
+dokumen. Berikut adalah langkah untuk membuat spesimen paraf agendaris yang tidak terlihat 
+secara visua di dokumen.
+a) Pastikan Anda telah melakukan Enrollment  Sertifikat dan Pengaturan di Adobe Reader, kemudian 
+buka file pdf yang ingin dibubuhkan tanda tangan atau paraf.
+b) Dalam aplikasi Adobe Reader :
+i. Versi DC: search dan pilih “ Digitally Sign ” pada panel menu.
+Jika panel menu tidak terlihat, pilih T ools > Certificate  > Digitally Sign  
+c) Arahkan layar ke bagian penandatanganan. Hold and drag mouse hingga menciptakan area untuk 
+tanda tangan di lokasi yang sesuai. 
+
+
+--- PAGE 102 ---
+102
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+d) Pilih digital ID yang valid dari Bank Indonesia ( Issued by: Bank Indonesia Intranet Issuer) dan 
+akan digunakan dalam penandatanganan, lalu klik Continue. Jika tidak terdapat Digital ID/
+Sertifikat Digital dari Bank Indonesia, lihat Bab 4.1 untuk memperoleh Sertifikat Digital dari 
+Bank Indonesia. 
+e) Klik “Create” untuk membuat spesimen paraf agendaris
+f) Klik tombol “ Draw” di panel atas, klik Apply tanpa menggambar apapun.
+
+
+--- PAGE 103 ---
+103
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+g). Pastikan tidak ada opsi yang tercentang seperti pada gambar di bawah. Anda bisa memberi nama 
+pada spesimen tanda tangan yang telah dibuat pada field “ Preset Name” (misalnya dinamakan 
+“paraf agendaris” atau “T anda tangan invisible”). Apabila informasi sudah benar, klik “Save”.
+h) Dalam hal informasi sudah tepat, akan muncul tampilan seperti gambar di bawah ini. Klik “Sign” 
+apabila ingin membubuhkan paraf agendaris pada dokumen, atau tutup pop up apabila tidak ingin 
+membubuhkan paraf agendaris.
+
+
+--- PAGE 104 ---
+104
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+C. Pembubuhan	T anda	T angan	dan	Paraf	Elektronik
+I. Pembubuhan	T anda	T angan	Elektronik
+a) Pastikan Anda telah melakukan Enrollment  Certificate , Pengaturan di Adobe Reader  dan Membuat 
+Spesimen T anda T angan. 
+b) Dalam aplikasi Adobe Reader  Versi DC: search dan pilih “ Digitally Sign ” pada panel menu.
+c) Arahkan layar ke bagian penandatanganan. Hold and drag mouse hingga menciptakan area untuk 
+tanda tangan. 
+i. Contoh area tanda tangan di M.01
+Jika panel menu tidak terlihat, pilih T ools > Certificate  > Digitally Sign  
+
+
+--- PAGE 105 ---
+105
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+ii. Contoh area tanda tangan pada M.02
+iii. Contoh area tanda tangan pada LDP
+
+
+--- PAGE 106 ---
+106
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+iv. Contoh Area tanda tangan pada Risalah Rapat
+d) Pilih digital ID yang valid dari Bank Indonesia ( Issued by: Bank Indonesia Intranet Issuer) dan akan 
+digunakan dalam penandatanganan, lalu klik Continue. Jika tidak terdapat Digital ID/Sertifikat Digital 
+dari Bank Indonesia, lihat Bab 4.1 untuk memperoleh Sertifikat Digital dari Bank Indonesia. 
+e) Pilih specimen tanda tangan yang telah dibuat sebelumnya di menu “Appearance” . (Apabila belum 
+ada, silakan lihat bab Pembuatan Spesimen T anda T angan atau Paraf Elektronik). Dalam hal informasi 
+sudah tepat, klik Sign 
+
+
+--- PAGE 107 ---
+107
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+f) Setelah klik sign, akan keluar pop up untuk menyimpan dokumen. ADG atau Pegawai menyimpan 
+pada folder yang dituju.
+g) Setelah klik save, akan keluar tanda tangan digital pada kolom penandatanganan. 
+
+
+--- PAGE 108 ---
+108
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+II. Pembubuhan	Paraf	 Digital
+a) Pastikan Anda telah melakukan Pengaturan di Adobe Reader  (Lihat Bab 4.2)
+b) Dalam aplikasi Adobe Reader  Versi DC: search dan pilih “ Digitally Sign ” pada panel menu.
+Jika panel menu tidak terlihat, pilih T ools > Certificate  > Digitally Sign  
+
+
+--- PAGE 109 ---
+109
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+c) Arahkan layar ke bagian penandatanganan. Hold and drag mouse hingga menciptakan area untuk 
+para. 
+i. Contoh area paraf dan tanda tangan di M.01 
+d) Pilih digital ID yang valid dari Bank Indonesia ( Issued by: Bank Indonesia Intranet Issuer) dan akan 
+digunakan dalam penandatanganan, lalu klik Continue. Jika tidak terdapat Digital ID/Sertifikat Digital 
+dari Bank Indonesia, lihat Bab 4.1 untuk memperoleh Sertifikat Digital dari Bank Indonesia. 
+ii. Contoh area paraf dan tanda tangan pada LDP
+
+
+--- PAGE 110 ---
+110
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+e) Klik spesimen paraf pada field Apperance yang telah anda buat sebelumnya (apabila belum ada, 
+silakan lihat bab Pembuatan Spesimen T anda T angan atau Paraf Elektronik). 
+f) Dalam hal informasi sudah tepat, klik Sign 
+g)  Setelah klik sign, akan keluar pop up untuk menyimpan dokumen. ADG atau Pegawai menyimpan 
+pada folder yang dituju.
+
+
+--- PAGE 111 ---
+111
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+h)  Setelah klik save, akan keluar tanda tangan digital pada kolom penandatanganan. 
+III.	 Pembubuhan	T anda	T angan	Elektronik	oleh	Agendaris/Sekretaris
+a) Pastikan Anda telah melakukan Enrollment  Certificate , Pengaturan di Adobe Reader, dan Pembuatan 
+spesimen tanda tangan/paraf elektronik.
+b) Setelah insert comment ( Add T ext Box) untuk melakukan penomoran, Agendaris/Sekretaris harus 
+menandatangani dokumen dengan tanpa visual sebagai berikut:
+c) Dalam aplikasi Adobe Reader  Versi DC: search dan pilih “ Digitally Sign ” pada panel menu.
+Jika panel menu tidak terlihat, pilih T ools > Certificate  > Digitally Sign  
+
+
+--- PAGE 112 ---
+112
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+d) Arahkan layar ke bagian penandatanganan. Hold and drag mouse hingga menciptakan area untuk 
+paraf, di samping nomor dokumen.
+Contoh area paraf dan tanda tangan di M.01
+e) Pilih digital ID yang valid dari Bank Indonesia ( Issued by: Bank Indonesia Intranet Issuer ) dan akan 
+digunakan dalam penandatanganan, lalu klik Continue. Jika tidak terdapat Digital ID/Sertifikat Digital 
+dari Bank Indonesia, lihat Bab 4.1 untuk memperoleh Sertifikat Digital dari Bank Indonesia. 
+
+
+--- PAGE 113 ---
+113
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+f) Pilih spesimen paraf agendaris (tanpa visual) yang telah anda buat sebelumnya (apabila belum ada, 
+silakan lihat bab Pembuatan Spesimen T anda T angan atau Paraf Elektronik). Lalu klik Sign.
+g) Setelah klik sign, akan keluar pop up untuk menyimpan dokumen. ADG atau Pegawai menyimpan 
+pada folder yang dituju.
+
+
+--- PAGE 114 ---
+114
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+ 
+D. Validasi	Dokumen
+Lakukan Validasi berikut untuk mengecek apakah seluruh pengaturan sudah benar. Kemudian lakukan Validasi 
+setiap kali menerima dokumen untuk mengecek apakah telah ditandatangani dengan sertifikat yang valid dan 
+tidak mengalami perubahan sejak ditandatangani
+I. Validasi	Pengaturan
+Dengan memastikan dokumen memiliki hasil validasi ini, berarti seluruh pengaturan sudah dilakukan 
+dengan benar.
+a) Buka file Pdf pada Adobe Reader  (bukan di browser)
+b) Buka Signature Panel  melalui 
+c) Pada bagian kiri atas Signature Panel  terdapat hasil validasi.
+Berikut adalah tanda bahwa pengaturan sudah dilakukan sesuai pedoman.
+Hijau di Penandatangan
+“Signature is valid” tanpa 
+kalimat lanjutan
+“Source of Trust obtained from manually 
+imported trusted identity ATAU Source of 
+Trust obtained from the Windows trusted 
+Certificate Store
+
+--- PAGE 115 ---
+115
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+II. Additional check
+Lakukan Validasi setiap kali menerima dokumen untuk mengecek apakah telah ditandatangani dengan 
+sertifikat yang valid dan tidak mengalami perubahan sejak ditandatangani.
+a) Buka file Pdf pada Adobe Reader  (bukan di browser)
+b) Buka Signature Panel  melalui 
+c) Pada bagian kiri atas Signature Panel  terdapat hasil validasi secara keseluruhan.
+Hasil	Validasi Arti Arti	dan	Tindak	Lanjut
+Dokumen telah ditandangani dengan 
+sertifikat yang valid. Dokumen dapat diterima. Lanjut ke langkah d)
+Perlu pengecekan lebih lanjut apakah:
+1. T erdapat kesalahan konfigurasi 
+Revocation Check pada Adobe Reader di 
+sisi pembuat T anda T angan
+2. T erdapat kesalahan konfigurasi “Trusted 
+Certificate” oleh penandatangan atau 
+oleh Anda.
+3. T anda tangan dilakukan dengan sertifikat 
+palsu.
+T anda tangan dilakukan dengan sertifikat 
+sendiri (bukan BI)
+Lanjut ke Langkah e)
+Dokumen telah ditandangani dengan 
+sertifikat yang valid. Namun telah terdapat 
+perubahan yang belum “disetujui” .
+Lanjut ke Langkah f)
+T elah terjadi alterasi dokumen setelah 
+ditandatangani
+T olak dokumen
+
+
+--- PAGE 116 ---
+116
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+d) Buka Signature Panel  untuk mempelajari histori perubahannya.
+e) Berikut adalah tindak lanjut peringatan “At least one signature has problems”
+Tidak ada alterasi terhadap cakupan 
+dokumen saat ditandatangani
+Dokumen mengalami penambahan 
+komponen setelah ditandatangani
+Klik untuk melihat versi yang 
+ditandatangani oleh penandatangan 1
+Penambahan komponen comment
+/annotation setelah ditandatangani oleh 
+Penandatangan 1
+Penandatangan 2
+Tidak Ada icon warning, artinya 
+Penandatangan berikutnya 
+(penandatangan 2) menerima perubahan 
+yang dilakukan sebelumnya
+“Signer identity is valid/Signature is valid”.  
+Dokumen ditandangani dengan 
+sertifikat yang valid. Namun dapat 
+dilakukan pengecekan tambahan
+ (lihat poin b)
+“Signature validity is unknown. ”
+“Signer’s identity is unknown because 
+it has not been included in your list”
+T erdapat kemungkinan:
+• Kesalahan konfigurasi “Trusted 
+Certificate” oleh penandatangan 
+atau Anda. Lakukan Langkah Bab 
+4.B.II
+• T anda tangan dilakukan dengan 
+sertifikat palsu atau dilakukan 
+dengan sertifikat sendiri (bukan 
+BI). Lakukan Langkah Bab 4.D.III.
+
+--- PAGE 117 ---
+117
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+f) Berikut adalah tindak lanjut peringatan “Signed and all signatures  are valid, but with unsigned changes 
+after the last signature”
+Signature is valid, but revocation of the 
+signer’s identity could not be checked. ” 
+Masih terdapat kesalahan pengaturan 
+di penandatangan. Penandatangan 
+perlu melakukan Langkah Bab 4.B.II 
+hingga hanya “Signature is Valid” yang 
+muncul”
+T erdapat icon       pada “Annotations 
+Created” . Artinya penambahan atau 
+perubahan apapun pada komponen 
+yang baru ditambahkan tersebut perlu 
+“disetujui” melalui tanda tangan.
+Apabila perubahan ini karena 
+penambahan nomor/tanggal, lakukan 
+Langkah Bab 4.C.III.
+Jika perubahan ini karena hal lain, 
+Anda dapat melakukan klarifikasi 
+sebelum Anda melakukan tanda 
+tangan pada dokumen tersebut.
+!
+III. Pengecekan	sertifikat
+Sangat mungkin Anda menerima dokumen yang ditandatangani dengan sertifikat yang tidak diterbitkan 
+oleh BI atau sertifikat palsu. Anda dapat melakukan penolakan terhadap dokumen tersebut. 
+Lakukan Langkah berikut untuk mengecek apakah sertifikat diterbitkan oleh BI atau tidak. 
+a) Double click pada tanda tangan. Pilih Signature Properties
+b) Pilih Show Signer’s Certificate
+
+--- PAGE 118 ---
+118
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+c) Pilih Ta b Details. Sorot bagian Subject. Informasi identitas penandatangan akan muncul di kotak putih. 
+Pastikan nama sesuai dengan identitas penandatangan, dengan “dc” bertuliskan “corp” , “bi” , “go” , dan 
+“id” . Anda juga dapat memperhatikan Email yang memiliki domain @bi.go.id.
+d) Cek bila terdapat pernyataan “The selected certificate  path is valid” . Serta terbentuknya “tree” 
+certificate  yang menginduk pada Bank Indonesia Root CA. 
+Jika kondisi tersebut terpenuhi, maka sertifikat diterbitkan oleh BI.
+
+--- PAGE 119 ---
+119
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+E. Helpdesk	Pengelolaan	Dokumen	Elektronik
+Dalam hal terdapat pertanyaan, permintaan bantuan, dan/atau pengaduan masalah terkait pengelolaan 
+dokumen elektronik dapat menghubungi IT Helpdesk dengan telepon ke 8000 atau email helpdesk@bi.go.id
+Konsultasi lebih lanjut dapat menghubungi person in charge sebagai berikut
+Pencabutan	T anda	T angan	Elektronik
+1. Pencabutan kewenangan T anda T angan Elektronik dilakukan dalam hal:
+a. pensiun;
+b. berhenti atau diberhentikan; atau
+c. meninggal dunia. 
+2. Pencabutan kewenangan T anda T angan Elektronik selain dilakukan karena alasan di atas juga dilakukan 
+terhadap pegawai yang dibebastugaskan sesuai dengan ketentuan yang mengatur mengenai peraturan disiplin 
+Bank Indonesia. 
+3. Pencabutan kewenangan T anda T angan Elektronik dilakukan oleh DPSI berdasarkan permintaan dari DSDM
+Catatan:
+1. Helpdesk DMST akan membantu penyelesaian isu proses bisnis dan ketentuan/pengaturan terkait 
+dokumen elektronik;
+2. Helpdesk DPSI akan membantu penyelesaian isu teknis seperti enrollment  tanda tangan digital, verifikasi/
+validasi tanda tangan digital, teknis pembuatan paraf, dan mekanisme pembubuhan tanda tangan digital
+No Satker Nama Extension	dan	Email
+1 Aspek IT (DPSI) Setyo Kuncoro 3014190, setyo_k@bi.go.id
+Agoes Wedi 3016500, wedi@bi.go.id
+Andar Suroso Sitohang 3016767, andar_suroso@bi.go.id
+2 Aspek Proses Bisnis 
+(DMST)
+Shelly Silalahi 3017364, shelly_ls@bi.go.id
+Azfina Putri Anindita 3016864, azfina_putri@bi.go.id
+Agni Luthfi 3014482, agni_lh@bi.go.id
+Merrisa F Anhar 3014298, merrisa_fa@bi.go.id
+
+--- PAGE 120 ---
+120
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4
+Lampiran 1
+Daftar Email Korespondensi 
+Satuan Kerja
+
+--- PAGE 121 ---
+121
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB IV
+
+
+--- PAGE 122 ---
+122
+PEDOMAN TENTANG MANAJEMEN DOKUMEN ELEKTRONIK BANK INDONESIA | BAB 4

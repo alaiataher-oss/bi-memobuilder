@@ -1304,3 +1304,121 @@ textarea { min-height: 110px; resize: vertical; }
 }
 
 
+
+/* Repository / Reference */
+.ref-page { max-width: 1200px; }
+.ref-head { margin-bottom: 1rem; }
+.ref-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.85fr) minmax(280px, 1.35fr) minmax(220px, 1fr);
+  gap: 0.9rem;
+  align-items: stretch;
+}
+@media (max-width: 1100px) {
+  .ref-layout { grid-template-columns: 1fr; }
+}
+.ref-docs h2, .ref-chat h2, .ref-source h2 {
+  margin: 0 0 0.65rem;
+  font-size: 0.95rem;
+  color: var(--bi-blue);
+}
+.ref-doc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-height: 62vh;
+  overflow: auto;
+}
+.ref-doc-btn {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: #f8fbfe;
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  cursor: pointer;
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.ref-doc-btn:hover { border-color: var(--bi-blue-mid); background: #fff; }
+.ref-doc-meta { font-size: 0.72rem; color: var(--muted); }
+.ref-chat {
+  display: flex;
+  flex-direction: column;
+  min-height: 520px;
+}
+.ref-chat-log {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  padding: 0.35rem 0.15rem 0.75rem;
+  max-height: 52vh;
+}
+.ref-bubble {
+  max-width: 95%;
+  padding: 0.75rem 0.9rem;
+  border-radius: 12px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.ref-bubble.user {
+  align-self: flex-end;
+  background: var(--bi-blue);
+  color: #fff;
+}
+.ref-bubble.assistant {
+  align-self: flex-start;
+  background: #eef3f8;
+  border: 1px solid var(--line);
+  color: var(--ink);
+}
+.ref-bubble-body code {
+  font-size: 0.85em;
+  background: rgba(0,0,0,0.06);
+  padding: 0.05em 0.3em;
+  border-radius: 4px;
+}
+.ref-cites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+}
+.ref-cite {
+  border: 1px solid #b7cfe3;
+  background: #fff;
+  color: var(--bi-blue-mid);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+.ref-cite:hover { background: var(--bi-blue-soft); }
+.ref-chat-form {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--line);
+}
+.ref-chat-form input { margin: 0; }
+.ref-source-text {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: #f7fafc;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  max-height: 48vh;
+  overflow: auto;
+  white-space: pre-wrap;
+}

@@ -1,0 +1,129 @@
+
+--- PAGE 1 ---
+1 
+ 
+Frequently Asked Question (FAQ) 
+PADG No. 23/51/PADG INTERN/2021 tentang  
+Manajemen Dokumen Elektronik Bank Indonesia (PADG MDEBI) 
+ 
+1. Apakah tanda tangan elektronik diperbolehkan saat hari libur, dinas, dan/atau di luar jam kerja? 
+Secara governance proses penandatanganan diperbolehkan tetapi mengingat penerbitan dokumen 
+perlu dilakukan pada waktu hari kerja maka penomoran dan tanggal m engacu pada hari kerja 
+terdekat. Khusus ketika pegawai cuti dan/atau sakit tidak diperkenankan mengambil keputusan 
+dan/atau bertanda-tangan pada dokumen.  
+ 
+2. Apakah dapat berlaku back date dengan tanggal dinas? 
+Penomoran dokumen dilakukan setelah dokumen ditandatangani oleh Pengaju, oleh karena itu 
+konsep backdate tidak sesuai dengan prinsip governance.  
+ 
+3. Ketika Dewan Gubernur (DG) dan Anggota Dewan Gubernur (ADG) dapat menandatangani dokumen 
+elektronik saat dinas, kapan dokumen tersebut dapat dialihkan kepada ADG alternate? 
+Pengaturan terkait ADG Alternate akan didetilkan pada PDG Organ, Proses, dan Organ Pe ndukung 
+Pengambilan Keputusan yang  akan terbit pada Triwulan  I 2021. Untuk sementara mengikuti 
+pengaturan existing. Selain itu untuk serah terima jabatan Pimpinan Satker juga mengacu pada 
+PADG Serah Terima Jabatan Pemimpin Satker.  
+ 
+4. Pada PADG MDE BI bagian ketiga pasal 10 dikatakan “dapat dilengkapi denga n pembubuhan paraf ”. 
+Siapakah yang  menentukan bahwa dokumen perlu dibubuhi paraf atau tidak ? Apakah paraf 
+dibubuhkan setiap halaman?  
+• Untuk menjalankan mekanisme check and balances , dokumen (kecuali M02) dilakukan 
+penandatanganan di kanan atas tandatangan pengaju. Sedangkan untuk halaman lainnya 
+(dalam hal dokumen terdiri atas lebih dari 2 halaman), paraf hanya dilakukan atas tanta tangan 
+pengaju tersebut atau pada salah satu halaman untuk dokumen M02. 
+• Untuk dokumen digital  Paraf tidak dibubuhkan pada setiap halaman, hanya pada bagian 
+approval page 1 kali saja. 
+ 
+
+--- PAGE 2 ---
+2 
+ 
+ 
+5. Apakah memorandum pembayaran kepada pihak ketiga dapat dilakukan tanda-tangan elektronik? 
+Jika jenis dokumen adalah M02 maka menggunakan tanda tangan elektronik, adapun untuk  
+dokumen lainnya seperti ERP (dhi LDP ERP) mengacu pada ketentuan proses bisnis ERP. 
+ 
+6. Apakah materai elektronik juga boleh digunakan untuk transaksi keuangan? 
+Secara ketentuan sudah ada Peraturan Menteri Keuangan tentang meterai ini. Pelaksanaanya di BI 
+mengacu pada ketentuan DKeu selaku pemilik proses bisnis keuangan. 
+ 
+7. Bagaimana kebijakan untuk dokumen pengadaan dan keuangan (pengajuan LD pembayaran, hasil 
+output ERP yang perlu ditanda-tangani dan diupload kembali)? Bagaimana dengan tanda-tangan LDP 
+Permohonan Pembebanan Anggaran atau perintah pembayaran dari Unit Kerja pemilik anggaran ke 
+TMI/UMI? 
+Mengikuti ketentuan ERP dimana saat ini terdapat kebutuhan pemrosesan dokumen secara 
+hardcopy.  
+ 
+8. Apakah sistem MDEBI ini juga terkait dengan workflow proses Satker?  
+Sistem MDEBI untuk sementara masih menggunakan Tanda Tangan Elektronik (TTE) BI CA (adobe 
+reader PDF e-sign existing) dan dapat digunakan untuk dokumen proses bisnis Satker selama diatur 
+secara jelas pada pedoman/ketentuan di Satker tersebut.  
+ 
+9. Apakah DEBI dapat dibuka sepenuhnya untuk auditor BPK? 
+Ya, sama seperti dokumen biasa dengan proses watermark dapat dilakukan secara digital. 
+ 
+10. Apakah sistem MDEBI juga dapat men -generate nomor dan rubrik Satker dan melalui siapakah surat 
+final dapat keluar? 
+Sistem MDEBI untuk sementara masih menggunakan BI CA ( adobe reader  PDF e-sign existing ) 
+sehingga nomor, rubrik, tanggal masih dibubuhkan secara manual oleh agendaris dan/atau 
+pegawai.  
+  
+
+--- PAGE 3 ---
+3 
+ 
+11. Apakah persetujuan 1 dokumen harus dilakukan di tanggal yang sama secara end to end , dari 
+konseptor hingga approver sesuai DMP?  
+Tidak harus di tanggal yang sama  (dhi sequence penandatanganan adalah penyiap, pemeriksa, 
+pengaju, pendukung, dan penyetuju),  kecuali jika pada aturan proses bisnis Satker tersebut 
+mewajibkan pada hari yang sama. 
+ 
+12. Bagaimana ruang yang diberikan ke masing -masing Satker untuk menentukan mana dokumen yan g 
+harus hardcopy dan elektronik? 
+Sepanjang tidak ada keharusan untuk hardcopy maka dokumen diproses secara elektronik.  
+ 
+13. Apakah dengan dokumen elektronik yang  sudah dicetak dan disimpan dalam RMS, kita tidak wajib 
+mengelola dokumen elektroniknya?  
+Sementara hardcopy dapat di -print dan disimpan di  BI-RMS, sedangkan untuk copy dokumen 
+elektronik disimpan dalam Uker masing-masing. Ke depan akan disiapkan mekanisme arsip digital 
+sejalan dengan pengembangan central archive. 
+ 
+14. Bagaimana prosedur penandatanganan risalah rapat yang diselenggarakan pihak eksternal? 
+Bisa menggunakan  digisign yang dimiliki pihak eksternal tersebut  sebagaimana ketentuan pada 
+Pasal 13.  
+ 
+15. Apakah diperbolehkan juga menggunakan tanda-tangan elekronik untuk dokumen seperti Perjanjian 
+dan Kerangka Acuan Kerja (KAK) yang digunakan sebagai dokumen pengadaan barang dan jasa? 
+Secara MDEBI tidak  melarang, tetapi perlu dipastikan dengan DPS apakah pe ngaturan di DPS 
+mengharuskan hardcopy atau tidak. 
+ 
+16. Apakah ada kriteria atau klasifikasi pihak yang diperkerjakan oleh BI kaitannya dengan MDEBI, 
+khususnya dalam hal pembubuhan paraf/tanda-tangan dokumen? 
+Mengikuti aturan DSDM , tidak ada ketentuan level spesifik dalam hal pihak yang membubuhkan 
+paraf. 
+  
+
+--- PAGE 4 ---
+4 
+ 
+ 
+17. Jika kepala perwakilan akan melakukan PDDN, dilakukan serah ter ima kepada pegawai pengganti. 
+Apakah Kepala Perwakilan tetap dapat menandatangi dokumen elektronik?  
+Jika ada serah terima maka mengikuti PADG Serah Terima Jabatan  termasuk dhi status  
+responsibility (R) dan accountability (A) pihak yang bertanda tangan.  
+ 
+18. Jika file lampirannya terlalu besar dan terdapat kendala pada pengiriman dokumen, apakah lampiran 
+tetap harus selalu melekat dalam dokumen utamanya? 
+Diusahakan melekat ke dalam dokumen agar mencegah perubahan konten oleh pihak yang tidak 
+berwenang. Lampiran tersebut dapat di -upload melalui media DocHub, Sharepoint Online, 
+dan/atau OneDrive untuk selanjutnya link-nya yang menjadi attachment dokumen.  
+ 
+19. Apakah pengelolaan dokumen perizinan di elicensing, e-catalog, dan/atau aplikasi proses bisnis lain 
+perlu mengikuti proses pengelolaan dokumen MDEBI (8 proses)? 
+Secara umum norma-norma dasarnya diharapkan mengikuti, tetapi perlu diatur kembali dalam 
+ketentuan (mis. PADG dan/atau SOP) dari aplikasi proses bisnis tersebut. Jika dikehendaki berbeda 
+juga agar diatur dalam PADG proses bisnis terkait.  
+ 
+20. Apakah ada aplikasi untuk dapat melakukan review dan correction terhadap konte n dokumen 
+dilanjutkan dengan pembubuhan tanda tangan sekaligus? 
+Saat ini sistem BI Certificate Authority (Adobe Reader PDF) belum bisa melakukan itu, ke depan 
+akan dilakukan pengembangan Digital Business Support (DiBS) untuk memfasilitasi hal tersebut.   
