@@ -203,18 +203,37 @@ def test_auth_login_and_guard():
 
 
 def test_reference_chat_cites_penamaan_page():
-    from app.reference import answer_question, list_reference_docs, search_pages
+    from app.reference import answer_question, list_reference_docs, load_catalog, load_pages, search_pages
 
+    load_catalog.cache_clear()
+    load_pages.cache_clear()
     docs = list_reference_docs()
     assert any(d["id"] == "Pedoman_2022" for d in docs)
+    assert all(d.get("has_pdf") for d in docs), "every catalog doc should have PDF"
     hits = search_pages("penamaan file dokumen SATKER PSXX")
     assert hits, "expected hits for naming query"
     assert any(h["doc_id"] == "Pedoman_2022" and h["page"] == 21 for h in hits[:3])
     ans = answer_question("Bagaimana penamaan file dokumen?")
     assert ans["citations"]
-    assert any(c["page"] for c in ans["citations"])
+    assert "SATKER" in ans["answer"] or "PSXX" in ans["answer"]
     res = client.post("/api/reference/chat", json={"message": "Bagaimana penamaan file?"})
     assert res.status_code == 200
     body = res.json()
     assert body["citations"]
     assert "halaman" in body["answer"].lower() or any(c.get("page") for c in body["citations"])
+
+
+def test_reference_chat_undangan_natural_language():
+    from app.reference import answer_question, load_catalog, load_pages
+
+    load_catalog.cache_clear()
+    load_pages.cache_clear()
+    ans = answer_question("kalau ngundang rapat satker lain memo jenis apa")
+    assert ans["intent"] == "undangan"
+    assert "M.01" in ans["answer"]
+    assert "Meeting Request" in ans["answer"]
+    assert ans["citations"]
+    assert any(c.get("pdf") for c in ans["citations"])
+    res = client.post("/api/reference/chat", json={"message": "kalau ngundang rapat satker lain memo jenis apa"})
+    assert res.status_code == 200
+    assert "M.01" in res.json()["answer"]

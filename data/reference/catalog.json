@@ -5,15 +5,17 @@
       "title": "Pedoman Manajemen Dokumen Elektronik Bank Indonesia",
       "short": "Pedoman 2022",
       "file": "Pedoman_2022.txt",
+      "pdf": "Pedoman_2022.pdf",
       "source_label": "Buku Pedoman Dokumen Elektronik 2022",
-      "topics": ["penamaan file", "M.01", "M.02", "meeting request", "paraf elektronik", "FILE-01"]
+      "topics": ["penamaan file", "M.01", "M.02", "meeting request", "paraf elektronik", "undangan"]
     },
     {
       "id": "PCPM40_DMST",
       "title": "PCPM 40 DMST — Pengenalan Dokumen Bank Indonesia",
       "short": "PCPM 40 DMST",
       "file": "PCPM40_DMST.txt",
-      "source_label": "PCPM40_DMST_Pengenalan_Dokumen_BI.pdf",
+      "pdf": "PCPM40_DMST.pdf",
+      "source_label": "PCPM40_DMST Pengenalan Dokumen BI",
       "topics": ["struktur memo", "M.01", "M.02", "sifat dokumen", "akuntabilitas", "font"]
     },
     {
@@ -21,15 +23,16 @@
       "title": "Ringkasan Tata Naskah Dokumen BI",
       "short": "Ringkasan Tata Naskah",
       "file": "Ringkasan.txt",
-      "pdf": "Ringkasan_Tata_Naskah_Dokumen_BI.pdf",
-      "source_label": "Ringkasan_Tata_Naskah_Dokumen_BI.pdf",
-      "topics": ["tata naskah", "font", "kertas", "memo"]
+      "pdf": "Ringkasan.pdf",
+      "source_label": "Ringkasan Tata Naskah Dokumen BI",
+      "topics": ["tata naskah", "font", "kertas", "memo", "undangan"]
     },
     {
       "id": "PADG_23_51",
       "title": "PADG Intern 23/51/PADG INTERN/2021 tentang MDEBI",
       "short": "PADG 23/51",
       "file": "PADG_23_51.txt",
+      "pdf": "PADG_23_51.pdf",
       "source_label": "PADG 23.51.PADG INTERN.2021 tentang MDEBI",
       "topics": ["MDEBI", "aturan internal", "dokumen elektronik"]
     },
@@ -38,6 +41,7 @@
       "title": "PADG Intern 22/28/PADG INTERN/2020 tentang MDEBI",
       "short": "PADG 22/28",
       "file": "PADG_22_28.txt",
+      "pdf": "PADG_22_28.pdf",
       "source_label": "PADG No. 22.28.PADG INTERN.2020 TTG MDEBI",
       "topics": ["MDEBI", "aturan internal"]
     },
@@ -46,6 +50,7 @@
       "title": "FAQ PADG MDEBI 2021",
       "short": "FAQ MDEBI",
       "file": "FAQ_MDEBI.txt",
+      "pdf": "FAQ_MDEBI.pdf",
       "source_label": "FAQ PADG MDEBI 2021",
       "topics": ["FAQ", "MDEBI", "praktis"]
     },
@@ -54,7 +59,8 @@
       "title": "SE 17/72/INTERN Pengaturan Dokumen Bank Indonesia",
       "short": "SE 17/72",
       "file": "SE_17_72.txt",
-      "source_label": "SE 17_72_INTERN Pengaturan Dokumen Bank Indonesia",
+      "pdf": "SE_17_72.pdf",
+      "source_label": "SE 17/72/INTERN Pengaturan Dokumen Bank Indonesia",
       "topics": ["surat edaran", "pengaturan dokumen"]
     }
   ]

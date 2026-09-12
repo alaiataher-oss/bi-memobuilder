@@ -11,6 +11,7 @@ const state = {
   referenceDocs: [],
   chatMessages: [],
   activeCitation: null,
+  previewPdf: null,
 };
 
 const $main = () => document.getElementById("main");
@@ -1139,12 +1140,13 @@ function viewReference() {
   const docs = state.referenceDocs || [];
   const messages = state.chatMessages || [];
   const citation = state.activeCitation;
+  const previewPdf = state.previewPdf || (citation?.pdf_url ? { url: citation.pdf_url, title: citation.short || citation.title, page: citation.page } : null);
   return `
     <section class="ref-page">
       <header class="ref-head">
         <div>
           <h1>Repository / Referensi</h1>
-          <p class="muted">Peraturan & pedoman yang diindeks per halaman. Tanya asisten untuk jawaban bertanda sumber (file + halaman).</p>
+          <p class="muted">Tanya dengan bahasa sehari-hari. Jawaban mudah dipahami + referensi file/halaman/PDF. Semua peraturan bisa di-preview & diunduh.</p>
         </div>
       </header>
 
@@ -1153,22 +1155,27 @@ function viewReference() {
           <h2>Korpus peraturan</h2>
           <ul class="ref-doc-list">
             ${docs.map((d) => `
-              <li>
+              <li class="ref-doc-item">
                 <button type="button" class="ref-doc-btn" data-ref-doc="${esc(d.id)}">
                   <strong>${esc(d.short || d.id)}</strong>
                   <span class="muted small">${esc(d.title)}</span>
-                  <span class="ref-doc-meta">${d.pages_indexed || 0} hlm${d.has_pdf ? " · PDF" : ""}</span>
+                  <span class="ref-doc-meta">${d.pages_indexed || 0} hlm${d.has_pdf ? " · PDF siap" : ""}</span>
                 </button>
+                ${d.has_pdf ? `
+                  <div class="ref-doc-actions">
+                    <button type="button" class="btn btn-tiny" data-preview-pdf="${esc(d.pdf_url)}" data-preview-title="${esc(d.short)}">Preview</button>
+                    <a class="btn btn-tiny" href="${esc(d.pdf_url)}" download target="_blank" rel="noopener">Unduh</a>
+                  </div>
+                ` : `<p class="hint">PDF belum tersedia</p>`}
               </li>
             `).join("") || `<li class="muted small">Belum ada dokumen terindeks.</li>`}
           </ul>
-          <p class="hint">Sumber: Pedoman 2022, PCPM 40 DMST, Ringkasan Tata Naskah, PADG MDEBI, FAQ, SE 17/72.</p>
         </aside>
 
         <section class="ref-chat panel">
           <div class="ref-chat-head">
             <h2>Asisten referensi</h2>
-            <p class="muted small">Contoh: “Bagaimana penamaan file dokumen?” · “Struktur M.02 persetujuan?”</p>
+            <p class="muted small">Contoh: “Kalau ngundang rapat satker lain, memo jenis apa?” · “Gimana penamaan file?”</p>
           </div>
           <div id="ref-chat-log" class="ref-chat-log" aria-live="polite">
             ${messages.length ? messages.map((m) => `
@@ -1178,7 +1185,7 @@ function viewReference() {
                   <div class="ref-cites">
                     ${m.citations.map((c) => `
                       <button type="button" class="ref-cite" data-cite-doc="${esc(c.doc_id)}" data-cite-page="${esc(c.page)}">
-                        ${esc(c.short)} · hlm. ${esc(c.page)}
+                        ${esc(c.short)} · hlm. ${esc(c.page)}${c.pdf ? " · PDF" : ""}
                       </button>
                     `).join("")}
                   </div>
@@ -1186,27 +1193,41 @@ function viewReference() {
               </div>
             `).join("") : `
               <div class="ref-bubble assistant">
-                <div class="ref-bubble-body">Saya mencari jawaban di korpus peraturan internal. Sumber akan ditampilkan sebagai file + nomor halaman.</div>
+                <div class="ref-bubble-body">Tanya bebas seperti ke ChatGPT. Aku jawab bahasa mudah, lalu kasih referensi (dokumen + halaman + PDF).</div>
               </div>
             `}
           </div>
           <form id="ref-chat-form" class="ref-chat-form">
-            <input id="ref-chat-input" type="text" placeholder="Tanya ketentuan BI…" required autocomplete="off" />
+            <input id="ref-chat-input" type="text" placeholder="Tulis pertanyaan dengan bahasamu sendiri…" required autocomplete="off" />
             <button class="btn btn-primary" type="submit">Kirim</button>
           </form>
         </section>
 
         <aside class="ref-source panel" id="ref-source-panel">
-          <h2>Sumber</h2>
+          <h2>Sumber & PDF</h2>
           ${citation ? `
             <p class="ref-source-title"><strong>${esc(citation.short || citation.title)}</strong></p>
             <p class="muted small">${esc(citation.source_label)} · halaman ${esc(citation.page)}</p>
-            <p class="hint">Berkas: <code>${esc(citation.file)}</code></p>
+            <p class="hint">Teks indeks: <code>${esc(citation.file)}</code></p>
+            <div class="btn-row tight">
+              ${citation.pdf_url || citation.pdf ? `
+                <button type="button" class="btn btn-tiny" data-preview-pdf="${esc(citation.pdf_url || `/api/reference/files/${citation.pdf}`)}" data-preview-title="${esc(citation.short || citation.title)}" data-preview-page="${esc(citation.page)}">Preview PDF</button>
+                <a class="btn btn-tiny" href="${esc(citation.pdf_url || `/api/reference/files/${citation.pdf}`)}" download target="_blank" rel="noopener">Unduh PDF</a>
+              ` : ""}
+            </div>
             <div class="ref-source-text">${esc(citation.text || citation.excerpt || "")}</div>
-            ${citation.pdf ? `<a class="btn" href="/api/reference/files/${encodeURIComponent(citation.pdf)}" target="_blank" rel="noopener">Unduh PDF</a>` : ""}
           ` : `
-            <p class="muted small">Klik sitasi di jawaban chat untuk membuka cuplikan halaman sumber.</p>
+            <p class="muted small">Klik sitasi di chat, atau tombol Preview pada daftar peraturan.</p>
           `}
+          ${previewPdf ? `
+            <div class="ref-pdf-frame-wrap">
+              <div class="ref-pdf-frame-head">
+                <strong>${esc(previewPdf.title || "PDF")}</strong>
+                ${previewPdf.page ? `<span class="muted small">hlm. ${esc(previewPdf.page)}</span>` : ""}
+              </div>
+              <iframe class="ref-pdf-frame" title="Preview PDF" src="${esc(previewPdf.url)}${previewPdf.page ? `#page=${esc(previewPdf.page)}` : ""}"></iframe>
+            </div>
+          ` : ""}
         </aside>
       </div>
     </section>`;
@@ -1262,11 +1283,29 @@ function bindView() {
       try {
         const full = await api(`/api/reference/docs/${encodeURIComponent(docId)}/pages/${page}`);
         state.activeCitation = full;
+        if (full.pdf_url || full.pdf) {
+          state.previewPdf = {
+            url: full.pdf_url || `/api/reference/files/${full.pdf}`,
+            title: full.short || full.title,
+            page: full.page,
+          };
+        }
         render();
       } catch (e) {
         setSave(e.message);
       }
     };
+
+    main.querySelectorAll("[data-preview-pdf]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.previewPdf = {
+          url: btn.dataset.previewPdf,
+          title: btn.dataset.previewTitle || "PDF",
+          page: btn.dataset.previewPage ? Number(btn.dataset.previewPage) : null,
+        };
+        render();
+      });
+    });
 
     main.querySelectorAll("[data-cite-doc]").forEach((btn) => {
       btn.addEventListener("click", () => openCitation(btn.dataset.citeDoc, Number(btn.dataset.citePage)));
@@ -1274,9 +1313,14 @@ function bindView() {
 
     main.querySelectorAll("[data-ref-doc]").forEach((btn) => {
       btn.addEventListener("click", async () => {
-        const hits = await api(`/api/reference/search?q=${encodeURIComponent(btn.dataset.refDoc)}`);
+        const doc = (state.referenceDocs || []).find((d) => d.id === btn.dataset.refDoc);
+        if (doc?.has_pdf) {
+          state.previewPdf = { url: doc.pdf_url, title: doc.short, page: null };
+        }
+        const hits = await api(`/api/reference/search?q=${encodeURIComponent(doc?.short || btn.dataset.refDoc)}`);
         const first = (hits.hits || [])[0];
         if (first) openCitation(first.doc_id, first.page);
+        else render();
       });
     });
 
@@ -1295,13 +1339,20 @@ function bindView() {
         });
         state.chatMessages.push({
           role: "assistant",
-          text: res.answer + (res.disclaimer ? `\n\n_${res.disclaimer}_` : ""),
+          text: res.answer + (res.disclaimer ? `\n\n${res.disclaimer}` : ""),
           citations: res.citations || [],
         });
         if (res.citations?.[0]) {
           const c = res.citations[0];
           const full = await api(`/api/reference/docs/${encodeURIComponent(c.doc_id)}/pages/${c.page}`);
           state.activeCitation = full;
+          if (full.pdf_url || full.pdf || c.pdf) {
+            state.previewPdf = {
+              url: full.pdf_url || `/api/reference/files/${full.pdf || c.pdf}`,
+              title: full.short || c.short,
+              page: full.page || c.page,
+            };
+          }
         }
       } catch (err) {
         state.chatMessages.push({ role: "assistant", text: `Gagal: ${err.message}` });

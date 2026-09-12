@@ -1422,3 +1422,42 @@ textarea { min-height: 110px; resize: vertical; }
   overflow: auto;
   white-space: pre-wrap;
 }
+
+.ref-doc-item {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  overflow: hidden;
+}
+.ref-doc-item .ref-doc-btn {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.ref-doc-actions {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0 0.65rem 0.55rem;
+}
+.ref-pdf-frame-wrap {
+  margin-top: 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #edf2f7;
+}
+.ref-pdf-frame-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.45rem 0.65rem;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.82rem;
+}
+.ref-pdf-frame {
+  width: 100%;
+  height: min(52vh, 420px);
+  border: 0;
+  background: #fff;
+}
