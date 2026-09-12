@@ -237,3 +237,79 @@ def test_reference_chat_undangan_natural_language():
     res = client.post("/api/reference/chat", json={"message": "kalau ngundang rapat satker lain memo jenis apa"})
     assert res.status_code == 200
     assert "M.01" in res.json()["answer"]
+
+
+def test_document_history_export_and_reopen():
+    from app.store import search_document_history
+
+    created = client.post(
+        "/api/documents",
+        json={
+            "purpose": "persetujuan",
+            "draft_name": "DMST_PS12_M.02_Uji Riwayat_12-09-2026",
+            "satker": "DMST",
+            "program_strategis": "PS12",
+            "subject": "Uji Riwayat Ekspor",
+        },
+    )
+    assert created.status_code == 200
+    doc = created.json()
+    doc_id = doc["id"]
+
+    # Fill minimal content so export validation may still warn but export_docx_bytes works from API path
+    # Export endpoint uses export_docx_bytes which validates - use sample path via save then export
+    from app.samples import sample_m02_persetujuan
+    from app.store import save_document
+
+    sample = sample_m02_persetujuan()
+    sample["id"] = doc_id
+    sample["draft_name"] = "DMST_PS12_M.02_Uji Riwayat_12-09-2026"
+    sample["metadata"]["subject"] = "Uji Riwayat Ekspor"
+    sample["status"] = "draft"
+    save_document(sample)
+
+    exp = client.post(f"/api/documents/{doc_id}/export/docx")
+    assert exp.status_code == 200
+    assert "application/vnd.openxmlformats" in exp.headers.get("content-type", "")
+
+    hist = client.get("/api/documents/history?status=word")
+    assert hist.status_code == 200
+    items = hist.json()["items"]
+    assert any(i["id"] == doc_id and i["has_word"] for i in items)
+
+    searched = client.get("/api/documents/history?q=Uji%20Riwayat")
+    assert any(i["id"] == doc_id for i in searched.json()["items"])
+
+    reopened = client.post(f"/api/documents/{doc_id}/reopen")
+    assert reopened.status_code == 200
+    assert reopened.json()["status"] == "draft"
+    assert any(a.get("event") == "reopen_draft" for a in reopened.json().get("audit") or [])
+
+    drafts = search_document_history(status="draft", q="Uji Riwayat")
+    assert any(i["id"] == doc_id for i in drafts)
+
+
+def test_chat_persist_and_delete():
+    from app.chats import clear_all_chats
+
+    clear_all_chats()
+    res = client.post("/api/reference/chat", json={"message": "gimana penamaan file?"})
+    assert res.status_code == 200
+    chat_id = res.json()["chat_id"]
+    assert chat_id
+    listed = client.get("/api/chats")
+    assert any(i["id"] == chat_id for i in listed.json()["items"])
+    got = client.get(f"/api/chats/{chat_id}")
+    assert got.status_code == 200
+    assert len(got.json()["messages"]) >= 2
+    cont = client.post(
+        "/api/reference/chat",
+        json={"message": "kalau undangan rapat memo apa", "chat_id": chat_id},
+    )
+    assert cont.status_code == 200
+    assert cont.json()["chat_id"] == chat_id
+    again = client.get(f"/api/chats/{chat_id}").json()
+    assert len(again["messages"]) >= 4
+    deleted = client.delete(f"/api/chats/{chat_id}")
+    assert deleted.status_code == 200
+    assert client.get(f"/api/chats/{chat_id}").status_code == 404

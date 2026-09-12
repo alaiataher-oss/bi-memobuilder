@@ -37,8 +37,20 @@ from .rules_loader import (
     publish_templates,
 )
 from .samples import seed_all
-from .store import append_audit, clear_all_documents, get_document, list_documents, new_document_shell, save_document
+from .store import (
+    append_audit,
+    clear_all_documents,
+    get_document,
+    list_documents,
+    new_document_shell,
+    record_export,
+    reopen_as_draft,
+    resolve_export_path,
+    save_document,
+    search_document_history,
+)
 from .validation import can_final_export, validate_document
+from .chats import create_chat, delete_chat, get_chat, list_chats, save_chat
 from .reference import (
     CORPUS_DIR,
     answer_question,
@@ -95,6 +107,12 @@ class AuthRequest(BaseModel):
 class ReferenceChatRequest(BaseModel):
     message: str = Field(..., min_length=1)
     limit: int = 5
+    chat_id: str | None = None
+
+
+class ChatSaveRequest(BaseModel):
+    title: str | None = None
+    messages: list[dict[str, Any]] | None = None
 
 
 @app.get("/login", response_class=HTMLResponse)
@@ -178,6 +196,9 @@ def api_reference_page(doc_id: str, page: int) -> dict[str, Any]:
         "short": item["short"],
         "source_label": item["source_label"],
         "file": item["file"],
+        "pdf": item.get("pdf"),
+        "pdf_url": item.get("pdf_url"),
+        "has_pdf": item.get("has_pdf"),
         "page": item["page"],
         "text": item["text"],
     }
@@ -190,17 +211,107 @@ def api_reference_search(q: str, limit: int = 8) -> dict[str, Any]:
 
 @app.post("/api/reference/chat")
 def api_reference_chat(body: ReferenceChatRequest) -> dict[str, Any]:
-    return answer_question(body.message)
+    result = answer_question(body.message)
+    # Optionally persist into an existing/new chat thread
+    chat_id = body.chat_id
+    try:
+        if chat_id:
+            chat = get_chat(chat_id)
+            msgs = list(chat.get("messages") or [])
+        else:
+            chat = create_chat(title=body.message[:72])
+            chat_id = chat["id"]
+            msgs = []
+        msgs.append({"role": "user", "text": body.message})
+        msgs.append(
+            {
+                "role": "assistant",
+                "text": result.get("answer") or "",
+                "citations": result.get("citations") or [],
+            }
+        )
+        chat = save_chat(chat_id, messages=msgs)
+        result["chat_id"] = chat["id"]
+        result["chat_title"] = chat.get("title")
+    except FileNotFoundError:
+        chat = create_chat(
+            title=body.message[:72],
+            messages=[
+                {"role": "user", "text": body.message},
+                {
+                    "role": "assistant",
+                    "text": result.get("answer") or "",
+                    "citations": result.get("citations") or [],
+                },
+            ],
+        )
+        result["chat_id"] = chat["id"]
+        result["chat_title"] = chat.get("title")
+    return result
+
+
+@app.get("/api/chats")
+def api_list_chats() -> dict[str, Any]:
+    return {"items": list_chats()}
+
+
+@app.post("/api/chats")
+def api_create_chat(body: ChatSaveRequest | None = None) -> dict[str, Any]:
+    body = body or ChatSaveRequest()
+    return create_chat(title=body.title, messages=body.messages)
+
+
+@app.get("/api/chats/{chat_id}")
+def api_get_chat(chat_id: str) -> dict[str, Any]:
+    try:
+        return get_chat(chat_id)
+    except FileNotFoundError as exc:
+        raise HTTPException(404, "Chat tidak ditemukan") from exc
+
+
+@app.put("/api/chats/{chat_id}")
+def api_save_chat(chat_id: str, body: ChatSaveRequest) -> dict[str, Any]:
+    try:
+        return save_chat(chat_id, title=body.title, messages=body.messages)
+    except FileNotFoundError as exc:
+        raise HTTPException(404, "Chat tidak ditemukan") from exc
+
+
+@app.delete("/api/chats/{chat_id}")
+def api_delete_chat(chat_id: str) -> dict[str, Any]:
+    ok = delete_chat(chat_id)
+    if not ok:
+        raise HTTPException(404, "Chat tidak ditemukan")
+    return {"ok": True, "id": chat_id}
 
 
 @app.get("/api/reference/files/{filename}")
-def api_reference_file(filename: str) -> FileResponse:
+def api_reference_file(filename: str, download: bool = False) -> FileResponse:
     # Only allow files inside corpus
     safe = Path(filename).name
     path = CORPUS_DIR / safe
     if not path.exists() or not path.is_file():
         raise HTTPException(404, "Berkas referensi tidak ditemukan")
-    return FileResponse(path, filename=safe)
+    media = "application/pdf" if safe.lower().endswith(".pdf") else "application/octet-stream"
+    # Preview: inline without filename so browsers don't force-download.
+    # Download: attachment only when download=1 (after explicit user consent in UI).
+    if download:
+        return FileResponse(
+            path,
+            filename=safe,
+            media_type=media,
+            content_disposition_type="attachment",
+            headers={"Cache-Control": "private, max-age=120"},
+        )
+    return FileResponse(
+        path,
+        media_type=media,
+        headers={
+            "Content-Disposition": "inline",
+            "Cache-Control": "private, max-age=120",
+            "X-Content-Type-Options": "nosniff",
+        },
+    )
 
 
 @app.get("/api/purposes")
@@ -236,8 +347,46 @@ def api_rules(version: str | None = None) -> dict[str, Any]:
 
 
 @app.get("/api/documents")
-def api_list_documents() -> list[dict[str, Any]]:
+def api_list_documents(q: str | None = None, status: str | None = None) -> list[dict[str, Any]]:
+    if q or status:
+        return search_document_history(q=q, status=status)
     return list_documents()
+
+
+@app.get("/api/documents/history")
+def api_document_history(q: str | None = None, status: str | None = None) -> dict[str, Any]:
+    items = search_document_history(q=q, status=status)
+    return {
+        "items": items,
+        "counts": {
+            "all": len(list_documents()),
+            "draft": len(search_document_history(status="draft")),
+            "word": len(search_document_history(status="word")),
+        },
+    }
+
+
+@app.post("/api/documents/{doc_id}/reopen")
+def api_reopen_draft(doc_id: str) -> dict[str, Any]:
+    try:
+        return reopen_as_draft(doc_id, actor="user")
+    except FileNotFoundError as exc:
+        raise HTTPException(404, "Dokumen tidak ditemukan") from exc
+
+
+@app.get("/api/documents/{doc_id}/exports/{stored_name}")
+def api_download_stored_export(doc_id: str, stored_name: str) -> FileResponse:
+    try:
+        get_document(doc_id)
+        path = resolve_export_path(doc_id, stored_name)
+    except FileNotFoundError as exc:
+        raise HTTPException(404, "File ekspor tidak ditemukan") from exc
+    return FileResponse(
+        path,
+        filename=Path(stored_name).name.split("_", 1)[-1] if "_" in stored_name else stored_name,
+        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+        content_disposition_type="attachment",
+    )
 
 
 @app.delete("/api/documents")
@@ -324,7 +473,7 @@ def api_export_docx(doc_id: str) -> Response:
     try:
         doc = get_document(doc_id)
         raw, filename, checksum = export_docx_bytes(doc)
-        append_audit(doc_id, "export_docx", filename=filename, checksum=checksum, actor="demo.user")
+        record_export(doc_id, kind="docx", filename=filename, raw=raw, checksum=checksum, actor="user")
         return Response(
             content=raw,
             media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
@@ -341,7 +490,7 @@ def api_export_pdf(doc_id: str) -> Response:
     try:
         doc = get_document(doc_id)
         raw, filename, checksum = export_pdf_bytes(doc)
-        append_audit(doc_id, "export_pdf", filename=filename, checksum=checksum, actor="demo.user")
+        record_export(doc_id, kind="pdf", filename=filename, raw=raw, checksum=checksum, actor="user")
         return Response(
             content=raw,
             media_type="application/pdf",

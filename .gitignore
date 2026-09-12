@@ -8,6 +8,7 @@ __pycache__/
 data/store/
 data/exports/
 data/attachments/
+data/chats/
 assets/fonts/*.ttf
 assets/fonts/*.otf
 .env

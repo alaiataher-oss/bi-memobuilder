@@ -10,8 +10,16 @@ const state = {
   autosaveTimer: null,
   referenceDocs: [],
   chatMessages: [],
+  chatList: [],
+  activeChatId: null,
+  chatBusy: false,
+  refPanel: "chats", // chats | corpus
   activeCitation: null,
   previewPdf: null,
+  historyQuery: "",
+  historyFilter: "all",
+  historyItems: [],
+  historyCounts: { all: 0, draft: 0, word: 0 },
 };
 
 const $main = () => document.getElementById("main");
@@ -513,6 +521,7 @@ function navigate(route) {
         const pack = await api("/api/reference/docs");
         state.referenceDocs = pack.documents || [];
       }
+      await loadChatList();
       render();
     })().catch((e) => {
       setSave(`Gagal muat referensi: ${e.message}`);
@@ -520,7 +529,43 @@ function navigate(route) {
     });
     return;
   }
+  if (route === "history") {
+    loadHistory().then(() => render()).catch((e) => {
+      setSave(`Gagal muat riwayat: ${e.message}`);
+      render();
+    });
+    return;
+  }
   render();
+}
+
+async function loadHistory() {
+  const q = encodeURIComponent(state.historyQuery || "");
+  const status = encodeURIComponent(state.historyFilter || "all");
+  const pack = await api(`/api/documents/history?q=${q}&status=${status === "all" ? "" : status}`);
+  state.historyItems = pack.items || [];
+  state.historyCounts = pack.counts || state.historyCounts;
+}
+
+async function loadChatList() {
+  const pack = await api("/api/chats");
+  state.chatList = pack.items || [];
+}
+
+async function openChatSession(chatId) {
+  const chat = await api(`/api/chats/${encodeURIComponent(chatId)}`);
+  state.activeChatId = chat.id;
+  state.chatMessages = chat.messages || [];
+  state.activeCitation = null;
+  state.previewPdf = null;
+}
+
+async function startNewChat() {
+  state.activeChatId = null;
+  state.chatMessages = [];
+  state.activeCitation = null;
+  state.previewPdf = null;
+  state.refPanel = "chats";
 }
 
 document.querySelectorAll(".nav-btn").forEach((btn) => {
@@ -614,6 +659,7 @@ function render() {
   if (state.route === "dashboard") main.innerHTML = viewDashboard();
   else if (state.route === "create") main.innerHTML = viewCreate();
   else if (state.route === "editor") main.innerHTML = viewEditor();
+  else if (state.route === "history") main.innerHTML = viewHistory();
   else if (state.route === "reference") main.innerHTML = viewReference();
   else if (state.route === "library") main.innerHTML = viewLibrary();
   else if (state.route === "admin") main.innerHTML = viewAdmin();
@@ -666,6 +712,7 @@ function viewDashboard() {
           <p class="landing-lead">Pilih tujuan, isi substansi, validasi aturan BI — lalu unduh DOCX atau PDF tanpa menghafal template Word.</p>
           <div class="landing-cta">
             <button class="btn btn-landing" id="btn-create">Buat dokumen</button>
+            <button class="btn btn-landing-ghost" id="btn-history">Riwayat</button>
             <button class="btn btn-landing-ghost" id="btn-seed">Muat contoh</button>
           </div>
           <p class="landing-meta">Template v${esc(tmplVer)} · Rules v${esc(ruleVer)} · Font ${fontOk ? "siap" : "perlu dipasang"}</p>
@@ -825,18 +872,18 @@ function viewEditor() {
         <h1>${esc(doc.draft_name || tmpl?.label || doc.type)}</h1>
         <p class="muted small">${esc(tmpl?.label || doc.type)} · template ${esc(doc.template_version)} · rule ${esc(doc.rule_version)}</p>
       </div>
-      <div class="btn-row" style="margin:0">
-        <button class="btn" id="btn-validate">Validasi</button>
-        <button class="btn btn-primary" id="btn-export-docx" ${state.canExport === false ? "" : ""}>Unduh DOCX</button>
-        <button class="btn" id="btn-export-pdf">Unduh PDF</button>
-        ${doc.type === "MEETING_REQUEST" ? `<button class="btn" id="btn-copy-email">Salin Meeting Request</button>` : ""}
+      <div class="btn-row editor-actions" style="margin:0">
+        <button class="btn btn-primary" id="btn-save-draft" type="button">Simpan draft</button>
+        <button class="btn" id="btn-export-docx" type="button">Unduh DOCX…</button>
+        <button class="btn" id="btn-export-pdf" type="button">Unduh PDF…</button>
+        ${doc.type === "MEETING_REQUEST" ? `<button class="btn" id="btn-copy-email" type="button">Salin Meeting Request</button>` : ""}
       </div>
     </div>
     <div class="tabs">
       <button class="tab ${tab==="metadata"?"active":""}" data-tab="metadata">Metadata</button>
       <button class="tab ${tab==="sections"?"active":""}" data-tab="sections">Substansi</button>
       <button class="tab ${tab==="accountability"?"active":""}" data-tab="accountability">Akuntabilitas</button>
-      <button class="tab ${tab==="review"?"active":""}" data-tab="review">Review & Validasi</button>
+      <button class="tab ${tab==="review"?"active":""}" data-tab="review">Cek kelengkapan</button>
       <button class="tab ${tab==="versions"?"active":""}" data-tab="versions">Riwayat</button>
     </div>
     <div class="workspace">
@@ -856,6 +903,9 @@ function editorPane(tmpl, tab) {
     return `
       <h2>Metadata</h2>
       <p class="hint">Isian mengikuti susunan contoh memorandum BI (M.01: Kepada/Dari/Perihal · M.02: Perihal/Kepada/Melalui). Sumber: PCPM 40 DMST, Pedoman Dokumen Elektronik 2022.</p>
+      <div class="btn-row tight" style="margin-top:0.35rem">
+        <button type="button" class="btn btn-primary" id="btn-save-draft-meta">Simpan draft</button>
+      </div>
 
       <label>Nama draft (tampil di daftar)</label>
       <input data-draft-name="1" value="${esc(doc.draft_name || m.draft_name || "")}" placeholder="DMST_PS12_M.02_Judul_12-09-2026" />
@@ -1013,16 +1063,22 @@ function editorPane(tmpl, tab) {
   }
   if (tab === "review") {
     const items = state.findings || [];
+    const errors = items.filter((f) => f.severity === "error").length;
+    const warnings = items.filter((f) => f.severity === "warning").length;
     return `
-      <h2>Validasi</h2>
+      <h2>Cek kelengkapan</h2>
+      <p class="hint">Ini menggantikan tombol Validasi di atas. Sistem membandingkan isian Anda dengan aturan template (bagian wajib, akuntabilitas, metadata). <b>Error</b> memblokir unduhan; <b>warning</b> hanya peringatan.</p>
+      <div class="btn-row">
+        <button type="button" class="btn btn-primary" id="btn-run-validate">Jalankan cek sekarang</button>
+      </div>
+      <p class="muted small" style="margin-top:0.75rem">Hasil: ${errors} error · ${warnings} warning · status unduh: ${state.canExport ? "siap" : (items.length ? "terblokir" : "belum dicek")}</p>
       <ul class="findings">
         ${items.length ? items.map((f) => `
           <li class="${esc(f.severity)}" data-jump="${esc(f.section_key || "")}">
             <strong>${esc(f.severity)}</strong> · ${esc(f.id || "")}<br/>
             ${esc(f.message)}
-          </li>`).join("") : `<li class="info">Belum ada temuan. Jalankan validasi setelah mengisi dokumen.</li>`}
+          </li>`).join("") : `<li class="info">Belum ada hasil. Klik “Jalankan cek sekarang”, atau cek otomatis saat final preview unduh.</li>`}
       </ul>
-      <p class="hint">Status ekspor: ${state.canExport ? "siap (tidak ada error)" : "terblokir atau belum divalidasi"}</p>
     `;
   }
   if (tab === "versions") {
@@ -1129,107 +1185,289 @@ function viewLibrary() {
     </div>`;
 }
 
+function statusBadge(item) {
+  if (item.has_word || item.status === "exported") {
+    return `<span class="hist-badge word">Word diekspor</span>`;
+  }
+  return `<span class="hist-badge draft">Draft</span>`;
+}
+
+function viewHistory() {
+  const items = state.historyItems || [];
+  const counts = state.historyCounts || {};
+  const filter = state.historyFilter || "all";
+  return `
+    <section class="hist-page">
+      <header class="hist-head">
+        <div>
+          <h1>Riwayat dokumen</h1>
+          <p class="muted">Draft dan file Word yang sudah diunduh. Cari, buka lagi, atau kembalikan ke draft untuk revisi.</p>
+        </div>
+        <button class="btn btn-primary" id="hist-create">Buat dokumen baru</button>
+      </header>
+
+      <div class="hist-toolbar panel">
+        <form id="hist-search-form" class="hist-search">
+          <input id="hist-q" type="search" placeholder="Cari nama, perihal, satker, jenis…" value="${esc(state.historyQuery || "")}" />
+          <button class="btn btn-primary" type="submit">Cari</button>
+        </form>
+        <div class="hist-filters" role="tablist">
+          <button type="button" class="hist-filter ${filter==="all"?"on":""}" data-hist-filter="all">Semua (${counts.all ?? 0})</button>
+          <button type="button" class="hist-filter ${filter==="draft"?"on":""}" data-hist-filter="draft">Draft (${counts.draft ?? 0})</button>
+          <button type="button" class="hist-filter ${filter==="word"?"on":""}" data-hist-filter="word">Sudah Word (${counts.word ?? 0})</button>
+        </div>
+      </div>
+
+      ${items.length ? `
+        <ul class="hist-list">
+          ${items.map((d) => `
+            <li class="hist-card">
+              <div class="hist-card-main">
+                <div class="hist-card-top">
+                  <span class="draft-type">${esc(typeShort(d.type))}</span>
+                  ${statusBadge(d)}
+                </div>
+                <div class="hist-name">${esc(d.draft_name || "Tanpa nama")}</div>
+                <div class="hist-meta muted small">
+                  ${esc(d.subject || "—")}
+                  ${d.satker ? ` · ${esc(d.satker)}` : ""}
+                  · diubah ${esc(formatWhen(d.updated_at))}
+                  ${d.last_export?.filename ? ` · terakhir: ${esc(d.last_export.filename)}` : ""}
+                </div>
+              </div>
+              <div class="hist-actions">
+                <button type="button" class="btn btn-primary btn-tiny" data-hist-open="${esc(d.id)}">Buka</button>
+                ${d.has_word || d.status === "exported" ? `
+                  <button type="button" class="btn btn-tiny" data-hist-reopen="${esc(d.id)}">Revisi (jadi draft)</button>
+                ` : ""}
+                ${d.last_export?.kind === "docx" && d.last_export?.stored_name ? `
+                  <a class="btn btn-tiny" href="/api/documents/${esc(d.id)}/exports/${encodeURIComponent(d.last_export.stored_name)}">Unduh Word</a>
+                ` : ""}
+              </div>
+            </li>
+          `).join("")}
+        </ul>
+      ` : `
+        <div class="draft-empty">
+          <p>Tidak ada dokumen di filter ini.</p>
+          <p class="muted small">Buat dokumen baru, atau unduh DOCX dari editor agar muncul di “Sudah Word”.</p>
+        </div>
+      `}
+    </section>`;
+}
+
 function formatChatAnswer(text) {
   return esc(text)
     .replaceAll("\n", "<br/>")
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/_([^_\n]+)_/g, "<em class=\"claude-note\">$1</em>")
     .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function pdfPreviewSrc(url, page) {
+  if (!url) return "";
+  const base = String(url).split("#")[0].split("?")[0];
+  // Never attach ?download=1 here — that forces attachment after consent only.
+  return page ? `${base}#page=${encodeURIComponent(page)}` : base;
+}
+
+function closePdfConsent() {
+  document.getElementById("pdf-consent-modal")?.remove();
+}
+
+function showPdfConsent({ title, url, mode }) {
+  closePdfConsent();
+  const name = title || "dokumen";
+  const isDownload = mode === "download";
+  const modal = document.createElement("div");
+  modal.id = "pdf-consent-modal";
+  modal.className = "pdf-consent-backdrop";
+  modal.innerHTML = `
+    <div class="pdf-consent-card" role="dialog" aria-modal="true" aria-labelledby="pdf-consent-title">
+      <h3 id="pdf-consent-title">${isDownload ? "Konfirmasi unduh PDF" : "Buka preview PDF"}</h3>
+      <p>${isDownload
+        ? `Unduh <strong>${esc(name)}</strong> ke perangkat Anda? File tidak diunduh sebelum Anda setuju.`
+        : `Tampilkan <strong>${esc(name)}</strong> di panel Sumber? Ini hanya preview di aplikasi — bukan unduhan.`}</p>
+      <div class="btn-row">
+        <button type="button" class="btn" data-consent-cancel>Batal</button>
+        <button type="button" class="btn primary" data-consent-ok>${isDownload ? "Ya, unduh" : "Ya, preview"}</button>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+  modal.querySelector("[data-consent-cancel]")?.addEventListener("click", closePdfConsent);
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closePdfConsent();
+  });
+  modal.querySelector("[data-consent-ok]")?.addEventListener("click", () => {
+    closePdfConsent();
+    if (isDownload) {
+      const base = String(url).split("#")[0].split("?")[0];
+      const a = document.createElement("a");
+      a.href = `${base}?download=1`;
+      a.rel = "noopener";
+      a.setAttribute("download", "");
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      return;
+    }
+    state.previewPdf = {
+      url,
+      title: name,
+      page: state.previewPdf?.page || state.activeCitation?.page || null,
+      consented: true,
+    };
+    render();
+  });
+}
+
+function requestPdfDownload(url, title) {
+  showPdfConsent({ title, url, mode: "download" });
+}
+
+function requestPdfPreview(url, title, page) {
+  state.previewPdf = {
+    url,
+    title: title || "PDF",
+    page: page || null,
+    consented: false,
+  };
+  showPdfConsent({ title, url, mode: "preview" });
 }
 
 function viewReference() {
   const docs = state.referenceDocs || [];
   const messages = state.chatMessages || [];
+  const chats = state.chatList || [];
   const citation = state.activeCitation;
-  const previewPdf = state.previewPdf || (citation?.pdf_url ? { url: citation.pdf_url, title: citation.short || citation.title, page: citation.page } : null);
+  const previewPdf = state.previewPdf || null;
+  const panel = state.refPanel || "chats";
+  const suggestions = [
+    "Kalau ngundang rapat satker lain, memo jenis apa?",
+    "Gimana format penamaan file dokumen?",
+    "Bedanya M.02 persetujuan sama pelaporan apa?",
+  ];
+  const activeTitle = (chats.find((c) => c.id === state.activeChatId) || {}).title
+    || (messages.find((m) => m.role === "user")?.text || "").slice(0, 48)
+    || "Percakapan baru";
+
   return `
-    <section class="ref-page">
-      <header class="ref-head">
-        <div>
-          <h1>Repository / Referensi</h1>
-          <p class="muted">Tanya dengan bahasa sehari-hari. Jawaban mudah dipahami + referensi file/halaman/PDF. Semua peraturan bisa di-preview & diunduh.</p>
+    <section class="claude-page">
+      <aside class="claude-rail">
+        <button type="button" class="claude-new" id="chat-new">＋ Percakapan baru</button>
+        <div class="claude-rail-tabs">
+          <button type="button" class="claude-rail-tab ${panel==="chats"?"on":""}" data-ref-panel="chats">Chat</button>
+          <button type="button" class="claude-rail-tab ${panel==="corpus"?"on":""}" data-ref-panel="corpus">Peraturan</button>
         </div>
-      </header>
+        <div class="claude-rail-body">
+          ${panel === "chats" ? `
+            <div class="claude-chat-list">
+              ${chats.length ? chats.map((c) => `
+                <div class="claude-chat-item ${c.id === state.activeChatId ? "active" : ""}">
+                  <button type="button" class="claude-chat-open" data-chat-open="${esc(c.id)}">
+                    <span class="claude-chat-title">${esc(c.title || "Percakapan")}</span>
+                    <span class="claude-chat-sub">${esc(formatWhen(c.updated_at))} · ${esc(c.message_count || 0)} pesan</span>
+                  </button>
+                  <button type="button" class="claude-chat-del" data-chat-del="${esc(c.id)}" title="Hapus chat" aria-label="Hapus">✕</button>
+                </div>
+              `).join("") : `<p class="claude-empty-rail">Belum ada chat tersimpan.</p>`}
+            </div>
+          ` : `
+            <ul class="ref-doc-list claude-corpus">
+              ${docs.map((d) => `
+                <li class="ref-doc-item">
+                  <button type="button" class="ref-doc-btn" data-ref-doc="${esc(d.id)}">
+                    <strong>${esc(d.short || d.id)}</strong>
+                    <span class="muted small">${esc(d.title)}</span>
+                  </button>
+                  ${d.has_pdf ? `
+                    <div class="ref-doc-actions">
+                      <button type="button" class="btn btn-tiny" data-preview-pdf="${esc(d.pdf_url)}" data-preview-title="${esc(d.short)}">Preview</button>
+                      <button type="button" class="btn btn-tiny" data-download-pdf="${esc(d.pdf_url)}" data-download-title="${esc(d.short)}">Unduh…</button>
+                    </div>
+                  ` : ""}
+                </li>
+              `).join("")}
+            </ul>
+          `}
+        </div>
+      </aside>
 
-      <div class="ref-layout">
-        <aside class="ref-docs panel">
-          <h2>Korpus peraturan</h2>
-          <ul class="ref-doc-list">
-            ${docs.map((d) => `
-              <li class="ref-doc-item">
-                <button type="button" class="ref-doc-btn" data-ref-doc="${esc(d.id)}">
-                  <strong>${esc(d.short || d.id)}</strong>
-                  <span class="muted small">${esc(d.title)}</span>
-                  <span class="ref-doc-meta">${d.pages_indexed || 0} hlm${d.has_pdf ? " · PDF siap" : ""}</span>
-                </button>
-                ${d.has_pdf ? `
-                  <div class="ref-doc-actions">
-                    <button type="button" class="btn btn-tiny" data-preview-pdf="${esc(d.pdf_url)}" data-preview-title="${esc(d.short)}">Preview</button>
-                    <a class="btn btn-tiny" href="${esc(d.pdf_url)}" download target="_blank" rel="noopener">Unduh</a>
-                  </div>
-                ` : `<p class="hint">PDF belum tersedia</p>`}
-              </li>
-            `).join("") || `<li class="muted small">Belum ada dokumen terindeks.</li>`}
-          </ul>
-        </aside>
-
-        <section class="ref-chat panel">
-          <div class="ref-chat-head">
-            <h2>Asisten referensi</h2>
-            <p class="muted small">Contoh: “Kalau ngundang rapat satker lain, memo jenis apa?” · “Gimana penamaan file?”</p>
+      <section class="claude-main">
+        <header class="claude-topbar">
+          <div>
+            <p class="claude-kicker">Asisten referensi BI</p>
+            <h1 class="claude-title">${esc(activeTitle)}</h1>
           </div>
-          <div id="ref-chat-log" class="ref-chat-log" aria-live="polite">
-            ${messages.length ? messages.map((m) => `
-              <div class="ref-bubble ${m.role}">
-                <div class="ref-bubble-body">${m.role === "assistant" ? formatChatAnswer(m.text) : esc(m.text)}</div>
+          <div class="claude-top-actions">
+            ${state.activeChatId ? `<button type="button" class="btn btn-tiny" id="chat-rename">Ganti judul</button>` : ""}
+            ${state.activeChatId ? `<button type="button" class="btn btn-tiny danger" id="chat-delete-current">Hapus</button>` : ""}
+          </div>
+        </header>
+
+        <div id="ref-chat-log" class="claude-log" aria-live="polite">
+          ${messages.length ? messages.map((m) => `
+            <article class="claude-msg ${m.role}">
+              <div class="claude-avatar" aria-hidden="true">${m.role === "user" ? "A" : "BI"}</div>
+              <div class="claude-msg-body">
+                <div class="claude-role">${m.role === "user" ? "Anda" : "Asisten"}</div>
+                <div class="claude-text">${m.role === "assistant" ? formatChatAnswer(m.text) : esc(m.text)}</div>
                 ${m.citations?.length ? `
                   <div class="ref-cites">
                     ${m.citations.map((c) => `
                       <button type="button" class="ref-cite" data-cite-doc="${esc(c.doc_id)}" data-cite-page="${esc(c.page)}">
-                        ${esc(c.short)} · hlm. ${esc(c.page)}${c.pdf ? " · PDF" : ""}
+                        ${esc(c.short)} · hlm. ${esc(c.page)}
                       </button>
                     `).join("")}
                   </div>
                 ` : ""}
               </div>
-            `).join("") : `
-              <div class="ref-bubble assistant">
-                <div class="ref-bubble-body">Tanya bebas seperti ke ChatGPT. Aku jawab bahasa mudah, lalu kasih referensi (dokumen + halaman + PDF).</div>
+            </article>
+          `).join("") : `
+            <div class="claude-hero-empty">
+              <div class="claude-hero-mark">BI</div>
+              <h2>Tanya ketentuan dokumen BI</h2>
+              <p>Jawaban bahasa mudah + sitasi halaman. Chat otomatis tersimpan seperti Claude.</p>
+              <div class="claude-suggestions">
+                ${suggestions.map((s) => `
+                  <button type="button" class="claude-suggest" data-suggest="${esc(s)}">${esc(s)}</button>
+                `).join("")}
               </div>
-            `}
-          </div>
-          <form id="ref-chat-form" class="ref-chat-form">
-            <input id="ref-chat-input" type="text" placeholder="Tulis pertanyaan dengan bahasamu sendiri…" required autocomplete="off" />
-            <button class="btn btn-primary" type="submit">Kirim</button>
-          </form>
-        </section>
-
-        <aside class="ref-source panel" id="ref-source-panel">
-          <h2>Sumber & PDF</h2>
-          ${citation ? `
-            <p class="ref-source-title"><strong>${esc(citation.short || citation.title)}</strong></p>
-            <p class="muted small">${esc(citation.source_label)} · halaman ${esc(citation.page)}</p>
-            <p class="hint">Teks indeks: <code>${esc(citation.file)}</code></p>
-            <div class="btn-row tight">
-              ${citation.pdf_url || citation.pdf ? `
-                <button type="button" class="btn btn-tiny" data-preview-pdf="${esc(citation.pdf_url || `/api/reference/files/${citation.pdf}`)}" data-preview-title="${esc(citation.short || citation.title)}" data-preview-page="${esc(citation.page)}">Preview PDF</button>
-                <a class="btn btn-tiny" href="${esc(citation.pdf_url || `/api/reference/files/${citation.pdf}`)}" download target="_blank" rel="noopener">Unduh PDF</a>
-              ` : ""}
             </div>
-            <div class="ref-source-text">${esc(citation.text || citation.excerpt || "")}</div>
-          ` : `
-            <p class="muted small">Klik sitasi di chat, atau tombol Preview pada daftar peraturan.</p>
           `}
-          ${previewPdf ? `
-            <div class="ref-pdf-frame-wrap">
-              <div class="ref-pdf-frame-head">
-                <strong>${esc(previewPdf.title || "PDF")}</strong>
-                ${previewPdf.page ? `<span class="muted small">hlm. ${esc(previewPdf.page)}</span>` : ""}
-              </div>
-              <iframe class="ref-pdf-frame" title="Preview PDF" src="${esc(previewPdf.url)}${previewPdf.page ? `#page=${esc(previewPdf.page)}` : ""}"></iframe>
+          ${state.chatBusy ? `<div class="claude-typing"><span></span><span></span><span></span></div>` : ""}
+        </div>
+
+        <form id="ref-chat-form" class="claude-composer">
+          <textarea id="ref-chat-input" rows="1" placeholder="Tulis pertanyaan… (Enter kirim, Shift+Enter baris baru)" required></textarea>
+          <button class="claude-send" type="submit" ${state.chatBusy ? "disabled" : ""}>Kirim</button>
+        </form>
+      </section>
+
+      <aside class="claude-source" id="ref-source-panel">
+        <h2>Sumber</h2>
+        ${citation ? `
+          <p class="ref-source-title"><strong>${esc(citation.short || citation.title)}</strong></p>
+          <p class="muted small">${esc(citation.source_label)} · hlm. ${esc(citation.page)}</p>
+          ${citation.text ? `<div class="ref-excerpt">${esc(String(citation.text).slice(0, 900))}${String(citation.text).length > 900 ? "…" : ""}</div>` : ""}
+          <div class="btn-row tight">
+            ${citation.pdf_url || citation.pdf ? `
+              <button type="button" class="btn btn-tiny" data-open-pdf-preview="${esc(citation.pdf_url || `/api/reference/files/${citation.pdf}`)}" data-preview-title="${esc(citation.short || citation.title)}" data-preview-page="${esc(citation.page || "")}">Preview PDF…</button>
+              <button type="button" class="btn btn-tiny" data-download-pdf="${esc(citation.pdf_url || `/api/reference/files/${citation.pdf}`)}" data-download-title="${esc(citation.short || citation.title)}">Unduh…</button>
+            ` : ""}
+          </div>
+        ` : `<p class="muted small">Klik sitasi di jawaban untuk melihat cuplikan halaman di sini.</p>`}
+        ${previewPdf?.consented ? `
+          <div class="ref-pdf-frame-wrap">
+            <div class="ref-pdf-frame-head">
+              <strong>${esc(previewPdf.title || "PDF")}</strong>
+              ${previewPdf.page ? `<span class="muted small">hlm. ${esc(previewPdf.page)}</span>` : ""}
+              <button type="button" class="btn btn-tiny" id="pdf-close-preview">Tutup</button>
             </div>
-          ` : ""}
-        </aside>
-      </div>
+            <iframe class="ref-pdf-frame" title="Preview PDF" src="${esc(pdfPreviewSrc(previewPdf.url, previewPdf.page))}"></iframe>
+          </div>
+        ` : `<div class="ref-pdf-empty muted small">PDF tidak dibuka otomatis. Pakai <em>Preview PDF…</em> (dengan konfirmasi) atau <em>Unduh…</em>.</div>`}
+      </aside>
     </section>`;
 }
 
@@ -1258,6 +1496,7 @@ function bindView() {
   const main = $main();
 
   main.querySelector("#btn-create")?.addEventListener("click", () => navigate("create"));
+  main.querySelector("#btn-history")?.addEventListener("click", () => navigate("history"));
   main.querySelector("#btn-seed")?.addEventListener("click", async () => {
     setSave("Menyiapkan contoh…");
     await api("/api/seed", { method: "POST" });
@@ -1275,6 +1514,53 @@ function bindView() {
     render();
   });
 
+  if (state.route === "history") {
+    main.querySelector("#hist-create")?.addEventListener("click", () => navigate("create"));
+    main.querySelector("#hist-search-form")?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      state.historyQuery = main.querySelector("#hist-q")?.value || "";
+      await loadHistory();
+      render();
+    });
+    main.querySelectorAll("[data-hist-filter]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        state.historyFilter = btn.dataset.histFilter || "all";
+        await loadHistory();
+        render();
+      });
+    });
+    main.querySelectorAll("[data-hist-open]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        state.doc = await api(`/api/documents/${btn.dataset.histOpen}`);
+        await refreshFindings();
+        state.route = "editor";
+        state.editorTab = "metadata";
+        document.querySelectorAll(".nav-btn").forEach((b) => {
+          b.classList.toggle("active", b.dataset.route === "create");
+        });
+        render();
+      });
+    });
+    main.querySelectorAll("[data-hist-reopen]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        if (!confirm("Kembalikan dokumen ini ke status draft untuk direvisi?")) return;
+        state.doc = await api(`/api/documents/${btn.dataset.histReopen}/reopen`, {
+          method: "POST",
+          body: "{}",
+        });
+        state.documents = await api("/api/documents");
+        await refreshFindings();
+        state.route = "editor";
+        state.editorTab = "metadata";
+        setSave("Dibuka lagi sebagai draft");
+        document.querySelectorAll(".nav-btn").forEach((b) => {
+          b.classList.toggle("active", b.dataset.route === "create");
+        });
+        render();
+      });
+    });
+  }
+
   if (state.route === "reference") {
     const log = main.querySelector("#ref-chat-log");
     if (log) log.scrollTop = log.scrollHeight;
@@ -1283,27 +1569,135 @@ function bindView() {
       try {
         const full = await api(`/api/reference/docs/${encodeURIComponent(docId)}/pages/${page}`);
         state.activeCitation = full;
-        if (full.pdf_url || full.pdf) {
-          state.previewPdf = {
-            url: full.pdf_url || `/api/reference/files/${full.pdf}`,
-            title: full.short || full.title,
-            page: full.page,
-          };
-        }
+        // Never auto-load PDF (browser often force-downloads). Show text excerpt only.
+        state.previewPdf = null;
         render();
       } catch (e) {
         setSave(e.message);
       }
     };
 
+    const sendChat = async (message) => {
+      const textMsg = (message || "").trim();
+      if (!textMsg || state.chatBusy) return;
+      state.chatBusy = true;
+      state.chatMessages = [...(state.chatMessages || []), { role: "user", text: textMsg }];
+      render();
+      try {
+        const res = await api("/api/reference/chat", {
+          method: "POST",
+          body: JSON.stringify({ message: textMsg, chat_id: state.activeChatId || null }),
+        });
+        state.activeChatId = res.chat_id || state.activeChatId;
+        state.chatMessages.push({
+          role: "assistant",
+          text: res.answer + (res.disclaimer ? `\n\n_${res.disclaimer}_` : ""),
+          citations: res.citations || [],
+        });
+        await loadChatList();
+        if (res.citations?.[0]) {
+          const c = res.citations[0];
+          const full = await api(`/api/reference/docs/${encodeURIComponent(c.doc_id)}/pages/${c.page}`);
+          state.activeCitation = full;
+          state.previewPdf = null;
+        }
+      } catch (err) {
+        state.chatMessages.push({ role: "assistant", text: `Gagal: ${err.message}` });
+      } finally {
+        state.chatBusy = false;
+        render();
+      }
+    };
+
+    main.querySelector("#chat-new")?.addEventListener("click", () => {
+      startNewChat();
+      render();
+    });
+
+    main.querySelectorAll("[data-ref-panel]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.refPanel = btn.dataset.refPanel || "chats";
+        render();
+      });
+    });
+
+    main.querySelectorAll("[data-chat-open]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        try {
+          await openChatSession(btn.dataset.chatOpen);
+          render();
+        } catch (e) {
+          setSave(e.message);
+        }
+      });
+    });
+
+    main.querySelectorAll("[data-chat-del]").forEach((btn) => {
+      btn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        if (!confirm("Hapus percakapan ini?")) return;
+        const id = btn.dataset.chatDel;
+        await api(`/api/chats/${encodeURIComponent(id)}`, { method: "DELETE" });
+        if (state.activeChatId === id) startNewChat();
+        await loadChatList();
+        render();
+      });
+    });
+
+    main.querySelector("#chat-delete-current")?.addEventListener("click", async () => {
+      if (!state.activeChatId) return;
+      if (!confirm("Hapus percakapan ini?")) return;
+      await api(`/api/chats/${encodeURIComponent(state.activeChatId)}`, { method: "DELETE" });
+      startNewChat();
+      await loadChatList();
+      render();
+    });
+
+    main.querySelector("#chat-rename")?.addEventListener("click", async () => {
+      if (!state.activeChatId) return;
+      const current = (state.chatList.find((c) => c.id === state.activeChatId) || {}).title || "";
+      const title = prompt("Judul percakapan:", current);
+      if (title == null) return;
+      await api(`/api/chats/${encodeURIComponent(state.activeChatId)}`, {
+        method: "PUT",
+        body: JSON.stringify({ title: title.trim() || current }),
+      });
+      await loadChatList();
+      render();
+    });
+
+    main.querySelectorAll("[data-suggest]").forEach((btn) => {
+      btn.addEventListener("click", () => sendChat(btn.dataset.suggest));
+    });
+
     main.querySelectorAll("[data-preview-pdf]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        state.previewPdf = {
-          url: btn.dataset.previewPdf,
-          title: btn.dataset.previewTitle || "PDF",
-          page: btn.dataset.previewPage ? Number(btn.dataset.previewPage) : null,
-        };
-        render();
+        requestPdfPreview(
+          btn.dataset.previewPdf,
+          btn.dataset.previewTitle || "PDF",
+          btn.dataset.previewPage ? Number(btn.dataset.previewPage) : null,
+        );
+      });
+    });
+
+    main.querySelectorAll("[data-open-pdf-preview]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        requestPdfPreview(
+          btn.dataset.openPdfPreview,
+          btn.dataset.previewTitle || "PDF",
+          btn.dataset.previewPage ? Number(btn.dataset.previewPage) : null,
+        );
+      });
+    });
+
+    main.querySelector("#pdf-close-preview")?.addEventListener("click", () => {
+      state.previewPdf = null;
+      render();
+    });
+
+    main.querySelectorAll("[data-download-pdf]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        requestPdfDownload(btn.dataset.downloadPdf, btn.dataset.downloadTitle || "dokumen");
       });
     });
 
@@ -1314,9 +1708,7 @@ function bindView() {
     main.querySelectorAll("[data-ref-doc]").forEach((btn) => {
       btn.addEventListener("click", async () => {
         const doc = (state.referenceDocs || []).find((d) => d.id === btn.dataset.refDoc);
-        if (doc?.has_pdf) {
-          state.previewPdf = { url: doc.pdf_url, title: doc.short, page: null };
-        }
+        state.previewPdf = null;
         const hits = await api(`/api/reference/search?q=${encodeURIComponent(doc?.short || btn.dataset.refDoc)}`);
         const first = (hits.hits || [])[0];
         if (first) openCitation(first.doc_id, first.page);
@@ -1324,40 +1716,24 @@ function bindView() {
       });
     });
 
+    const input = main.querySelector("#ref-chat-input");
+    input?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        main.querySelector("#ref-chat-form")?.requestSubmit();
+      }
+    });
+    input?.addEventListener("input", () => {
+      input.style.height = "auto";
+      input.style.height = `${Math.min(input.scrollHeight, 160)}px`;
+    });
+
     main.querySelector("#ref-chat-form")?.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const input = main.querySelector("#ref-chat-input");
       const message = (input?.value || "").trim();
       if (!message) return;
-      state.chatMessages = [...(state.chatMessages || []), { role: "user", text: message }];
-      input.value = "";
-      render();
-      try {
-        const res = await api("/api/reference/chat", {
-          method: "POST",
-          body: JSON.stringify({ message }),
-        });
-        state.chatMessages.push({
-          role: "assistant",
-          text: res.answer + (res.disclaimer ? `\n\n${res.disclaimer}` : ""),
-          citations: res.citations || [],
-        });
-        if (res.citations?.[0]) {
-          const c = res.citations[0];
-          const full = await api(`/api/reference/docs/${encodeURIComponent(c.doc_id)}/pages/${c.page}`);
-          state.activeCitation = full;
-          if (full.pdf_url || full.pdf || c.pdf) {
-            state.previewPdf = {
-              url: full.pdf_url || `/api/reference/files/${full.pdf || c.pdf}`,
-              title: full.short || c.short,
-              page: full.page || c.page,
-            };
-          }
-        }
-      } catch (err) {
-        state.chatMessages.push({ role: "assistant", text: `Gagal: ${err.message}` });
-      }
-      render();
+      if (input) input.value = "";
+      await sendChat(message);
     });
   }
 
@@ -1907,11 +2283,17 @@ function bindView() {
         livePreview();
       });
     });
-    main.querySelector("#btn-validate")?.addEventListener("click", async () => {
-      await api(`/api/documents/${state.doc.id}`, { method: "PUT", body: JSON.stringify(state.doc) });
+    main.querySelector("#btn-save-draft")?.addEventListener("click", async () => {
+      await saveDraftNow();
+    });
+    main.querySelector("#btn-save-draft-meta")?.addEventListener("click", async () => {
+      await saveDraftNow();
+    });
+    main.querySelector("#btn-run-validate")?.addEventListener("click", async () => {
+      await saveDraftNow({ quiet: true });
       await refreshFindings();
-      state.editorTab = "review";
       render();
+      setSave(state.canExport ? "Cek OK · siap unduh" : "Ada temuan — perbaiki dulu");
     });
     main.querySelectorAll("[data-jump]").forEach((li) => {
       li.addEventListener("click", () => {
@@ -1925,8 +2307,8 @@ function bindView() {
         }
       });
     });
-    main.querySelector("#btn-export-docx")?.addEventListener("click", () => downloadExport("docx"));
-    main.querySelector("#btn-export-pdf")?.addEventListener("click", () => downloadExport("pdf"));
+    main.querySelector("#btn-export-docx")?.addEventListener("click", () => openExportPreview("docx"));
+    main.querySelector("#btn-export-pdf")?.addEventListener("click", () => openExportPreview("pdf"));
     main.querySelector("#btn-copy-email")?.addEventListener("click", async () => {
       const res = await api(`/api/documents/${state.doc.id}/email-body`);
       await navigator.clipboard.writeText(res.body);
@@ -1962,16 +2344,132 @@ function inferPurpose() {
   return state.pendingPurpose || "koordinasi";
 }
 
-async function downloadExport(kind) {
-  await api(`/api/documents/${state.doc.id}`, { method: "PUT", body: JSON.stringify(state.doc) });
+async function saveDraftNow({ quiet = false } = {}) {
+  if (!state.doc?.id) return;
+  clearTimeout(state.autosaveTimer);
+  if (!quiet) setSave("Menyimpan draft…");
+  try {
+    const saved = await api(`/api/documents/${state.doc.id}`, {
+      method: "PUT",
+      body: JSON.stringify(state.doc),
+    });
+    state.doc.updated_at = saved.updated_at;
+    state.doc.versions = saved.versions;
+    state.doc.audit = saved.audit;
+    if (!quiet) setSave(`Draft tersimpan · ${new Date().toLocaleTimeString("id-ID")}`);
+  } catch (e) {
+    setSave(`Gagal menyimpan: ${e.message}`);
+    throw e;
+  }
+}
+
+function closeExportPreview() {
+  document.getElementById("export-preview-modal")?.remove();
+}
+
+async function openExportPreview(kind) {
+  if (!state.doc) return;
+  closeExportPreview();
+  closePdfConsent();
+  try {
+    await saveDraftNow({ quiet: true });
+    await refreshFindings();
+  } catch (e) {
+    alert(e.message || "Gagal menyimpan sebelum preview");
+    return;
+  }
+
+  const tmpl = state.templates.templates[state.doc.type];
+  const label = kind === "pdf" ? "PDF" : "DOCX";
+  const findings = state.findings || [];
+  const errors = findings.filter((f) => f.severity === "error");
+  const blocked = errors.length > 0 || state.canExport === false;
+
+  const a4Html = renderA4(state.doc, tmpl)
+    .replaceAll('contenteditable="true"', "")
+    .replaceAll("contenteditable='true'", "");
+
+  const modal = document.createElement("div");
+  modal.id = "export-preview-modal";
+  modal.className = "export-preview-backdrop";
+  modal.innerHTML = `
+    <div class="export-preview-card" role="dialog" aria-modal="true" aria-labelledby="export-preview-title">
+      <header class="export-preview-head">
+        <div>
+          <p class="muted small" style="margin:0">Final preview sebelum unduh</p>
+          <h2 id="export-preview-title">${esc(state.doc.draft_name || tmpl?.label || "Memorandum")} → ${label}</h2>
+        </div>
+        <button type="button" class="btn" data-export-cancel>Tutup</button>
+      </header>
+      <div class="export-preview-body">
+        <div class="export-preview-a4-wrap">
+          <div class="a4 ${ (tmpl?.layout_variant||"").startsWith("m02") ? "layout-m02" : "" }">${a4Html}</div>
+        </div>
+        <aside class="export-preview-side">
+          <h3>Cek kelengkapan</h3>
+          ${blocked
+            ? `<p class="export-blocked">Ada ${errors.length || "beberapa"} error. Perbaiki dulu sebelum unduh.</p>`
+            : `<p class="export-ok">Tidak ada error penghalang. Anda bisa unduh setelah menyetujui.</p>`}
+          <ul class="findings compact">
+            ${findings.length ? findings.slice(0, 8).map((f) => `
+              <li class="${esc(f.severity)}"><strong>${esc(f.severity)}</strong> · ${esc(f.message)}</li>
+            `).join("") : `<li class="info">Tidak ada temuan.</li>`}
+          </ul>
+          <label class="export-consent">
+            <input type="checkbox" id="export-consent-check" ${blocked ? "disabled" : ""} />
+            <span>Saya sudah meninjau final preview dan setuju mengunduh berkas ${label} ke perangkat ini.</span>
+          </label>
+          <div class="btn-row" style="margin-top:1rem">
+            <button type="button" class="btn" data-export-cancel>Batal</button>
+            <button type="button" class="btn btn-primary" id="export-confirm-btn" disabled>Unduh ${label}</button>
+          </div>
+          ${blocked ? `<button type="button" class="btn" id="export-goto-review" style="margin-top:0.65rem;width:100%">Buka tab cek kelengkapan</button>` : ""}
+        </aside>
+      </div>
+    </div>`;
+  document.body.appendChild(modal);
+
+  const consent = modal.querySelector("#export-consent-check");
+  const confirmBtn = modal.querySelector("#export-confirm-btn");
+  const syncConsent = () => {
+    confirmBtn.disabled = blocked || !consent?.checked;
+  };
+  consent?.addEventListener("change", syncConsent);
+  modal.querySelectorAll("[data-export-cancel]").forEach((btn) => {
+    btn.addEventListener("click", closeExportPreview);
+  });
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeExportPreview();
+  });
+  modal.querySelector("#export-goto-review")?.addEventListener("click", () => {
+    closeExportPreview();
+    state.editorTab = "review";
+    render();
+  });
+  confirmBtn?.addEventListener("click", async () => {
+    if (blocked || !consent?.checked) return;
+    confirmBtn.disabled = true;
+    confirmBtn.textContent = "Mengunduh…";
+    try {
+      await performExportDownload(kind);
+      closeExportPreview();
+    } catch (e) {
+      alert(e.message || "Gagal unduh");
+      confirmBtn.disabled = false;
+      confirmBtn.textContent = `Unduh ${label}`;
+    }
+  });
+}
+
+async function performExportDownload(kind) {
+  await saveDraftNow({ quiet: true });
   const res = await fetch(`/api/documents/${state.doc.id}/export/${kind}`, { method: "POST" });
   if (!res.ok) {
     const msg = await res.text();
-    alert(msg);
     await refreshFindings();
     state.editorTab = "review";
     render();
-    return;
+    throw new Error(msg || "Ekspor gagal");
   }
   const blob = await res.blob();
   const cd = res.headers.get("Content-Disposition") || "";
@@ -1979,9 +2477,17 @@ async function downloadExport(kind) {
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = match?.[1] || `memo.${kind}`;
+  document.body.appendChild(a);
   a.click();
+  a.remove();
+  URL.revokeObjectURL(a.href);
   state.doc = await api(`/api/documents/${state.doc.id}`);
   setSave(`Diekspor ${kind.toUpperCase()}`);
+}
+
+async function downloadExport(kind) {
+  // Kept for compatibility — always go through final preview + consent.
+  await openExportPreview(kind);
 }
 
 boot().catch((e) => {

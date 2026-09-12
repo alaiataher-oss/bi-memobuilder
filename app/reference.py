@@ -183,6 +183,8 @@ def search_pages(question: str, *, limit: int = 5) -> list[dict[str, Any]]:
                 score += 45
             if page["doc_id"] == "Pedoman_2022" and page["page"] in (16, 17, 24, 25, 29):
                 score += 40
+            if page["doc_id"] == "Pedoman_2022" and page["page"] == 17:
+                score += 80
             if page["doc_id"] == "PCPM40_DMST" and "undangan" in text_l:
                 score += 25
         if any(k in q_l for k in ("persetujuan", "keputusan", "minta setuju")):
@@ -340,16 +342,19 @@ def answer_question(question: str) -> dict[str, Any]:
         }
 
     plain = _crafted_answer(intent, hits) or ""
-    lines = [plain, "", "Referensi:"]
-    for h in hits[:4]:
-        pdf_note = f" · PDF: {h['pdf']}" if h.get("pdf") else ""
-        lines.append(f"- {h['source_label']} · halaman {h['page']} · berkas {h['file']}{pdf_note}")
+    # Keep answer readable — sitasi & PDF ditampilkan di UI, bukan dump nama file.
+    refs = []
+    for h in hits[:3]:
+        refs.append(f"• {h['short']} · hlm. {h['page']}")
+    answer = plain
+    if refs:
+        answer = f"{plain}\n\nSumber:\n" + "\n".join(refs)
 
     return {
-        "answer": "\n".join(lines),
+        "answer": answer,
         "answer_plain": plain,
         "citations": hits,
         "intent": intent,
         "mode": "rag_local",
-        "disclaimer": "Jawaban disusun dari korpus peraturan yang diunggah. Untuk keputusan formal, cocokkan lagi dengan PDF resmi.",
+        "disclaimer": "Dari korpus peraturan lokal. Untuk keputusan formal, cocokkan dengan dokumen resmi.",
     }
