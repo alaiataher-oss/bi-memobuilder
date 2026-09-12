@@ -20,6 +20,9 @@ const state = {
   historyFilter: "all",
   historyItems: [],
   historyCounts: { all: 0, draft: 0, word: 0 },
+  compareExample: false,
+  roleGuidance: null,
+  examples: [],
 };
 
 const $main = () => document.getElementById("main");
@@ -461,14 +464,22 @@ function renderA4(doc, tmpl) {
     });
     let rows = "";
     for (let i = 0; i < cells.length; i += 2) {
-      const right = cells[i + 1] || `<td><div class="acc-cell"><div class="acc-head">&nbsp;</div><div class="acc-body"></div></div></td>`;
+      const right = cells[i + 1] || `<td><div class="acc-cell empty"><div class="acc-head">&nbsp;</div><div class="acc-body"></div></div></td>`;
       rows += `<tr>${cells[i]}${right}</tr>`;
     }
-    acc = `<div style="margin-top:5mm"><span class="live-field" contenteditable="true" data-live-meta="city_date">${esc(m.city_date)}</span></div>
-      <table class="acc-table">${rows}</table>`;
+    acc = `<div class="acc-wrap">
+      <div class="acc-date-float"><span class="live-field" contenteditable="true" data-live-meta="city_date">${esc(m.city_date)}</span></div>
+      <table class="acc-table">${rows}</table>
+    </div>`;
   } else if (tmpl.accountability.mode === "signatory_only") {
-    const s = doc.signatory;
-    acc = `<div class="sig-right"><span class="live-field" contenteditable="true" data-live-meta="city_date">${esc(m.city_date)}</span><br/><br/>${esc(s.title)}<br/><br/><br/><span style="text-decoration:underline">${esc(s.name)}</span><br/>${esc(s.rank)}</div>`;
+    const s = doc.signatory || {};
+    acc = `<div class="sig-m01">
+      <div class="sig-date"><span class="live-field" contenteditable="true" data-live-meta="city_date">${esc(m.city_date)}</span></div>
+      <div class="sig-role"><span class="live-field" contenteditable="true" data-live-sig="title">${esc(s.title || "Kepala Grup / Kepala Satker")}</span></div>
+      <div class="acc-sigspace"></div>
+      <div class="sig-name"><span class="live-field" contenteditable="true" data-live-sig="name">${esc(s.name || "")}</span></div>
+      <div class="sig-rank"><span class="live-field" contenteditable="true" data-live-sig="rank">${esc(s.rank || "")}</span></div>
+    </div>`;
   }
 
   const badge = isMR ? "MR" : (tmpl.doc_type_code || "");
@@ -507,6 +518,79 @@ function renderA4(doc, tmpl) {
     ${acc}
     ${lampiranHtml}
   `;
+}
+
+/** Faithful HTML replica of uploaded example DOCX for side-by-side compare. */
+function renderExampleA4(docType) {
+  const isM02 = String(docType || "").startsWith("M.02");
+  if (isM02) {
+    return `
+      <div class="kop"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
+      <div class="type-badge">M.02</div>
+      <div class="meta-lines">No. 27/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/DR-GSFP/M.02/B<br/>Lamp: 1 (satu) berkas</div>
+      <div class="memo-title">MEMORANDUM</div>
+      <div class="perihal-line"><strong>PERIHAL :</strong> PERMOHONAN PERSETUJUAN PELAKSANAAN KONSINYERING WORKSHEET SGO, KEBIJAKAN PUR DAN PENGAWASAN FUNGSI PENDUKUNG</div>
+      <div>Kepada&nbsp;&nbsp;: Yth. Bapak Arief Hartawan, Kepala Departemen Regional</div>
+      <div>Melalui&nbsp;: Yth. Bapak Bayu Martanto, Kepala Grup Operasionalisasi Kebijakan PUR dan Supervisi Fungsi Pendukung</div>
+      <div class="sec-title">Tujuan</div>
+      <div class="body-p">Menyampaikan permohonan persetujuan pelaksanaan kegiatan konsinyering worksheet SGo penggunaan Kartu Kredit Bank Indonesia…</div>
+      <div class="sec-title">Latar Belakang dan Penjelasan</div>
+      <div class="body-p m01-indent">Menindaklanjuti Rencana Strategis Lima Tahun (RSLT) Implementasi Kebijakan… (cuplikan contoh).</div>
+      <div class="sec-title">Analisa Risiko dan Mitigasinya</div>
+      <div class="body-p">Terdapat risiko pelaksanaan kegiatan beserta mitigasinya…</div>
+      <div class="sec-title">Kesimpulan &amp; Rekomendasi</div>
+      <div class="body-p">Berdasarkan hal-hal tersebut di atas, kami mengusulkan…</div>
+      <div class="acc-wrap">
+        <div class="acc-date-float">Jakarta, Juli 2025</div>
+        <table class="acc-table">
+          <tr>
+            <td><div class="acc-cell"><div class="acc-head">Dipersiapkan oleh:</div><div class="acc-body"><div class="acc-role">Analis Yunior</div><div class="acc-sigspace"></div><div class="acc-name">Annisa Amalina</div><div class="acc-rank">Asisten Manajer</div></div></div></td>
+            <td><div class="acc-cell"><div class="acc-head">Diperiksa oleh:</div><div class="acc-body"><div class="acc-role">Analis Senior</div><div class="acc-sigspace"></div><div class="acc-name">Rizky Satya Pradhana</div><div class="acc-rank">Asisten Direktur</div></div></div></td>
+          </tr>
+          <tr>
+            <td><div class="acc-cell"><div class="acc-head">Didukung oleh:</div><div class="acc-body"><div class="acc-role">Kepala Grup</div><div class="acc-sigspace"></div><div class="acc-name">Bayu Martanto</div><div class="acc-rank">Direktur</div></div></div></td>
+            <td><div class="acc-cell"><div class="acc-head">Disetujui oleh:</div><div class="acc-body"><div class="acc-role">Kepala Departemen</div><div class="acc-sigspace"></div><div class="acc-name">Arief Hartawan</div><div class="acc-rank">Direktur Eksekutif</div></div></div></td>
+          </tr>
+        </table>
+      </div>
+      <p class="example-caption">Referensi visual dari contoh DOCX yang Anda unggah — Disetujui oleh = Kepala Departemen (kepala satker).</p>
+    `;
+  }
+  return `
+    <div class="kop"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
+    <div class="type-badge">M.01</div>
+    <div class="meta-lines">No. 27/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/DR/M.01/B<br/>Lamp.: 1 (satu) set</div>
+    <div class="memo-title">MEMORANDUM</div>
+    <table class="meta-table">
+      <tr><td>Kepada</td><td>:</td><td>*)</td></tr>
+      <tr><td>Dari</td><td>:</td><td>Departemen Regional</td></tr>
+      <tr><td>Perihal</td><td>:</td><td>Undangan Rapat Koordinasi Pendalaman Worksheet SGo KPwDN area PUR</td></tr>
+    </table>
+    <div class="body-p m01-indent">Menindaklanjuti Rencana Strategis Lima Tahun (RSLT) Implementasi Kebijakan KPwDN tahun 2025-2030…</div>
+    <table class="meta-table">
+      <tr><td>Hari, Tanggal</td><td>:</td><td>Senin, 8 Desember 2025</td></tr>
+      <tr><td>Tempat</td><td>:</td><td>Hotel 25 Hours, Jakarta</td></tr>
+      <tr><td>Agenda</td><td>:</td><td>Terlampir</td></tr>
+    </table>
+    <div class="body-p m01-indent">Adapun biaya yang timbul atas pelaksanaan kegiatan dimaksud akan menjadi beban anggaran kami…</div>
+    <div class="body-p m01-indent">Demikian kami sampaikan, atas perhatian dan kerja sama Saudara, kami mengucapkan terima kasih.</div>
+    <div class="sig-m01">
+      <div class="sig-date">Jakarta, Desember 2025</div>
+      <div class="sig-role">Kepala Grup</div>
+      <div class="acc-sigspace"></div>
+      <div class="sig-name">Bayu Martanto</div>
+      <div class="sig-rank">Direktur</div>
+    </div>
+    <p class="example-caption">Referensi visual dari contoh DOCX M.01 — penandatangan kanan = Kepala Grup / pejabat satker.</p>
+  `;
+}
+
+function exampleMetaForDoc(doc) {
+  const type = doc?.type || "";
+  if (type.startsWith("M.02")) {
+    return { id: "m02_persetujuan", title: "Contoh M.02 Persetujuan", file: "/api/examples/m02_persetujuan/file" };
+  }
+  return { id: "m01_undangan", title: "Contoh M.01 Undangan", file: "/api/examples/m01_undangan/file" };
 }
 
 
@@ -592,6 +676,13 @@ async function boot() {
   state.health = await api("/api/health");
   state.templates = await api("/api/templates");
   state.documents = await api("/api/documents");
+  try {
+    const ex = await api("/api/examples");
+    state.examples = ex.items || [];
+    state.roleGuidance = ex.role_guidance || null;
+  } catch {
+    state.examples = [];
+  }
   render();
 }
 
@@ -866,6 +957,9 @@ function viewEditor() {
   if (!doc) return `<p>Tidak ada dokumen.</p>`;
   const tmpl = state.templates.templates[doc.type];
   const tab = state.editorTab;
+  const ex = exampleMetaForDoc(doc);
+  const compare = !!state.compareExample;
+  const isMemo = String(doc.type || "").startsWith("M.0");
   return `
     <div class="topbar">
       <div>
@@ -874,6 +968,7 @@ function viewEditor() {
       </div>
       <div class="btn-row editor-actions" style="margin:0">
         <button class="btn btn-primary" id="btn-save-draft" type="button">Simpan draft</button>
+        ${isMemo ? `<button class="btn ${compare ? "btn-primary" : ""}" id="btn-compare-example" type="button">${compare ? "Tutup bandingkan" : "Bandingkan ke contoh"}</button>` : ""}
         <button class="btn" id="btn-export-docx" type="button">Unduh DOCX…</button>
         <button class="btn" id="btn-export-pdf" type="button">Unduh PDF…</button>
         ${doc.type === "MEETING_REQUEST" ? `<button class="btn" id="btn-copy-email" type="button">Salin Meeting Request</button>` : ""}
@@ -886,11 +981,22 @@ function viewEditor() {
       <button class="tab ${tab==="review"?"active":""}" data-tab="review">Cek kelengkapan</button>
       <button class="tab ${tab==="versions"?"active":""}" data-tab="versions">Riwayat</button>
     </div>
-    <div class="workspace">
+    <div class="workspace ${compare ? "compare-on" : ""}">
       <div class="panel" id="editor-pane">${editorPane(tmpl, tab)}</div>
-      <div class="preview-shell">
-        ${state.health?.fonts_ready ? "" : `<div class="font-warning">Font Optima/Frutiger resmi belum terpasang. Preview memakai fallback bertanda needs_bi_verification.</div>`}
-        <div class="a4 ${ (tmpl.layout_variant||"").startsWith("m02") ? "layout-m02" : "" }" id="a4-preview">${renderA4(doc, tmpl)}</div>
+      <div class="preview-shell ${compare ? "split" : ""}">
+        <div class="preview-pane">
+          <div class="preview-label">Draft Anda <span class="live">· live seperti Word</span></div>
+          ${state.health?.fonts_ready ? "" : `<div class="font-warning">Font Optima/Frutiger 45 Light resmi belum di <code>assets/fonts/</code>. Preview memakai Source Sans 3 sebagai stand-in Frutiger (mirip humanis) — unduh DOCX tetap memakai nama font Frutiger 45 Light.</div>`}
+          <div class="a4 ${ (tmpl.layout_variant||"").startsWith("m02") ? "layout-m02" : "layout-m01" }" id="a4-preview">${renderA4(doc, tmpl)}</div>
+        </div>
+        ${compare ? `
+          <div class="preview-pane example-pane">
+            <div class="preview-label">Contoh referensi · ${esc(ex.title)}
+              <a class="btn btn-tiny" href="${esc(ex.file)}" download>Unduh DOCX contoh</a>
+            </div>
+            <div class="a4 ${(tmpl.layout_variant||"").startsWith("m02") ? "layout-m02" : "layout-m01"} example-locked">${renderExampleA4(doc.type)}</div>
+          </div>
+        ` : ""}
       </div>
     </div>`;
 }
@@ -1037,26 +1143,42 @@ function editorPane(tmpl, tab) {
         approved_by: "Disetujui oleh",
         received_by: "Diterima oleh",
       };
-      return Object.entries(labels)
+      const guide = state.roleGuidance || {};
+      return `
+        <h2>Akuntabilitas</h2>
+        <p class="hint">Isi mengikuti contoh M.02: jabatan di atas, nama digarisbawahi, pangkat di bawah. <b>Disetujui oleh</b> biasanya Kepala Satker / Kepala Departemen; <b>Didukung oleh</b> biasanya Kepala Grup.</p>
+        <div class="btn-row tight">
+          <button type="button" class="btn btn-tiny" id="btn-compare-example-acc">Bandingkan ke contoh</button>
+        </div>
+        ${Object.entries(labels)
         .filter(([k]) => doc.accountability[k])
         .map(([k, label]) => {
           const p = doc.accountability[k];
+          const g = guide[k] || {};
           return `
             <div class="section-block">
               <h2>${esc(label)}</h2>
-              <label>Jabatan (baris atas sel)</label><input data-acc="${k}.title" value="${esc(p.title)}" placeholder="Analis Yunior" />
-              <label>Nama (digarisbawahi)</label><input data-acc="${k}.name" value="${esc(p.name)}" />
-              <label>Pangkat (baris bawah)</label><input data-acc="${k}.rank" value="${esc(p.rank)}" placeholder="Asisten Manajer" />
+              <p class="hint role-hint">${esc(g.who || "")}</p>
+              <label>Jabatan (baris atas sel)</label>
+              <input data-acc="${k}.title" value="${esc(p.title)}" placeholder="${esc(g.title_eg || "Kepala Departemen")}" />
+              <label>Nama (digarisbawahi)</label>
+              <input data-acc="${k}.name" value="${esc(p.name)}" placeholder="Nama pejabat" />
+              <label>Pangkat (baris bawah)</label>
+              <input data-acc="${k}.rank" value="${esc(p.rank)}" placeholder="${esc(g.rank_eg || "Direktur Eksekutif")}" />
             </div>`;
-        }).join("");
+        }).join("")}`;
     }
     if (tmpl.accountability.mode === "signatory_only") {
-      const s = doc.signatory;
+      const s = doc.signatory || {};
       return `
-        <h2>Penandatangan</h2>
-        <label>Jabatan</label><input data-sig="title" value="${esc(s.title)}" />
-        <label>Nama</label><input data-sig="name" value="${esc(s.name)}" />
-        <label>Pangkat</label><input data-sig="rank" value="${esc(s.rank)}" />
+        <h2>Penandatangan (M.01)</h2>
+        <p class="hint">Seperti contoh undangan: blok kanan bawah = <b>Kepala Grup / Kepala Satker</b> pencipta, nama digarisbawahi, pangkat di bawah.</p>
+        <div class="btn-row tight">
+          <button type="button" class="btn btn-tiny" id="btn-compare-example-acc">Bandingkan ke contoh</button>
+        </div>
+        <label>Jabatan</label><input data-sig="title" value="${esc(s.title)}" placeholder="Kepala Grup" />
+        <label>Nama</label><input data-sig="name" value="${esc(s.name)}" placeholder="Nama pejabat" />
+        <label>Pangkat</label><input data-sig="rank" value="${esc(s.rank)}" placeholder="Direktur" />
       `;
     }
     return `<p class="muted">Meeting Request tidak memakai blok akuntabilitas M.02.</p>`;
@@ -1154,6 +1276,20 @@ function bindPreviewEditable() {
     });
   });
 
+  root.querySelectorAll("[data-live-sig]").forEach((el) => {
+    if (el.dataset.bound === "1") return;
+    el.dataset.bound = "1";
+    el.addEventListener("input", () => {
+      if (!state.doc.signatory) state.doc.signatory = { name: "", title: "", rank: "" };
+      const key = el.dataset.liveSig;
+      state.doc.signatory[key] = el.innerText.replace(/\u00a0/g, " ").trim();
+      const input = document.querySelector(`[data-sig="${key}"]`);
+      if (input && document.activeElement !== input) input.value = state.doc.signatory[key];
+      scheduleAutosave();
+      setSave("Live · belum tersimpan…");
+    });
+  });
+
 }
 
 function renderPreviewOnly() {
@@ -1164,6 +1300,7 @@ function renderPreviewOnly() {
   }
   const tmpl = state.templates.templates[state.doc.type];
   el.classList.toggle("layout-m02", (tmpl.layout_variant || "").startsWith("m02"));
+  el.classList.toggle("layout-m01", !(tmpl.layout_variant || "").startsWith("m02"));
   el.innerHTML = renderA4(state.doc, tmpl);
 }
 
@@ -2288,6 +2425,15 @@ function bindView() {
     });
     main.querySelector("#btn-save-draft-meta")?.addEventListener("click", async () => {
       await saveDraftNow();
+    });
+    const toggleCompare = () => {
+      state.compareExample = !state.compareExample;
+      render();
+    };
+    main.querySelector("#btn-compare-example")?.addEventListener("click", toggleCompare);
+    main.querySelector("#btn-compare-example-acc")?.addEventListener("click", () => {
+      state.compareExample = true;
+      render();
     });
     main.querySelector("#btn-run-validate")?.addEventListener("click", async () => {
       await saveDraftNow({ quiet: true });

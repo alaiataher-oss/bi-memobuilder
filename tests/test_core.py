@@ -223,6 +223,18 @@ def test_reference_chat_cites_penamaan_page():
     assert "halaman" in body["answer"].lower() or any(c.get("page") for c in body["citations"])
 
 
+def test_examples_api_serves_uploaded_docx():
+    pack = client.get("/api/examples")
+    assert pack.status_code == 200
+    body = pack.json()
+    assert {i["id"] for i in body["items"]} >= {"m01_undangan", "m02_persetujuan"}
+    assert "approved_by" in body["role_guidance"]
+    assert "Kepala" in body["role_guidance"]["approved_by"]["who"]
+    f = client.get("/api/examples/m01_undangan/file")
+    assert f.status_code == 200
+    assert f.content[:2] == b"PK"  # zip/docx
+
+
 def test_reference_chat_undangan_natural_language():
     from app.reference import answer_question, load_catalog, load_pages
 
