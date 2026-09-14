@@ -76,39 +76,29 @@ def _add_centered_run(paragraph, text: str, *, bold=False, underline=False, size
     return run
 
 
-def _fill_accountability_cell(cell, label: str, person: dict[str, str]) -> None:
-    """Match Word example: header line + jabatan + signature space + underlined name + pangkat."""
+def _fill_accountability_cell(cell, label: str, person: dict[str, str], *, header_inside: bool = False) -> None:
+    """Template blank M.02: name bold, then jabatan, pangkat (headers are table row)."""
     _clear_cell(cell)
     border = {"sz": 12, "color": "000000", "val": "single"}
     _set_cell_border(cell, top=border, left=border, bottom=border, right=border)
 
-    # Nested single-column look via paragraphs + header bottom border on first para's pBdr
-    head = cell.add_paragraph()
-    _add_centered_run(head, f"{label}:", bold=True)
-    pPr = head._p.get_or_add_pPr()
-    pBdr = OxmlElement("w:pBdr")
-    bottom = OxmlElement("w:bottom")
-    bottom.set(qn("w:val"), "single")
-    bottom.set(qn("w:sz"), "12")
-    bottom.set(qn("w:space"), "4")
-    bottom.set(qn("w:color"), "000000")
-    pBdr.append(bottom)
-    pPr.append(pBdr)
+    if header_inside:
+        head = cell.add_paragraph()
+        _add_centered_run(head, f"{label}:", bold=True)
+
+    name_p = cell.add_paragraph()
+    _add_centered_run(name_p, person.get("name") or "", bold=True)
 
     role = cell.add_paragraph()
     _add_centered_run(role, person.get("title") or "")
 
-    # signature space
-    for _ in range(3):
+    rank_p = cell.add_paragraph()
+    _add_centered_run(rank_p, person.get("rank") or "")
+
+    for _ in range(2):
         sp = cell.add_paragraph()
         sp.paragraph_format.space_after = Pt(6)
         _add_centered_run(sp, "")
-
-    name_p = cell.add_paragraph()
-    _add_centered_run(name_p, person.get("name") or "", underline=True)
-
-    rank_p = cell.add_paragraph()
-    _add_centered_run(rank_p, person.get("rank") or "")
 
 
 def _add_accountability_table(document: Document, labels: list[str], roles: dict[str, Any]) -> None:
@@ -119,22 +109,22 @@ def _add_accountability_table(document: Document, labels: list[str], roles: dict
         "Disetujui oleh": "approved_by",
         "Diterima oleh": "received_by",
     }
-    # one 2-column table with enough rows
-    n_rows = (len(labels) + 1) // 2
-    table = document.add_table(rows=n_rows, cols=2)
+    # Official blank template: one header row + one content row, N columns
+    table = document.add_table(rows=2, cols=len(labels))
     table.autofit = True
-    for i in range(n_rows):
-        left_label = labels[i * 2]
-        right_label = labels[i * 2 + 1] if i * 2 + 1 < len(labels) else None
-        left_person = roles.get(mapping[left_label]) or {}
-        _fill_accountability_cell(table.cell(i, 0), left_label, left_person)
-        if right_label:
-            right_person = roles.get(mapping[right_label]) or {}
-            _fill_accountability_cell(table.cell(i, 1), right_label, right_person)
-        else:
-            _clear_cell(table.cell(i, 1))
-            border = {"sz": 12, "color": "000000", "val": "single"}
-            _set_cell_border(table.cell(i, 1), top=border, left=border, bottom=border, right=border)
+    for i, label in enumerate(labels):
+        head = table.cell(0, i)
+        _clear_cell(head)
+        border = {"sz": 12, "color": "000000", "val": "single"}
+        _set_cell_border(head, top=border, left=border, bottom=border, right=border)
+        p = head.paragraphs[0] if head.paragraphs else head.add_paragraph()
+        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        run = p.add_run(label)
+        run.bold = True
+        run.font.size = Pt(9)
+        run.font.name = "Frutiger 45 Light"
+        person = roles.get(mapping[label]) or {}
+        _fill_accountability_cell(table.cell(1, i), label, person, header_inside=False)
 
 
 def _accountability_pdf_table(labels: list[str], roles: dict[str, Any], body_font: str, size: float) -> Table:
@@ -351,7 +341,7 @@ def _add_logo(document: Document, pack: dict[str, Any]) -> None:
         return
     width_mm = float((pack.get("styles", {}).get("logo") or {}).get("width_mm") or 59.1)
     p = document.add_paragraph()
-    p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    p.alignment = WD_ALIGN_PARAGRAPH.LEFT
     run = p.add_run()
     run.add_picture(str(logo), width=Mm(width_mm))
 
@@ -398,16 +388,19 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
 
     _add_logo(document, pack)
 
-    # Type badge line (right-aligned), matching example floating badge as paragraph for editability
+    # Type badge + No/Lamp (right-aligned block under badge, matching blank template)
     badge = document.add_paragraph(model["doc_type_code"])
     badge.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     badge.style = styles["MetadataBI"]
+    for run in badge.runs:
+        run.bold = True
+        run.font.size = Pt(14)
 
     meta = model["meta"]
-    hdr = pack["styles"].get("header_layout") or {}
-    lamp_label = hdr.get("attachment_label_m02") if model["doc_type_code"] == "M.02" else hdr.get("attachment_label_m01", "Lamp.:")
-    document.add_paragraph(f"No. {meta.get('document_number') or '[akan diisi]'}", style=styles["MetadataBI"])
-    document.add_paragraph(f"{lamp_label} {meta.get('attachments') or '-'}", style=styles["MetadataBI"])
+    no_p = document.add_paragraph(f"No.  : {meta.get('document_number') or '…………'}", style=styles["MetadataBI"])
+    no_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    lamp_p = document.add_paragraph(f"Lamp. : {meta.get('attachments') or '-'}", style=styles["MetadataBI"])
+    lamp_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
 
     title = document.add_paragraph("MEMORANDUM" if model["doc_type_code"] != "MR" else "MEETING REQUEST")
     title.style = styles["MemoTitle"]
@@ -415,46 +408,39 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
     for run in title.runs:
         run.bold = True
 
-    # Metadata block by variant
-    if model["layout_variant"] == "m02_satker":
-        perihal = document.add_paragraph()
-        perihal.style = styles["BodyBI"]
-        r = perihal.add_run("PERIHAL :\t")
-        r.bold = True
-        perihal.add_run((meta.get("subject") or "").upper())
-        document.add_paragraph(f"Kepada\t: {meta.get('recipient') or ''}", style=styles["BodyBI"])
+    # Metadata: Perihal / Kepada [/ Dari] then horizontal rule feel via blank + underline para
+    if model["doc_type_code"] == "M.02" or model["layout_variant"] == "m02_satker":
+        document.add_paragraph(f"Perihal : {meta.get('subject') or ''}", style=styles["BodyBI"])
+        document.add_paragraph(f"Kepada : {meta.get('recipient') or ''}", style=styles["BodyBI"])
         if meta.get("via") or meta.get("melalui"):
             document.add_paragraph(
-                f"Melalui\t: {meta.get('via') or meta.get('melalui')}",
+                f"Melalui : {meta.get('via') or meta.get('melalui')}",
                 style=styles["BodyBI"],
             )
+    elif model["doc_type_code"] == "M.01":
+        document.add_paragraph(f"Perihal : {meta.get('subject') or ''}", style=styles["BodyBI"])
+        document.add_paragraph(f"Kepada : {meta.get('recipient') or ''}", style=styles["BodyBI"])
+        document.add_paragraph(
+            f"Dari : {meta.get('dari') or meta.get('satker') or ''}",
+            style=styles["BodyBI"],
+        )
     else:
-        # M.01 style table Kepada / Dari / Perihal
-        t = document.add_table(rows=3, cols=3)
-        rows = [
-            ("Kepada", meta.get("recipient") or ""),
-            ("Dari", meta.get("dari") or meta.get("satker") or ""),
-            ("Perihal", meta.get("subject") or ""),
-        ]
-        for i, (label, value) in enumerate(rows):
-            t.cell(i, 0).text = label
-            t.cell(i, 1).text = ":"
-            t.cell(i, 2).text = value
+        document.add_paragraph(f"Hal: {meta.get('subject') or ''}", style=styles["BodyBI"])
+        document.add_paragraph(f"Yth.: {meta.get('recipient') or ''}", style=styles["BodyBI"])
 
-    document.add_paragraph("")
+    rule = document.add_paragraph("─" * 48, style=styles["BodyBI"])
+    rule.paragraph_format.space_after = Pt(8)
 
-    for sec in model["sections"]:
-        show_heading = model.get("layout_variant") != "m01_correspondence"
+    for idx, sec in enumerate(model["sections"], start=1):
+        show_heading = model.get("layout_variant") != "m01_correspondence" and model["doc_type_code"] != "M.01"
         if show_heading:
-            h = document.add_paragraph(sec["title"])
+            h = document.add_paragraph(f"{idx}. {sec['title']}")
             h.style = styles["Heading1BI"]
             for run in h.runs:
                 run.bold = True
         if sec.get("field_rows"):
-            t = document.add_table(rows=len(sec["field_rows"]), cols=2)
-            for i, (label, val) in enumerate(sec["field_rows"]):
-                t.cell(i, 0).text = f"{label} "
-                t.cell(i, 1).text = f": {val}"
+            for label, val in sec["field_rows"]:
+                document.add_paragraph(f"{label} : {val}", style=styles["BodyBI"])
         elif sec["content"]:
             _add_outline_paragraphs(document, sec["content"], styles["BodyBI"])
         table = sec.get("table")
@@ -473,27 +459,30 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
     city = meta.get("city_date") or ""
 
     if model["accountability_mode"] == "grid":
-        document.add_paragraph(city, style=styles["BodyBI"])
         _add_accountability_table(
             document,
             model["accountability_labels"],
             model["accountability"],
         )
-    elif model["accountability_mode"] == "signatory_only":
-        sig = model["signatory"]
+
+    if model["accountability_mode"] in ("grid", "signatory_only") or model["doc_type_code"] in ("M.01", "M.02"):
+        sig = model.get("signatory") or {}
+        unit = (meta.get("dari") or meta.get("satker") or "").strip()
         p = document.add_paragraph(city, style=styles["SignatureBlock"])
         p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        for line, underline in (
-            (sig.get("title", ""), False),
-            ("", False),
-            ("", False),
-            (sig.get("name", ""), True),
-            (sig.get("rank", ""), False),
+        for line, underline, bold in (
+            (sig.get("title", ""), False, False),
+            (unit, False, False),
+            ("", False, False),
+            ("", False, False),
+            (sig.get("name", ""), True, True),
+            (sig.get("rank", ""), False, False),
         ):
             sp = document.add_paragraph(style=styles["SignatureBlock"])
             sp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
             run = sp.add_run(line)
             run.underline = underline
+            run.bold = bold
             run.font.name = "Frutiger 45 Light"
             run.font.size = Pt(sizes["SignatureBlock"])
             run._element.rPr.rFonts.set(qn("w:eastAsia"), "Frutiger 45 Light")

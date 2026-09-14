@@ -236,57 +236,92 @@ textarea { min-height: 110px; resize: vertical; }
   background: #fff;
   color: #000;
   box-shadow: 0 12px 40px rgba(0,0,0,0.18);
-  padding: 9.4mm 20.1mm 15mm 24.9mm;
+  padding: 18mm 20mm 20mm 20mm;
   font-family: var(--font-body);
   font-size: 11pt;
   line-height: 1.35;
   position: relative;
 }
-.a4.layout-m02 { padding: 23.8mm 20mm 25mm 20mm; }
-.a4 .kop {
+.a4.layout-m01,
+.a4.layout-m02 { padding: 18mm 20mm 20mm 20mm; }
+
+/* Header: logo kiri · badge + No/Lamp kanan (template resmi) */
+.a4 .kop-bar {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: flex-start;
-  min-height: 11mm;
-  margin-bottom: 2mm;
+  gap: 8mm;
+  margin-bottom: 4mm;
 }
-.a4 .kop img { width: 59.1mm; height: auto; max-width: 48%; }
+.a4 .kop-left img {
+  width: 58mm;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+.a4 .kop-right {
+  text-align: left;
+  min-width: 42mm;
+  flex-shrink: 0;
+}
 .a4 .type-badge {
   display: inline-block;
-  float: right;
-  clear: both;
-  border: 1px solid #111;
-  padding: 1px 8px;
+  float: none;
+  border: 1.25px solid #111;
+  padding: 1px 10px;
   font-family: var(--font-body);
   font-size: 14pt;
   font-weight: 700;
-  line-height: 1.2;
-  margin: 0 0 4mm;
+  line-height: 1.25;
+  margin: 0 0 2mm;
+}
+.a4 .kop-num {
+  font-size: 11pt;
+  line-height: 1.45;
+  white-space: nowrap;
 }
 .a4 .draft-stamp {
   position: absolute;
-  top: 22mm;
-  right: 16mm;
+  top: 28mm;
+  left: 50%;
   border: 1.5px solid #b42318;
   color: #b42318;
   font-size: 9pt;
   font-weight: 700;
   letter-spacing: 0.08em;
   padding: 0.15rem 0.45rem;
-  transform: rotate(-8deg);
-  opacity: 0.85;
+  transform: translateX(-50%) rotate(-8deg);
+  opacity: 0.75;
   pointer-events: none;
   z-index: 2;
 }
 .a4 .memo-title {
   font-family: var(--font-heading);
-  font-size: 15pt;
+  font-size: 14pt;
   font-weight: 700;
   text-align: center;
-  letter-spacing: 0.14em;
-  margin: 3mm 0 5mm;
+  letter-spacing: 0.22em;
+  margin: 5mm 0 5mm;
   clear: both;
 }
+.a4 .meta-row {
+  display: grid;
+  grid-template-columns: 28mm 4mm 1fr;
+  gap: 0 1mm;
+  align-items: start;
+  margin: 0 0 1.2mm;
+  font-size: 11pt;
+  font-family: var(--font-body);
+}
+.a4 .meta-k { white-space: nowrap; }
+.a4 .meta-c { text-align: center; }
+.a4 .meta-v { min-width: 0; }
+.a4 .meta-rule {
+  border: 0;
+  border-top: 1.5px solid #000;
+  margin: 3mm 0 4mm;
+}
+.a4 .body-fields { margin: 3mm 0 4mm; }
 .a4 .meta-lines {
   font-family: var(--font-body);
   font-size: 11pt;
@@ -309,7 +344,7 @@ textarea { min-height: 110px; resize: vertical; }
   font-family: var(--font-body);
   font-size: 11pt;
   font-weight: 700;
-  margin: 4mm 0 1.5mm;
+  margin: 3.5mm 0 1.5mm;
 }
 .a4 .body-p {
   text-align: justify;
@@ -364,89 +399,81 @@ textarea { min-height: 110px; resize: vertical; }
 .a4 table.data th { background: #f0f0f0; }
 .a4 .sig-right { text-align: right; margin-top: 8mm; min-height: 28mm; font-size: 11pt; font-family: var(--font-body); }
 .a4, .a4 * { font-family: var(--font-body); }
-.a4 .memo-title { font-family: var(--font-heading); } /* Optima hanya untuk judul MEMORANDUM */
+.a4 .memo-title { font-family: var(--font-heading); }
 .placeholder-preview { color: #9aa3ad; font-style: italic; }
 
-.a4.layout-m01 .body-p.m01-indent,
-.a4.layout-m01 > .body-p {
-  text-indent: 12.5mm;
-}
+.a4.layout-m01 .body-p.m01-indent { text-indent: 0; }
 .a4 .body-p .outline-line { text-indent: 0; }
 
-/* Blok tanda tangan M.01 — kanan bawah seperti contoh Word */
-.a4 .sig-m01 {
-  width: 62mm;
-  margin: 10mm 0 0 auto;
+/* Tanda tangan kanan bawah — template resmi */
+.a4 .sig-block {
+  width: 68mm;
+  margin: 12mm 0 0 auto;
   text-align: center;
   font-size: 11pt;
   font-family: var(--font-body);
-  min-height: 38mm;
+  min-height: 40mm;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.a4 .sig-m01 .sig-date { margin-bottom: 2mm; white-space: nowrap; }
-.a4 .sig-m01 .sig-role { margin-top: 1mm; }
-.a4 .sig-m01 .sig-name { text-decoration: underline; margin-top: auto; }
-.a4 .sig-m01 .sig-rank { margin-top: 0.5mm; }
+.a4 .sig-block .sig-date { margin-bottom: 2mm; white-space: nowrap; }
+.a4 .sig-block .sig-role,
+.a4 .sig-block .sig-unit { line-height: 1.35; }
+.a4 .sig-block .sig-name {
+  text-decoration: underline;
+  font-weight: 700;
+  margin-top: auto;
+}
+.a4 .sig-block .sig-rank { margin-top: 0.5mm; }
 
-/* Blok akuntabilitas — tabel 2x2 mengikuti contoh Word */
-.a4 .acc-wrap {
-  position: relative;
-  margin-top: 8mm;
-  padding-top: 0;
-}
-.a4 .acc-date-float {
-  text-align: right;
-  margin: 0 2mm 2mm 0;
-  font-size: 11pt;
-  font-family: var(--font-body);
-}
+/* Akuntabilitas M.02 — 1 baris × 4 kolom */
+.a4 .acc-wrap { margin-top: 8mm; }
+.a4 .acc-date-float { display: none; }
 .a4 table.acc-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 0;
+  margin: 8mm 0 6mm;
   table-layout: fixed;
   font-family: var(--font-body);
-  font-size: 11pt;
+  font-size: 9.5pt;
 }
-.a4 table.acc-table td {
+.a4 table.acc-table.acc-row4 th,
+.a4 table.acc-table.acc-row4 td {
   border: 1px solid #000;
-  width: 50%;
   vertical-align: top;
   padding: 0;
   background: #fff;
+  width: 25%;
 }
-.a4 .acc-cell {
-  display: flex;
-  flex-direction: column;
-  min-height: 42mm;
-  text-align: center;
-  font-family: var(--font-body);
-  font-size: 11pt;
-}
-.a4 .acc-head {
-  border-bottom: 1px solid #000;
-  padding: 2mm 2mm;
+.a4 table.acc-table.acc-row4 th {
   font-weight: 700;
   text-align: center;
+  padding: 1.5mm 1mm;
+  font-size: 9pt;
 }
-.a4 .acc-body {
-  flex: 1;
+.a4 .acc-cell.flat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5mm 2mm 3mm;
+  min-height: 36mm;
+  padding: 2mm 1.5mm 2.5mm;
   text-align: center;
 }
-.a4 .acc-role { margin-top: 1mm; }
-.a4 .acc-sigspace { flex: 1; min-height: 14mm; width: 100%; }
-.a4 .acc-name {
-  text-decoration: underline;
-  font-weight: 400;
-  margin-top: auto;
+.a4 .acc-cell.flat .acc-name {
+  font-weight: 700;
+  text-decoration: none;
+  margin: 0 0 0.5mm;
 }
+.a4 .acc-cell.flat .acc-role,
+.a4 .acc-cell.flat .acc-rank { margin: 0; font-weight: 400; }
+.a4 .acc-cell.flat .acc-sigspace { flex: 1; min-height: 12mm; width: 100%; }
+.a4 .acc-sigspace { flex: 1; min-height: 14mm; width: 100%; }
+.a4 .acc-name { text-decoration: underline; }
 .a4 .acc-rank { margin-top: 0.5mm; }
+
+/* legacy sig-m01 alias */
+.a4 .sig-m01 { display: none; }
 
 /* Compare side-by-side */
 .workspace.compare-on {

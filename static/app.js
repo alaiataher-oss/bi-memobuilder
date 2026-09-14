@@ -77,11 +77,16 @@ function parseOutlineLine(line) {
   return { level: 0, marker: "", text: raw.trim(), blank: false };
 }
 
-function sectionHeading(title, outlineNumber) {
-  if (!outlineNumber) return title || "";
+function sectionHeading(title, outlineNumber, arabicIndex = null) {
+  const t = (title || "").trim();
+  if (arabicIndex != null) {
+    const num = `${arabicIndex}.`;
+    if (new RegExp(`^${arabicIndex}\\.\\s`).test(t)) return t;
+    return `${num} ${t}`;
+  }
+  if (!outlineNumber) return t;
   let num = String(outlineNumber).trim();
   if (!num.endsWith(".")) num += ".";
-  const t = (title || "").trim();
   if (new RegExp(`^${num.replace(".", "\\.")}\\s`, "i").test(t)) return t;
   return `${num} ${t}`;
 }
@@ -95,6 +100,232 @@ function formatOutlineHtml(text) {
     if (b.level === 0) return `<div class="outline-line plain">${esc(b.text)}</div>`;
     return `<div class="outline-line l${b.level}"><span class="mk">${esc(b.marker)}</span> <span class="tx">${esc(b.text)}</span></div>`;
   }).join("");
+}
+
+function metaFieldRow(label, innerHtml) {
+  return `<div class="meta-row"><span class="meta-k">${esc(label)}</span><span class="meta-c">:</span><span class="meta-v">${innerHtml}</span></div>`;
+}
+
+function renderSignatureBlock(doc, m) {
+  const s = doc.signatory || {};
+  const unit = (m.dari || m.satker || "").trim();
+  return `<div class="sig-block">
+    <div class="sig-date"><span class="live-field" contenteditable="true" data-live-meta="city_date">${esc(m.city_date || "")}</span></div>
+    <div class="sig-role"><span class="live-field" contenteditable="true" data-live-sig="title">${esc(s.title || "")}</span></div>
+    ${unit ? `<div class="sig-unit">${esc(unit)}</div>` : ""}
+    <div class="acc-sigspace"></div>
+    <div class="sig-name"><span class="live-field" contenteditable="true" data-live-sig="name">${esc(s.name || "")}</span></div>
+    <div class="sig-rank"><span class="live-field" contenteditable="true" data-live-sig="rank">${esc(s.rank || "")}</span></div>
+  </div>`;
+}
+
+function renderA4(doc, tmpl) {
+  const m = doc.metadata || {};
+  const isM02 = (tmpl.layout_variant || "").startsWith("m02") || (tmpl.doc_type_code === "M.02");
+  const isM01 = !isM02 && ((tmpl.layout_variant || "").startsWith("m01") || tmpl.doc_type_code === "M.01");
+  const isMR = doc.type === "MEETING_REQUEST";
+  const badge = isMR ? "MR" : (tmpl.doc_type_code || "");
+
+  let secIndex = 0;
+  const sections = tmpl.sections.map((sec) => {
+    const data = doc.sections.find((s) => s.key === sec.key) || {};
+    if (data.not_needed) return "";
+    if (sec.input_mode === "structured_fields") {
+      if (!data.fields) data.fields = {};
+      const rows = (sec.fields || []).map((f) => {
+        const val = (data.fields[f.key] || "").trim();
+        const label = f.label === "Hari, Tanggal" ? "Hari/Tanggal" : f.label;
+        return metaFieldRow(
+          label,
+          `<span class="live-field" contenteditable="true" data-live-field-section="${esc(sec.key)}" data-live-field-key="${esc(f.key)}">${esc(val)}</span>`,
+        );
+      }).join("");
+      return `<div class="body-fields">${rows}</div>`;
+    }
+    if (ensureBodyMode(data) === "points") {
+      ensureSectionPoints(data);
+      if (data.points?.length) syncSectionContentFromPoints(data);
+    }
+    const content = (data.content || "").trim();
+    const showPlaceholder = !content;
+    let tableHtml = "";
+    if (data.table?.rows?.length) {
+      const cols = data.table.columns || [];
+      tableHtml = `<table class="data"><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+        <tbody>${data.table.rows.map((r) => `<tr>${cols.map((c) => `<td>${esc(r[c] || "")}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+    }
+    secIndex += 1;
+    const titleHtml = isM01 || isMR
+      ? ""
+      : `<div class="sec-title">${esc(sectionHeading(sec.title, sec.outline_number, secIndex))}</div>`;
+    const bodyText = showPlaceholder ? sec.placeholder : content;
+    return `${titleHtml}
+      <div class="body-p ${showPlaceholder ? "placeholder-preview" : ""}"
+           contenteditable="true"
+           data-live-section="${esc(sec.key)}"
+           spellcheck="true">${formatOutlineHtml(bodyText || "")}</div>
+      ${tableHtml}`;
+  }).join("");
+
+  let metaBlock = "";
+  if (isM02) {
+    metaBlock = `
+      ${metaFieldRow("Perihal", `<span class="live-field" contenteditable="true" data-live-meta="subject">${esc(m.subject || "")}</span>`)}
+      ${metaFieldRow("Kepada", `<span class="live-field" contenteditable="true" data-live-meta="recipient">${esc(m.recipient || "")}</span>`)}
+      ${(m.via || "").trim() ? metaFieldRow("Melalui", `<span class="live-field" contenteditable="true" data-live-meta="via">${esc(m.via)}</span>`) : ""}
+      <hr class="meta-rule" />`;
+  } else if (isM01) {
+    metaBlock = `
+      ${metaFieldRow("Perihal", `<span class="live-field" contenteditable="true" data-live-meta="subject">${esc(m.subject || "")}</span>`)}
+      ${metaFieldRow("Kepada", `<span class="live-field" contenteditable="true" data-live-meta="recipient">${esc(m.recipient || "")}</span>`)}
+      ${metaFieldRow("Dari", `<span class="live-field" contenteditable="true" data-live-meta="dari">${esc(m.dari || m.satker || "")}</span>`)}
+      <hr class="meta-rule" />`;
+  } else {
+    metaBlock = `<div class="meta-lines">Hal: <span class="live-field" contenteditable="true" data-live-meta="subject">${esc(m.subject)}</span><br/>Yth.: <span class="live-field" contenteditable="true" data-live-meta="recipient">${esc(m.recipient)}</span></div>`;
+  }
+
+  let acc = "";
+  if (tmpl.accountability?.mode === "grid") {
+    const map = [
+      ["prepared_by", "Dipersiapkan oleh"],
+      ["reviewed_by", "Diperiksa oleh"],
+      ["supported_by", "Didukung oleh"],
+      ["approved_by", "Disetujui oleh"],
+      ["received_by", "Diterima oleh"],
+    ].filter(([k]) => doc.accountability?.[k]);
+    const heads = map.map(([, label]) => `<th>${esc(label)}</th>`).join("");
+    const cells = map.map(([k]) => {
+      const p = doc.accountability[k] || {};
+      return `<td><div class="acc-cell flat">
+        <div class="acc-name">${esc(p.name || "")}</div>
+        <div class="acc-role">${esc(p.title || "")}</div>
+        <div class="acc-rank">${esc(p.rank || "")}</div>
+        <div class="acc-sigspace"></div>
+      </div></td>`;
+    }).join("");
+    acc = `<table class="acc-table acc-row4"><thead><tr>${heads}</tr></thead><tbody><tr>${cells}</tr></tbody></table>`;
+    acc += renderSignatureBlock(doc, m);
+  } else if (tmpl.accountability?.mode === "signatory_only" || isM01) {
+    acc = renderSignatureBlock(doc, m);
+  }
+
+  const attachList = (doc.attachments_list || []).filter(attachmentMeaningful);
+  const lampiranHtml = attachList.length ? `
+    <div class="lampiran-block">
+      <div class="sec-title">Lampiran</div>
+      ${attachList.map((a, i) => {
+        const title = (a.title || "").trim() || `Lampiran ${i + 1}`;
+        const desc = (a.description || "").trim();
+        const kind = a.type || "note";
+        let extra = "";
+        if (kind === "table" && a.table?.rows?.length) {
+          const cols = a.table.columns || [];
+          extra = `<table class="data"><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+            <tbody>${a.table.rows.map((r) => `<tr>${cols.map((c) => `<td>${esc(r[c] || "")}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
+        } else if (kind === "image" && a.image?.stored_name) {
+          extra = `<div class="lampiran-img"><img src="/api/documents/${esc(doc.id)}/attachments/${esc(a.image.stored_name)}" alt="${esc(a.image.original_name || title)}" /></div>`;
+        }
+        return `<div class="lampiran-item">
+          <div class="outline-line l1"><span class="mk">${i + 1}.</span> <span class="tx">${esc(title)}${desc ? " — " + esc(desc) : ""}${kind === "image" ? " (foto)" : kind === "table" ? " (tabel)" : ""}</span></div>
+          ${extra}
+        </div>`;
+      }).join("")}
+    </div>` : "";
+
+  return `
+    <div class="kop-bar">
+      <div class="kop-left"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
+      <div class="kop-right">
+        <div class="type-badge">${esc(badge)}</div>
+        <div class="kop-num">No.&nbsp;&nbsp;:&nbsp;<span class="live-field" contenteditable="true" data-live-meta="document_number">${esc(m.document_number || "")}</span></div>
+        <div class="kop-num">Lamp.&nbsp;:&nbsp;<span class="live-field" contenteditable="true" data-live-meta="attachments">${esc(m.attachments || "-")}</span></div>
+      </div>
+    </div>
+    ${doc.status === "draft" ? `<div class="draft-stamp">KONSEP</div>` : ""}
+    <div class="memo-title">${isMR ? "MEETING REQUEST" : "M E M O R A N D U M"}</div>
+    ${metaBlock}
+    ${sections}
+    ${acc}
+    ${lampiranHtml}
+  `;
+}
+
+/** Template-faithful example for side-by-side compare (matches official M.01/M.02 blank). */
+function renderExampleA4(docType) {
+  const isM02 = String(docType || "").startsWith("M.02");
+  if (isM02) {
+    return `
+      <div class="kop-bar">
+        <div class="kop-left"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
+        <div class="kop-right">
+          <div class="type-badge">M.02</div>
+          <div class="kop-num">No.&nbsp;&nbsp;: …………</div>
+          <div class="kop-num">Lamp.&nbsp;: -</div>
+        </div>
+      </div>
+      <div class="memo-title">M E M O R A N D U M</div>
+      <div class="meta-row"><span class="meta-k">Perihal</span><span class="meta-c">:</span><span class="meta-v">…………</span></div>
+      <div class="meta-row"><span class="meta-k">Kepada</span><span class="meta-c">:</span><span class="meta-v">…………</span></div>
+      <hr class="meta-rule" />
+      <div class="sec-title">1. Tujuan</div>
+      <div class="body-p placeholder-preview">…………</div>
+      <div class="sec-title">2. Latar Belakang dan Penjelasan</div>
+      <div class="body-p placeholder-preview">…………</div>
+      <div class="sec-title">3. Analisa Risiko dan Mitigasi</div>
+      <div class="body-p placeholder-preview">…………</div>
+      <div class="sec-title">4. Kesimpulan, Alternatif Usulan, dan Rekomendasi</div>
+      <div class="body-p placeholder-preview">Rekomendasi: …………</div>
+      <table class="acc-table acc-row4">
+        <thead><tr><th>Dipersiapkan oleh</th><th>Diperiksa oleh</th><th>Didukung oleh</th><th>Disetujui oleh</th></tr></thead>
+        <tbody><tr>
+          <td><div class="acc-cell flat"><div class="acc-name">Laura Zefanya Simanjuntak</div><div class="acc-role">Analis</div><div class="acc-rank">Penata Muda Tingkat I (III/b)</div><div class="acc-sigspace"></div></div></td>
+          <td><div class="acc-cell flat"><div class="acc-sigspace"></div></div></td>
+          <td><div class="acc-cell flat"><div class="acc-sigspace"></div></div></td>
+          <td><div class="acc-cell flat"><div class="acc-sigspace"></div></div></td>
+        </tr></tbody>
+      </table>
+      <div class="sig-block">
+        <div class="sig-date">Jakarta, 14 September 2026</div>
+        <div class="sig-role">Analis</div>
+        <div class="sig-unit">Departemen Pengelolaan Moneter</div>
+        <div class="acc-sigspace"></div>
+        <div class="sig-name">Laura Zefanya Simanjuntak</div>
+        <div class="sig-rank">Penata Muda Tingkat I (III/b)</div>
+      </div>
+      <p class="example-caption">Template resmi M.02 — logo kiri, badge kanan, akuntabilitas 4 kolom, tanda tangan kanan.</p>
+    `;
+  }
+  return `
+    <div class="kop-bar">
+      <div class="kop-left"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
+      <div class="kop-right">
+        <div class="type-badge">M.01</div>
+        <div class="kop-num">No.&nbsp;&nbsp;: …………</div>
+        <div class="kop-num">Lamp.&nbsp;: -</div>
+      </div>
+    </div>
+    <div class="memo-title">M E M O R A N D U M</div>
+    <div class="meta-row"><span class="meta-k">Perihal</span><span class="meta-c">:</span><span class="meta-v">…………</span></div>
+    <div class="meta-row"><span class="meta-k">Kepada</span><span class="meta-c">:</span><span class="meta-v">…………</span></div>
+    <div class="meta-row"><span class="meta-k">Dari</span><span class="meta-c">:</span><span class="meta-v">Analis Departemen Pengelolaan Moneter</span></div>
+    <hr class="meta-rule" />
+    <div class="body-p placeholder-preview">…………</div>
+    <div class="body-fields">
+      <div class="meta-row"><span class="meta-k">Hari/Tanggal</span><span class="meta-c">:</span><span class="meta-v">…………</span></div>
+      <div class="meta-row"><span class="meta-k">Tempat</span><span class="meta-c">:</span><span class="meta-v">…………</span></div>
+      <div class="meta-row"><span class="meta-k">Agenda</span><span class="meta-c">:</span><span class="meta-v">…………</span></div>
+    </div>
+    <div class="body-p placeholder-preview">…………</div>
+    <div class="sig-block">
+      <div class="sig-date">Jakarta, 14 September 2026</div>
+      <div class="sig-role">Analis</div>
+      <div class="sig-unit">Departemen Pengelolaan Moneter</div>
+      <div class="acc-sigspace"></div>
+      <div class="sig-name">Laura Zefanya Simanjuntak</div>
+      <div class="sig-rank">Penata Muda Tingkat I (III/b)</div>
+    </div>
+    <p class="example-caption">Template resmi M.01 — logo kiri, Perihal/Kepada/Dari, garis, tanda tangan kanan.</p>
+  `;
 }
 
 
@@ -374,216 +605,6 @@ function attachmentsEditor(doc) {
     </div>`;
 }
 
-function renderA4(doc, tmpl) {
-  const m = doc.metadata;
-  const isM02 = (tmpl.layout_variant || "").startsWith("m02");
-  const isM01 = (tmpl.layout_variant || "").startsWith("m01") || (tmpl.doc_type_code === "M.01");
-  const isMR = doc.type === "MEETING_REQUEST";
-
-  const sections = tmpl.sections.map((sec) => {
-    const data = doc.sections.find((s) => s.key === sec.key) || {};
-    if (data.not_needed) return "";
-    if (sec.input_mode === "structured_fields") {
-      if (!data.fields) data.fields = {};
-      const rows = (sec.fields || []).map((f) => {
-        const val = (data.fields[f.key] || "").trim();
-        return `<tr>
-          <td style="width:28mm;white-space:nowrap">${esc(f.label)}</td>
-          <td style="width:4mm">:</td>
-          <td><span class="live-field" contenteditable="true" data-live-field-section="${esc(sec.key)}" data-live-field-key="${esc(f.key)}">${esc(val)}</span></td>
-        </tr>`;
-      }).join("");
-      const titleHtml = isM01 ? "" : `<div class="sec-title">${esc(sectionHeading(sec.title, sec.outline_number))}</div>`;
-      return `${titleHtml}<table class="meta-table">${rows}</table>`;
-    }
-    if (ensureBodyMode(data) === "points") {
-      ensureSectionPoints(data);
-      if (data.points?.length) syncSectionContentFromPoints(data);
-    }
-    const content = (data.content || "").trim();
-    const showPlaceholder = !content;
-    let tableHtml = "";
-    if (data.table?.rows?.length) {
-      const cols = data.table.columns || [];
-      tableHtml = `<table class="data"><thead><tr>${cols.map(c=>`<th>${esc(c)}</th>`).join("")}</tr></thead>
-        <tbody>${data.table.rows.map(r => `<tr>${cols.map(c=>`<td>${esc(r[c]||"")}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
-    }
-    const titleHtml = isM01 ? "" : `<div class="sec-title">${esc(sectionHeading(sec.title, sec.outline_number))}</div>`;
-    const bodyText = showPlaceholder ? sec.placeholder : content;
-    return `${titleHtml}
-      <div class="body-p ${showPlaceholder ? "placeholder-preview" : ""}"
-           contenteditable="true"
-           data-live-section="${esc(sec.key)}"
-           spellcheck="true">${formatOutlineHtml(bodyText || "")}</div>
-      ${tableHtml}`;
-  }).join("");
-
-  let metaBlock = "";
-  if (isM02) {
-    metaBlock = `
-      <div class="perihal-line"><strong>PERIHAL :</strong>
-        <span class="live-field" contenteditable="true" data-live-meta="subject">${esc((m.subject || "").toUpperCase())}</span>
-      </div>
-      <div>Kepada&nbsp;&nbsp;:
-        <span class="live-field" contenteditable="true" data-live-meta="recipient">${esc(m.recipient)}</span>
-      </div>
-      <div>Melalui&nbsp;:
-        <span class="live-field" contenteditable="true" data-live-meta="via">${esc(m.via || "")}</span>
-      </div>`;
-  } else if (!isMR) {
-    metaBlock = `
-      <table class="meta-table">
-        <tr><td>Kepada</td><td>:</td><td><span class="live-field" contenteditable="true" data-live-meta="recipient">${esc(m.recipient)}</span></td></tr>
-        <tr><td>Dari</td><td>:</td><td><span class="live-field" contenteditable="true" data-live-meta="dari">${esc(m.dari || m.satker)}</span></td></tr>
-        <tr><td>Perihal</td><td>:</td><td><span class="live-field" contenteditable="true" data-live-meta="subject">${esc(m.subject)}</span></td></tr>
-      </table>`;
-  } else {
-    metaBlock = `<div class="meta-lines">Hal: <span class="live-field" contenteditable="true" data-live-meta="subject">${esc(m.subject)}</span><br/>Yth.: <span class="live-field" contenteditable="true" data-live-meta="recipient">${esc(m.recipient)}</span></div>`;
-  }
-
-  let acc = "";
-  if (tmpl.accountability.mode === "grid") {
-    const map = [
-      ["prepared_by", "Dipersiapkan oleh"],
-      ["reviewed_by", "Diperiksa oleh"],
-      ["supported_by", "Didukung oleh"],
-      ["approved_by", "Disetujui oleh"],
-      ["received_by", "Diterima oleh"],
-    ].filter(([k]) => doc.accountability[k]);
-    const cells = map.map(([k, label]) => {
-      const p = doc.accountability[k] || {};
-      return `<td><div class="acc-cell">
-        <div class="acc-head">${esc(label)}:</div>
-        <div class="acc-body">
-          <div class="acc-role">${esc(p.title || "")}</div>
-          <div class="acc-sigspace"></div>
-          <div class="acc-name">${esc(p.name || "")}</div>
-          <div class="acc-rank">${esc(p.rank || "")}</div>
-        </div>
-      </div></td>`;
-    });
-    let rows = "";
-    for (let i = 0; i < cells.length; i += 2) {
-      const right = cells[i + 1] || `<td><div class="acc-cell empty"><div class="acc-head">&nbsp;</div><div class="acc-body"></div></div></td>`;
-      rows += `<tr>${cells[i]}${right}</tr>`;
-    }
-    acc = `<div class="acc-wrap">
-      <div class="acc-date-float"><span class="live-field" contenteditable="true" data-live-meta="city_date">${esc(m.city_date)}</span></div>
-      <table class="acc-table">${rows}</table>
-    </div>`;
-  } else if (tmpl.accountability.mode === "signatory_only") {
-    const s = doc.signatory || {};
-    acc = `<div class="sig-m01">
-      <div class="sig-date"><span class="live-field" contenteditable="true" data-live-meta="city_date">${esc(m.city_date)}</span></div>
-      <div class="sig-role"><span class="live-field" contenteditable="true" data-live-sig="title">${esc(s.title || "Kepala Grup / Kepala Satker")}</span></div>
-      <div class="acc-sigspace"></div>
-      <div class="sig-name"><span class="live-field" contenteditable="true" data-live-sig="name">${esc(s.name || "")}</span></div>
-      <div class="sig-rank"><span class="live-field" contenteditable="true" data-live-sig="rank">${esc(s.rank || "")}</span></div>
-    </div>`;
-  }
-
-  const badge = isMR ? "MR" : (tmpl.doc_type_code || "");
-  const lamp = isM02 ? "Lamp:" : "Lamp.:";
-  const attachList = (doc.attachments_list || []).filter(attachmentMeaningful);
-  const lampiranHtml = attachList.length ? `
-    <div class="lampiran-block">
-      <div class="sec-title">Lampiran</div>
-      ${attachList.map((a, i) => {
-        const title = (a.title || "").trim() || `Lampiran ${i + 1}`;
-        const desc = (a.description || "").trim();
-        const kind = a.type || "note";
-        let extra = "";
-        if (kind === "table" && a.table?.rows?.length) {
-          const cols = a.table.columns || [];
-          extra = `<table class="data"><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
-            <tbody>${a.table.rows.map((r) => `<tr>${cols.map((c) => `<td>${esc(r[c] || "")}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
-        } else if (kind === "image" && a.image?.stored_name) {
-          extra = `<div class="lampiran-img"><img src="/api/documents/${esc(doc.id)}/attachments/${esc(a.image.stored_name)}" alt="${esc(a.image.original_name || title)}" /></div>`;
-        }
-        return `<div class="lampiran-item">
-          <div class="outline-line l1"><span class="mk">${i + 1}.</span> <span class="tx">${esc(title)}${desc ? " — " + esc(desc) : ""}${kind === "image" ? " (foto)" : kind === "table" ? " (tabel)" : ""}</span></div>
-          ${extra}
-        </div>`;
-      }).join("")}
-    </div>` : "";
-  return `
-    <div class="kop"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
-    ${doc.status === "draft" ? `<div class="draft-stamp">KONSEP</div>` : ""}
-    <div class="type-badge">${esc(badge)}</div>
-    <div class="meta-lines">No. <span class="live-field" contenteditable="true" data-live-meta="document_number">${esc(m.document_number)}</span><br/>${lamp}
-      <span class="live-field" contenteditable="true" data-live-meta="attachments">${esc(m.attachments || "-")}</span></div>
-    <div class="memo-title">${isMR ? "MEETING REQUEST" : "MEMORANDUM"}</div>
-    ${metaBlock}
-    ${sections}
-    ${acc}
-    ${lampiranHtml}
-  `;
-}
-
-/** Faithful HTML replica of uploaded example DOCX for side-by-side compare. */
-function renderExampleA4(docType) {
-  const isM02 = String(docType || "").startsWith("M.02");
-  if (isM02) {
-    return `
-      <div class="kop"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
-      <div class="type-badge">M.02</div>
-      <div class="meta-lines">No. 27/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/DR-GSFP/M.02/B<br/>Lamp: 1 (satu) berkas</div>
-      <div class="memo-title">MEMORANDUM</div>
-      <div class="perihal-line"><strong>PERIHAL :</strong> PERMOHONAN PERSETUJUAN PELAKSANAAN KONSINYERING WORKSHEET SGO, KEBIJAKAN PUR DAN PENGAWASAN FUNGSI PENDUKUNG</div>
-      <div>Kepada&nbsp;&nbsp;: Yth. Bapak Arief Hartawan, Kepala Departemen Regional</div>
-      <div>Melalui&nbsp;: Yth. Bapak Bayu Martanto, Kepala Grup Operasionalisasi Kebijakan PUR dan Supervisi Fungsi Pendukung</div>
-      <div class="sec-title">Tujuan</div>
-      <div class="body-p">Menyampaikan permohonan persetujuan pelaksanaan kegiatan konsinyering worksheet SGo penggunaan Kartu Kredit Bank Indonesia…</div>
-      <div class="sec-title">Latar Belakang dan Penjelasan</div>
-      <div class="body-p m01-indent">Menindaklanjuti Rencana Strategis Lima Tahun (RSLT) Implementasi Kebijakan… (cuplikan contoh).</div>
-      <div class="sec-title">Analisa Risiko dan Mitigasinya</div>
-      <div class="body-p">Terdapat risiko pelaksanaan kegiatan beserta mitigasinya…</div>
-      <div class="sec-title">Kesimpulan &amp; Rekomendasi</div>
-      <div class="body-p">Berdasarkan hal-hal tersebut di atas, kami mengusulkan…</div>
-      <div class="acc-wrap">
-        <div class="acc-date-float">Jakarta, Juli 2025</div>
-        <table class="acc-table">
-          <tr>
-            <td><div class="acc-cell"><div class="acc-head">Dipersiapkan oleh:</div><div class="acc-body"><div class="acc-role">Analis Yunior</div><div class="acc-sigspace"></div><div class="acc-name">Annisa Amalina</div><div class="acc-rank">Asisten Manajer</div></div></div></td>
-            <td><div class="acc-cell"><div class="acc-head">Diperiksa oleh:</div><div class="acc-body"><div class="acc-role">Analis Senior</div><div class="acc-sigspace"></div><div class="acc-name">Rizky Satya Pradhana</div><div class="acc-rank">Asisten Direktur</div></div></div></td>
-          </tr>
-          <tr>
-            <td><div class="acc-cell"><div class="acc-head">Didukung oleh:</div><div class="acc-body"><div class="acc-role">Kepala Grup</div><div class="acc-sigspace"></div><div class="acc-name">Bayu Martanto</div><div class="acc-rank">Direktur</div></div></div></td>
-            <td><div class="acc-cell"><div class="acc-head">Disetujui oleh:</div><div class="acc-body"><div class="acc-role">Kepala Departemen</div><div class="acc-sigspace"></div><div class="acc-name">Arief Hartawan</div><div class="acc-rank">Direktur Eksekutif</div></div></div></td>
-          </tr>
-        </table>
-      </div>
-      <p class="example-caption">Referensi visual dari contoh DOCX yang Anda unggah — Disetujui oleh = Kepala Departemen (kepala satker).</p>
-    `;
-  }
-  return `
-    <div class="kop"><img src="/static/bi-logo.png" alt="Bank Indonesia" /></div>
-    <div class="type-badge">M.01</div>
-    <div class="meta-lines">No. 27/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/DR/M.01/B<br/>Lamp.: 1 (satu) set</div>
-    <div class="memo-title">MEMORANDUM</div>
-    <table class="meta-table">
-      <tr><td>Kepada</td><td>:</td><td>*)</td></tr>
-      <tr><td>Dari</td><td>:</td><td>Departemen Regional</td></tr>
-      <tr><td>Perihal</td><td>:</td><td>Undangan Rapat Koordinasi Pendalaman Worksheet SGo KPwDN area PUR</td></tr>
-    </table>
-    <div class="body-p m01-indent">Menindaklanjuti Rencana Strategis Lima Tahun (RSLT) Implementasi Kebijakan KPwDN tahun 2025-2030…</div>
-    <table class="meta-table">
-      <tr><td>Hari, Tanggal</td><td>:</td><td>Senin, 8 Desember 2025</td></tr>
-      <tr><td>Tempat</td><td>:</td><td>Hotel 25 Hours, Jakarta</td></tr>
-      <tr><td>Agenda</td><td>:</td><td>Terlampir</td></tr>
-    </table>
-    <div class="body-p m01-indent">Adapun biaya yang timbul atas pelaksanaan kegiatan dimaksud akan menjadi beban anggaran kami…</div>
-    <div class="body-p m01-indent">Demikian kami sampaikan, atas perhatian dan kerja sama Saudara, kami mengucapkan terima kasih.</div>
-    <div class="sig-m01">
-      <div class="sig-date">Jakarta, Desember 2025</div>
-      <div class="sig-role">Kepala Grup</div>
-      <div class="acc-sigspace"></div>
-      <div class="sig-name">Bayu Martanto</div>
-      <div class="sig-rank">Direktur</div>
-    </div>
-    <p class="example-caption">Referensi visual dari contoh DOCX M.01 — penandatangan kanan = Kepala Grup / pejabat satker.</p>
-  `;
-}
 
 function exampleMetaForDoc(doc) {
   const type = doc?.type || "";
@@ -1008,7 +1029,7 @@ function editorPane(tmpl, tab) {
   if (tab === "metadata") {
     return `
       <h2>Metadata</h2>
-      <p class="hint">Isian mengikuti susunan contoh memorandum BI (M.01: Kepada/Dari/Perihal · M.02: Perihal/Kepada/Melalui). Sumber: PCPM 40 DMST, Pedoman Dokumen Elektronik 2022.</p>
+      <p class="hint">Urutan mengikuti template resmi: <b>Perihal → Kepada${isM02 ? "" : " → Dari"}</b>, logo BI kiri, badge M.01/M.02 kanan.</p>
       <div class="btn-row tight" style="margin-top:0.35rem">
         <button type="button" class="btn btn-primary" id="btn-save-draft-meta">Simpan draft</button>
       </div>
@@ -1022,57 +1043,52 @@ function editorPane(tmpl, tab) {
         <option ${m.classification==="Biasa"?"selected":""}>Biasa</option>
         <option ${m.classification==="Rahasia"?"selected":""}>Rahasia</option>
       </select>
-      <p class="hint">Tingkat kerahasiaan. <b>Biasa</b> = informasi biasa (kode nomor <code>/B</code>). <b>Rahasia</b> = informasi rahasia jabatan (kode <code>/Rhs</code>, penanganan lebih ketat). Ref: PCPM 40 DMST — Sifat Dokumen BI.</p>
+      <p class="hint">Tingkat kerahasiaan. <b>Biasa</b> = kode nomor <code>/B</code>. <b>Rahasia</b> = <code>/Rhs</code>.</p>
 
       <label>Satker / kode unit (untuk nama file)</label>
       <input data-meta="satker" value="${esc(m.satker)}" placeholder="DMST / DR / DHk" />
-      <p class="hint">Rubrik satuan kerja pencipta, dipakai di penomoran & nama file. Contoh: <code>DMST</code>, <code>DR</code>. Ref: PCPM contoh No.17/9/DMST/M.01/Rhs; FILE-01 Pedoman 2022.</p>
+      <p class="hint">Rubrik satker pencipta untuk penomoran & nama file.</p>
 
-      ${isM02 ? "" : `
-        <label>Dari</label>
-        <input data-meta="dari" value="${esc(m.dari || m.satker || "")}" placeholder="Departemen Manajemen Strategis" />
-        <p class="hint">Pengirim / unit pencipta pada blok metadata M.01. Contoh: <code>Departemen Regional</code> atau nama grup/divisi. Ref: layout contoh M.01 (Kepada–Dari–Perihal).</p>
-      `}
+      <label>Perihal</label>
+      <input data-meta="subject" value="${esc(m.subject)}" placeholder="Permohonan Persetujuan … / Undangan …" />
+      <p class="hint">Baris pertama di bawah judul MEMORANDUM (template resmi).</p>
 
-      <label>${isM02 ? "Kepada" : "Kepada / penerima"}</label>
-      <input data-meta="recipient" value="${esc(m.recipient)}" placeholder="${isM02 ? "Yth. Bapak/Ibu …, Kepala Departemen …" : "Yth. Kepala Divisi …"}" />
-      <p class="hint">Penerima utama memo. Format lazim diawali <code>Yth.</code> + jabatan/nama. Contoh M.02: <code>Yth. Bapak Arief Hartawan, Kepala Departemen Regional</code>. Ref: contoh DOCX M.01/M.02; struktur M.02 PCPM.</p>
+      <label>Kepada</label>
+      <input data-meta="recipient" value="${esc(m.recipient)}" placeholder="${isM02 ? "Yth. Bapak/Ibu …, Kepala Departemen …" : "Yth. …"}" />
+      <p class="hint">Penerima utama memo.</p>
 
       ${isM02 ? `
         <label>Melalui (opsional)</label>
         <input data-meta="via" value="${esc(m.via || "")}" placeholder="Yth. Kepala Grup …" />
-        <p class="hint">Jalur hierarki / pejabat perantara sebelum penerima utama (hanya M.02). Contoh: <code>Yth. Bapak Bayu Martanto, Kepala Grup …</code>. Kosongkan jika tidak dipakai. Ref: layout contoh M.02 persetujuan.</p>
-      ` : ""}
-
-      <label>Perihal</label>
-      <input data-meta="subject" value="${esc(m.subject)}" placeholder="Permohonan Persetujuan … / Penyampaian Laporan …" />
-      <p class="hint">Pokok surat — ringkas dan jelas. Di M.02 biasanya ditulis HURUF BESAR pada baris PERIHAL. Contoh: <code>PERMOHONAN PERSETUJUAN PELAKSANAAN …</code>. Ref: contoh M.02; struktur isi PCPM.</p>
+        <p class="hint">Kosongkan jika tidak dipakai — template blank M.02 sering tanpa baris Melalui.</p>
+      ` : `
+        <label>Dari</label>
+        <input data-meta="dari" value="${esc(m.dari || m.satker || "")}" placeholder="Analis Departemen Pengelolaan Moneter" />
+        <p class="hint">Pengirim di blok metadata M.01 (setelah Kepada). Juga dipakai sebagai unit di blok tanda tangan.</p>
+      `}
 
       <label>Kota dan tanggal</label>
-      <input data-meta="city_date" value="${esc(m.city_date)}" placeholder="Jakarta, 12 September 2026" />
-      <p class="hint">Tempat & tanggal penandatanganan (biasanya di atas blok tanda tangan). Format: <code>Jakarta, 12 September 2026</code> atau <code>Jakarta, Juli 2025</code> bila tanggal belum final.</p>
+      <input data-meta="city_date" value="${esc(m.city_date)}" placeholder="Jakarta, 14 September 2026" />
+      <p class="hint">Di atas blok tanda tangan kanan bawah.</p>
 
       <label>Nomor dokumen</label>
-      <input data-meta="document_number" value="${esc(m.document_number)}" placeholder="27/       /DR/M.01/B" />
-      <p class="hint">Nomor resmi — biasanya diisi agendaris <b>setelah</b> ditandatangani. Pola: <code>tahun/nomor/rubrik/jenis/sifat</code>. Contoh: <code>17/9/DMST/M.01/Rhs</code> (rahasia), <code>…/M.02/B</code> (biasa). Ref: PCPM penomoran dokumen; FAQ MDEBI.</p>
+      <input data-meta="document_number" value="${esc(m.document_number)}" placeholder="…………" />
+      <p class="hint">Tampil di kanan atas di bawah badge M.01/M.02.</p>
 
       <label>Nomor Program Strategis</label>
       <input data-meta="program_strategis" value="${esc(m.program_strategis)}" placeholder="PS12" />
-      <p class="hint">Kode PS untuk penamaan file/ekspor (FILE-01), bukan selalu tercetak di badan memo. Contoh: <code>PS12</code>. Ref: Pedoman 2022 pola nama file.</p>
+      <p class="hint">Untuk penamaan file (FILE-01), tidak selalu tercetak di badan memo.</p>
 
-      <p class="hint">Lampiran (daftar isi lampiran) diisi di tab <b>Substansi</b> bagian bawah; teks <code>Lamp.</code>/<code>Lamp:</code> di header ikut terisi. Contoh: <code>1 (satu) berkas</code>, <code>1 (satu) set</code>.</p>
+      <p class="hint">Lampiran (daftar isi) di tab <b>Substansi</b>; teks <code>Lamp.</code> di header ikut terisi.</p>
 
       <label>PIC / kontak</label>
       <input data-meta="pic" value="${esc(m.pic)}" placeholder="Nama — email — telepon" />
-      <p class="hint">Bantuan operasional (siapa dihubungi), sering relevan untuk undangan/konfirmasi. Tidak selalu baris wajib di template Word resmi.</p>
 
       <label>Tenggat</label>
-      <input data-meta="deadline" value="${esc(m.deadline)}" placeholder="19 September 2026 / 1 hari sebelum kegiatan" />
-      <p class="hint">Batas waktu tindak lanjut yang diharapkan. Contoh: <code>19 September 2026</code>. Metadata bantu; cantumkan juga di substansi bila penting bagi penerima.</p>
+      <input data-meta="deadline" value="${esc(m.deadline)}" placeholder="19 September 2026" />
 
       <label>Tembusan (pisahkan dengan | )</label>
       <input data-meta="tembusan" value="${esc((m.tembusan||[]).join(" | "))}" placeholder="Arsip | Kepala Grup terkait" />
-      <p class="hint">Pihak yang diberi salinan (bukan penerima utama), biasanya sebagai <code>cc</code> di halaman terakhir kiri bawah. Contoh: <code>Arsip | DAI | Kepala Grup …</code>. Ref: PCPM — tembusan / cc / bcc.</p>
     `;
   }
   if (tab === "sections") {
@@ -1146,7 +1162,7 @@ function editorPane(tmpl, tab) {
       const guide = state.roleGuidance || {};
       return `
         <h2>Akuntabilitas</h2>
-        <p class="hint">Isi mengikuti contoh M.02: jabatan di atas, nama digarisbawahi, pangkat di bawah. <b>Disetujui oleh</b> biasanya Kepala Satker / Kepala Departemen; <b>Didukung oleh</b> biasanya Kepala Grup.</p>
+        <p class="hint">Template M.02: tabel <b>4 kolom sebaris</b> (Dipersiapkan → Diperiksa → Didukung → Disetujui/Diterima). <b>Disetujui oleh</b> biasanya Kepala Satker / Kepala Departemen. Blok tanda tangan kanan bawah = penyusun.</p>
         <div class="btn-row tight">
           <button type="button" class="btn btn-tiny" id="btn-compare-example-acc">Bandingkan ke contoh</button>
         </div>
@@ -1159,14 +1175,21 @@ function editorPane(tmpl, tab) {
             <div class="section-block">
               <h2>${esc(label)}</h2>
               <p class="hint role-hint">${esc(g.who || "")}</p>
-              <label>Jabatan (baris atas sel)</label>
-              <input data-acc="${k}.title" value="${esc(p.title)}" placeholder="${esc(g.title_eg || "Kepala Departemen")}" />
-              <label>Nama (digarisbawahi)</label>
+              <label>Nama (baris atas sel, tebal)</label>
               <input data-acc="${k}.name" value="${esc(p.name)}" placeholder="Nama pejabat" />
-              <label>Pangkat (baris bawah)</label>
+              <label>Jabatan</label>
+              <input data-acc="${k}.title" value="${esc(p.title)}" placeholder="${esc(g.title_eg || "Kepala Departemen")}" />
+              <label>Pangkat / golongan</label>
               <input data-acc="${k}.rank" value="${esc(p.rank)}" placeholder="${esc(g.rank_eg || "Direktur Eksekutif")}" />
             </div>`;
-        }).join("")}`;
+        }).join("")}
+        <div class="section-block">
+          <h2>Tanda tangan kanan bawah</h2>
+          <p class="hint">Seperti template: tanggal, jabatan, unit (Dari/satker), nama digarisbawahi, pangkat.</p>
+          <label>Jabatan</label><input data-sig="title" value="${esc((doc.signatory||{}).title || "")}" placeholder="Analis" />
+          <label>Nama</label><input data-sig="name" value="${esc((doc.signatory||{}).name || "")}" placeholder="Nama pejabat" />
+          <label>Pangkat</label><input data-sig="rank" value="${esc((doc.signatory||{}).rank || "")}" placeholder="Penata Muda Tingkat I (III/b)" />
+        </div>`;
     }
     if (tmpl.accountability.mode === "signatory_only") {
       const s = doc.signatory || {};
