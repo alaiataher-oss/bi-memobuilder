@@ -130,8 +130,8 @@ def test_happy_paths_validate_and_export():
             assert pdf_name.endswith(".pdf")
             assert pdf_raw.startswith(b"%PDF")
             if doc["type"] == "M.02_PERSETUJUAN":
-                assert "I. Tujuan" in text
-                assert "II. Latar Belakang" in text
+                assert "I. TUJUAN" in text
+                assert "II. LATAR BELAKANG" in text.upper() or "II. Latar Belakang" in text
 
 
 def test_approval_vs_reporting_final_labels_in_export():
@@ -223,16 +223,12 @@ def test_reference_chat_cites_penamaan_page():
     assert "halaman" in body["answer"].lower() or any(c.get("page") for c in body["citations"])
 
 
-def test_examples_api_serves_uploaded_docx():
-    pack = client.get("/api/examples")
+def test_role_guidance_api():
+    pack = client.get("/api/role-guidance")
     assert pack.status_code == 200
     body = pack.json()
-    assert {i["id"] for i in body["items"]} >= {"m01_undangan", "m02_persetujuan"}
     assert "approved_by" in body["role_guidance"]
     assert "Kepala" in body["role_guidance"]["approved_by"]["who"]
-    f = client.get("/api/examples/m01_undangan/file")
-    assert f.status_code == 200
-    assert f.content[:2] == b"PK"  # zip/docx
 
 
 def test_reference_chat_undangan_natural_language():

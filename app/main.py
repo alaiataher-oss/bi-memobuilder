@@ -24,7 +24,7 @@ from .auth import (
 )
 from .classification import classify_purpose
 from .config import PURPOSE_OPTIONS, ROOT
-from .examples import ROLE_GUIDANCE, example_for_doc_type, example_path, get_example, list_examples
+from .role_guidance import role_guidance_payload
 from .export import build_email_body, export_docx_bytes, export_pdf_bytes
 from .filename import generate_filename, suggest_draft_name
 from .fonts import font_assets_ready
@@ -181,34 +181,9 @@ def health() -> dict[str, Any]:
     }
 
 
-@app.get("/api/examples")
-def api_examples(doc_type: str | None = None) -> dict[str, Any]:
-    items = list_examples()
-    if doc_type:
-        matched = example_for_doc_type(doc_type)
-        items = [i for i in items if matched and i["id"] == matched["id"]]
-    return {"items": items, "role_guidance": ROLE_GUIDANCE}
-
-
-@app.get("/api/examples/{example_id}")
-def api_example_detail(example_id: str) -> dict[str, Any]:
-    item = get_example(example_id)
-    if not item:
-        raise HTTPException(404, "Contoh tidak ditemukan")
-    return {**{k: v for k, v in item.items() if k != "path"}, "role_guidance": ROLE_GUIDANCE}
-
-
-@app.get("/api/examples/{example_id}/file")
-def api_example_file(example_id: str) -> FileResponse:
-    path = example_path(example_id)
-    if not path:
-        raise HTTPException(404, "Berkas contoh tidak ditemukan")
-    return FileResponse(
-        path,
-        filename=path.name,
-        media_type="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-        content_disposition_type="attachment",
-    )
+@app.get("/api/role-guidance")
+def api_role_guidance() -> dict[str, Any]:
+    return role_guidance_payload()
 
 
 @app.get("/api/reference/docs")

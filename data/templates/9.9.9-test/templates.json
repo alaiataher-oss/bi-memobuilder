@@ -14,9 +14,9 @@
       "static_url": "/static/bi-logo.png",
       "width_mm": 59.1,
       "height_mm": 10.3,
-      "placement": "top_right",
-      "source": "Extracted from M.01/M.02 example DOCX media",
-      "status": "active_from_example"
+      "placement": "top_left",
+      "source": "Official blank M.01/M.02 template — logo left, badge right",
+      "status": "active_from_template_blank"
     },
     "type_badge": {
       "placement": "top_right_below_logo",
@@ -353,7 +353,7 @@
         },
         {
           "key": "risiko_mitigasi",
-          "title": "Analisa Risiko dan Mitigasinya",
+          "title": "Analisis Risiko dan Mitigasi",
           "outline_number": "III.",
           "guidance": "Wajib memuat risiko beserta mitigasinya. Gunakan tabel dan/atau poin 1. 2. 3. seperti contoh M.02.",
           "placeholder": "Terdapat risiko pelaksanaan kegiatan beserta mitigasinya sebagai berikut:\n1. Risiko … Mitigasi: …\n2. Risiko … Mitigasi: …",

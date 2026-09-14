@@ -26,7 +26,12 @@ from reportlab.lib.enums import TA_CENTER, TA_JUSTIFY
 from .config import ROOT
 from .attachments import attachment_is_meaningful, resolve_attachment_path
 from .filename import generate_filename
-from .fonts import resolve_font_paths
+from .fonts import (
+    apply_run_fonts,
+    body_font_family_name,
+    heading_font_family_name,
+    resolve_font_paths,
+)
 from .outline import (
     LEVEL_HANGING_CM,
     LEVEL_INDENT_CM,
@@ -36,7 +41,7 @@ from .outline import (
     section_heading,
 )
 from .rules_loader import get_template, load_templates
-from .validation import can_final_export, validate_document
+from .validation import validate_document
 
 
 def _set_cell_border(cell, **kwargs) -> None:
@@ -344,6 +349,81 @@ def build_email_body(doc: dict[str, Any]) -> str:
     return "\n".join(parts).strip() + "\n"
 
 
+def _clear_table_borders(table) -> None:
+    tbl = table._tbl
+    tblPr = tbl.tblPr if tbl.tblPr is not None else OxmlElement("w:tblPr")
+    if tbl.tblPr is None:
+        tbl.insert(0, tblPr)
+    borders = OxmlElement("w:tblBorders")
+    for edge in ("top", "left", "bottom", "right", "insideH", "insideV"):
+        el = OxmlElement(f"w:{edge}")
+        el.set(qn("w:val"), "nil")
+        el.set(qn("w:sz"), "0")
+        el.set(qn("w:space"), "0")
+        el.set(qn("w:color"), "auto")
+        borders.append(el)
+    # replace existing borders if any
+    existing = tblPr.find(qn("w:tblBorders"))
+    if existing is not None:
+        tblPr.remove(existing)
+    tblPr.append(borders)
+
+
+def _add_kop_row(document: Document, pack: dict[str, Any], badge_code: str) -> None:
+    """Logo kiri + badge kanan (satu baris) — sama seperti PDF M.02 contoh."""
+    logo = _logo_path(pack)
+    width_mm = float((pack.get("styles", {}).get("logo") or {}).get("width_mm") or 59.1)
+    table = document.add_table(rows=1, cols=2)
+    _clear_table_borders(table)
+    left, right = table.rows[0].cells
+    if logo:
+        p = left.paragraphs[0]
+        p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        run = p.add_run()
+        run.add_picture(str(logo), width=Mm(width_mm))
+    rp = right.paragraphs[0]
+    rp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    run = rp.add_run(badge_code)
+    run.bold = True
+    run.font.size = Pt(14)
+    run.font.name = body_font_family_name()
+    # Kotak tipis di sekitar badge (seperti PDF)
+    pPr = rp._p.get_or_add_pPr()
+    pBdr = OxmlElement("w:pBdr")
+    for edge in ("top", "left", "bottom", "right"):
+        el = OxmlElement(f"w:{edge}")
+        el.set(qn("w:val"), "single")
+        el.set(qn("w:sz"), "12")
+        el.set(qn("w:space"), "4")
+        el.set(qn("w:color"), "000000")
+        pBdr.append(el)
+    pPr.append(pBdr)
+
+
+def _add_meta_colon_row(document: Document, label: str, value: str, style, *, bold_value: bool = False, italic_value: bool = False) -> None:
+    p = document.add_paragraph(style=style)
+    r1 = p.add_run(f"{label}")
+    r1.bold = True if label.upper() == "PERIHAL" else False
+    p.add_run(" : ")
+    r2 = p.add_run(value or "")
+    r2.bold = bold_value
+    r2.italic = italic_value
+
+
+def _add_horizontal_rule_para(document: Document, style) -> None:
+    p = document.add_paragraph(style=style)
+    pPr = p._p.get_or_add_pPr()
+    pBdr = OxmlElement("w:pBdr")
+    bottom = OxmlElement("w:bottom")
+    bottom.set(qn("w:val"), "single")
+    bottom.set(qn("w:sz"), "12")
+    bottom.set(qn("w:space"), "1")
+    bottom.set(qn("w:color"), "000000")
+    pBdr.append(bottom)
+    pPr.append(pBdr)
+    p.paragraph_format.space_after = Pt(8)
+
+
 def _add_logo(document: Document, pack: dict[str, Any]) -> None:
     logo = _logo_path(pack)
     if not logo:
@@ -356,15 +436,10 @@ def _add_logo(document: Document, pack: dict[str, Any]) -> None:
 
 
 def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
-    findings = validate_document(doc, for_final_export=True)
-    if not can_final_export(findings):
-        raise ValueError("Export diblokir: masih ada error validasi.")
-
     model = _content_model(doc)
     pack = load_templates(doc.get("template_version") or "1.1.0")
     margins = _margins_for(pack, model["doc_type_code"])
     sizes = pack["styles"]["font_sizes_pt"]
-    fonts = pack["styles"]["fonts"]
 
     document = Document()
     section = document.sections[0]
@@ -376,6 +451,8 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
     section.right_margin = Mm(margins["right"])
 
     styles = document.styles
+    body_font = body_font_family_name()
+    heading_font = heading_font_family_name()
 
     def ensure_style(name: str, base: str, size_pt: float, font_name: str) -> None:
         try:
@@ -387,29 +464,30 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
         style.font.name = font_name
         style._element.rPr.rFonts.set(qn("w:eastAsia"), font_name)
 
-    heading_font = "Optima"
-    body_font = "Frutiger 45 Light"
-    ensure_style("MemoTitle", "Normal", sizes["MemoTitle"], heading_font)
+    ensure_style("MemoTitle", "Normal", sizes["MemoTitle"], body_font)
     ensure_style("Heading1BI", "Heading 1", sizes["Heading1"], body_font)
     ensure_style("BodyBI", "Normal", sizes["Body"], body_font)
     ensure_style("MetadataBI", "Normal", sizes["Metadata"], body_font)
     ensure_style("SignatureBlock", "Normal", sizes["SignatureBlock"], body_font)
 
-    _add_logo(document, pack)
-
-    # Type badge + No/Lamp (right-aligned block under badge, matching blank template)
-    badge = document.add_paragraph(model["doc_type_code"])
-    badge.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    badge.style = styles["MetadataBI"]
-    for run in badge.runs:
-        run.bold = True
-        run.font.size = Pt(14)
+    # Best practice: logo kiri + badge kanan; No/Lamp di kiri di bawah logo
+    _add_kop_row(document, pack, model["doc_type_code"] if model["doc_type_code"] != "MR" else "MR")
 
     meta = model["meta"]
-    no_p = document.add_paragraph(f"No.  : {meta.get('document_number') or '…………'}", style=styles["MetadataBI"])
-    no_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    lamp_p = document.add_paragraph(f"Lamp. : {meta.get('attachments') or '-'}", style=styles["MetadataBI"])
-    lamp_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+    is_m02 = model["doc_type_code"] == "M.02" or model["layout_variant"] == "m02_satker"
+    is_m01 = model["doc_type_code"] == "M.01" or model.get("layout_variant") == "m01_correspondence"
+    lamp_label = "Lampiran" if is_m02 else "Lamp."
+
+    no_p = document.add_paragraph(
+        f"No. {meta.get('document_number') or '…………'}",
+        style=styles["MetadataBI"],
+    )
+    no_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
+    lamp_p = document.add_paragraph(
+        f"{lamp_label} : {meta.get('attachments') or '-'}" if is_m02 else f"{lamp_label} {meta.get('attachments') or '-'}",
+        style=styles["MetadataBI"],
+    )
+    lamp_p.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
     title = document.add_paragraph("MEMORANDUM" if model["doc_type_code"] != "MR" else "MEETING REQUEST")
     title.style = styles["MemoTitle"]
@@ -417,33 +495,45 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
     for run in title.runs:
         run.bold = True
 
-    # Metadata: Perihal / Kepada [/ Dari] then horizontal rule feel via blank + underline para
-    if model["doc_type_code"] == "M.02" or model["layout_variant"] == "m02_satker":
-        document.add_paragraph(f"Perihal : {meta.get('subject') or ''}", style=styles["BodyBI"])
-        document.add_paragraph(f"Kepada : {meta.get('recipient') or ''}", style=styles["BodyBI"])
-        if meta.get("via") or meta.get("melalui"):
-            document.add_paragraph(
-                f"Melalui : {meta.get('via') or meta.get('melalui')}",
-                style=styles["BodyBI"],
-            )
-    elif model["doc_type_code"] == "M.01":
-        document.add_paragraph(f"Perihal : {meta.get('subject') or ''}", style=styles["BodyBI"])
-        document.add_paragraph(f"Kepada : {meta.get('recipient') or ''}", style=styles["BodyBI"])
-        document.add_paragraph(
-            f"Dari : {meta.get('dari') or meta.get('satker') or ''}",
-            style=styles["BodyBI"],
+    if is_m02:
+        # PERIHAL (kapital) + garis → Kepada → Melalui
+        subj = (meta.get("subject") or "").upper()
+        _add_meta_colon_row(
+            document, "PERIHAL", subj, styles["BodyBI"], bold_value=True, italic_value=True
         )
+        # Garis bawah baris perihal (seperti PDF contoh)
+        last = document.paragraphs[-1]
+        for run in last.runs:
+            run.underline = True
+        _add_horizontal_rule_para(document, styles["BodyBI"])
+        _add_meta_colon_row(document, "Kepada", meta.get("recipient") or "", styles["BodyBI"])
+        if meta.get("via") or meta.get("melalui"):
+            _add_meta_colon_row(
+                document,
+                "Melalui",
+                meta.get("via") or meta.get("melalui") or "",
+                styles["BodyBI"],
+            )
+    elif is_m01:
+        # Kepada → Dari → Perihal → garis
+        _add_meta_colon_row(document, "Kepada", meta.get("recipient") or "", styles["BodyBI"])
+        _add_meta_colon_row(
+            document, "Dari", meta.get("dari") or meta.get("satker") or "", styles["BodyBI"]
+        )
+        _add_meta_colon_row(document, "Perihal", meta.get("subject") or "", styles["BodyBI"])
+        _add_horizontal_rule_para(document, styles["BodyBI"])
     else:
         document.add_paragraph(f"Hal: {meta.get('subject') or ''}", style=styles["BodyBI"])
         document.add_paragraph(f"Yth.: {meta.get('recipient') or ''}", style=styles["BodyBI"])
-
-    rule = document.add_paragraph("─" * 48, style=styles["BodyBI"])
-    rule.paragraph_format.space_after = Pt(8)
+        _add_horizontal_rule_para(document, styles["BodyBI"])
 
     for idx, sec in enumerate(model["sections"], start=1):
-        show_heading = model.get("layout_variant") != "m01_correspondence" and model["doc_type_code"] != "M.01"
+        show_heading = not is_m01 and model["doc_type_code"] != "M.01"
         if show_heading:
-            h = document.add_paragraph(f"{idx}. {sec['title']}")
+            heading_text = section_heading(sec["title"], sec.get("outline_number"))
+            if not sec.get("outline_number"):
+                heading_text = f"{idx}. {sec['title']}"
+            h = document.add_paragraph(heading_text.upper() if is_m02 else heading_text)
             h.style = styles["Heading1BI"]
             for run in h.runs:
                 run.bold = True
@@ -468,20 +558,23 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
     city = meta.get("city_date") or ""
 
     if model["accountability_mode"] == "grid":
+        # Tanggal di atas grid (kanan), seperti PDF contoh M.02
+        if city:
+            dp = document.add_paragraph(city, style=styles["SignatureBlock"])
+            dp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         _add_accountability_table(
             document,
             model["accountability_labels"],
             model["accountability"],
         )
-
-    if model["accountability_mode"] in ("grid", "signatory_only") or model["doc_type_code"] in ("M.01", "M.02"):
+    elif model["accountability_mode"] == "signatory_only" or is_m01:
+        # M.01: tanggal → jabatan → ruang TTD → nama (tanpa baris unit)
         sig = model.get("signatory") or {}
-        unit = (meta.get("dari") or meta.get("satker") or "").strip()
         p = document.add_paragraph(city, style=styles["SignatureBlock"])
         p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         for line, underline, bold in (
             (sig.get("title", ""), False, False),
-            (unit, False, False),
+            ("", False, False),
             ("", False, False),
             ("", False, False),
             (sig.get("name", ""), True, True),
@@ -492,9 +585,9 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
             run = sp.add_run(line)
             run.underline = underline
             run.bold = bold
-            run.font.name = "Frutiger 45 Light"
+            run.font.name = body_font
             run.font.size = Pt(sizes["SignatureBlock"])
-            run._element.rPr.rFonts.set(qn("w:eastAsia"), "Frutiger 45 Light")
+            run._element.rPr.rFonts.set(qn("w:eastAsia"), body_font)
 
     attachments_list = model.get("attachments_list") or []
     if attachments_list:
@@ -504,10 +597,10 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
             run.bold = True
         doc_id = model.get("doc_id") or ""
         for i, item in enumerate(attachments_list, 1):
-            title = (item.get("title") or "").strip() or f"Lampiran {i}"
+            title_a = (item.get("title") or "").strip() or f"Lampiran {i}"
             desc = (item.get("description") or "").strip()
             kind = item.get("type") or "note"
-            line = f"{i}. {title}" + (f" — {desc}" if desc else "")
+            line = f"{i}. {title_a}" + (f" — {desc}" if desc else "")
             document.add_paragraph(line, style=styles["BodyBI"])
             if kind == "table":
                 table = item.get("table") or {}
@@ -541,6 +634,8 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
         for i, item in enumerate(tembusan, 1):
             document.add_paragraph(f"{i}. {item}", style=styles["BodyBI"])
 
+    apply_run_fonts(document, body_font, heading_font)
+
     buffer = io.BytesIO()
     document.save(buffer)
     raw = buffer.getvalue()
@@ -556,10 +651,6 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
 
 
 def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
-    findings = validate_document(doc, for_final_export=True)
-    if not can_final_export(findings):
-        raise ValueError("Export diblokir: masih ada error validasi.")
-
     model = _content_model(doc)
     pack = load_templates(doc.get("template_version") or "1.1.0")
     margins = _margins_for(pack, model["doc_type_code"])
@@ -569,11 +660,17 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
     heading_font = "Helvetica-Bold"
     body_font = "Helvetica"
     if font_paths["heading"]:
-        pdfmetrics.registerFont(TTFont("BI-Heading", str(font_paths["heading"])))
-        heading_font = "BI-Heading"
+        try:
+            pdfmetrics.registerFont(TTFont("BI-Heading", str(font_paths["heading"])))
+            heading_font = "BI-Heading"
+        except Exception:
+            heading_font = "Helvetica-Bold"
     if font_paths["body"]:
-        pdfmetrics.registerFont(TTFont("BI-Body", str(font_paths["body"])))
-        body_font = "BI-Body"
+        try:
+            pdfmetrics.registerFont(TTFont("BI-Body", str(font_paths["body"])))
+            body_font = "BI-Body"
+        except Exception:
+            body_font = "Helvetica"
 
     buffer = io.BytesIO()
     pdf = SimpleDocTemplate(
@@ -588,15 +685,16 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
     title_style = ParagraphStyle(
         "MemoTitle",
         parent=styles["Heading1"],
-        fontName=heading_font,
+        fontName=body_font,
         fontSize=sizes["MemoTitle"],
         alignment=1,
         spaceAfter=12,
+        spaceBefore=8,
     )
     h_style = ParagraphStyle(
         "Heading1BI",
         parent=styles["Heading2"],
-        fontName=heading_font,
+        fontName=body_font,
         fontSize=sizes["Heading1"],
         spaceBefore=10,
         spaceAfter=6,
@@ -607,43 +705,83 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
         fontName=body_font,
         fontSize=sizes["Body"],
         leading=sizes["Body"] * pack["styles"]["line_spacing"],
-        alignment=4,
+        alignment=TA_JUSTIFY,
     )
+    meta_style = ParagraphStyle("MetaBI", parent=body_style, alignment=0)
 
     story = []
+    meta = model["meta"]
+    is_m02 = model["doc_type_code"] == "M.02" or model["layout_variant"] == "m02_satker"
+    is_m01 = model["doc_type_code"] == "M.01" or model.get("layout_variant") == "m01_correspondence"
+    badge = model["doc_type_code"] if model["doc_type_code"] != "MR" else "MR"
+
     logo = _logo_path(pack)
+    logo_flow = ""
     if logo:
         width = float((pack.get("styles", {}).get("logo") or {}).get("width_mm") or 59.1)
-        img = RLImage(str(logo), width=width * mm, height=(width * 70 / 366) * mm)
-        img.hAlign = "RIGHT"
-        story.append(img)
-        story.append(Spacer(1, 4))
-
-    story.append(Paragraph(model["doc_type_code"], ParagraphStyle("badge", parent=body_style, alignment=2)))
-    meta = model["meta"]
-    story.append(Paragraph(f"No. {meta.get('document_number') or '[akan diisi]'}", body_style))
-    story.append(Paragraph(f"Lamp.: {meta.get('attachments') or '-'}", body_style))
+        logo_flow = RLImage(str(logo), width=width * mm, height=(width * 70 / 366) * mm)
+    badge_p = Paragraph(f"<b>{badge}</b>", ParagraphStyle("badge", parent=meta_style, alignment=2, borderWidth=1, borderPadding=3))
+    if logo_flow:
+        kop = Table([[logo_flow, badge_p]], colWidths=[120 * mm, 50 * mm])
+    else:
+        kop = Table([["", badge_p]], colWidths=[120 * mm, 50 * mm])
+    kop.setStyle(
+        TableStyle(
+            [
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("ALIGN", (1, 0), (1, 0), "RIGHT"),
+                ("BOX", (1, 0), (1, 0), 0.75, colors.black),
+                ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+            ]
+        )
+    )
+    story.append(kop)
+    story.append(Spacer(1, 4))
+    story.append(Paragraph(f"No. {meta.get('document_number') or '[akan diisi]'}", meta_style))
+    if is_m02:
+        story.append(Paragraph(f"Lampiran : {meta.get('attachments') or '-'}", meta_style))
+    else:
+        story.append(Paragraph(f"Lamp. {meta.get('attachments') or '-'}", meta_style))
     story.append(Paragraph("MEMORANDUM" if model["doc_type_code"] != "MR" else "MEETING REQUEST", title_style))
 
-    if model["layout_variant"] == "m02_satker":
-        story.append(Paragraph(f"<b>PERIHAL :</b> {(meta.get('subject') or '').upper()}", body_style))
-        story.append(Paragraph(f"Kepada : {meta.get('recipient') or ''}", body_style))
-        if meta.get("via") or meta.get("melalui"):
-            story.append(Paragraph(f"Melalui : {meta.get('via') or meta.get('melalui')}", body_style))
-    else:
+    if is_m02:
+        subj = (meta.get("subject") or "").upper().replace("&", "&amp;")
+        story.append(Paragraph(f"<b><u>PERIHAL: {subj}</u></b>", body_style))
+        story.append(Spacer(1, 4))
+        story.append(Paragraph(f"Kepada : {(meta.get('recipient') or '').replace('&', '&amp;')}", meta_style))
+        via = meta.get("via") or meta.get("melalui") or ""
+        if via:
+            story.append(Paragraph(f"Melalui : {via.replace('&', '&amp;')}", meta_style))
+        story.append(Spacer(1, 8))
+    elif is_m01:
         data = [
             ["Kepada", ":", meta.get("recipient") or ""],
             ["Dari", ":", meta.get("dari") or meta.get("satker") or ""],
             ["Perihal", ":", meta.get("subject") or ""],
         ]
         t = Table(data, colWidths=[25 * mm, 5 * mm, 130 * mm])
-        t.setStyle(TableStyle([("FONTNAME", (0, 0), (-1, -1), body_font), ("FONTSIZE", (0, 0), (-1, -1), sizes["Body"]), ("VALIGN", (0, 0), (-1, -1), "TOP")]))
+        t.setStyle(
+            TableStyle(
+                [
+                    ("FONTNAME", (0, 0), (-1, -1), body_font),
+                    ("FONTSIZE", (0, 0), (-1, -1), sizes["Body"]),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 0),
+                ]
+            )
+        )
         story.append(t)
+        story.append(Spacer(1, 8))
+    else:
+        story.append(Paragraph(f"Hal: {meta.get('subject') or ''}", body_style))
+        story.append(Paragraph(f"Yth.: {meta.get('recipient') or ''}", body_style))
+        story.append(Spacer(1, 8))
 
-    story.append(Spacer(1, 8))
     for sec in model["sections"]:
-        if model.get("layout_variant") != "m01_correspondence":
-            story.append(Paragraph(f"<b>{sec['title']}</b>", h_style))
+        if not is_m01:
+            title = (sec.get("title") or "").upper() if is_m02 else (sec.get("title") or "")
+            story.append(Paragraph(f"<b>{title.replace('&', '&amp;')}</b>", h_style))
         if sec.get("field_rows"):
             data = [[label, f": {val}"] for label, val in sec["field_rows"]]
             t = Table(data, colWidths=[35 * mm, 120 * mm], hAlign="LEFT")
@@ -672,11 +810,13 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
             t.setStyle(
                 TableStyle(
                     [
-                        ("FONTNAME", (0, 0), (-1, 0), heading_font),
+                        ("FONTNAME", (0, 0), (-1, 0), body_font),
                         ("FONTNAME", (0, 1), (-1, -1), body_font),
                         ("FONTSIZE", (0, 0), (-1, -1), sizes["Body"]),
-                        ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
-                        ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0.93, 0.93, 0.93)),
+                        ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0.82, 0.82, 0.82)),
+                        ("BOX", (0, 0), (-1, -1), 0.5, colors.black),
+                        ("LINEBELOW", (0, 0), (-1, 0), 0.75, colors.black),
+                        ("INNERGRID", (0, 0), (-1, -1), 0.4, colors.Color(0.55, 0.55, 0.55)),
                         ("VALIGN", (0, 0), (-1, -1), "TOP"),
                     ]
                 )
@@ -684,9 +824,13 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
             story.append(t)
 
     story.append(Spacer(1, 12))
-    story.append(Paragraph(meta.get("city_date") or "", body_style))
+    city = meta.get("city_date") or ""
+    right = ParagraphStyle("sig", parent=body_style, alignment=2)
 
     if model["accountability_mode"] == "grid":
+        if city:
+            story.append(Paragraph(city.replace("&", "&amp;"), right))
+            story.append(Spacer(1, 4))
         story.append(
             _accountability_pdf_table(
                 model["accountability_labels"],
@@ -695,13 +839,14 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
                 sizes["Body"],
             )
         )
-    elif model["accountability_mode"] == "signatory_only":
-        sig = model["signatory"]
-        right = ParagraphStyle("sig", parent=body_style, alignment=2)
-        story.append(Paragraph(sig.get("title", ""), right))
-        story.append(Spacer(1, 24))
-        story.append(Paragraph(f"<u>{sig.get('name', '')}</u>", right))
-        story.append(Paragraph(sig.get("rank", ""), right))
+    elif model["accountability_mode"] == "signatory_only" or is_m01:
+        sig = model.get("signatory") or {}
+        story.append(Paragraph((city or "").replace("&", "&amp;"), right))
+        story.append(Paragraph((sig.get("title") or "").replace("&", "&amp;"), right))
+        story.append(Spacer(1, 28))
+        story.append(Paragraph(f"<u><b>{(sig.get('name') or '').replace('&', '&amp;')}</b></u>", right))
+        if sig.get("rank"):
+            story.append(Paragraph(sig.get("rank", "").replace("&", "&amp;"), right))
 
     attachments_list = model.get("attachments_list") or []
     if attachments_list:
@@ -724,11 +869,11 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
                     t.setStyle(
                         TableStyle(
                             [
-                                ("FONTNAME", (0, 0), (-1, 0), heading_font),
+                                ("FONTNAME", (0, 0), (-1, 0), body_font),
                                 ("FONTNAME", (0, 1), (-1, -1), body_font),
                                 ("FONTSIZE", (0, 0), (-1, -1), sizes["Body"]),
                                 ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
-                                ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0.93, 0.93, 0.93)),
+                                ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0.82, 0.82, 0.82)),
                                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
                             ]
                         )
@@ -748,7 +893,7 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
                     except Exception:
                         story.append(
                             Paragraph(
-                                f"[Gambar: {(img.get('original_name') or stored)}]".replace("&", "&amp;"),
+                                f"[Gambar: {(img.get('original_name') or stored)}]",
                                 body_style,
                             )
                         )

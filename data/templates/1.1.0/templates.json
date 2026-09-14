@@ -353,7 +353,7 @@
         },
         {
           "key": "risiko_mitigasi",
-          "title": "Analisa Risiko dan Mitigasinya",
+          "title": "Analisis Risiko dan Mitigasi",
           "outline_number": "III.",
           "guidance": "Wajib memuat risiko beserta mitigasinya. Gunakan tabel dan/atau poin 1. 2. 3. seperti contoh M.02.",
           "placeholder": "Terdapat risiko pelaksanaan kegiatan beserta mitigasinya sebagai berikut:\n1. Risiko … Mitigasi: …\n2. Risiko … Mitigasi: …",
