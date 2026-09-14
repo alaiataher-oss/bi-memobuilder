@@ -265,6 +265,61 @@ def _margins_for(pack: dict[str, Any], doc_type_code: str) -> dict[str, float]:
     return by_family.get("MEETING_REQUEST") or pack["styles"]["margin_mm"]
 
 
+def _section_blocks(raw: dict[str, Any], content: str, table: dict[str, Any] | None) -> list[dict[str, Any]]:
+    """Resolve ordered text/table blocks for export (matches editor block order)."""
+    blocks = raw.get("blocks")
+    if isinstance(blocks, list) and blocks:
+        return blocks
+    pos = raw.get("table_position") or "after"
+    has_table = bool(table and table.get("columns"))
+    out: list[dict[str, Any]] = []
+    if has_table and pos == "before":
+        out.append({"type": "table", "table": table})
+    out.append({"type": "text", "content": content})
+    if has_table and pos != "before":
+        out.append({"type": "table", "table": table})
+    return out
+
+
+def _add_section_table_docx(document: Document, table: dict[str, Any], styles) -> None:
+    cols = table.get("columns") or []
+    rows = table.get("rows") or []
+    if not cols:
+        return
+    t = document.add_table(rows=1, cols=len(cols))
+    hdr_cells = t.rows[0].cells
+    for i, c in enumerate(cols):
+        hdr_cells[i].text = str(c)
+    for row in rows:
+        cells = t.add_row().cells
+        for i, c in enumerate(cols):
+            cells[i].text = str(row.get(c, ""))
+
+
+def _add_section_table_pdf(story: list, table: dict[str, Any], body_font: str, sizes: dict) -> None:
+    cols = table.get("columns") or []
+    rows = table.get("rows") or []
+    if not cols:
+        return
+    data = [cols] + [[str(r.get(c, "")) for c in cols] for r in rows]
+    t = Table(data, hAlign="LEFT")
+    t.setStyle(
+        TableStyle(
+            [
+                ("FONTNAME", (0, 0), (-1, 0), body_font),
+                ("FONTNAME", (0, 1), (-1, -1), body_font),
+                ("FONTSIZE", (0, 0), (-1, -1), sizes["Body"]),
+                ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0.82, 0.82, 0.82)),
+                ("BOX", (0, 0), (-1, -1), 0.5, colors.black),
+                ("LINEBELOW", (0, 0), (-1, 0), 0.75, colors.black),
+                ("INNERGRID", (0, 0), (-1, -1), 0.4, colors.Color(0.55, 0.55, 0.55)),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ]
+        )
+    )
+    story.append(t)
+
+
 def _logo_path(pack: dict[str, Any]) -> Path | None:
     rel = (pack.get("styles", {}).get("logo") or {}).get("asset")
     if not rel:
@@ -300,6 +355,7 @@ def _content_model(doc: dict[str, Any]) -> dict[str, Any]:
                 "outline_number": sec.get("outline_number"),
                 "content": content,
                 "table": table,
+                "blocks": _section_blocks(raw, content, table),
                 "field_rows": field_rows,
                 "input_mode": sec.get("input_mode"),
             }
@@ -540,19 +596,12 @@ def export_docx_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
         if sec.get("field_rows"):
             for label, val in sec["field_rows"]:
                 document.add_paragraph(f"{label} : {val}", style=styles["BodyBI"])
-        elif sec["content"]:
-            _add_outline_paragraphs(document, sec["content"], styles["BodyBI"])
-        table = sec.get("table")
-        if table and table.get("rows"):
-            cols = table.get("columns") or []
-            t = document.add_table(rows=1, cols=len(cols))
-            hdr_cells = t.rows[0].cells
-            for i, c in enumerate(cols):
-                hdr_cells[i].text = c
-            for row in table["rows"]:
-                cells = t.add_row().cells
-                for i, c in enumerate(cols):
-                    cells[i].text = str(row.get(c, ""))
+        else:
+            for block in sec.get("blocks") or []:
+                if block.get("type") == "text" and block.get("content"):
+                    _add_outline_paragraphs(document, block["content"], styles["BodyBI"])
+                elif block.get("type") == "table" and block.get("table"):
+                    _add_section_table_docx(document, block["table"], styles)
 
     document.add_paragraph("")
     city = meta.get("city_date") or ""
@@ -800,28 +849,12 @@ def export_pdf_bytes(doc: dict[str, Any]) -> tuple[bytes, str, str]:
             )
             story.append(t)
             story.append(Spacer(1, 6))
-        elif sec["content"]:
-            story.extend(_outline_pdf_paragraphs(sec["content"], body_style))
-        table = sec.get("table")
-        if table and table.get("rows"):
-            cols = table.get("columns") or []
-            data = [cols] + [[str(r.get(c, "")) for c in cols] for r in table["rows"]]
-            t = Table(data, hAlign="LEFT")
-            t.setStyle(
-                TableStyle(
-                    [
-                        ("FONTNAME", (0, 0), (-1, 0), body_font),
-                        ("FONTNAME", (0, 1), (-1, -1), body_font),
-                        ("FONTSIZE", (0, 0), (-1, -1), sizes["Body"]),
-                        ("BACKGROUND", (0, 0), (-1, 0), colors.Color(0.82, 0.82, 0.82)),
-                        ("BOX", (0, 0), (-1, -1), 0.5, colors.black),
-                        ("LINEBELOW", (0, 0), (-1, 0), 0.75, colors.black),
-                        ("INNERGRID", (0, 0), (-1, -1), 0.4, colors.Color(0.55, 0.55, 0.55)),
-                        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                    ]
-                )
-            )
-            story.append(t)
+        else:
+            for block in sec.get("blocks") or []:
+                if block.get("type") == "text" and block.get("content"):
+                    story.extend(_outline_pdf_paragraphs(block["content"], body_style))
+                elif block.get("type") == "table" and block.get("table"):
+                    _add_section_table_pdf(story, block["table"], body_font, sizes)
 
     story.append(Spacer(1, 12))
     city = meta.get("city_date") or ""

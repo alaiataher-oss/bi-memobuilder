@@ -146,26 +146,32 @@ function renderA4(doc, tmpl) {
       ensureSectionPoints(data);
       if (data.points?.length) syncSectionContentFromPoints(data);
     }
-    const content = (data.content || "").trim();
-    const showPlaceholder = !content;
-    let tableHtml = "";
-    if (data.table?.rows?.length) {
-      const cols = data.table.columns || [];
-      tableHtml = `<table class="data m02-data"><thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
-        <tbody>${data.table.rows.map((r) => `<tr>${cols.map((c) => `<td>${esc(r[c] || "")}</td>`).join("")}</tr>`).join("")}</tbody></table>`;
-    }
+    ensureSectionBlocks(data);
     secIndex += 1;
     const titleHtml = isM01 || isMR
       ? ""
       : `<div class="sec-title">${esc(sectionHeading(sec.title, sec.outline_number, secIndex))}</div>`;
-    const bodyText = showPlaceholder ? sec.placeholder : content;
     const indentClass = isM01 ? "body-indent" : "";
-    return `${titleHtml}
-      <div class="body-p ${indentClass} ${showPlaceholder ? "placeholder-preview" : ""}"
-           contenteditable="true"
-           data-live-section="${esc(sec.key)}"
-           spellcheck="true">${formatOutlineHtml(bodyText || "")}</div>
-      ${tableHtml}`;
+    const blocksHtml = data.blocks.map((block) => {
+      if (block.type === "table") {
+        const tbl = block.table;
+        if (!tbl?.columns?.length) return "";
+        return renderLiveTableHtml(sec.key, tbl, block.id);
+      }
+      const content = (block.content || "").trim();
+      const showPlaceholder = !content;
+      const bodyText = showPlaceholder ? sec.placeholder : block.content || "";
+      return `
+        <div class="body-p block-text ${indentClass} ${showPlaceholder ? "placeholder-preview" : ""}"
+             draggable="true"
+             data-drag-block="${esc(block.id)}"
+             data-drag-sec="${esc(sec.key)}"
+             contenteditable="true"
+             data-live-section="${esc(sec.key)}"
+             data-live-text-block="${esc(block.id)}"
+             spellcheck="true">${formatOutlineHtml(bodyText || "")}</div>`;
+    }).join("");
+    return `${titleHtml}<div class="sec-blocks" data-sec-blocks="${esc(sec.key)}">${blocksHtml}</div>`;
   }).join("");
 
   let metaBlock = "";
@@ -358,6 +364,133 @@ function ensureBodyMode(sec) {
 function syncSectionContentFromPoints(sec) {
   ensureSectionPoints(sec);
   sec.content = pointsToContent(sec.points);
+  ensureSectionBlocks(sec);
+  const textBlock = sec.blocks.find((b) => b.type === "text");
+  if (textBlock) textBlock.content = sec.content;
+}
+
+function newBlockId() {
+  return `b${Date.now().toString(36)}${Math.random().toString(36).slice(2, 7)}`;
+}
+
+/** Urutan blok teks/tabel dalam satu bagian — bisa digeser before/after teks. */
+function ensureSectionBlocks(data) {
+  if (Array.isArray(data.blocks) && data.blocks.length) {
+    syncLegacyFromBlocks(data);
+    return data.blocks;
+  }
+  const blocks = [];
+  const text = data.content || "";
+  const hasTable = !!(data.table && Array.isArray(data.table.columns) && data.table.columns.length);
+  const pos = data.table_position === "before" ? "before" : "after";
+  if (hasTable && pos === "before") {
+    blocks.push({ id: newBlockId(), type: "table", table: data.table });
+  }
+  blocks.push({ id: newBlockId(), type: "text", content: text });
+  if (hasTable && pos !== "before") {
+    blocks.push({ id: newBlockId(), type: "table", table: data.table });
+  }
+  data.blocks = blocks;
+  syncLegacyFromBlocks(data);
+  return data.blocks;
+}
+
+function syncLegacyFromBlocks(data) {
+  if (!Array.isArray(data.blocks)) return;
+  const textBlocks = data.blocks.filter((b) => b.type === "text");
+  data.content = textBlocks.map((b) => b.content || "").join("\n\n");
+  const tableBlock = data.blocks.find((b) => b.type === "table");
+  data.table = tableBlock?.table || null;
+  const ti = data.blocks.findIndex((b) => b.type === "table");
+  const si = data.blocks.findIndex((b) => b.type === "text");
+  if (ti >= 0 && si >= 0) data.table_position = ti < si ? "before" : "after";
+}
+
+function getSectionTable(data) {
+  ensureSectionBlocks(data);
+  return data.blocks.find((b) => b.type === "table")?.table || data.table || null;
+}
+
+function setSectionTable(data, table) {
+  ensureSectionBlocks(data);
+  const idx = data.blocks.findIndex((b) => b.type === "table");
+  if (table && table.columns?.length) {
+    if (idx >= 0) data.blocks[idx].table = table;
+    else data.blocks.push({ id: newBlockId(), type: "table", table });
+  } else if (idx >= 0) {
+    data.blocks.splice(idx, 1);
+  }
+  data.table = table;
+  syncLegacyFromBlocks(data);
+}
+
+function reorderSectionBlocks(secKey, fromIdx, toIdx) {
+  const sec = state.doc?.sections?.find((s) => s.key === secKey);
+  if (!sec || fromIdx === toIdx) return;
+  const blocks = ensureSectionBlocks(sec);
+  if (fromIdx < 0 || fromIdx >= blocks.length || toIdx < 0 || toIdx >= blocks.length) return;
+  const [item] = blocks.splice(fromIdx, 1);
+  blocks.splice(toIdx, 0, item);
+  syncLegacyFromBlocks(sec);
+}
+
+function syncSectionFieldsToLeft(secKey) {
+  const sec = state.doc?.sections?.find((s) => s.key === secKey);
+  if (!sec) return;
+  ensureSectionBlocks(sec);
+  const textarea = document.querySelector(`textarea[data-section="${secKey}"]`);
+  if (textarea && document.activeElement !== textarea) textarea.value = sec.content || "";
+  if (ensureBodyMode(sec) === "points") {
+    ensureSectionPoints(sec);
+    sec.points.forEach((p, i) => {
+      const inp = document.querySelector(`[data-point-sec="${secKey}"][data-point-idx="${i}"]`);
+      if (inp && document.activeElement !== inp) inp.value = p.text || "";
+    });
+  }
+  const table = getSectionTable(sec);
+  if (table?.rows) {
+    document.querySelectorAll(`[data-table="${secKey}"]`).forEach((inp) => {
+      const row = Number(inp.dataset.row);
+      const col = inp.dataset.col;
+      if (document.activeElement !== inp) inp.value = table.rows[row]?.[col] || "";
+    });
+  }
+}
+
+function renderLiveTableHtml(secKey, table, blockId) {
+  const cols = table.columns || [];
+  const rows = table.rows || [];
+  if (!cols.length) return "";
+  return `
+    <div class="live-table-wrap" draggable="true" data-drag-block="${esc(blockId)}" data-drag-sec="${esc(secKey)}">
+      <div class="block-drag-label" title="Geser posisi">⠿ Tabel · geser sebelum/sesudah teks</div>
+      <table class="data m02-data live-table">
+        <thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+        <tbody>${rows.map((r, ri) => `<tr>${cols.map((c) => `
+          <td><span class="live-cell" contenteditable="true" spellcheck="true"
+            data-live-table-sec="${esc(secKey)}" data-live-table-row="${ri}" data-live-table-col="${esc(c)}">${esc(r[c] || "")}</span></td>
+        `).join("")}</tr>`).join("")}</tbody>
+      </table>
+    </div>`;
+}
+
+function blockOrderPanel(sec, data) {
+  ensureSectionBlocks(data);
+  if (data.blocks.length < 2) return "";
+  return `
+    <div class="block-order-panel" data-block-order-sec="${esc(sec.key)}">
+      <div class="hint">Urutan: geser ⠿ atau klik panah — tabel bisa sebelum/sesudah teks</div>
+      ${data.blocks.map((b, i) => `
+        <div class="block-order-item" draggable="true" data-drag-sec="${esc(sec.key)}" data-drag-idx="${i}">
+          <span class="drag-handle" title="Geser">⠿</span>
+          <span class="block-order-label">${b.type === "table" ? "Tabel" : "Teks"}</span>
+          <span class="block-order-actions">
+            ${i > 0 ? `<button type="button" class="btn btn-tiny" data-block-move="${esc(sec.key)}" data-block-idx="${i}" data-block-dir="-1">↑</button>` : ""}
+            ${i < data.blocks.length - 1 ? `<button type="button" class="btn btn-tiny" data-block-move="${esc(sec.key)}" data-block-idx="${i}" data-block-dir="1">↓</button>` : ""}
+          </span>
+        </div>
+      `).join("")}
+    </div>`;
 }
 
 
@@ -404,11 +537,13 @@ function pointsEditor(secKey, points) {
 
 
 function tableEditor(sec, data) {
-  const hasTable = !!(data.table && Array.isArray(data.table.columns) && data.table.columns.length);
+  ensureSectionBlocks(data);
+  const table = getSectionTable(data);
+  const hasTable = !!(table && Array.isArray(table.columns) && table.columns.length);
   if (!hasTable) {
     return `
       <div class="table-panel">
-        <div class="hint">Tabel (opsional) — agenda, kontribusi, risiko, atau kustom</div>
+        <div class="hint">Tabel (opsional) — agenda, kontribusi, risiko, atau kustom. Posisi bisa digeser sebelum/sesudah teks.</div>
         <div class="btn-row tight">
           ${Object.entries(TABLE_PRESETS).map(([key, preset]) => `
             <button type="button" class="btn" data-add-table="${esc(sec.key)}" data-preset="${key}">+ ${esc(preset.label)}</button>
@@ -416,12 +551,13 @@ function tableEditor(sec, data) {
         </div>
       </div>`;
   }
-  const cols = data.table.columns;
-  const rows = data.table.rows || [];
+  const cols = table.columns;
+  const rows = table.rows || [];
   return `
+    ${blockOrderPanel(sec, data)}
     <div class="table-panel">
       <div class="section-head" style="margin-bottom:0.35rem">
-        <div class="hint">Tabel terstruktur</div>
+        <div class="hint">Tabel terstruktur · edit di sini atau langsung di preview kanan</div>
         <button type="button" class="btn btn-tiny danger" data-remove-table="${esc(sec.key)}">Hapus tabel</button>
       </div>
       <div class="btn-row tight" style="margin-bottom:0.35rem">
@@ -675,6 +811,7 @@ function livePreview() {
   if (state.route !== "editor" || !state.doc) return;
   renderPreviewOnly();
   bindPreviewEditable();
+  bindBlockDragDrop();
   scheduleAutosave();
 }
 
@@ -1176,11 +1313,37 @@ function bindPreviewEditable() {
       const key = el.dataset.liveSection;
       const sec = state.doc.sections.find((s) => s.key === key);
       const text = el.innerText.replace(/\u00a0/g, " ");
-      sec.content = text;
-      sec.points = contentToPoints(text);
+      ensureSectionBlocks(sec);
+      const textBlockId = el.dataset.liveTextBlock;
+      const textBlock = textBlockId
+        ? sec.blocks.find((b) => b.id === textBlockId && b.type === "text")
+        : sec.blocks.find((b) => b.type === "text");
+      if (textBlock) textBlock.content = text;
+      syncLegacyFromBlocks(sec);
+      sec.points = contentToPoints(sec.content);
       sec.ai_suggested = false;
+      syncSectionFieldsToLeft(key);
       scheduleAutosave();
-      setSave("Live · belum tersimpan…");
+      setSave("Live · sinkron ke kiri");
+    });
+  });
+
+  root.querySelectorAll("[data-live-table-sec]").forEach((el) => {
+    if (el.dataset.bound === "1") return;
+    el.dataset.bound = "1";
+    el.addEventListener("input", () => {
+      const secKey = el.dataset.liveTableSec;
+      const sec = state.doc.sections.find((s) => s.key === secKey);
+      const table = getSectionTable(sec);
+      if (!table?.rows) return;
+      const row = Number(el.dataset.liveTableRow);
+      const col = el.dataset.liveTableCol;
+      if (!table.rows[row]) table.rows[row] = {};
+      table.rows[row][col] = el.innerText.replace(/\u00a0/g, " ");
+      syncLegacyFromBlocks(sec);
+      syncSectionFieldsToLeft(secKey);
+      scheduleAutosave();
+      setSave("Live · tabel sinkron ke kiri");
     });
   });
 
@@ -1230,10 +1393,72 @@ function bindPreviewEditable() {
 
 }
 
+function bindBlockDragDrop() {
+  const main = $main();
+  let dragSec = null;
+  let dragIdx = null;
+
+  const resolveIdx = (secKey, el) => {
+    const sec = state.doc?.sections?.find((s) => s.key === secKey);
+    if (!sec) return -1;
+    ensureSectionBlocks(sec);
+    const blockId = el.dataset.dragBlock;
+    if (blockId) return sec.blocks.findIndex((b) => b.id === blockId);
+    const idx = el.dataset.dragIdx;
+    return idx != null ? Number(idx) : -1;
+  };
+
+  main.querySelectorAll("[data-drag-sec]").forEach((el) => {
+    if (el.dataset.dragBound === "1") return;
+    el.dataset.dragBound = "1";
+    el.addEventListener("dragstart", (ev) => {
+      dragSec = el.dataset.dragSec;
+      dragIdx = resolveIdx(dragSec, el);
+      el.classList.add("dragging");
+      ev.dataTransfer.effectAllowed = "move";
+      ev.dataTransfer.setData("text/plain", `${dragSec}:${dragIdx}`);
+    });
+    el.addEventListener("dragend", () => {
+      el.classList.remove("dragging");
+      dragSec = null;
+      dragIdx = null;
+      main.querySelectorAll(".drag-over").forEach((n) => n.classList.remove("drag-over"));
+    });
+    el.addEventListener("dragover", (ev) => {
+      if (!dragSec || el.dataset.dragSec !== dragSec) return;
+      ev.preventDefault();
+      el.classList.add("drag-over");
+    });
+    el.addEventListener("dragleave", () => el.classList.remove("drag-over"));
+    el.addEventListener("drop", (ev) => {
+      ev.preventDefault();
+      el.classList.remove("drag-over");
+      const toIdx = resolveIdx(el.dataset.dragSec, el);
+      if (dragSec && dragIdx != null && toIdx >= 0 && dragIdx !== toIdx) {
+        reorderSectionBlocks(dragSec, dragIdx, toIdx);
+        render();
+        setSave("Urutan blok diperbarui");
+      }
+    });
+  });
+
+  main.querySelectorAll("[data-block-move]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const secKey = btn.dataset.blockMove;
+      const idx = Number(btn.dataset.blockIdx);
+      const dir = Number(btn.dataset.blockDir);
+      reorderSectionBlocks(secKey, idx, idx + dir);
+      render();
+      setSave("Urutan blok diperbarui");
+    });
+  });
+}
+
 function renderPreviewOnly() {
   const el = document.getElementById("a4-preview");
   if (!el || !state.doc) return;
-  if (el.contains(document.activeElement) && document.activeElement.isContentEditable) {
+  const active = document.activeElement;
+  if (el.contains(active) && (active.isContentEditable || active.closest?.(".live-table-wrap"))) {
     return;
   }
   const tmpl = state.templates.templates[state.doc.type];
@@ -1949,6 +2174,7 @@ function bindView() {
   if (state.route === "editor" && state.doc) {
     ensureStructuredFields(state.doc, state.templates.templates[state.doc.type]);
     bindPreviewEditable();
+    bindBlockDragDrop();
     main.querySelectorAll("[data-tab]").forEach((t) => {
       t.addEventListener("click", () => {
         state.editorTab = t.dataset.tab;
@@ -1999,7 +2225,10 @@ function bindView() {
     main.querySelectorAll("[data-section]").forEach((el) => {
       el.addEventListener("input", () => {
         const sec = state.doc.sections.find((s) => s.key === el.dataset.section);
-        sec.content = el.value;
+        ensureSectionBlocks(sec);
+        const textBlock = sec.blocks.find((b) => b.type === "text");
+        if (textBlock) textBlock.content = el.value;
+        syncLegacyFromBlocks(sec);
         sec.body_mode = "prose";
         sec.ai_suggested = false;
         livePreview();
@@ -2158,8 +2387,9 @@ function bindView() {
       btn.addEventListener("click", () => {
         const sec = state.doc.sections.find((s) => s.key === btn.dataset.addTable);
         const preset = TABLE_PRESETS[btn.dataset.preset] || TABLE_PRESETS.custom;
-        sec.table = { columns: [...preset.columns], rows: [{}] };
-        sec.table.rows[0] = Object.fromEntries(preset.columns.map((c) => [c, ""]));
+        const table = { columns: [...preset.columns], rows: [{}] };
+        table.rows[0] = Object.fromEntries(preset.columns.map((c) => [c, ""]));
+        setSectionTable(sec, table);
         scheduleAutosave();
         render();
       });
@@ -2167,7 +2397,7 @@ function bindView() {
     main.querySelectorAll("[data-remove-table]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const sec = state.doc.sections.find((s) => s.key === btn.dataset.removeTable);
-        sec.table = null;
+        setSectionTable(sec, null);
         scheduleAutosave();
         render();
       });
@@ -2175,12 +2405,14 @@ function bindView() {
     main.querySelectorAll("[data-add-col]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const sec = state.doc.sections.find((s) => s.key === btn.dataset.addCol);
-        if (!sec.table) return;
-        let n = sec.table.columns.length + 1;
+        const table = getSectionTable(sec);
+        if (!table) return;
+        let n = table.columns.length + 1;
         let name = `Kolom ${n}`;
-        while (sec.table.columns.includes(name)) { n += 1; name = `Kolom ${n}`; }
-        sec.table.columns.push(name);
-        (sec.table.rows || []).forEach((r) => { r[name] = ""; });
+        while (table.columns.includes(name)) { n += 1; name = `Kolom ${n}`; }
+        table.columns.push(name);
+        (table.rows || []).forEach((r) => { r[name] = ""; });
+        syncLegacyFromBlocks(sec);
         scheduleAutosave();
         render();
       });
@@ -2188,16 +2420,19 @@ function bindView() {
     main.querySelectorAll("[data-col-name]").forEach((el) => {
       el.addEventListener("change", () => {
         const sec = state.doc.sections.find((s) => s.key === el.dataset.colName);
+        const table = getSectionTable(sec);
+        if (!table) return;
         const idx = Number(el.dataset.colIdx);
-        const oldName = sec.table.columns[idx];
+        const oldName = table.columns[idx];
         const newName = el.value.trim() || oldName;
-        sec.table.columns[idx] = newName;
-        (sec.table.rows || []).forEach((r) => {
+        table.columns[idx] = newName;
+        (table.rows || []).forEach((r) => {
           if (oldName !== newName) {
             r[newName] = r[oldName] || "";
             delete r[oldName];
           }
         });
+        syncLegacyFromBlocks(sec);
         scheduleAutosave();
         render();
       });
@@ -2205,7 +2440,10 @@ function bindView() {
     main.querySelectorAll("[data-remove-row]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const sec = state.doc.sections.find((s) => s.key === btn.dataset.removeRow);
-        sec.table.rows.splice(Number(btn.dataset.row), 1);
+        const table = getSectionTable(sec);
+        if (!table?.rows) return;
+        table.rows.splice(Number(btn.dataset.row), 1);
+        syncLegacyFromBlocks(sec);
         scheduleAutosave();
         render();
       });
@@ -2340,13 +2578,16 @@ function bindView() {
     main.querySelectorAll("[data-add-row]").forEach((btn) => {
       btn.addEventListener("click", () => {
         const sec = state.doc.sections.find((s) => s.key === btn.dataset.addRow);
-        if (!sec.table || !sec.table.columns?.length) {
-          sec.table = { columns: ["Kolom 1", "Kolom 2"], rows: [] };
+        let table = getSectionTable(sec);
+        if (!table || !table.columns?.length) {
+          table = { columns: ["Kolom 1", "Kolom 2"], rows: [] };
+          setSectionTable(sec, table);
         }
-        if (!sec.table.rows) sec.table.rows = [];
+        if (!table.rows) table.rows = [];
         const row = {};
-        sec.table.columns.forEach((c) => { row[c] = ""; });
-        sec.table.rows.push(row);
+        table.columns.forEach((c) => { row[c] = ""; });
+        table.rows.push(row);
+        syncLegacyFromBlocks(sec);
         scheduleAutosave();
         render();
       });
@@ -2354,7 +2595,10 @@ function bindView() {
     main.querySelectorAll("[data-table]").forEach((el) => {
       el.addEventListener("input", () => {
         const sec = state.doc.sections.find((s) => s.key === el.dataset.table);
-        sec.table.rows[Number(el.dataset.row)][el.dataset.col] = el.value;
+        const table = getSectionTable(sec);
+        if (!table?.rows) return;
+        table.rows[Number(el.dataset.row)][el.dataset.col] = el.value;
+        syncLegacyFromBlocks(sec);
         livePreview();
       });
     });
