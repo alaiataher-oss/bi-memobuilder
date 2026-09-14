@@ -2610,12 +2610,12 @@ function bindView() {
         (table.rows || []).forEach((r) => { r[name] = ""; });
         ensureColWidths(table);
         // new column gets fair share from last
-        const n = table.columns.length;
-        const share = Math.max(8, Math.round(100 / n));
-        table.col_widths = table.col_widths.map((w) => Math.max(5, w - Math.round(share / (n - 1))));
+        const colCount = table.columns.length;
+        const share = Math.max(8, Math.round(100 / colCount));
+        table.col_widths = table.col_widths.map((w) => Math.max(5, w - Math.round(share / (colCount - 1))));
         table.col_widths.push(share);
         const sum = table.col_widths.reduce((a, b) => a + b, 0);
-        table.col_widths[n - 1] += 100 - sum;
+        table.col_widths[colCount - 1] += 100 - sum;
         syncLegacyFromBlocks(sec);
         scheduleAutosave();
         render();
