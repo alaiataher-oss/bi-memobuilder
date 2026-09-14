@@ -281,19 +281,47 @@ def _section_blocks(raw: dict[str, Any], content: str, table: dict[str, Any] | N
     return out
 
 
+def _table_col_widths_mm(table: dict[str, Any], total_mm: float = 160.0) -> list[float]:
+    cols = table.get("columns") or []
+    if not cols:
+        return []
+    raw = table.get("col_widths")
+    n = len(cols)
+    if isinstance(raw, list) and len(raw) == n:
+        widths = [float(w) for w in raw]
+    else:
+        widths = []
+        for c in cols:
+            name = str(c or "").strip().lower()
+            if name in {"no", "no.", "nomor", "nr", "#"}:
+                widths.append(8.0)
+            else:
+                widths.append(100.0 / n)
+        s = sum(widths) or 1.0
+        widths = [w / s * 100.0 for w in widths]
+    s = sum(widths) or 1.0
+    return [max(8.0, w / s * total_mm) for w in widths]
+
+
 def _add_section_table_docx(document: Document, table: dict[str, Any], styles) -> None:
     cols = table.get("columns") or []
     rows = table.get("rows") or []
     if not cols:
         return
     t = document.add_table(rows=1, cols=len(cols))
+    t.autofit = False
+    widths_mm = _table_col_widths_mm(table)
     hdr_cells = t.rows[0].cells
     for i, c in enumerate(cols):
         hdr_cells[i].text = str(c)
+        if i < len(widths_mm):
+            hdr_cells[i].width = Mm(widths_mm[i])
     for row in rows:
         cells = t.add_row().cells
         for i, c in enumerate(cols):
             cells[i].text = str(row.get(c, ""))
+            if i < len(widths_mm):
+                cells[i].width = Mm(widths_mm[i])
 
 
 def _add_section_table_pdf(story: list, table: dict[str, Any], body_font: str, sizes: dict) -> None:
@@ -302,7 +330,8 @@ def _add_section_table_pdf(story: list, table: dict[str, Any], body_font: str, s
     if not cols:
         return
     data = [cols] + [[str(r.get(c, "")) for c in cols] for r in rows]
-    t = Table(data, hAlign="LEFT")
+    widths_mm = _table_col_widths_mm(table)
+    t = Table(data, colWidths=[w * mm for w in widths_mm], hAlign="LEFT")
     t.setStyle(
         TableStyle(
             [

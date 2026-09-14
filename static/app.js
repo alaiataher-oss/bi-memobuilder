@@ -457,15 +457,83 @@ function syncSectionFieldsToLeft(secKey) {
   }
 }
 
+function guessColWidthPct(colName, count) {
+  const n = String(colName || "").toLowerCase().trim();
+  if (/^(no\.?|nomor|nr|#)$/.test(n)) return Math.max(6, Math.round(100 / (count * 3)));
+  if (/^(waktu|tgl|tanggal|periode)$/.test(n)) return Math.round(100 / (count * 1.2));
+  if (/^(lokasi|tempat)$/.test(n)) return Math.round(100 / (count * 1.3));
+  return Math.round(100 / count);
+}
+
+/** Lebar kolom dalam % (jumlah ≈ 100). Kolom No otomatis lebih sempit. */
+function ensureColWidths(table) {
+  if (!table?.columns?.length) return [];
+  const n = table.columns.length;
+  let widths = Array.isArray(table.col_widths) ? table.col_widths.map(Number) : [];
+  if (widths.length !== n) {
+    widths = table.columns.map((c) => guessColWidthPct(c, n));
+    const sum = widths.reduce((a, b) => a + b, 0) || 1;
+    widths = widths.map((w) => Math.max(5, Math.round((w / sum) * 100)));
+    // normalize remainder onto last column
+    const s2 = widths.reduce((a, b) => a + b, 0);
+    widths[widths.length - 1] += 100 - s2;
+  }
+  table.col_widths = widths;
+  return widths;
+}
+
+function setColWidthPair(table, leftIdx, leftPct) {
+  ensureColWidths(table);
+  const n = table.columns.length;
+  if (leftIdx < 0 || leftIdx >= n - 1) return;
+  const rightIdx = leftIdx + 1;
+  const pair = table.col_widths[leftIdx] + table.col_widths[rightIdx];
+  let L = Math.max(5, Math.min(pair - 5, Math.round(leftPct)));
+  table.col_widths[leftIdx] = L;
+  table.col_widths[rightIdx] = pair - L;
+}
+
+function colWidthStyle(table) {
+  const widths = ensureColWidths(table);
+  return widths.map((w) => `<col style="width:${w}%" />`).join("");
+}
+
+function colWidthControls(secKey, table) {
+  const widths = ensureColWidths(table);
+  return `
+    <div class="col-width-panel">
+      <div class="hint">Lebar kolom (%) — seret pegangan antar kolom di tabel, atau atur di sini. Kolom No biasanya lebih sempit.</div>
+      <div class="col-width-rows">
+        ${table.columns.map((c, i) => `
+          <label class="col-width-row">
+            <span class="col-width-name">${esc(c)}</span>
+            <input type="range" min="5" max="70" value="${widths[i]}"
+                   data-col-width="${esc(secKey)}" data-col-idx="${i}" />
+            <input type="number" min="5" max="80" value="${widths[i]}"
+                   data-col-width-num="${esc(secKey)}" data-col-idx="${i}" class="col-width-num" />
+            <span class="muted small">%</span>
+          </label>
+        `).join("")}
+      </div>
+      <button type="button" class="btn btn-tiny" data-col-width-auto="${esc(secKey)}">Reset lebar otomatis</button>
+    </div>`;
+}
+
 function renderLiveTableHtml(secKey, table, blockId) {
   const cols = table.columns || [];
   const rows = table.rows || [];
   if (!cols.length) return "";
+  ensureColWidths(table);
   return `
     <div class="live-table-wrap" draggable="true" data-drag-block="${esc(blockId)}" data-drag-sec="${esc(secKey)}">
-      <div class="block-drag-label" title="Geser posisi">⠿ Tabel · geser sebelum/sesudah teks</div>
-      <table class="data m02-data live-table">
-        <thead><tr>${cols.map((c) => `<th>${esc(c)}</th>`).join("")}</tr></thead>
+      <div class="block-drag-label" title="Geser posisi">⠿ Tabel · geser sebelum/sesudah teks · seret garis kolom untuk lebar</div>
+      <table class="data m02-data live-table" data-live-table-resize="${esc(secKey)}" style="table-layout:fixed;width:100%">
+        <colgroup>${colWidthStyle(table)}</colgroup>
+        <thead><tr>${cols.map((c, ci) => `
+          <th>
+            ${esc(c)}
+            ${ci < cols.length - 1 ? `<span class="col-resize" data-resize-sec="${esc(secKey)}" data-resize-idx="${ci}" title="Seret untuk ubah lebar"></span>` : ""}
+          </th>`).join("")}</tr></thead>
         <tbody>${rows.map((r, ri) => `<tr>${cols.map((c) => `
           <td><span class="live-cell" contenteditable="true" spellcheck="true"
             data-live-table-sec="${esc(secKey)}" data-live-table-row="${ri}" data-live-table-col="${esc(c)}">${esc(r[c] || "")}</span></td>
@@ -553,6 +621,7 @@ function tableEditor(sec, data) {
   }
   const cols = table.columns;
   const rows = table.rows || [];
+  ensureColWidths(table);
   return `
     ${blockOrderPanel(sec, data)}
     <div class="table-panel">
@@ -563,10 +632,13 @@ function tableEditor(sec, data) {
       <div class="btn-row tight" style="margin-bottom:0.35rem">
         <button type="button" class="btn btn-tiny" data-add-col="${esc(sec.key)}">+ Kolom</button>
       </div>
-      <table class="table-editor">
+      ${colWidthControls(sec.key, table)}
+      <table class="table-editor" data-editor-table-resize="${esc(sec.key)}" style="table-layout:fixed;width:100%">
+        <colgroup>${colWidthStyle(table)}</colgroup>
         <thead><tr>
           ${cols.map((c, ci) => `<th>
             <input data-col-name="${esc(sec.key)}" data-col-idx="${ci}" value="${esc(c)}" />
+            ${ci < cols.length - 1 ? `<span class="col-resize" data-resize-sec="${esc(sec.key)}" data-resize-idx="${ci}" title="Seret untuk ubah lebar"></span>` : ""}
           </th>`).join("")}
           <th style="width:2.2rem"></th>
         </tr></thead>
@@ -812,6 +884,7 @@ function livePreview() {
   renderPreviewOnly();
   bindPreviewEditable();
   bindBlockDragDrop();
+  bindColResize();
   scheduleAutosave();
 }
 
@@ -1391,6 +1464,127 @@ function bindPreviewEditable() {
     });
   });
 
+}
+
+function bindColResize() {
+  const main = $main();
+  let dragging = null;
+
+  main.querySelectorAll(".col-resize").forEach((handle) => {
+    if (handle.dataset.resizeBound === "1") return;
+    handle.dataset.resizeBound = "1";
+    handle.addEventListener("mousedown", (ev) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      const secKey = handle.dataset.resizeSec;
+      const idx = Number(handle.dataset.resizeIdx);
+      const sec = state.doc?.sections?.find((s) => s.key === secKey);
+      const table = getSectionTable(sec);
+      if (!table) return;
+      ensureColWidths(table);
+      const tblEl = handle.closest("table");
+      dragging = {
+        secKey,
+        idx,
+        table,
+        startX: ev.clientX,
+        startL: table.col_widths[idx],
+        startR: table.col_widths[idx + 1],
+        pair: table.col_widths[idx] + table.col_widths[idx + 1],
+        tableWidth: tblEl?.getBoundingClientRect().width || 400,
+      };
+      document.body.classList.add("col-resizing");
+    });
+  });
+
+  if (!window.__colResizeBound) {
+    window.__colResizeBound = true;
+    window.addEventListener("mousemove", (ev) => {
+      if (!dragging) return;
+      const dxPct = ((ev.clientX - dragging.startX) / dragging.tableWidth) * 100;
+      let L = Math.max(5, Math.min(dragging.pair - 5, Math.round(dragging.startL + dxPct)));
+      dragging.table.col_widths[dragging.idx] = L;
+      dragging.table.col_widths[dragging.idx + 1] = dragging.pair - L;
+      syncLegacyFromBlocks(state.doc.sections.find((s) => s.key === dragging.secKey));
+      // live update colgroup without full re-render
+      document.querySelectorAll(
+        `table[data-live-table-resize="${dragging.secKey}"] colgroup, table[data-editor-table-resize="${dragging.secKey}"] colgroup`,
+      ).forEach((cg) => {
+        cg.innerHTML = colWidthStyle(dragging.table);
+      });
+      document.querySelectorAll(`[data-col-width="${dragging.secKey}"]`).forEach((inp) => {
+        const i = Number(inp.dataset.colIdx);
+        inp.value = dragging.table.col_widths[i];
+      });
+      document.querySelectorAll(`[data-col-width-num="${dragging.secKey}"]`).forEach((inp) => {
+        const i = Number(inp.dataset.colIdx);
+        inp.value = dragging.table.col_widths[i];
+      });
+    });
+    window.addEventListener("mouseup", () => {
+      if (!dragging) return;
+      dragging = null;
+      document.body.classList.remove("col-resizing");
+      scheduleAutosave();
+      setSave("Lebar kolom diperbarui");
+      livePreview();
+    });
+  }
+
+  const applyWidth = (secKey, idx, value, redistribute = true) => {
+    const sec = state.doc.sections.find((s) => s.key === secKey);
+    const table = getSectionTable(sec);
+    if (!table) return;
+    ensureColWidths(table);
+    const n = table.columns.length;
+    let v = Math.max(5, Math.min(80, Number(value) || 5));
+    if (redistribute && n > 1) {
+      const old = table.col_widths[idx];
+      const delta = v - old;
+      table.col_widths[idx] = v;
+      // take/give from the largest other column
+      let other = 0;
+      for (let i = 0; i < n; i++) {
+        if (i !== idx && table.col_widths[i] > table.col_widths[other === idx ? (idx + 1) % n : other]) other = i;
+      }
+      if (other === idx) other = (idx + 1) % n;
+      table.col_widths[other] = Math.max(5, table.col_widths[other] - delta);
+      const sum = table.col_widths.reduce((a, b) => a + b, 0);
+      table.col_widths[n - 1] += 100 - sum;
+    } else {
+      table.col_widths[idx] = v;
+    }
+    syncLegacyFromBlocks(sec);
+    livePreview();
+  };
+
+  main.querySelectorAll("[data-col-width]").forEach((el) => {
+    el.addEventListener("input", () => {
+      applyWidth(el.dataset.colWidth, Number(el.dataset.colIdx), el.value);
+      const num = main.querySelector(
+        `[data-col-width-num="${el.dataset.colWidth}"][data-col-idx="${el.dataset.colIdx}"]`,
+      );
+      if (num) num.value = el.value;
+    });
+  });
+  main.querySelectorAll("[data-col-width-num]").forEach((el) => {
+    el.addEventListener("change", () => {
+      applyWidth(el.dataset.colWidthNum, Number(el.dataset.colIdx), el.value);
+      render();
+    });
+  });
+  main.querySelectorAll("[data-col-width-auto]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const sec = state.doc.sections.find((s) => s.key === btn.dataset.colWidthAuto);
+      const table = getSectionTable(sec);
+      if (!table) return;
+      table.col_widths = null;
+      ensureColWidths(table);
+      syncLegacyFromBlocks(sec);
+      render();
+      setSave("Lebar kolom direset otomatis");
+    });
+  });
 }
 
 function bindBlockDragDrop() {
@@ -2175,6 +2369,7 @@ function bindView() {
     ensureStructuredFields(state.doc, state.templates.templates[state.doc.type]);
     bindPreviewEditable();
     bindBlockDragDrop();
+    bindColResize();
     main.querySelectorAll("[data-tab]").forEach((t) => {
       t.addEventListener("click", () => {
         state.editorTab = t.dataset.tab;
@@ -2389,6 +2584,7 @@ function bindView() {
         const preset = TABLE_PRESETS[btn.dataset.preset] || TABLE_PRESETS.custom;
         const table = { columns: [...preset.columns], rows: [{}] };
         table.rows[0] = Object.fromEntries(preset.columns.map((c) => [c, ""]));
+        ensureColWidths(table);
         setSectionTable(sec, table);
         scheduleAutosave();
         render();
@@ -2412,6 +2608,14 @@ function bindView() {
         while (table.columns.includes(name)) { n += 1; name = `Kolom ${n}`; }
         table.columns.push(name);
         (table.rows || []).forEach((r) => { r[name] = ""; });
+        ensureColWidths(table);
+        // new column gets fair share from last
+        const n = table.columns.length;
+        const share = Math.max(8, Math.round(100 / n));
+        table.col_widths = table.col_widths.map((w) => Math.max(5, w - Math.round(share / (n - 1))));
+        table.col_widths.push(share);
+        const sum = table.col_widths.reduce((a, b) => a + b, 0);
+        table.col_widths[n - 1] += 100 - sum;
         syncLegacyFromBlocks(sec);
         scheduleAutosave();
         render();

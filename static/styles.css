@@ -626,6 +626,65 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .a4 .body-p.block-text { cursor: grab; }
 
+/* Lebar kolom tabel */
+.col-width-panel {
+  margin: 0.45rem 0 0.65rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d5e0ec;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+.col-width-rows { display: flex; flex-direction: column; gap: 0.3rem; }
+.col-width-row {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 7rem) 1fr 3.2rem auto;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0;
+  font-weight: 500;
+  font-size: 0.82rem;
+}
+.col-width-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.col-width-num {
+  width: 3.2rem;
+  margin: 0;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.82rem;
+}
+.table-editor th,
+.a4 .live-table th {
+  position: relative;
+}
+.col-resize {
+  position: absolute;
+  top: 0;
+  right: -3px;
+  width: 7px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 3;
+  user-select: none;
+}
+.col-resize:hover,
+.col-resize:active {
+  background: rgba(11, 79, 138, 0.35);
+}
+body.col-resizing {
+  cursor: col-resize !important;
+  user-select: none;
+}
+body.col-resizing .live-table-wrap,
+body.col-resizing [draggable="true"] {
+  pointer-events: none;
+}
+body.col-resizing .col-resize {
+  pointer-events: auto;
+}
+
 .trust-bar {
   display: flex; flex-wrap: wrap; gap: 0.5rem 1rem; align-items: center;
   background: #eef6f0; border: 1px solid #b7dfc4; color: #067647;
