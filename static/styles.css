@@ -427,7 +427,7 @@ textarea { min-height: 110px; resize: vertical; }
 }
 .a4 .sig-block .sig-rank { margin-top: 0.5mm; }
 
-/* Akuntabilitas M.02 — 1 baris × 4 kolom */
+/* Akuntabilitas M.02 — 2×2, ruang tanda tangan besar */
 .a4 .acc-wrap { margin-top: 8mm; }
 .a4 .acc-date-float { display: none; }
 .a4 table.acc-table {
@@ -436,41 +436,56 @@ textarea { min-height: 110px; resize: vertical; }
   margin: 8mm 0 6mm;
   table-layout: fixed;
   font-family: var(--font-body);
-  font-size: 9.5pt;
+  font-size: 11pt;
 }
-.a4 table.acc-table.acc-row4 th,
-.a4 table.acc-table.acc-row4 td {
+.a4 table.acc-table.acc-grid2 td {
   border: 1px solid #000;
+  width: 50%;
   vertical-align: top;
   padding: 0;
   background: #fff;
-  width: 25%;
 }
-.a4 table.acc-table.acc-row4 th {
+.a4 .acc-cell {
+  display: flex;
+  flex-direction: column;
+  min-height: 52mm;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 11pt;
+}
+.a4 .acc-head {
+  border-bottom: 1px solid #000;
+  padding: 2.2mm 2mm;
   font-weight: 700;
   text-align: center;
-  padding: 1.5mm 1mm;
-  font-size: 9pt;
+  font-size: 10.5pt;
 }
-.a4 .acc-cell.flat {
+.a4 .acc-body {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 36mm;
-  padding: 2mm 1.5mm 2.5mm;
+  padding: 2.5mm 2mm 3mm;
   text-align: center;
+  min-height: 42mm;
 }
-.a4 .acc-cell.flat .acc-name {
+.a4 .acc-role { margin-top: 1mm; min-height: 1.2em; }
+.a4 .acc-sigspace {
+  flex: 1 1 auto;
+  min-height: 28mm;
+  width: 100%;
+}
+.a4 .acc-name {
+  text-decoration: underline;
   font-weight: 700;
-  text-decoration: none;
-  margin: 0 0 0.5mm;
+  margin-top: auto;
 }
-.a4 .acc-cell.flat .acc-role,
-.a4 .acc-cell.flat .acc-rank { margin: 0; font-weight: 400; }
-.a4 .acc-cell.flat .acc-sigspace { flex: 1; min-height: 12mm; width: 100%; }
-.a4 .acc-sigspace { flex: 1; min-height: 14mm; width: 100%; }
-.a4 .acc-name { text-decoration: underline; }
 .a4 .acc-rank { margin-top: 0.5mm; }
+
+/* legacy 4-col — unused */
+.a4 table.acc-table.acc-row4 th,
+.a4 table.acc-table.acc-row4 td { border: 1px solid #000; }
+.a4 .acc-cell.flat { display: none; }
 
 /* legacy sig-m01 alias */
 .a4 .sig-m01 { display: none; }

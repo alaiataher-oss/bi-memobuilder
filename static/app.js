@@ -193,17 +193,24 @@ function renderA4(doc, tmpl) {
       ["approved_by", "Disetujui oleh"],
       ["received_by", "Diterima oleh"],
     ].filter(([k]) => doc.accountability?.[k]);
-    const heads = map.map(([, label]) => `<th>${esc(label)}</th>`).join("");
-    const cells = map.map(([k]) => {
+    const cells = map.map(([k, label]) => {
       const p = doc.accountability[k] || {};
-      return `<td><div class="acc-cell flat">
-        <div class="acc-name">${esc(p.name || "")}</div>
-        <div class="acc-role">${esc(p.title || "")}</div>
-        <div class="acc-rank">${esc(p.rank || "")}</div>
-        <div class="acc-sigspace"></div>
+      return `<td><div class="acc-cell">
+        <div class="acc-head">${esc(label)}</div>
+        <div class="acc-body">
+          <div class="acc-role">${esc(p.title || "")}</div>
+          <div class="acc-sigspace" aria-hidden="true"></div>
+          <div class="acc-name">${esc(p.name || "")}</div>
+          <div class="acc-rank">${esc(p.rank || "")}</div>
+        </div>
       </div></td>`;
-    }).join("");
-    acc = `<table class="acc-table acc-row4"><thead><tr>${heads}</tr></thead><tbody><tr>${cells}</tr></tbody></table>`;
+    });
+    let rows = "";
+    for (let i = 0; i < cells.length; i += 2) {
+      const right = cells[i + 1] || `<td><div class="acc-cell empty"><div class="acc-head">&nbsp;</div><div class="acc-body"><div class="acc-sigspace"></div></div></div></td>`;
+      rows += `<tr>${cells[i]}${right}</tr>`;
+    }
+    acc = `<table class="acc-table acc-grid2">${rows}</table>`;
     acc += renderSignatureBlock(doc, m);
   } else if (tmpl.accountability?.mode === "signatory_only" || isM01) {
     acc = renderSignatureBlock(doc, m);
@@ -275,14 +282,15 @@ function renderExampleA4(docType) {
       <div class="body-p placeholder-preview">…………</div>
       <div class="sec-title">4. Kesimpulan, Alternatif Usulan, dan Rekomendasi</div>
       <div class="body-p placeholder-preview">Rekomendasi: …………</div>
-      <table class="acc-table acc-row4">
-        <thead><tr><th>Dipersiapkan oleh</th><th>Diperiksa oleh</th><th>Didukung oleh</th><th>Disetujui oleh</th></tr></thead>
-        <tbody><tr>
-          <td><div class="acc-cell flat"><div class="acc-name">Laura Zefanya Simanjuntak</div><div class="acc-role">Analis</div><div class="acc-rank">Penata Muda Tingkat I (III/b)</div><div class="acc-sigspace"></div></div></td>
-          <td><div class="acc-cell flat"><div class="acc-sigspace"></div></div></td>
-          <td><div class="acc-cell flat"><div class="acc-sigspace"></div></div></td>
-          <td><div class="acc-cell flat"><div class="acc-sigspace"></div></div></td>
-        </tr></tbody>
+      <table class="acc-table acc-grid2">
+        <tr>
+          <td><div class="acc-cell"><div class="acc-head">Dipersiapkan oleh</div><div class="acc-body"><div class="acc-role">Analis</div><div class="acc-sigspace"></div><div class="acc-name">Laura Zefanya Simanjuntak</div><div class="acc-rank">Penata Muda Tingkat I (III/b)</div></div></div></td>
+          <td><div class="acc-cell"><div class="acc-head">Diperiksa oleh</div><div class="acc-body"><div class="acc-sigspace"></div></div></div></td>
+        </tr>
+        <tr>
+          <td><div class="acc-cell"><div class="acc-head">Didukung oleh</div><div class="acc-body"><div class="acc-sigspace"></div></div></div></td>
+          <td><div class="acc-cell"><div class="acc-head">Disetujui oleh</div><div class="acc-body"><div class="acc-sigspace"></div></div></div></td>
+        </tr>
       </table>
       <div class="sig-block">
         <div class="sig-date">Jakarta, 14 September 2026</div>
@@ -1162,7 +1170,7 @@ function editorPane(tmpl, tab) {
       const guide = state.roleGuidance || {};
       return `
         <h2>Akuntabilitas</h2>
-        <p class="hint">Template M.02: tabel <b>4 kolom sebaris</b> (Dipersiapkan → Diperiksa → Didukung → Disetujui/Diterima). <b>Disetujui oleh</b> biasanya Kepala Satker / Kepala Departemen. Blok tanda tangan kanan bawah = penyusun.</p>
+        <p class="hint">Template M.02: tabel akuntabilitas <b>2×2</b> (Dipersiapkan|Diperiksa / Didukung|Disetujui) dengan ruang tanda tangan di tiap sel. <b>Disetujui oleh</b> biasanya Kepala Satker / Kepala Departemen.</p>
         <div class="btn-row tight">
           <button type="button" class="btn btn-tiny" id="btn-compare-example-acc">Bandingkan ke contoh</button>
         </div>

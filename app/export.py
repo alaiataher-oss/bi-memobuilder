@@ -76,29 +76,38 @@ def _add_centered_run(paragraph, text: str, *, bold=False, underline=False, size
     return run
 
 
-def _fill_accountability_cell(cell, label: str, person: dict[str, str], *, header_inside: bool = False) -> None:
-    """Template blank M.02: name bold, then jabatan, pangkat (headers are table row)."""
+def _fill_accountability_cell(cell, label: str, person: dict[str, str]) -> None:
+    """2×2 cell: label header + jabatan + ruang tanda tangan + nama + pangkat."""
     _clear_cell(cell)
     border = {"sz": 12, "color": "000000", "val": "single"}
     _set_cell_border(cell, top=border, left=border, bottom=border, right=border)
 
-    if header_inside:
-        head = cell.add_paragraph()
-        _add_centered_run(head, f"{label}:", bold=True)
-
-    name_p = cell.add_paragraph()
-    _add_centered_run(name_p, person.get("name") or "", bold=True)
+    head = cell.add_paragraph()
+    _add_centered_run(head, label, bold=True)
+    pPr = head._p.get_or_add_pPr()
+    pBdr = OxmlElement("w:pBdr")
+    bottom = OxmlElement("w:bottom")
+    bottom.set(qn("w:val"), "single")
+    bottom.set(qn("w:sz"), "12")
+    bottom.set(qn("w:space"), "4")
+    bottom.set(qn("w:color"), "000000")
+    pBdr.append(bottom)
+    pPr.append(pBdr)
 
     role = cell.add_paragraph()
     _add_centered_run(role, person.get("title") or "")
 
+    # Generous signature space
+    for _ in range(5):
+        sp = cell.add_paragraph()
+        sp.paragraph_format.space_after = Pt(8)
+        _add_centered_run(sp, "")
+
+    name_p = cell.add_paragraph()
+    _add_centered_run(name_p, person.get("name") or "", underline=True, bold=True)
+
     rank_p = cell.add_paragraph()
     _add_centered_run(rank_p, person.get("rank") or "")
-
-    for _ in range(2):
-        sp = cell.add_paragraph()
-        sp.paragraph_format.space_after = Pt(6)
-        _add_centered_run(sp, "")
 
 
 def _add_accountability_table(document: Document, labels: list[str], roles: dict[str, Any]) -> None:
@@ -109,22 +118,22 @@ def _add_accountability_table(document: Document, labels: list[str], roles: dict
         "Disetujui oleh": "approved_by",
         "Diterima oleh": "received_by",
     }
-    # Official blank template: one header row + one content row, N columns
-    table = document.add_table(rows=2, cols=len(labels))
+    # Keep 2×2 grid (two columns); pad odd count with empty cell
+    n_rows = (len(labels) + 1) // 2
+    table = document.add_table(rows=n_rows, cols=2)
     table.autofit = True
-    for i, label in enumerate(labels):
-        head = table.cell(0, i)
-        _clear_cell(head)
-        border = {"sz": 12, "color": "000000", "val": "single"}
-        _set_cell_border(head, top=border, left=border, bottom=border, right=border)
-        p = head.paragraphs[0] if head.paragraphs else head.add_paragraph()
-        p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        run = p.add_run(label)
-        run.bold = True
-        run.font.size = Pt(9)
-        run.font.name = "Frutiger 45 Light"
-        person = roles.get(mapping[label]) or {}
-        _fill_accountability_cell(table.cell(1, i), label, person, header_inside=False)
+    for i in range(n_rows):
+        left_label = labels[i * 2]
+        right_label = labels[i * 2 + 1] if i * 2 + 1 < len(labels) else None
+        left_person = roles.get(mapping[left_label]) or {}
+        _fill_accountability_cell(table.cell(i, 0), left_label, left_person)
+        if right_label:
+            right_person = roles.get(mapping[right_label]) or {}
+            _fill_accountability_cell(table.cell(i, 1), right_label, right_person)
+        else:
+            _clear_cell(table.cell(i, 1))
+            border = {"sz": 12, "color": "000000", "val": "single"}
+            _set_cell_border(table.cell(i, 1), top=border, left=border, bottom=border, right=border)
 
 
 def _accountability_pdf_table(labels: list[str], roles: dict[str, Any], body_font: str, size: float) -> Table:
