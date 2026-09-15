@@ -1,3 +1,16 @@
+import {
+  mountMemoEditor,
+  destroyMemoEditor,
+  getCanvasHtml,
+  setCanvasHtml,
+  patchCanvasMeta,
+  patchCanvasSection,
+  patchCanvasTableCell,
+  prepareCanvasForRichEdit,
+  formatComplianceWarnings,
+  getMemoEditor,
+} from "./rich-editor.js";
+
 const state = {
   route: "dashboard",
   documents: [],
@@ -21,6 +34,9 @@ const state = {
   historyItems: [],
   historyCounts: { all: 0, draft: 0, word: 0 },
   roleGuidance: null,
+  canvasDirty: false,
+  formatWarnings: [],
+  richReady: false,
 };
 
 const $main = () => document.getElementById("main");
@@ -846,6 +862,7 @@ function scheduleAutosave() {
   setSave("Menyimpan…");
   state.autosaveTimer = setTimeout(async () => {
     try {
+      captureCanvasToDoc();
       const id = state.doc.id;
       const saved = await api(`/api/documents/${id}`, {
         method: "PUT",
@@ -879,13 +896,215 @@ function ensureStructuredFields(doc, tmpl) {
   });
 }
 
+function refreshFormatWarnings() {
+  if (!state.doc) {
+    state.formatWarnings = [];
+    return;
+  }
+  const html = state.doc.canvas_html || getCanvasHtml() || "";
+  state.formatWarnings = formatComplianceWarnings(html, state.doc.type);
+}
+
+function paintFormatWarnings() {
+  const host = document.querySelector(".preview-pane.rich-pane");
+  if (!host) return;
+  let box = host.querySelector(".format-warnings");
+  const warn = state.formatWarnings || [];
+  if (!warn.length) {
+    box?.remove();
+    return;
+  }
+  const html = `<strong>Peringatan format</strong> — perubahan manual tidak dihapus.<ul>${warn.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>`;
+  if (!box) {
+    box = document.createElement("div");
+    box.className = "format-warnings";
+    box.setAttribute("role", "status");
+    const scroll = host.querySelector(".a4-scroll");
+    host.insertBefore(box, scroll || null);
+  }
+  box.innerHTML = html;
+}
+
+function captureCanvasToDoc() {
+  if (!state.doc) return;
+  const html = getCanvasHtml();
+  if (html) {
+    state.doc.canvas_html = html;
+    if (state.canvasDirty) state.doc.manual_adjusted = true;
+    refreshFormatWarnings();
+  }
+}
+
+function rebuildStandardCanvas() {
+  if (!state.doc || !state.templates) return;
+  const tmpl = state.templates.templates[state.doc.type];
+  state.doc.canvas_html = renderA4(state.doc, tmpl);
+  state.canvasDirty = false;
+  state.doc.manual_adjusted = false;
+  refreshFormatWarnings();
+}
+
+/** Push canvas live fields back into left-form model (two-way). */
+function syncCanvasToForm() {
+  if (!state.doc) return;
+  const root = document.getElementById("a4-preview");
+  if (!root) return;
+
+  root.querySelectorAll("[data-live-meta]").forEach((el) => {
+    const key = el.dataset.liveMeta;
+    if (!key) return;
+    const val = (el.innerText || "").replace(/\u00a0/g, " ").trim();
+    state.doc.metadata[key] = val;
+    const input = document.querySelector(`#editor-pane [data-meta="${key}"]`);
+    if (input && document.activeElement !== input) {
+      if (key === "tembusan") input.value = Array.isArray(state.doc.metadata.tembusan)
+        ? state.doc.metadata.tembusan.join(" | ")
+        : val;
+      else input.value = val;
+    }
+  });
+
+  root.querySelectorAll("[data-live-field-section]").forEach((el) => {
+    const skey = el.dataset.liveFieldSection;
+    const fkey = el.dataset.liveFieldKey;
+    const sec = state.doc.sections.find((s) => s.key === skey);
+    if (!sec) return;
+    if (!sec.fields) sec.fields = {};
+    sec.fields[fkey] = (el.innerText || "").replace(/\u00a0/g, " ").trim();
+    const input = document.querySelector(
+      `#editor-pane [data-field-section="${skey}"][data-field-key="${fkey}"]`,
+    );
+    if (input && document.activeElement !== input) input.value = sec.fields[fkey];
+  });
+
+  root.querySelectorAll("[data-live-section]").forEach((el) => {
+    const key = el.dataset.liveSection;
+    const sec = state.doc.sections.find((s) => s.key === key);
+    if (!sec) return;
+    const text = (el.innerText || "").replace(/\u00a0/g, " ");
+    ensureSectionBlocks(sec);
+    const textBlockId = el.dataset.liveTextBlock;
+    const textBlock = textBlockId
+      ? sec.blocks.find((b) => b.id === textBlockId && b.type === "text")
+      : sec.blocks.find((b) => b.type === "text");
+    if (textBlock) textBlock.content = text;
+    syncLegacyFromBlocks(sec);
+    const ta = document.querySelector(`#editor-pane [data-section="${key}"]`);
+    if (ta && document.activeElement !== ta) ta.value = sec.content || text;
+  });
+
+  root.querySelectorAll("[data-live-table-sec]").forEach((el) => {
+    const secKey = el.dataset.liveTableSec;
+    const sec = state.doc.sections.find((s) => s.key === secKey);
+    const table = getSectionTable(sec);
+    if (!table?.rows) return;
+    const row = Number(el.dataset.liveTableRow);
+    const col = el.dataset.liveTableCol;
+    if (!table.rows[row]) table.rows[row] = {};
+    table.rows[row][col] = (el.innerText || "").replace(/\u00a0/g, " ");
+    syncLegacyFromBlocks(sec);
+    const input = document.querySelector(
+      `#editor-pane [data-table="${secKey}"][data-row="${row}"][data-col="${CSS.escape(col)}"]`,
+    );
+    if (input && document.activeElement !== input) input.value = table.rows[row][col];
+  });
+
+  root.querySelectorAll("[data-live-sig]").forEach((el) => {
+    if (!state.doc.signatory) state.doc.signatory = { name: "", title: "", rank: "" };
+    const key = el.dataset.liveSig;
+    state.doc.signatory[key] = (el.innerText || "").replace(/\u00a0/g, " ").trim();
+    const input = document.querySelector(`#editor-pane [data-sig="${key}"]`);
+    if (input && document.activeElement !== input) input.value = state.doc.signatory[key];
+  });
+}
+
 function livePreview() {
   if (state.route !== "editor" || !state.doc) return;
-  renderPreviewOnly();
-  bindPreviewEditable();
-  bindBlockDragDrop();
-  bindColResize();
+  syncFormToCanvas();
   scheduleAutosave();
+}
+
+/** Push left-form changes into canvas without wiping manual edits. */
+function syncFormToCanvas() {
+  if (!state.doc) return;
+  const ed = getMemoEditor();
+  const root = document.getElementById("a4-preview");
+  if (!root) return;
+
+  // If no rich editor yet / empty canvas → full standard render once
+  if (!ed && !state.doc.canvas_html) {
+    renderPreviewOnly({ force: true });
+    return;
+  }
+
+  const m = state.doc.metadata || {};
+  Object.keys(m).forEach((key) => {
+    patchCanvasMeta(key, m[key]);
+  });
+
+  (state.doc.sections || []).forEach((sec) => {
+    if (sec.not_needed) return;
+    if (sec.fields) {
+      Object.entries(sec.fields).forEach(([fkey, val]) => {
+        root.querySelectorAll(
+          `[data-live-field-section="${sec.key}"][data-live-field-key="${fkey}"]`,
+        ).forEach((node) => {
+          node.textContent = val ?? "";
+        });
+      });
+    }
+    const table = getSectionTable(sec);
+    if (table?.rows?.length) {
+      table.rows.forEach((row, ri) => {
+        Object.entries(row || {}).forEach(([col, val]) => {
+          patchCanvasTableCell(sec.key, ri, col, val);
+        });
+      });
+    }
+    // Prefer text blocks; don't replace whole section HTML if user edited heavily
+    if (!state.canvasDirty && sec.content != null) {
+      patchCanvasSection(sec.key, sec.content, { asHtml: false });
+    } else if (sec.content != null) {
+      root.querySelectorAll(`[data-live-section="${sec.key}"]`).forEach((node) => {
+        if (!(node.textContent || "").trim() || node.classList.contains("placeholder-preview")) {
+          patchCanvasSection(sec.key, sec.content, { asHtml: false });
+        }
+      });
+    }
+  });
+
+  const sig = state.doc.signatory || {};
+  ["title", "name", "rank"].forEach((k) => {
+    root.querySelectorAll(`[data-live-sig="${k}"]`).forEach((n) => {
+      n.textContent = sig[k] || "";
+    });
+  });
+
+  captureCanvasToDoc();
+}
+
+function renderPreviewOnly({ force = false } = {}) {
+  const el = document.getElementById("a4-preview");
+  if (!el || !state.doc) return;
+  const ed = getMemoEditor();
+  if (ed && !force) {
+    // never clobber rich canvas on routine refresh
+    syncFormToCanvas();
+    return;
+  }
+  const active = document.activeElement;
+  if (!force && el.contains(active) && (active.isContentEditable || active.closest?.(".live-table-wrap"))) {
+    return;
+  }
+  const tmpl = state.templates.templates[state.doc.type];
+  el.classList.toggle("layout-m02", (tmpl.layout_variant || "").startsWith("m02"));
+  el.classList.toggle("layout-m01", !(tmpl.layout_variant || "").startsWith("m02"));
+  if (force || !state.doc.canvas_html) {
+    el.innerHTML = renderA4(state.doc, tmpl);
+    state.doc.canvas_html = el.innerHTML;
+  } else {
+    el.innerHTML = state.doc.canvas_html;
+  }
 }
 
 
@@ -900,6 +1119,11 @@ async function refreshFindings() {
 }
 
 function render() {
+  if (state.route === "editor" && state.doc) {
+    try { captureCanvasToDoc(); } catch { /* ignore */ }
+  }
+  state.richReady = false;
+  destroyMemoEditor().catch(() => {});
   const main = $main();
   const app = document.getElementById("app");
   if (app) app.dataset.route = state.route;
@@ -911,6 +1135,39 @@ function render() {
   else if (state.route === "library") main.innerHTML = viewLibrary();
   else if (state.route === "admin") main.innerHTML = viewAdmin();
   bindView();
+  if (state.route === "editor" && state.doc) {
+    initRichCanvas().catch((e) => setSave(`Editor: ${e.message}`));
+  }
+}
+
+async function initRichCanvas() {
+  const el = document.getElementById("a4-preview");
+  if (!el || !state.doc) return;
+  const tmpl = state.templates.templates[state.doc.type];
+  if (!state.doc.canvas_html) {
+    state.doc.canvas_html = renderA4(state.doc, tmpl);
+    el.innerHTML = state.doc.canvas_html;
+  } else {
+    el.innerHTML = state.doc.canvas_html;
+  }
+  prepareCanvasForRichEdit(el);
+  el.classList.toggle("layout-m02", (tmpl.layout_variant || "").startsWith("m02"));
+  el.classList.toggle("layout-m01", !(tmpl.layout_variant || "").startsWith("m02"));
+  refreshFormatWarnings();
+  paintFormatWarnings();
+  await mountMemoEditor({
+    onChange: (html) => {
+      state.doc.canvas_html = html;
+      state.canvasDirty = true;
+      state.doc.manual_adjusted = true;
+      syncCanvasToForm();
+      refreshFormatWarnings();
+      paintFormatWarnings();
+      scheduleAutosave();
+      setSave("Kanvas · edit manual…");
+    },
+  });
+  state.richReady = true;
 }
 
 function formatWhen(iso) {
@@ -1113,16 +1370,19 @@ function viewEditor() {
   if (!doc) return `<p>Tidak ada dokumen.</p>`;
   const tmpl = state.templates.templates[doc.type];
   const tab = state.editorTab;
+  const warn = state.formatWarnings || [];
   return `
     <div class="topbar">
       <div>
         <h1>${esc(doc.draft_name || tmpl?.label || doc.type)}</h1>
-        <p class="muted small">${esc(tmpl?.label || doc.type)} · template ${esc(doc.template_version)} · rule ${esc(doc.rule_version)}</p>
+        <p class="muted small">${esc(tmpl?.label || doc.type)} · template ${esc(doc.template_version)} · rule ${esc(doc.rule_version)}${state.canvasDirty ? " · <span class=\"live\">edit manual aktif</span>" : ""}</p>
       </div>
       <div class="btn-row editor-actions" style="margin:0">
-        <button class="btn btn-primary" id="btn-save-draft" type="button">Simpan draft</button>
-        <button class="btn" id="btn-export-docx" type="button">Unduh DOCX…</button>
-        <button class="btn" id="btn-export-pdf" type="button">Unduh PDF…</button>
+        <button class="btn" id="btn-reset-format" type="button" title="Kembalikan kanvas ke template standar dari form">Reset to Standard Format</button>
+        <button class="btn" id="btn-preview-final" type="button">Preview Final</button>
+        <button class="btn btn-primary" id="btn-save-draft" type="button">Save Draft</button>
+        <button class="btn" id="btn-export-docx" type="button">Download as DOCX</button>
+        <button class="btn" id="btn-export-pdf" type="button">Download as PDF</button>
         ${doc.type === "MEETING_REQUEST" ? `<button class="btn" id="btn-copy-email" type="button">Salin Meeting Request</button>` : ""}
       </div>
     </div>
@@ -1133,13 +1393,23 @@ function viewEditor() {
       <button class="tab ${tab==="review"?"active":""}" data-tab="review">Cek kelengkapan</button>
       <button class="tab ${tab==="versions"?"active":""}" data-tab="versions">Riwayat</button>
     </div>
-    <div class="workspace">
+    <div class="workspace workspace-rich">
       <div class="panel" id="editor-pane">${editorPane(tmpl, tab)}</div>
-      <div class="preview-shell">
-        <div class="preview-pane">
-          <div class="preview-label">Draft Anda <span class="live">· live seperti Word</span></div>
-          ${state.health?.fonts_ready ? "" : `<div class="font-warning">Font Optima/Frutiger 45 Light resmi belum di <code>assets/fonts/</code>. Preview memakai Source Sans 3 sebagai stand-in Frutiger (mirip humanis) — unduh DOCX tetap memakai nama font Frutiger 45 Light.</div>`}
-          <div class="a4 ${ (tmpl.layout_variant||"").startsWith("m02") ? "layout-m02" : "layout-m01" }" id="a4-preview">${renderA4(doc, tmpl)}</div>
+      <div class="preview-shell rich-shell">
+        <div class="preview-pane rich-pane">
+          <div class="preview-label">Kanvas memo <span class="live">· editable seperti Word</span>
+            <span class="muted small">Edit manual tetap tersimpan saat Anda mengubah form kiri</span>
+          </div>
+          <div id="memo-toolbar" class="memo-toolbar" aria-label="Toolbar format"></div>
+          ${warn.length ? `
+            <div class="format-warnings" role="status">
+              <strong>Peringatan format</strong> — perubahan manual tidak dihapus.
+              <ul>${warn.map((w) => `<li>${esc(w)}</li>`).join("")}</ul>
+            </div>` : ""}
+          ${state.health?.fonts_ready ? "" : `<div class="font-warning">Font resmi belum di <code>assets/fonts/</code>. Kanvas memakai Source Sans 3 sebagai stand-in Frutiger.</div>`}
+          <div class="a4-scroll">
+            <div class="a4 ${ (tmpl.layout_variant||"").startsWith("m02") ? "layout-m02" : "layout-m01" }" id="a4-preview">${doc.canvas_html || renderA4(doc, tmpl)}</div>
+          </div>
         </div>
       </div>
     </div>`;
@@ -1646,19 +1916,6 @@ function bindBlockDragDrop() {
       setSave("Urutan blok diperbarui");
     });
   });
-}
-
-function renderPreviewOnly() {
-  const el = document.getElementById("a4-preview");
-  if (!el || !state.doc) return;
-  const active = document.activeElement;
-  if (el.contains(active) && (active.isContentEditable || active.closest?.(".live-table-wrap"))) {
-    return;
-  }
-  const tmpl = state.templates.templates[state.doc.type];
-  el.classList.toggle("layout-m02", (tmpl.layout_variant || "").startsWith("m02"));
-  el.classList.toggle("layout-m01", !(tmpl.layout_variant || "").startsWith("m02"));
-  el.innerHTML = renderA4(state.doc, tmpl);
 }
 
 function viewLibrary() {
@@ -2367,15 +2624,29 @@ function bindView() {
 
   if (state.route === "editor" && state.doc) {
     ensureStructuredFields(state.doc, state.templates.templates[state.doc.type]);
-    bindPreviewEditable();
-    bindBlockDragDrop();
-    bindColResize();
     main.querySelectorAll("[data-tab]").forEach((t) => {
       t.addEventListener("click", () => {
+        captureCanvasToDoc();
         state.editorTab = t.dataset.tab;
         render();
       });
     });
+    main.querySelector("#btn-reset-format")?.addEventListener("click", async () => {
+      if (!confirm("Reset kanvas ke format standar dari form kiri? Edit manual di kanvas akan diganti.")) return;
+      await destroyMemoEditor();
+      rebuildStandardCanvas();
+      const el = document.getElementById("a4-preview");
+      if (el) el.innerHTML = state.doc.canvas_html;
+      await initRichCanvas();
+      setSave("Kanvas direset ke format standar");
+      scheduleAutosave();
+    });
+    main.querySelector("#btn-preview-final")?.addEventListener("click", async () => {
+      captureCanvasToDoc();
+      await openExportPreview("docx");
+    });
+    // Legacy direct-edit bindings only as fallback before TinyMCE mounts
+    if (!state.richReady) bindPreviewEditable();
     main.querySelectorAll("[data-meta]").forEach((el) => {
       el.addEventListener("input", () => {
         const key = el.dataset.meta;
@@ -2869,6 +3140,7 @@ function inferPurpose() {
 
 async function saveDraftNow({ quiet = false } = {}) {
   if (!state.doc?.id) return;
+  captureCanvasToDoc();
   clearTimeout(state.autosaveTimer);
   if (!quiet) setSave("Menyimpan draft…");
   try {
@@ -2879,6 +3151,7 @@ async function saveDraftNow({ quiet = false } = {}) {
     state.doc.updated_at = saved.updated_at;
     state.doc.versions = saved.versions;
     state.doc.audit = saved.audit;
+    if (saved.canvas_html) state.doc.canvas_html = saved.canvas_html;
     if (!quiet) setSave(`Draft tersimpan · ${new Date().toLocaleTimeString("id-ID")}`);
   } catch (e) {
     setSave(`Gagal menyimpan: ${e.message}`);
@@ -2907,7 +3180,7 @@ async function openExportPreview(kind) {
   const findings = state.findings || [];
   const errors = findings.filter((f) => f.severity === "error");
 
-  const a4Html = renderA4(state.doc, tmpl)
+  const a4Html = (state.doc.canvas_html || renderA4(state.doc, tmpl))
     .replaceAll('contenteditable="true"', "")
     .replaceAll("contenteditable='true'", "");
 
@@ -2937,6 +3210,7 @@ async function openExportPreview(kind) {
               <li class="${esc(f.severity)}"><strong>${esc(f.severity)}</strong> · ${esc(f.message)}</li>
             `).join("") : `<li class="info">Tidak ada temuan.</li>`}
           </ul>
+          ${state.doc.manual_adjusted ? `<p class="export-note">Kanvas telah disesuaikan manual. Unduh DOCX/PDF memakai model terstruktur yang disinkronkan dari kanvas (teks &amp; tabel). Format visual lanjutan (margin kustom, merge, dll.) paling akurat di Preview Final.</p>` : ""}
           <div class="btn-row" style="margin-top:1rem">
             <button type="button" class="btn" data-export-cancel>Batal</button>
             <button type="button" class="btn btn-primary" id="export-confirm-btn">Unduh ${label}</button>

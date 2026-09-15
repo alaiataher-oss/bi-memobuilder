@@ -304,5 +304,7 @@ def new_document_shell(doc_type: str, purpose: str, budget_impact: bool | None =
         "created_at": _now(),
         "updated_at": _now(),
         "versions": [],
+        "canvas_html": "",
+        "manual_adjusted": False,
         "audit": [{"event": "create", "at": _now(), "actor": "demo.user"}],
     }
